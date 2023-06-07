@@ -106,13 +106,13 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""84785f8e-6855-486a-a170-ad088d3d21f4"",
+                    ""id"": ""7aee5d16-f2e8-4d10-8e87-3d03beb6ce02"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -123,7 +123,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cf476b22-3639-49a1-822e-56feda2ede14"",
+                    ""id"": ""83265308-5c84-4727-a20f-471c93496f03"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -134,7 +134,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3a9ef01e-0c52-4025-9175-00d65e5b0fa4"",
+                    ""id"": ""8930a167-c6d0-410e-a9e3-b527f62ab911"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -145,7 +145,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""38273e60-8e17-4533-ba17-0a5ad87a6cda"",
+                    ""id"": ""fec420b3-3373-4c43-8eed-85d6d826d55b"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",

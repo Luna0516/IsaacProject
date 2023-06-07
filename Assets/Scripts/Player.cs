@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour
     /// </summary>
     PlayerAction playerAction;
 
-    Vector3 dir = Vector3.zero;
+    Vector3 dir = Vector2.zero;
     /// <summary>
     /// ´«¹°
     /// </summary>
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
     Transform body;
 
     Transform head;
-    
+
     Animator headAni;
 
     Animator bodyAni;
@@ -47,13 +48,26 @@ public class Player : MonoBehaviour
     SpriteRenderer headSR;
 
     readonly int boolY_string = Animator.StringToHash("BoolY");
-    
+
     readonly int boolX_string = Animator.StringToHash("BoolX");
 
     readonly int headX_string = Animator.StringToHash("HeadX");
 
     readonly int headY_string = Animator.StringToHash("HeadY");
 
+    readonly int shootUp = Animator.StringToHash("Up");
+
+    readonly int shootDown = Animator.StringToHash("Down");
+
+    readonly int shootRight = Animator.StringToHash("Right");
+
+    readonly int shootLeft = Animator.StringToHash("Left");
+
+    /*readonly int shootX_string = Animator.StringToHash("ShootX");
+
+    readonly int shootY_string = Animator.StringToHash("ShootY");
+
+    readonly int shootY_float = Animator.StringToHash("ShootY_float");*/
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -65,7 +79,7 @@ public class Player : MonoBehaviour
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
-        
+
     }
 
 
@@ -81,16 +95,17 @@ public class Player : MonoBehaviour
         playerAction.Move.WASD.canceled += OnMove;
         playerAction.Shot.Enable();
         playerAction.Shot.Cross.performed += OnFire;
-        
+        playerAction.Shot.Cross.canceled += OnFire;
     }
 
-    
+
     private void OnDisable()
     {
         playerAction.Move.WASD.performed -= OnMove;
         playerAction.Move.WASD.canceled -= OnMove;
         playerAction.Move.Disable();
         playerAction.Shot.Cross.performed -= OnFire;
+        playerAction.Shot.Cross.canceled -= OnFire;
         playerAction.Shot.Disable();
     }
 
@@ -98,7 +113,8 @@ public class Player : MonoBehaviour
     {
         Vector2 value = context.ReadValue<Vector2>();
         dir = value;
-        Debug.Log(value);
+        //Debug.Log(value);
+        
 
         if (dir.y != 0)
         {
@@ -117,12 +133,12 @@ public class Player : MonoBehaviour
             bodyAni.SetBool(boolY_string, false);
             headAni.SetBool(headY_string, false);
         }
-        
-        
+
+
 
         headAni.SetBool(headX_string, true);
         bodyAni.SetBool(boolX_string, true);
-        if(dir.x < 0)
+        if (dir.x < 0)
         {
             bodySR.flipX = true;
             headSR.flipX = true;
@@ -138,16 +154,45 @@ public class Player : MonoBehaviour
             bodyAni.SetBool(boolX_string, false);
         }
 
-        
+        if (dir.y != 0)
+        {
+            headAni.SetBool(headX_string, false);
+        }
+        else if (dir.y < 0)
+        {
+            headAni.SetBool(headX_string, false);
+        }
 
 
     }
     private void OnFire(InputAction.CallbackContext context)
     {
-        GameObject tears = GameObject.Instantiate(Tears);
+        GameObject tears = Instantiate(Tears);
         Transform tearspawn = transform.GetChild(0);
         Tears.transform.position = tearspawn.position;
-    }
-    
+        //Vector2 shootdir = new Vector2(0, 0);
+        
 
+        //Vector2 value = context.ReadValue<Vector2>();
+        //shootdir = value;
+        //Debug.Log(value);
+
+        /*if (shootdir < 0)
+        {
+            headAni.SetBool(shootY_string, true);
+        }
+        else if (dir.y < 0)
+        {
+            headAni.SetBool(shootY_string, false);
+            headAni.SetFloat(shootY_float, 1);
+        }
+        else
+        {
+            headAni.SetBool(shootY_string, false);
+            headAni.SetFloat(shootY_float, 0);
+        }*/
+
+
+
+    }
 }
