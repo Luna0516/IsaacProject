@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("#GameManager")]
     public int coin = 0;
     public float health = 3;
+    public int bombCount = 0;
 
     void Awake()
     {
