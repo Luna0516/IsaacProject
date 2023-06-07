@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
             bodySR.flipX = true;
             headSR.flipX = true;
         }
-        else if (dir.x > 0.1)
+        else if (dir.x > 0)
         {
             bodySR.flipX = false;
             headSR.flipX = false;
