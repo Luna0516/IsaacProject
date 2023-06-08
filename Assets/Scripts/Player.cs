@@ -63,11 +63,11 @@ public class Player : MonoBehaviour
 
     readonly int shootLeft = Animator.StringToHash("Left");
 
-    /*readonly int shootX_string = Animator.StringToHash("ShootX");
+    readonly int shootX_string = Animator.StringToHash("ShootX");
 
     readonly int shootY_string = Animator.StringToHash("ShootY");
 
-    readonly int shootY_float = Animator.StringToHash("ShootY_float");*/
+    readonly int shootY_float = Animator.StringToHash("ShootY_float");
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -95,7 +95,6 @@ public class Player : MonoBehaviour
         playerAction.Move.WASD.canceled += OnMove;
         playerAction.Shot.Enable();
         playerAction.Shot.Cross.performed += OnFire;
-        playerAction.Shot.Cross.canceled += OnFire;
     }
 
 
@@ -105,7 +104,6 @@ public class Player : MonoBehaviour
         playerAction.Move.WASD.canceled -= OnMove;
         playerAction.Move.Disable();
         playerAction.Shot.Cross.performed -= OnFire;
-        playerAction.Shot.Cross.canceled -= OnFire;
         playerAction.Shot.Disable();
     }
 
@@ -169,15 +167,18 @@ public class Player : MonoBehaviour
     {
         GameObject tears = Instantiate(Tears);
         Transform tearspawn = transform.GetChild(0);
-        Tears.transform.position = tearspawn.position;
-        //Vector2 shootdir = new Vector2(0, 0);
+        tears.transform.position = tearspawn.position;
+        
         
 
-        //Vector2 value = context.ReadValue<Vector2>();
-        //shootdir = value;
-        //Debug.Log(value);
+        
 
-        /*if (shootdir < 0)
+
+        Vector2 value = context.ReadValue<Vector2>().normalized;
+        dir = value;
+        Debug.Log(value);
+
+        if (dir.y < 0)
         {
             headAni.SetBool(shootY_string, true);
         }
@@ -190,7 +191,7 @@ public class Player : MonoBehaviour
         {
             headAni.SetBool(shootY_string, false);
             headAni.SetFloat(shootY_float, 0);
-        }*/
+        }
 
 
 
