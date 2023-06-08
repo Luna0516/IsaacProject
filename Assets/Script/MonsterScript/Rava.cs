@@ -6,42 +6,43 @@ using UnityEngine.EventSystems;
 
 public class Rava : EnemyBase
 {
-    Vector3 movedirtection;
     Vector3 targetPosition;
-    Vector3 destination;
-    Animator anime;
-    WaitForSeconds monsterwait;
-    
-    private void Awake()
-    {
-        anime = GetComponent<Animator>();
-    }
 
     protected override void Movement()
     {
-
+        transform.Translate(Time.deltaTime * speed * targetPosition);
     }
     private void Start()
     {
         transform.position = transform.position;
+        StopAllCoroutines();
         StartCoroutine(moveingRava());
     }
 
     IEnumerator moveingRava()
     {
-        yield return new WaitForSeconds(0.5f);
-    }
-    private void Update()
-    {
-
+        for (int i = 0; i > -1;)
+        {
+            Movement();
+            yield return new WaitForSeconds(1.25f);
+            SetNextTargetPosition();
+            i++;
+        }
     }
     private void SetNextTargetPosition()
     {
         float x;
         float y;
-        x= Random.Range(-1f, 1f);
-        y = Random.Range(0f, 2f);
-
+        x= Random.Range(-2f, 2f);
+        y = Random.Range(-2f, 2f);
+        if(x>0)
+        {
+            transform.Rotate(new Vector3(0,0,0));
+        }
+        else 
+        {
+            transform.Rotate(new Vector3(0, 180, 0));
+        }
         targetPosition = new Vector3(x, y, 0);
     }
 

@@ -108,10 +108,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 196
-        width: 25
-        height: 15
+        x: 0
+        y: 192
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,10 +129,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 196
-        width: 25
-        height: 17
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +150,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_2
       rect:
         serializedVersion: 2
-        x: 67
-        y: 196
-        width: 25
-        height: 15
+        x: 64
+        y: 192
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 196
-        width: 25
-        height: 17
+        x: 96
+        y: 192
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,10 +192,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_4
       rect:
         serializedVersion: 2
-        x: 7
-        y: 163
-        width: 21
-        height: 22
+        x: 0
+        y: 160
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,10 +213,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_5
       rect:
         serializedVersion: 2
-        x: 39
-        y: 163
-        width: 21
-        height: 23
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_6
       rect:
         serializedVersion: 2
-        x: 71
-        y: 163
-        width: 21
-        height: 22
+        x: 64
+        y: 160
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,10 +255,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_7
       rect:
         serializedVersion: 2
-        x: 103
-        y: 163
-        width: 21
-        height: 22
+        x: 96
+        y: 160
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_8
       rect:
         serializedVersion: 2
-        x: 4
-        y: 130
-        width: 24
-        height: 20
+        x: 0
+        y: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,10 +297,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_9
       rect:
         serializedVersion: 2
-        x: 36
-        y: 130
-        width: 24
-        height: 21
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,10 +318,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_10
       rect:
         serializedVersion: 2
-        x: 68
-        y: 130
-        width: 24
-        height: 20
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,10 +339,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_11
       rect:
         serializedVersion: 2
-        x: 100
-        y: 130
-        width: 24
-        height: 20
+        x: 96
+        y: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,10 +360,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_12
       rect:
         serializedVersion: 2
-        x: 2
-        y: 100
-        width: 26
-        height: 18
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_13
       rect:
         serializedVersion: 2
-        x: 34
-        y: 100
-        width: 26
-        height: 19
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,10 +402,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_14
       rect:
         serializedVersion: 2
-        x: 66
-        y: 100
-        width: 26
-        height: 18
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,10 +423,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_15
       rect:
         serializedVersion: 2
-        x: 98
-        y: 100
-        width: 26
-        height: 18
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -444,10 +444,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_16
       rect:
         serializedVersion: 2
-        x: 4
-        y: 68
-        width: 24
-        height: 20
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -465,10 +465,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_17
       rect:
         serializedVersion: 2
-        x: 36
-        y: 68
-        width: 24
-        height: 20
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -486,10 +486,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_18
       rect:
         serializedVersion: 2
-        x: 68
-        y: 68
-        width: 24
-        height: 20
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -507,10 +507,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_19
       rect:
         serializedVersion: 2
-        x: 100
-        y: 68
-        width: 24
-        height: 20
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -528,10 +528,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_20
       rect:
         serializedVersion: 2
-        x: 7
-        y: 36
-        width: 21
-        height: 22
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -549,10 +549,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_21
       rect:
         serializedVersion: 2
-        x: 39
-        y: 36
-        width: 21
-        height: 22
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -570,10 +570,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_22
       rect:
         serializedVersion: 2
-        x: 71
-        y: 36
-        width: 21
-        height: 22
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -591,10 +591,10 @@ TextureImporter:
       name: PC Computer - The Binding of Isaac Rebirth - Embryo_23
       rect:
         serializedVersion: 2
-        x: 103
-        y: 36
-        width: 21
-        height: 22
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
