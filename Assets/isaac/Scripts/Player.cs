@@ -55,7 +55,15 @@ public class Player : MonoBehaviour
 
     readonly int headY_string = Animator.StringToHash("HeadY");
 
-    readonly int shootUp = Animator.StringToHash("Up");
+    readonly int shoot_Back = Animator.StringToHash("Up");
+
+    readonly int shoot_Front = Animator.StringToHash("Down");
+
+    readonly int shoot_Right = Animator.StringToHash("Right");
+
+    readonly int shoot_Left = Animator.StringToHash("Left");
+
+    /*readonly int shootUp = Animator.StringToHash("Up");
 
     readonly int shootDown = Animator.StringToHash("Down");
 
@@ -67,7 +75,7 @@ public class Player : MonoBehaviour
 
     readonly int shootY_string = Animator.StringToHash("ShootY");
 
-    readonly int shootY_float = Animator.StringToHash("ShootY_float");
+    readonly int shootY_float = Animator.StringToHash("ShootY_float");*/
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -80,13 +88,17 @@ public class Player : MonoBehaviour
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
 
+        GameObject tears = Instantiate(Tears);
+        Transform tearspawn = transform.GetChild(0);
+        tears.transform.position = tearspawn.position;
+
     }
 
 
 
     private void Update()
     {
-        transform.position += Time.deltaTime * speed * dir;
+        Vector2 delta = transform.position += Time.deltaTime * speed * dir;
     }
     private void OnEnable()
     {
@@ -110,26 +122,30 @@ public class Player : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        dir = value;
-        //Debug.Log(value);
+        dir = value.normalized;
+        Debug.Log(value);
         
 
         if (dir.y != 0)
         {
             bodyAni.SetBool(boolY_string, true);
+            
             if (dir.y > 0)
             {
                 headAni.SetBool(headY_string, true);
+                
             }
             else if (dir.y < 0)
             {
                 headAni.SetBool(headY_string, false);
+                
             }
         }
         else
         {
             bodyAni.SetBool(boolY_string, false);
             headAni.SetBool(headY_string, false);
+            
         }
 
 
@@ -165,16 +181,20 @@ public class Player : MonoBehaviour
     }
     private void OnFire(InputAction.CallbackContext context)
     {
-        GameObject tears = Instantiate(Tears);
-        Transform tearspawn = transform.GetChild(0);
-        tears.transform.position = tearspawn.position;
+        Vector2 value = context.ReadValue<Vector2>();
+        dir = value.normalized;
+
         
         
+        if(dir.y < 0)
+        {
+            
+        }
 
         
 
 
-        Vector2 value = context.ReadValue<Vector2>().normalized;
+        /*Vector2 value = context.ReadValue<Vector2>().normalized;
         dir = value;
         Debug.Log(value);
 
@@ -191,7 +211,7 @@ public class Player : MonoBehaviour
         {
             headAni.SetBool(shootY_string, false);
             headAni.SetFloat(shootY_float, 0);
-        }
+        }*/
 
 
 
