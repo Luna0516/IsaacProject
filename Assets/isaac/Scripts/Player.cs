@@ -13,9 +13,10 @@ public class Player : MonoBehaviour
     /// </summary>
     PlayerAction playerAction;
 
-    Vector3 dir1 = Vector2.zero;
+    Vector2 dir1 = Vector2.zero;
 
-    Vector3 dir2 = Vector2.zero;
+    Vector2 dir2 = Vector2.zero
+;
     /// <summary>
     /// ´«¹°
     /// </summary>
@@ -51,19 +52,21 @@ public class Player : MonoBehaviour
 
     SpriteRenderer headSR;
 
-    readonly int boolY_string = Animator.StringToHash("BoolY");
+    readonly int MoveDirY = Animator.StringToHash("MoveDir_Y");
 
-    readonly int boolX_string = Animator.StringToHash("BoolX");
+    readonly int MoveDirX = Animator.StringToHash("MoveDir_X");
 
-    readonly int headX_string = Animator.StringToHash("HeadX");
+    readonly int isMove = Animator.StringToHash("isMove");
 
-    readonly int headY_string = Animator.StringToHash("HeadY");
+    readonly int DirX1 = Animator.StringToHash("Dir_X1");
 
-    readonly int shootX_string = Animator.StringToHash("ShootX");
+    readonly int DirY1 = Animator.StringToHash("Dir_Y1");
 
-    readonly int shootY_Back = Animator.StringToHash("ShootY");
+    readonly int isShoot = Animator.StringToHash("isShoot");
 
-    readonly int shootY_Front = Animator.StringToHash("ShootY_Front");
+    readonly int DirX2 = Animator.StringToHash("Dir_X2");
+
+    readonly int DirY2 = Animator.StringToHash("Dir_Y2");
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -76,7 +79,7 @@ public class Player : MonoBehaviour
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
 
-        
+
         GameObject tears = Instantiate(Tears);
         Transform tearspawn = transform.GetChild(0);
         tears.transform.position = tearspawn.position;
@@ -84,11 +87,13 @@ public class Player : MonoBehaviour
     }
 
 
-
     private void Update()
     {
-        //Vector2 delta = transform.position += Time.deltaTime * speed * dir1;
+        Vector3 dir = new Vector3(dir1.x * speed * Time.deltaTime, dir1.y * speed * Time.deltaTime, 0f);
+        transform.position += dir;
     }
+
+
     private void OnEnable()
     {
         playerAction.Move.Enable();
@@ -96,6 +101,7 @@ public class Player : MonoBehaviour
         playerAction.Move.WASD.canceled += OnMove;
         playerAction.Shot.Enable();
         playerAction.Shot.Cross.performed += OnFire;
+        playerAction.Shot.Cross.canceled += OnFire;
     }
 
 
@@ -112,133 +118,60 @@ public class Player : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        dir1 = value.normalized;
+        dir1 = value;
         Debug.Log(value);
-        
 
-        if (dir1.y != 0)
+        if (dir1.x == 0 && dir1.y == 0)
         {
-            bodyAni.SetBool(boolY_string, true);
-            
-            if (dir1.y > 0)
-            {
-                headAni.SetBool(headY_string, true);
-                
-            }
-            else if (dir1.y < 0)
-            {
-                headAni.SetBool(headY_string, false);
-                
-            }
+            bodyAni.SetBool(isMove, false);
+            headAni.SetBool(isMove, false);
         }
         else
         {
-            bodyAni.SetBool(boolY_string, false);
-            headAni.SetBool(headY_string, false);
-            
+            bodyAni.SetBool(isMove, true);
+            headAni.SetBool(isMove, true);
         }
 
+        bodyAni.SetFloat(MoveDirY, dir1.y);
+        headAni.SetFloat(DirY1, dir1.y);
 
-
-        headAni.SetBool(headX_string, true);
-        bodyAni.SetBool(boolX_string, true);
         if (dir1.x < 0)
         {
             bodySR.flipX = true;
             headSR.flipX = true;
         }
-        else if (dir1.x > 0)
+        else
         {
             bodySR.flipX = false;
             headSR.flipX = false;
         }
-        else
-        {
-            headAni.SetBool(headX_string, false);
-            bodyAni.SetBool(boolX_string, false);
-        }
-
-        if (dir1.y != 0)
-        {
-            headAni.SetBool(headX_string, false);
-        }
-        else if (dir1.y < 0)
-        {
-            headAni.SetBool(headX_string, false);
-        }
-
-        
-
+        bodyAni.SetFloat(MoveDirX, dir1.x);
+        headAni.SetFloat(DirX1, dir1.x);
     }
     private void OnFire(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        dir2 = value.normalized;
+        dir2 = value;
         Debug.Log(value);
 
-        
-        if (dir2.y < 0)
+        if (dir2.x == 0 && dir2.y == 0)
         {
-            headAni.SetBool(shootY_Front, true);
-            headAni.SetBool(shootY_Back, false);
-            dir2.y = 0;
-        }
-        else if (dir2.y > 0)
-        {
-            headAni.SetBool(shootY_Back, true);
-            headAni.SetBool(shootY_Front, false);
-            dir2.y = 0;
+            headAni.SetBool(isShoot, false);
         }
         else
         {
-            headAni.SetBool(shootY_Back, false);
-            headAni.SetBool(shootY_Front, false);
+            headAni.SetBool(isShoot, true);
         }
-
-        if(dir2.x != 0)
+        headAni.SetFloat(DirY2, dir2.y);
+        if (dir2.x > 0)
         {
-            dir2.x = 0;
-            headAni.SetBool(shootX_string, true);
-            if (dir2.x < 0)
-            {
-                headSR.flipX = false;
-            }
-            else if (dir2.x > 0)
-            {
-                headSR.flipX = true;
-            }
-            
+            headSR.flipX = true;
         }
         else
         {
-            headAni.SetBool(shootX_string, false);
+            headSR.flipX = false;
         }
-        
-
-
-
-
-
-        /*Vector2 value = context.ReadValue<Vector2>().normalized;
-        dir = value;
-        Debug.Log(value);
-
-        if (dir.y < 0)
-        {
-            headAni.SetBool(shootY_string, true);
-        }
-        else if (dir.y < 0)
-        {
-            headAni.SetBool(shootY_string, false);
-            headAni.SetFloat(shootY_float, 1);
-        }
-        else
-        {
-            headAni.SetBool(shootY_string, false);
-            headAni.SetFloat(shootY_float, 0);
-        }
-*/
-
-
+        headAni.SetFloat(DirX2, dir2.x);
     }
+
 }

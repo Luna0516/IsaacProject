@@ -217,8 +217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1260300932}
   - component: {fileID: 1260300931}
-  - component: {fileID: 1260300933}
   - component: {fileID: 1260300934}
+  - component: {fileID: 1260300935}
   m_Layer: 0
   m_Name: HeadIdle
   m_TagString: Untagged
@@ -269,7 +269,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e11b1b09fe8c4134d859d6d12405874a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.875, y: 0.78125}
@@ -293,18 +293,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1260300933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260300930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd793ff544954ae4b89999ffb42309b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1260300934
 Animator:
   serializedVersion: 5
@@ -326,3 +314,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1260300935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260300930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd793ff544954ae4b89999ffb42309b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
