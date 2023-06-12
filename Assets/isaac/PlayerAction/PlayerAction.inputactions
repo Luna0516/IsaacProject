@@ -79,9 +79,9 @@
             "actions": [
                 {
                     "name": "Cross",
-                    "type": "Button",
-                    "id": "81ff8fc8-0bbc-4f89-b096-ca0c7553a0be",
-                    "expectedControlType": "Button",
+                    "type": "Value",
+                    "id": "88bd4ef8-97ec-41eb-be2b-9f92c6c4273e",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -89,48 +89,59 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "7aee5d16-f2e8-4d10-8e87-3d03beb6ce02",
+                    "name": "2D Vector",
+                    "id": "dc02a209-de39-459e-bb4b-45e4d1292be3",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cross",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "572f7d10-d0ec-4478-a52b-e0a493cbc392",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Cross",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "83265308-5c84-4727-a20f-471c93496f03",
+                    "name": "down",
+                    "id": "54a89890-66c5-4068-b2ce-7a96472279e9",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Cross",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "8930a167-c6d0-410e-a9e3-b527f62ab911",
+                    "name": "left",
+                    "id": "2aa15237-ff8b-4260-81b9-ed04279d2d92",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Cross",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "fec420b3-3373-4c43-8eed-85d6d826d55b",
+                    "name": "right",
+                    "id": "1de57a72-744e-499a-8023-73119be075e1",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Cross",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },
