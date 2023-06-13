@@ -17,7 +17,7 @@ public class CoinBase : MonoBehaviour
         if (!(collision.gameObject.CompareTag("Player")))
             return;
 
-        GameManager.instance.coin += this.coinCount;
+        GameManager.Inst.Coin = this.coinCount;
 
         this.rigid.simulated = false;
 
