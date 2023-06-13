@@ -52,21 +52,21 @@ public class Player : MonoBehaviour
 
     SpriteRenderer headSR;
 
-    readonly int MoveDirY = Animator.StringToHash("MoveDir_Y");
+    readonly int moveDirY = Animator.StringToHash("MoveDir_Y");
 
-    readonly int MoveDirX = Animator.StringToHash("MoveDir_X");
+    readonly int moveDirX = Animator.StringToHash("MoveDir_X");
 
     readonly int isMove = Animator.StringToHash("isMove");
 
-    readonly int DirX1 = Animator.StringToHash("Dir_X1");
+    readonly int headDirX = Animator.StringToHash("Dir_X1");
 
-    readonly int DirY1 = Animator.StringToHash("Dir_Y1");
+    readonly int headDirY = Animator.StringToHash("Dir_Y1");
 
     readonly int isShoot = Animator.StringToHash("isShoot");
 
-    readonly int DirX2 = Animator.StringToHash("Dir_X2");
+    readonly int shootDirX = Animator.StringToHash("Dir_X2");
 
-    readonly int DirY2 = Animator.StringToHash("Dir_Y2");
+    readonly int shootDirY = Animator.StringToHash("Dir_Y2");
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -132,21 +132,38 @@ public class Player : MonoBehaviour
             headAni.SetBool(isMove, true);
         }
         
-        bodyAni.SetFloat(MoveDirY, dir1.y);
-        headAni.SetFloat(DirY1, dir1.y);
+        bodyAni.SetFloat(moveDirY, dir1.y);
+        headAni.SetFloat(headDirY, dir1.y);
 
-        if (dir1.x < 0)
+        if(dir1.y != 0)
         {
-            bodySR.flipX = true;
-            headSR.flipX = true;
-        }
-        else if (dir1.x > 0)
-        {
-            bodySR.flipX = false;
             headSR.flipX = false;
+            if(dir1.x < 0)
+            {
+                bodySR.flipX = true;
+            }
+            else
+            {
+                bodySR.flipX = false;
+            }
         }
-        bodyAni.SetFloat(MoveDirX, dir1.x);
-        headAni.SetFloat(DirX1, dir1.x);
+        else // Y 값이 0일때 
+        {
+            if (dir1.x < 0) // x가 0보다 작을시
+            {
+                bodySR.flipX = true; // 플립
+                headSR.flipX = true;
+                
+            }
+            else
+            {
+                bodySR.flipX = false; // 플립을 풀어
+                headSR.flipX = false;
+                
+            }
+        }
+        bodyAni.SetFloat(moveDirX, dir1.x);
+        headAni.SetFloat(headDirX, dir1.x);
     }
     private void OnFire(InputAction.CallbackContext context)
     {
@@ -162,16 +179,31 @@ public class Player : MonoBehaviour
         {
             headAni.SetBool(isShoot, true);
         }
-        headAni.SetFloat(DirY2, dir2.y);
-        if (dir2.x < 0)
+        headAni.SetFloat(shootDirY, dir2.y);
+        
+        if (dir2.x < 0) // 왼쪽으로 쏠때
         {
-            headSR.flipX = true;
+            headSR.flipX = true; // X플립
         }
-        else if (dir2.x > 0)
+        else if(dir1.x > 0) // 몸이 오른쪽으로 움직이면
         {
-            headSR.flipX = false;
+            headSR.flipX = false; //머가리 X플립 해제
         }
-        headAni.SetFloat(DirX2, dir2.x);
+
+        else // 오른쪽으로 쏠떄
+        {
+            if(dir2.x > 0) // 오른쪽으로 쏘면
+            {
+                headSR.flipX = false; // x플립 취소
+            }
+            else if (dir1.x < 0) // 왼쪽으로 움직이면
+            {
+                headSR.flipX = true; // x플립 활성화
+            }
+
+        }
+
+        headAni.SetFloat(shootDirX, dir2.x);
 
         
     }
