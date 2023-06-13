@@ -12,10 +12,13 @@ public class bloodycry : EnemyBase
     Animator headanimator;
     Animator bodyanimator;
 
+    bool moveactive=false;
+
     private void Awake()
     {
         head = transform.GetChild(1).gameObject;
         body = transform.GetChild(0).gameObject;
+
         headsprite = head.GetComponent<SpriteRenderer>();
         bodysprite = body.GetComponent<SpriteRenderer>();
         headanimator = head.GetComponent<Animator>();
@@ -23,10 +26,10 @@ public class bloodycry : EnemyBase
     }
     private void Update()
     {
-
-
-
-        Movement();
+        if (moveactive)
+        {
+            Movement();
+        }
     }
     protected override void Movement()
     {
@@ -52,7 +55,21 @@ public class bloodycry : EnemyBase
     {
         if(collision.CompareTag("Player"))
         {
-
+            moveactive=true;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerBullet"))
+        {
+            StartCoroutine(hittedanime());
+        }
+    }
+    IEnumerator hittedanime()
+    {
+        headanimator.SetInteger("state", 1);
+        yield return new WaitForSeconds(0.2f);
+        headanimator.SetInteger("state", 2);
+    }
+
 }
