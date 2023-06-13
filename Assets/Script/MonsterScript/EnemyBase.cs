@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
+    public Transform target;
     public float speed = 5f;
     protected virtual void Movement()
     {
