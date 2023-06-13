@@ -4,26 +4,53 @@ using UnityEngine;
 
 public class mualigan : EnemyBase
 {
-    Transform target;
+
     Vector3 Headto;
+    GameObject head;
+    GameObject body;
+    SpriteRenderer headsprite;
+    SpriteRenderer bodysprite;
+    Animator animator;
+
+    private void Awake()
+    {
+        head = transform.GetChild(1).gameObject;
+        body = transform.GetChild(0).gameObject;
+        headsprite = head.GetComponent<SpriteRenderer>();
+        bodysprite = body.GetComponent<SpriteRenderer>();
+        animator = body.GetComponent<Animator>();
+    }
 
 
-
+    private void Update()
+    {
+        Movement();
+    }
     protected override void Movement()
     {
-        Headto = transform.position - target.position;
-        
-        
-        if(Headto.x>0&&Headto.x>Headto.y)
-        {
-            transform.Rotate(new Vector3(0, 0, 0));
-        }
-        else
-        {
+        Headto = target.position - transform.position;
 
-        }
-        transform.Translate(target.position*Time.deltaTime*speed);
+
+            if (Headto.x > 1)
+            {
+                headsprite.flipX = false;
+                bodysprite.flipX = false;
+                animator.SetInteger("WalkSideway", 1);
+                transform.position += Headto.normalized * speed * Time.deltaTime;
+            }
+            else if (Headto.x < 1)
+            {
+                headsprite.flipX = true;
+                bodysprite.flipX = true;
+                animator.SetInteger("WalkSideway", 1);
+                transform.position += Headto.normalized * speed * Time.deltaTime;
+
+            }
         
+
+
+        
+
     }
 
 

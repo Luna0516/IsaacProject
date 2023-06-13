@@ -10,7 +10,7 @@ public class Rava : EnemyBase
 
     protected override void Movement()
     {
-        transform.Translate(Time.deltaTime * speed * targetPosition);
+        transform.position += Time.deltaTime * speed * targetPosition.normalized;
     }
     private void Start()
     {
@@ -21,13 +21,17 @@ public class Rava : EnemyBase
 
     IEnumerator moveingRava()
     {
+        Movement();
         for (int i = 0; i > -1;)
         {
-            Movement();
             yield return new WaitForSeconds(1.25f);
             SetNextTargetPosition();
             i++;
         }
+    }
+    private void Update()
+    {
+
     }
     private void SetNextTargetPosition()
     {
