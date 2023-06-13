@@ -14,11 +14,17 @@ public class Test_Head : MonoBehaviour
 
     SpriteRenderer HeadSR;
 
+    readonly int isShoot = Animator.StringToHash("isShoot");
+
     readonly int isMove = Animator.StringToHash("isMove");
 
-    readonly int dirX = Animator.StringToHash("Dir_X");
+    readonly int dirX1 = Animator.StringToHash("Dir_X1");
 
-    readonly int dirY = Animator.StringToHash("Dir_Y");
+    readonly int dirY1 = Animator.StringToHash("Dir_Y1");
+
+    readonly int dirX2 = Animator.StringToHash("Dir_X2");
+
+    readonly int dirY2 = Animator.StringToHash("Dir_Y2");
 
     private void Awake()
     {
@@ -32,6 +38,9 @@ public class Test_Head : MonoBehaviour
         playerAction.Shot.Enable();
         playerAction.Shot.Cross.performed += OnFire;
         playerAction.Shot.Cross.canceled += OnFire;
+        playerAction.Move.Enable();
+        playerAction.Move.WASD.performed += OnMove;
+        playerAction.Move.WASD.canceled += OnMove;
     }
 
 
@@ -40,8 +49,12 @@ public class Test_Head : MonoBehaviour
         playerAction.Shot.Cross.performed -= OnFire;
         playerAction.Shot.Cross.canceled -= OnFire;
         playerAction.Shot.Disable();
+        playerAction.Move.WASD.performed -= OnMove;
+        playerAction.Move.WASD.canceled -= OnMove;
+        playerAction.Move.Enable();
     }
-    private void OnFire(InputAction.CallbackContext context)
+
+    private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
         dir = value;
@@ -55,7 +68,46 @@ public class Test_Head : MonoBehaviour
         {
             ani.SetBool(isMove, true);
         }
-        ani.SetFloat(dirY, dir.y);
+
+        if(dir.y < 0 || dir.y > 0)
+        {
+            ani.SetFloat(dirY1, dir.y);
+        }
+        else
+        {
+            ani.SetFloat(dirY1, 0);
+        }
+        if(dir.y != 0)
+        {
+            ani.SetFloat(dirX1, 0);
+        }
+        ani.SetFloat(dirX1, dir.x);
+        if (dir.x < 0)
+        {
+            HeadSR.flipX = true;
+        }
+        else if(dir.x > 0)
+        {
+            HeadSR.flipX = false;
+        }
+        
+
+    }
+    private void OnFire(InputAction.CallbackContext context)
+    {
+        Vector2 value = context.ReadValue<Vector2>();
+        dir = value;
+        Debug.Log(value);
+
+        if(dir.x == 0 && dir.y == 0)
+        {
+            ani.SetBool(isShoot, false);
+        }
+        else
+        {
+            ani.SetBool(isShoot, true);
+        }
+        ani.SetFloat(dirY2, dir.y);
         if(dir.x > 0)
         {
             HeadSR.flipX = true;
@@ -64,7 +116,8 @@ public class Test_Head : MonoBehaviour
         {
             HeadSR.flipX = false;
         }
-        ani.SetFloat(dirX, dir.x);
+        ani.SetFloat(dirX2, dir.x);
+
     }
 
    

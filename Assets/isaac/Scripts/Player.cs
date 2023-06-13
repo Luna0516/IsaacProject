@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
             bodyAni.SetBool(isMove, true);
             headAni.SetBool(isMove, true);
         }
-
+        
         bodyAni.SetFloat(MoveDirY, dir1.y);
         headAni.SetFloat(DirY1, dir1.y);
 
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
             bodySR.flipX = true;
             headSR.flipX = true;
         }
-        else
+        else if (dir1.x > 0)
         {
             bodySR.flipX = false;
             headSR.flipX = false;
@@ -163,15 +163,17 @@ public class Player : MonoBehaviour
             headAni.SetBool(isShoot, true);
         }
         headAni.SetFloat(DirY2, dir2.y);
-        if (dir2.x > 0)
+        if (dir2.x < 0)
         {
             headSR.flipX = true;
         }
-        else
+        else if (dir2.x > 0)
         {
             headSR.flipX = false;
         }
         headAni.SetFloat(DirX2, dir2.x);
+
+        
     }
 
 }
