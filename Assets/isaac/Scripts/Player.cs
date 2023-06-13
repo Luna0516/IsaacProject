@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -80,9 +81,8 @@ public class Player : MonoBehaviour
         headSR = head.GetComponent<SpriteRenderer>();
 
 
-        GameObject tears = Instantiate(Tears);
-        Transform tearspawn = transform.GetChild(0);
-        tears.transform.position = tearspawn.position;
+        
+
 
     }
 
@@ -200,12 +200,32 @@ public class Player : MonoBehaviour
             {
                 headSR.flipX = true; // x플립 활성화
             }
-
         }
-
         headAni.SetFloat(shootDirX, dir2.x);
 
-        
+
+
+        //눈물 생성
+
+        if (context.performed)
+        {
+            //먼저 Resource에 있는 리소스를 로드를 먼저해야함. ( 1번만 해도댐 Awake or start)
+            //그 로드 된 애를 Instantiate 를 해야 함
+
+            GameObject tears = Instantiate(Tears);
+            Transform tearspawn = transform.GetChild(0);
+            tears.transform.position = tearspawn.position;
+
+            //Instantiate로 만들어진 GameObject 에 방향 정보를 전달을 해야대.
+            Tears tearComponent = tears.GetComponent<Tears>();
+            tearComponent.SetTearDirection(dir2);
+        }
     }
 
+    //OnFire 가 실행이 되
+    //여기서 dir2를 받음 (공격정보)
+
+    //그 쪽 방향으로 눈물을 생성
+
+    //그 쪽 방향으로 눈물이 이동
 }
