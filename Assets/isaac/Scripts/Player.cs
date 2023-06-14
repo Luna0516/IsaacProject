@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 눈물 공격 속도
     /// </summary>
-    public float tears = 2.73f;
+    public float tearsSpeed = 2.73f;
     /// <summary>
     /// 사거리
     /// </summary>
@@ -79,20 +79,13 @@ public class Player : MonoBehaviour
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
-
-
-        
-
-
     }
-
-
+    
     private void Update()
     {
         Vector3 dir = new Vector3(dir1.x * speed * Time.deltaTime, dir1.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
     }
-
 
     private void OnEnable()
     {
@@ -103,7 +96,6 @@ public class Player : MonoBehaviour
         playerAction.Shot.Cross.performed += OnFire;
         playerAction.Shot.Cross.canceled += OnFire;
     }
-
 
     private void OnDisable()
     {
@@ -131,14 +123,14 @@ public class Player : MonoBehaviour
             bodyAni.SetBool(isMove, true);
             headAni.SetBool(isMove, true);
         }
-        
+
         bodyAni.SetFloat(moveDirY, dir1.y);
         headAni.SetFloat(headDirY, dir1.y);
 
-        if(dir1.y != 0)
+        if (dir1.y != 0)
         {
             headSR.flipX = false;
-            if(dir1.x < 0)
+            if (dir1.x < 0)
             {
                 bodySR.flipX = true;
             }
@@ -149,17 +141,17 @@ public class Player : MonoBehaviour
         }
         else // Y 값이 0일때 
         {
-            if (dir1.x < 0) // x가 0보다 작을시
+            if (dir1.x < 0) // 왼쪽으로 움직일때
             {
                 bodySR.flipX = true; // 플립
                 headSR.flipX = true;
-                
+
             }
             else
             {
                 bodySR.flipX = false; // 플립을 풀어
                 headSR.flipX = false;
-                
+
             }
         }
         bodyAni.SetFloat(moveDirX, dir1.x);
@@ -180,19 +172,33 @@ public class Player : MonoBehaviour
             headAni.SetBool(isShoot, true);
         }
         headAni.SetFloat(shootDirY, dir2.y);
+
+        // 왼쪽으로 쏠때
+        // 왼쪽 가면서 왼쪽을 쏘면서 위아래 움직이고 위아래Move떼면 머리플립이 꺼졌다 켜짐. (위아래 Move누를때만 플립X)
+        // 오른쪽 가면서 왼쪽으로 쏘고 Move키 떼면 플립이 안켜짐
+        // 왼쪽 쏘다가 오른쪽으로 움직이고 떼면 플립이 안켜짐
+
+        // 오른쪽으로 쏠때
+        // 오른쪽 쏘다가 왼쪽으로 움직이면 Move쪽으로 머리가 돌아감
+        // 왼쪽 가면서 오른쪽을 쏘면서 위아래 움직이고 떼면 머리 플립이 꺼졌다 켜짐. (위아래 Move누를때만 플립X)
+
         
         if (dir2.x < 0) // 왼쪽으로 쏠때
         {
             headSR.flipX = true; // X플립
         }
-        else if(dir1.x > 0) // 몸이 오른쪽으로 움직이면
+        else if (dir1.x > 0) // 몸이 오른쪽으로 움직이면
         {
-            headSR.flipX = false; //머가리 X플립 해제
+            headSR.flipX = false; // 머가리 X플립 해제
+        }
+        else if (dir1.y != 0)
+        {
+            headSR.flipX = true;
         }
 
         else // 오른쪽으로 쏠떄
         {
-            if(dir2.x > 0) // 오른쪽으로 쏘면
+            if (dir2.x > 0) // 오른쪽으로 쏘면
             {
                 headSR.flipX = false; // x플립 취소
             }
@@ -203,11 +209,24 @@ public class Player : MonoBehaviour
         }
         headAni.SetFloat(shootDirX, dir2.x);
 
-
-
-        //눈물 생성
-
         if (context.performed)
+        {
+            StartCoroutine(TearShootCoroutine());
+        }
+        else
+        {
+            StopAllCoroutines();
+        }
+        //OnFire 가 실행이 되   성공
+        //여기서 dir2를 받음 (공격정보) 성공
+
+        //그 쪽 방향으로 눈물을 생성 성공
+
+        //그 쪽 방향으로 눈물이 이동 성공
+    }
+    IEnumerator TearShootCoroutine()
+    {
+        while (true)
         {
             //먼저 Resource에 있는 리소스를 로드를 먼저해야함. ( 1번만 해도댐 Awake or start)
             //그 로드 된 애를 Instantiate 를 해야 함
@@ -219,13 +238,8 @@ public class Player : MonoBehaviour
             //Instantiate로 만들어진 GameObject 에 방향 정보를 전달을 해야대.
             Tears tearComponent = tears.GetComponent<Tears>();
             tearComponent.SetTearDirection(dir2);
+
+            yield return new WaitForSeconds(tearsSpeed);
         }
     }
-
-    //OnFire 가 실행이 되
-    //여기서 dir2를 받음 (공격정보)
-
-    //그 쪽 방향으로 눈물을 생성
-
-    //그 쪽 방향으로 눈물이 이동
 }
