@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 35574625807164165}
   - component: {fileID: 35574625807164164}
   - component: {fileID: 43654184025035985}
-  - component: {fileID: 1809420911243555455}
+  - component: {fileID: 4419367878020004403}
   m_Layer: 0
   m_Name: Penny
   m_TagString: Untagged
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1684a8eaf3a7d92429324c4b022fb4f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a5a2b2954081f9b438ae0ab66f6f7457, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.54, y: 0.32}
+  m_Size: {x: 0.36, y: 0.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -124,7 +124,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.36, y: 0.26}
   m_Direction: 1
---- !u!114 &1809420911243555455
+--- !u!114 &4419367878020004403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 35574625807164185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0508def7751ded14ab4fd9bf9e4a2aaf, type: 3}
+  m_Script: {fileID: 11500000, guid: fa97e9410e4cfe441a9b83ec088f6a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
