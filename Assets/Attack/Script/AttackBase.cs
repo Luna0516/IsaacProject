@@ -17,7 +17,7 @@ public class AttackBase : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Time.deltaTime * speed * Vector2.right);
+        transform.Translate(Time.deltaTime * speed * Vector2.right); // 위, 아래, 양 옆으로 Input에 따라 공격 변경 예정 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -32,7 +32,7 @@ public class AttackBase : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.CompareTag ("Floor"))
         {
             Destroy(this.gameObject);
         }
