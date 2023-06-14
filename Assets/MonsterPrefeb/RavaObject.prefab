@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9133980384779194762}
   - component: {fileID: 9133980384779194763}
   - component: {fileID: 9133980384779194760}
-  - component: {fileID: 839887192}
   m_Layer: 0
   m_Name: Rava
   m_TagString: Enemy
@@ -124,27 +123,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03, y: 0.24}
   m_Size: {x: 0.54, y: 0.34}
   m_Direction: 1
---- !u!50 &839887192
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9133980384779194764}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &9133980385069193797
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9133980385069193795}
   - component: {fileID: 9133980385069193796}
+  - component: {fileID: 7312911120453807117}
   m_Layer: 0
   m_Name: RavaObject
   m_TagString: Untagged
@@ -191,4 +170,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 10
+  speed: 0.5
+  MaxHP: 5
+  MinX: -0.1
+  MaxX: 0.1
+  MinY: -0.1
+  MaxY: 0.1
+--- !u!50 &7312911120453807117
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133980385069193797}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

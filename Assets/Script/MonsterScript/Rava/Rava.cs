@@ -7,13 +7,22 @@ using UnityEngine.EventSystems;
 public class Rava : EnemyBase
 {
     Vector3 targetPosition;
+    GameObject Ravanian;
+    SpriteRenderer sprite;
+    public float MinX;
+    public float MaxX;
+    public float MinY;
+    public float MaxY;
+
 
     protected override void Movement()
     {
-        transform.position += Time.deltaTime * speed * targetPosition.normalized;
+        transform.Translate(Time.deltaTime * speed * targetPosition);
     }
     private void Start()
     {
+        Ravanian = transform.GetChild(0).gameObject;
+        sprite = Ravanian.GetComponent<SpriteRenderer>();
         transform.position = transform.position;
         StopAllCoroutines();
         StartCoroutine(moveingRava());
@@ -21,33 +30,33 @@ public class Rava : EnemyBase
 
     IEnumerator moveingRava()
     {
-        Movement();
-        for (int i = 0; i > -1;)
+
+        while(true)
         {
             yield return new WaitForSeconds(1.25f);
             SetNextTargetPosition();
-            i++;
         }
     }
     private void Update()
     {
-
+        Movement();
     }
     private void SetNextTargetPosition()
     {
         float x;
         float y;
-        x= Random.Range(-2f, 2f);
-        y = Random.Range(-2f, 2f);
+        x= Random.Range(MinX,MaxX);
+        y = Random.Range(MinY, MaxY);
         if(x>0)
         {
-            transform.Rotate(new Vector3(0,0,0));
+            sprite.flipX = false;
         }
         else 
         {
-            transform.Rotate(new Vector3(0, 180, 0));
+            sprite.flipX = true;
         }
         targetPosition = new Vector3(x, y, 0);
+        targetPosition.Normalize();
     }
 
 }

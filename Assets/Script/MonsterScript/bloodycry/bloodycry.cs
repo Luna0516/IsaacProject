@@ -11,11 +11,14 @@ public class bloodycry : EnemyBase
     SpriteRenderer bodysprite;
     Animator headanimator;
     Animator bodyanimator;
+    IEnumerator startcor;
+
 
     bool moveactive=false;
 
-    private void Awake()
+    protected override void Awake()
     {
+        startcor = hittedanime();
         head = transform.GetChild(1).gameObject;
         body = transform.GetChild(0).gameObject;
 
@@ -58,11 +61,17 @@ public class bloodycry : EnemyBase
             moveactive=true;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D (collision);
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            StartCoroutine(hittedanime());
+            if (gameObject.activeSelf == true)
+            {
+                StartCoroutine(startcor);
+            }
+            else
+            { }
         }
     }
     IEnumerator hittedanime()
