@@ -25,6 +25,11 @@ public class Bullet : MonoBehaviour {
             tearExplosion.transform.position = collision.contacts[0].point;
             tearExplosion.SetActive(true);
             Destroy(gameObject);
+        } else if(collision.gameObject.CompareTag("Wall")) {
+            tearExplosion.transform.SetParent(null);
+            tearExplosion.transform.position = collision.contacts[0].point;
+            tearExplosion.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
