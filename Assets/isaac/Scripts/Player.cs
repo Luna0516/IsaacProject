@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,9 +14,10 @@ public class Player : MonoBehaviour
     /// </summary>
     PlayerAction playerAction;
 
-    Vector3 dir1 = Vector2.zero;
+    Vector2 dir1 = Vector2.zero;
 
-    Vector3 dir2 = Vector2.zero;
+    Vector2 dir2 = Vector2.zero
+;
     /// <summary>
     /// 눈물
     /// </summary>
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 눈물 공격 속도
     /// </summary>
-    public float tears = 2.73f;
+    public float tearsSpeed = 2.73f;
     /// <summary>
     /// 사거리
     /// </summary>
@@ -36,6 +38,8 @@ public class Player : MonoBehaviour
     /// 최대 체력
     /// </summary>
     public float maxHealth = 6.0f;
+
+    public float Health;
 
     Transform body;
 
@@ -49,27 +53,21 @@ public class Player : MonoBehaviour
 
     SpriteRenderer headSR;
 
-    readonly int boolY_string = Animator.StringToHash("BoolY");
+    readonly int moveDirY = Animator.StringToHash("MoveDir_Y");
 
-    readonly int boolX_string = Animator.StringToHash("BoolX");
+    readonly int moveDirX = Animator.StringToHash("MoveDir_X");
 
-    readonly int headX_string = Animator.StringToHash("HeadX");
+    readonly int isMove = Animator.StringToHash("isMove");
 
-    readonly int headY_string = Animator.StringToHash("HeadY");
+    readonly int headDirX = Animator.StringToHash("Dir_X1");
 
-    /*readonly int shoot_Back = Animator.StringToHash("Up");
+    readonly int headDirY = Animator.StringToHash("Dir_Y1");
 
-    readonly int shoot_Front = Animator.StringToHash("Down");
+    readonly int isShoot = Animator.StringToHash("isShoot");
 
-    readonly int shoot_Right = Animator.StringToHash("Right");
+    readonly int shootDirX = Animator.StringToHash("Dir_X2");
 
-    readonly int shoot_Left = Animator.StringToHash("Left");*/
-
-    readonly int shootX_string = Animator.StringToHash("ShootX");
-
-    readonly int shootY_Back = Animator.StringToHash("ShootY");
-
-    readonly int shootY_Front = Animator.StringToHash("ShootY_Front");
+    readonly int shootDirY = Animator.StringToHash("Dir_Y2");
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -81,20 +79,14 @@ public class Player : MonoBehaviour
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
-
-        
-        GameObject tears = Instantiate(Tears);
-        Transform tearspawn = transform.GetChild(0);
-        tears.transform.position = tearspawn.position;
-
     }
-
-
-
+    
     private void Update()
     {
-        Vector2 delta = transform.position += Time.deltaTime * speed * dir1;
+        Vector3 dir = new Vector3(dir1.x * speed * Time.deltaTime, dir1.y * speed * Time.deltaTime, 0f);
+        transform.position += dir;
     }
+
     private void OnEnable()
     {
         playerAction.Move.Enable();
@@ -102,8 +94,8 @@ public class Player : MonoBehaviour
         playerAction.Move.WASD.canceled += OnMove;
         playerAction.Shot.Enable();
         playerAction.Shot.Cross.performed += OnFire;
+        playerAction.Shot.Cross.canceled += OnFire;
     }
-
 
     private void OnDisable()
     {
@@ -118,127 +110,136 @@ public class Player : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        dir1 = value.normalized;
+        dir1 = value;
         Debug.Log(value);
-        
 
-        if (dir1.y != 0)
+        if (dir1.x == 0 && dir1.y == 0)
         {
-            bodyAni.SetBool(boolY_string, true);
-            
-            if (dir1.y > 0)
-            {
-                headAni.SetBool(headY_string, true);
-                
-            }
-            else if (dir1.y < 0)
-            {
-                headAni.SetBool(headY_string, false);
-                
-            }
+            bodyAni.SetBool(isMove, false);
+            headAni.SetBool(isMove, false);
         }
         else
         {
-            bodyAni.SetBool(boolY_string, false);
-            headAni.SetBool(headY_string, false);
-            
+            bodyAni.SetBool(isMove, true);
+            headAni.SetBool(isMove, true);
         }
 
+        bodyAni.SetFloat(moveDirY, dir1.y);
+        headAni.SetFloat(headDirY, dir1.y);
 
-
-        headAni.SetBool(headX_string, true);
-        bodyAni.SetBool(boolX_string, true);
-        if (dir1.x < 0)
+        if (dir1.y != 0)
         {
-            bodySR.flipX = true;
-            headSR.flipX = true;
-        }
-        else if (dir1.x > 0)
-        {
-            bodySR.flipX = false;
             headSR.flipX = false;
+            if (dir1.x < 0)
+            {
+                bodySR.flipX = true;
+            }
+            else
+            {
+                bodySR.flipX = false;
+            }
         }
-        else
+        else // Y 값이 0일때 
         {
-            headAni.SetBool(headX_string, false);
-            bodyAni.SetBool(boolX_string, false);
-        }
+            if (dir1.x < 0) // 왼쪽으로 움직일때
+            {
+                bodySR.flipX = true; // 플립
+                headSR.flipX = true;
 
-        if (dir1.y != 0)
-        {
-            headAni.SetBool(headX_string, false);
-        }
-        else if (dir1.y < 0)
-        {
-            headAni.SetBool(headX_string, false);
-        }
+            }
+            else
+            {
+                bodySR.flipX = false; // 플립을 풀어
+                headSR.flipX = false;
 
-
+            }
+        }
+        bodyAni.SetFloat(moveDirX, dir1.x);
+        headAni.SetFloat(headDirX, dir1.x);
     }
     private void OnFire(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        dir2 = value.normalized;
+        dir2 = value;
         Debug.Log(value);
-        
-        
-        if(dir2.y < 0)
+
+        if (dir2.x == 0 && dir2.y == 0)
         {
-            headAni.SetBool(shootY_Back, true);
-            dir2.y = 0;
-        }
-        else if (dir2.y > 0)
-        {
-            headAni.SetBool(shootY_Front, true);
-            dir2.y = 0;
+            headAni.SetBool(isShoot, false);
         }
         else
         {
-            headAni.SetBool(shootY_Back, false);
-            headAni.SetBool(shootY_Front, false);
+            headAni.SetBool(isShoot, true);
         }
+        headAni.SetFloat(shootDirY, dir2.y);
 
-        if(dir2.x <= 0)
+        // 왼쪽으로 쏠때
+        // 왼쪽 가면서 왼쪽을 쏘면서 위아래 움직이고 위아래Move떼면 머리플립이 꺼졌다 켜짐. (위아래 Move누를때만 플립X)
+        // 오른쪽 가면서 왼쪽으로 쏘고 Move키 떼면 플립이 안켜짐
+        // 왼쪽 쏘다가 오른쪽으로 움직이고 떼면 플립이 안켜짐
+
+        // 오른쪽으로 쏠때
+        // 오른쪽 쏘다가 왼쪽으로 움직이면 Move쪽으로 머리가 돌아감
+        // 왼쪽 가면서 오른쪽을 쏘면서 위아래 움직이고 떼면 머리 플립이 꺼졌다 켜짐. (위아래 Move누를때만 플립X)
+
+        
+        if (dir2.x < 0) // 왼쪽으로 쏠때
         {
-            headAni.SetBool(shootX_string, true);
-            headSR.flipX = false;
-            dir2.x = 0;
+            headSR.flipX = true; // X플립
         }
-        else if (dir2.x >= 0)
+        else if (dir1.x > 0) // 몸이 오른쪽으로 움직이면
         {
-            headAni.SetBool(shootX_string, true);
+            headSR.flipX = false; // 머가리 X플립 해제
+        }
+        else if (dir1.y != 0)
+        {
             headSR.flipX = true;
-            dir2.x = 0;
+        }
+
+        else // 오른쪽으로 쏠떄
+        {
+            if (dir2.x > 0) // 오른쪽으로 쏘면
+            {
+                headSR.flipX = false; // x플립 취소
+            }
+            else if (dir1.x < 0) // 왼쪽으로 움직이면
+            {
+                headSR.flipX = true; // x플립 활성화
+            }
+        }
+        headAni.SetFloat(shootDirX, dir2.x);
+
+        if (context.performed)
+        {
+            StartCoroutine(TearShootCoroutine());
         }
         else
         {
-            headAni.SetBool(shootX_string, false);
+            StopAllCoroutines();
         }
+        //OnFire 가 실행이 되   성공
+        //여기서 dir2를 받음 (공격정보) 성공
 
+        //그 쪽 방향으로 눈물을 생성 성공
 
-
-
-
-        /*Vector2 value = context.ReadValue<Vector2>().normalized;
-        dir = value;
-        Debug.Log(value);
-
-        if (dir.y < 0)
+        //그 쪽 방향으로 눈물이 이동 성공
+    }
+    IEnumerator TearShootCoroutine()
+    {
+        while (true)
         {
-            headAni.SetBool(shootY_string, true);
-        }
-        else if (dir.y < 0)
-        {
-            headAni.SetBool(shootY_string, false);
-            headAni.SetFloat(shootY_float, 1);
-        }
-        else
-        {
-            headAni.SetBool(shootY_string, false);
-            headAni.SetFloat(shootY_float, 0);
-        }
-*/
+            //먼저 Resource에 있는 리소스를 로드를 먼저해야함. ( 1번만 해도댐 Awake or start)
+            //그 로드 된 애를 Instantiate 를 해야 함
 
+            GameObject tears = Instantiate(Tears);
+            Transform tearspawn = transform.GetChild(0);
+            tears.transform.position = tearspawn.position;
 
+            //Instantiate로 만들어진 GameObject 에 방향 정보를 전달을 해야대.
+            Tears tearComponent = tears.GetComponent<Tears>();
+            tearComponent.SetTearDirection(dir2);
+
+            yield return new WaitForSeconds(tearsSpeed);
+        }
     }
 }

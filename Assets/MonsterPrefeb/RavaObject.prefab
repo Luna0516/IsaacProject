@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,8 +120,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028094841, y: 0.41627055}
-  m_Size: {x: 0.7950864, y: 0.560962}
+  m_Offset: {x: -0.03, y: 0.24}
+  m_Size: {x: 0.54, y: 0.34}
   m_Direction: 1
 --- !u!1 &9133980385069193797
 GameObject:
@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9133980385069193795}
   - component: {fileID: 9133980385069193796}
+  - component: {fileID: 7312911120453807117}
   m_Layer: 0
   m_Name: RavaObject
   m_TagString: Untagged
@@ -168,4 +169,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e9b50ada5393d44bb3f4de287c8fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  target: {fileID: 0}
+  speed: 0.5
+  MaxHP: 5
+  MinX: -0.1
+  MaxX: 0.1
+  MinY: -0.1
+  MaxY: 0.1
+--- !u!50 &7312911120453807117
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133980385069193797}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

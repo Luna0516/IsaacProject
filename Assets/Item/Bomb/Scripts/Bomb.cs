@@ -16,4 +16,7 @@ public class Bomb : MonoBehaviour
     void OnEnable() {
         Destroy(gameObject, anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+    }
 }
