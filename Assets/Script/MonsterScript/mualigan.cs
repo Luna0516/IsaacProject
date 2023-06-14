@@ -12,7 +12,7 @@ public class mualigan : EnemyBase
     SpriteRenderer bodysprite;
     Animator animator;
 
-    private void Awake()
+    protected override void Awake()
     {
         head = transform.GetChild(1).gameObject;
         body = transform.GetChild(0).gameObject;
