@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     public Transform target;
+
     public float speed = 5f;
     public int MaxHP = 5;
     int hp = 5;
@@ -31,17 +32,22 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+
     protected virtual void Awake()
     {
-     
+
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))   // 총알만 충돌 처리
         {
             Debug.Log($"{this.gameObject.name} 이 공격받았다. 남은 체력 {hp}");
-            HP--;
+            Hitten();
         }
+    }
+     void Hitten(int damage)
+    {
+        HP -= damage;
     }
 
     protected virtual void Die()

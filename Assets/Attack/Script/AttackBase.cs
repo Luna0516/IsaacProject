@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,21 @@ public class AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
+    public int damage = 2; //임시 데미지
+
+    public int Damage
+    {
+        get { return damage; }
+    }
+
+
+    public Action<int> GiveDamage;//임시
+
+
+    int damman(int damagetotal)//임시
+    {
+        return damagetotal;
+    }
 
     Animator anim;
     GameObject tearExplosion;
@@ -13,6 +29,7 @@ public class AttackBase : MonoBehaviour
     protected virtual void Awake()
     {
         tearExplosion = transform.GetChild(0).gameObject;
+        GiveDamage += damman(damage);//임시
     }
 
     private void Update()
@@ -36,7 +53,12 @@ public class AttackBase : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+        if (collision.gameObject.CompareTag("Enemy"))//임시 작성 총알 피격
+        {
+            Destroy(this.gameObject);
+            GiveDamage.Invoke(damage);
+        }
+
     }
     
 
