@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4500bf0e6857dd409b827168a19948f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tears: {fileID: 0}
+  Tears: {fileID: 4409279204360747590, guid: 0f589c13793f9564ea63f348775e87a0, type: 3}
   speed: 2.5
   tearsSpeed: 2.73
   range: 6.5

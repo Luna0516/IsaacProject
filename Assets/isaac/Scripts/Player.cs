@@ -1,6 +1,7 @@
 using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -13,11 +14,14 @@ public class Player : MonoBehaviour
     /// InputAction 연결
     /// </summary>
     PlayerAction playerAction;
-
+    /// <summary>
+    /// body 백터
+    /// </summary>
     Vector2 dir1 = Vector2.zero;
-
-    Vector2 dir2 = Vector2.zero
-;
+    /// <summary>
+    /// head 벡터
+    /// </summary>
+    Vector2 dir2 = Vector2.zero;
     /// <summary>
     /// 눈물
     /// </summary>
@@ -41,6 +45,10 @@ public class Player : MonoBehaviour
 
     public float Health;
 
+    private bool tearDelay;
+
+    private bool isAutoClick;
+
     Transform body;
 
     Transform head;
@@ -61,12 +69,27 @@ public class Player : MonoBehaviour
 
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
+
+        tearDelay = true;
     }
+
+    
     
     private void Update()
     {
         Vector3 dir = new Vector3(dir1.x * speed * Time.deltaTime, dir1.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
+    }
+
+    private void FixedUpdate()
+    {
+        if(isAutoClick == true)
+        {
+            if (tearDelay) //true 일때
+            {
+                StartCoroutine(TearShootCoroutine());  
+            }
+        }
     }
 
     private void OnEnable()
@@ -93,7 +116,7 @@ public class Player : MonoBehaviour
     {
         Vector2 value = context.ReadValue<Vector2>();
         dir1 = value;
-        Debug.Log(value);
+        //Debug.Log(value);
 
         if (dir1.x == 0 && dir1.y == 0)
         {
@@ -119,13 +142,12 @@ public class Player : MonoBehaviour
             bodyAni.SetFloat("MoveDir_X", dir1.x);
             headAni.SetFloat("Dir_X1", dir1.x);
         }
-
-        
     }
+
     private void OnFire(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        dir2 = value;
+        dir2 = value.normalized;
         Debug.Log(value);
 
         if (dir2.x == 0 && dir2.y == 0)
@@ -135,42 +157,45 @@ public class Player : MonoBehaviour
         else
         {
             headAni.SetBool("isShoot", true);
-
+            if(dir2.x != 0 && dir2.y != 0)
+            {
+                dir2.x = 0;
+            }
             headAni.SetFloat("Dir_X2", dir2.x);
             headAni.SetFloat("Dir_Y2", dir2.y);
         }
-        
+
         if (context.performed)
         {
-            StartCoroutine(TearShootCoroutine());
+            isAutoClick = true;
         }
-        else
+        else if(context.canceled)
         {
-            StopAllCoroutines();
+            isAutoClick = false;
         }
+        
+        
     }
 
     // 연사 방지 매커니즘 만들기 ( 방향키 다다닥 눌러도 눈물이 안나가게 만들기. 눈물 발사 절대값)
 
     IEnumerator TearShootCoroutine()
     {
-        while (true)
-        {
-            //먼저 Resource에 있는 리소스를 로드를 먼저해야함. ( 1번만 해도댐 Awake or start)
-            //그 로드 된 애를 Instantiate 를 해야 함
+        GameObject tears = Instantiate(Tears);
 
-            GameObject tears = Instantiate(Tears);
-            Transform tearspawn = transform.GetChild(0);
-            tears.transform.position = tearspawn.position;
+        Transform tearspawn = transform.GetChild(0);
 
-            Bullet tearComponent = tears.GetComponent<Bullet>();
-            tearComponent.dir = dir2;
-            /*tearComponent.SetTearDirection(dir2);*/
-            yield return new WaitForSeconds(tearsSpeed);
-        }
+        tears.transform.position = tearspawn.position;
+
+        Bullet tearComponent = tears.GetComponent<Bullet>();
+
+        tearComponent.dir = dir2;
+
+        tearDelay = false;
+
+        yield return new WaitForSeconds(tearsSpeed);
+
+        tearDelay = true;
     }
 }
-//Instantiate로 만들어진 GameObject 에 방향 정보를 전달을 해야대.
-/*
 
-*/
