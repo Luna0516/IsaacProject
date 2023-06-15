@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
@@ -9,6 +10,7 @@ public class EnemyBase : MonoBehaviour
     public float speed = 5f;
     public int MaxHP = 5;
     int hp = 5;
+
 
     public int HP
     {
@@ -52,5 +54,13 @@ public class EnemyBase : MonoBehaviour
     {
 
     }
+    protected virtual void OnDisable()
+    {
+
+    }
+    
+
+    
+
 
 }
