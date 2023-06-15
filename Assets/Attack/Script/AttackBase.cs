@@ -17,19 +17,12 @@ public class AttackBase : MonoBehaviour
 
     public Action<int> GiveDamage;//임시
 
-
-    int damman(int damagetotal)//임시
-    {
-        return damagetotal;
-    }
-
     Animator anim;
     GameObject tearExplosion;
 
     protected virtual void Awake()
     {
         tearExplosion = transform.GetChild(0).gameObject;
-        GiveDamage += damman(damage);//임시
     }
 
     private void Update()
@@ -56,7 +49,7 @@ public class AttackBase : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))//임시 작성 총알 피격
         {
             Destroy(this.gameObject);
-            GiveDamage.Invoke(damage);
+            GiveDamage?.Invoke(damage);
         }
 
     }

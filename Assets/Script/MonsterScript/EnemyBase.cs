@@ -42,11 +42,12 @@ public class EnemyBase : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerBullet"))   // 총알만 충돌 처리
         {
             Debug.Log($"{this.gameObject.name} 이 공격받았다. 남은 체력 {hp}");
-            Hitten();
+            Hitten(13);
         }
     }
      void Hitten(int damage)
     {
+
         HP -= damage;
     }
 
