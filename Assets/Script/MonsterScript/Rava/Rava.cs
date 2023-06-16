@@ -9,6 +9,7 @@ public class Rava : EnemyBase
     Vector3 targetPosition;
     GameObject Ravanian;
     SpriteRenderer sprite;
+    public float jumpingTerm = 1.25f;
     public float MinX;
     public float MaxX;
     public float MinY;
@@ -33,7 +34,7 @@ public class Rava : EnemyBase
 
         while(true)
         {
-            yield return new WaitForSeconds(1.25f);
+            yield return new WaitForSeconds(jumpingTerm);
             SetNextTargetPosition();
         }
     }
@@ -58,5 +59,6 @@ public class Rava : EnemyBase
         targetPosition = new Vector3(x, y, 0);
         targetPosition.Normalize();
     }
+
 
 }

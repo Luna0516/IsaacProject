@@ -8,7 +8,6 @@ public class AttackBase : MonoBehaviour
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
     public int damage = 2; //임시 데미지
-
     public int Damage
     {
         get { return damage; }
@@ -48,11 +47,10 @@ public class AttackBase : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy"))//임시 작성 총알 피격
         {
-            Destroy(this.gameObject);
             GiveDamage?.Invoke(damage);
-        }
+            Destroy(this.gameObject);
 
+        }
     }
-    
 
 }

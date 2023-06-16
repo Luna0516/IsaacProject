@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 3792594240594029479}
   - component: {fileID: 5218688972958878134}
   - component: {fileID: 208090249}
+  - component: {fileID: 893110237}
   m_Layer: 0
   m_Name: Isaac
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,9 +134,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tears: {fileID: 0}
   speed: 1
-  tears: 2.73
+  tearsSpeed: 2.73
   range: 6.5
   maxHealth: 6
+  Health: 0
+--- !u!58 &893110237
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792594240594029480}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.29}
+  serializedVersion: 2
+  m_Radius: 0.43
 --- !u!1001 &3792594240465265906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6860327740872026776, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6860327740872026776, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
       propertyPath: m_SortingOrder
