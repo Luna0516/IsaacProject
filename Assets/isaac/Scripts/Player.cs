@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
     /// </summary>
     public GameObject Tears;
     /// <summary>
+    /// 폭탄
+    /// </summary>
+    public GameObject Bomb;
+    /// <summary>
     /// 이동 속도
     /// </summary>
     public float speed = 1.0f;
@@ -100,6 +104,8 @@ public class Player : MonoBehaviour
         playerAction.Shot.Enable();
         playerAction.Shot.Cross.performed += OnFire;
         playerAction.Shot.Cross.canceled += OnFire;
+        playerAction.Bomb.Enable();
+        playerAction.Bomb.Bomb.performed += SetBomb;
     }
 
     private void OnDisable()
@@ -110,6 +116,8 @@ public class Player : MonoBehaviour
         playerAction.Shot.Cross.performed -= OnFire;
         playerAction.Shot.Cross.canceled -= OnFire;
         playerAction.Shot.Disable();
+        playerAction.Bomb.Bomb.performed -= SetBomb;
+        playerAction.Bomb.Disable();
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -173,11 +181,14 @@ public class Player : MonoBehaviour
         {
             isAutoClick = false;
         }
-        
-        
     }
 
-    // 연사 방지 매커니즘 만들기 ( 방향키 다다닥 눌러도 눈물이 안나가게 만들기. 눈물 발사 절대값)
+    private void SetBomb(InputAction.CallbackContext context)
+    {
+        Debug.Log("폭탄");
+        GameObject bomb = Instantiate(Bomb);
+        bomb.transform.position = body.transform.position;
+    }
 
     IEnumerator TearShootCoroutine()
     {
