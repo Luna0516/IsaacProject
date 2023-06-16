@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
@@ -13,44 +11,41 @@ public class EnemyBase : MonoBehaviour
     public int HP
     {
         get => hp;
-    protected set 
-        {            
+        set
+        {
             if (hp != value)
             {
                 hp = value;
-                if(hp <=0)
+                if (hp <= 0)
                 {
                     hp = 0;
-
                     Die();
                 }
             }
-
         }
     }
 
     protected virtual void Awake()
     {
-     
+
     }
+
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerBullet"))   // 총알만 충돌 처리
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            Debug.Log($"{this.gameObject.name} 이 공격받았다. 남은 체력 {hp}");
-            HP--;
+            int damage = collision.gameObject.GetComponent<AttackBase>().Damage;
+            HP-= damage;
+            Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
         }
     }
-
-    protected virtual void Die()
-    {
-        gameObject.SetActive(false);
-    }
-
 
     protected virtual void Movement()
     {
 
     }
-
+    protected virtual void Die()
+    {
+        Destroy(this.gameObject);
+    }
 }
