@@ -1,10 +1,6 @@
-using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -53,6 +49,10 @@ public class Player : MonoBehaviour
 
     private bool isAutoClick;
 
+    const float bombSpawn = 2.0f;
+
+    private bool bombDelay;
+
     Transform body;
 
     Transform head;
@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
     Animator bodyAni;
 
     SpriteRenderer bodySR;
+
+    Coroutine Setbomb;
 
     private void Awake()
     {
@@ -73,6 +75,8 @@ public class Player : MonoBehaviour
 
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
+        IEnumerator Setbomb = BombSpawnDelay();
+
 
         tearDelay = true;
     }
@@ -156,7 +160,7 @@ public class Player : MonoBehaviour
     {
         Vector2 value = context.ReadValue<Vector2>();
         dir2 = value.normalized;
-        Debug.Log(value);
+        //Debug.Log(value);
 
         if (dir2.x == 0 && dir2.y == 0)
         {
@@ -186,8 +190,25 @@ public class Player : MonoBehaviour
     private void SetBomb(InputAction.CallbackContext context)
     {
         Debug.Log("폭탄");
+
         GameObject bomb = Instantiate(Bomb);
-        bomb.transform.position = body.transform.position;
+
+
+        if (context.performed)
+        {
+            while (bombDelay)
+            {
+                bomb.transform.position = body.transform.position;
+                bombDelay = false;
+                StartCoroutine(BombSpawnDelay());
+            }
+        }
+    }
+
+    IEnumerator BombSpawnDelay()
+    {
+        yield return new WaitForSeconds(bombSpawn);
+        bombDelay = true;
     }
 
     IEnumerator TearShootCoroutine()
@@ -208,5 +229,7 @@ public class Player : MonoBehaviour
 
         tearDelay = true;
     }
+    // 눈물 데미지 = 플레이어 데미지 => 아이템을 먹었을 때 플레이어 데미지에서 눈물에 적용
+    // 폭탄 딜레이 => 하나 터질때쯤 2개 스폰될 정도로 (폭탄 딜레이는 고정. const 씁시다.)
 }
 
