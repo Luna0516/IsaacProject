@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 1102620495}
   m_Layer: 0
   m_Name: Killzone
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 1304846047}
   m_Layer: 0
   m_Name: tear
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -461,7 +461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304846043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35539186, y: 0.42920578, z: 0}
+  m_LocalPosition: {x: 4.12, y: 0.42920578, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -580,6 +580,14 @@ PrefabInstance:
     - target: {fileID: 3792594240594029480, guid: 6e5d5b1ae038d524595fbcd4040f9449, type: 3}
       propertyPath: m_Name
       value: Isaac
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070908998227214747, guid: 6e5d5b1ae038d524595fbcd4040f9449, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532518086932596123, guid: 6e5d5b1ae038d524595fbcd4040f9449, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e5d5b1ae038d524595fbcd4040f9449, type: 3}
