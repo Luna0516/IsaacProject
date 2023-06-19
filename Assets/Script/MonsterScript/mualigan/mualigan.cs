@@ -29,22 +29,19 @@ public class mualigan : EnemyBase
     protected override void Movement()
     {
         Headto = target.position - transform.position;
+        transform.position += Headto.normalized * speed * Time.deltaTime;
 
-
-            if (Headto.x > 1)
+        if (Headto.x > 1)
             {
                 headsprite.flipX = false;
                 bodysprite.flipX = false;
                 animator.SetInteger("WalkSideway", 1);
-                transform.position += Headto.normalized * speed * Time.deltaTime;
             }
             else if (Headto.x < 1)
             {
                 headsprite.flipX = true;
                 bodysprite.flipX = true;
                 animator.SetInteger("WalkSideway", 1);
-                transform.position += Headto.normalized * speed * Time.deltaTime;
-
             }
         
 
