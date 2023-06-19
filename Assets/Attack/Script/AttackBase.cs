@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,14 @@ public class AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
+    public int damage = 2; //임시 데미지
+    public int Damage
+    {
+        get { return damage; }
+    }
+
+
+    public Action<int> GiveDamage;//임시
 
     Animator anim;
     GameObject tearExplosion;
@@ -36,8 +45,12 @@ public class AttackBase : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+        if (collision.gameObject.CompareTag("Enemy"))//임시 작성 총알 피격
+        {
+            GiveDamage?.Invoke(damage);
+            Destroy(this.gameObject);
+
+        }
     }
-    
 
 }

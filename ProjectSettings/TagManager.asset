@@ -7,11 +7,12 @@ TagManager:
   - PlayerBullet
   - Wall
   - Enemy
+  - Floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Nothing can stop
   - Water
   - UI
   - Wall

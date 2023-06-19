@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2617567171133729389}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TearSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421217325000936444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.21, y: 0.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,9 +42,11 @@ GameObject:
   - component: {fileID: 3792594240594029479}
   - component: {fileID: 5218688972958878134}
   - component: {fileID: 208090249}
-  m_Layer: 0
+  - component: {fileID: 1672132898}
+  - component: {fileID: 893110237}
+  m_Layer: 7
   m_Name: Isaac
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,11 +133,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4500bf0e6857dd409b827168a19948f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tears: {fileID: 0}
-  speed: 1
-  tears: 2.73
+  Tears: {fileID: 4409279204360747590, guid: 0f589c13793f9564ea63f348775e87a0, type: 3}
+  speed: 2.5
+  tearsSpeed: 2.73
   range: 6.5
   maxHealth: 6
+  Health: 0
+--- !u!50 &1672132898
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792594240594029480}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &893110237
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792594240594029480}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.29}
+  serializedVersion: 2
+  m_Radius: 0.43
 --- !u!1001 &3792594240465265906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,6 +186,10 @@ PrefabInstance:
     - target: {fileID: 4813107340413329769, guid: 91b2968480277fa4f8c86a1d0b0eb3f3, type: 3}
       propertyPath: m_Name
       value: bodyIdle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813107340413329769, guid: 91b2968480277fa4f8c86a1d0b0eb3f3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4813107340413329772, guid: 91b2968480277fa4f8c86a1d0b0eb3f3, type: 3}
       propertyPath: m_RootOrder
@@ -251,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6860327740872026776, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6860327740872026776, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
       propertyPath: m_SortingOrder
@@ -264,6 +308,10 @@ PrefabInstance:
     - target: {fileID: 7495291121206736738, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
       propertyPath: m_Name
       value: HeadIdle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495291121206736738, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
