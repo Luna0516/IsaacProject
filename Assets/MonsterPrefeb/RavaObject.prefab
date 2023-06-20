@@ -120,8 +120,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: 0.24}
-  m_Size: {x: 0.54, y: 0.34}
+  m_Offset: {x: -0.03, y: 0.37}
+  m_Size: {x: 0.6, y: 0.51}
   m_Direction: 1
 --- !u!1 &9133980385069193797
 GameObject:
@@ -134,9 +134,10 @@ GameObject:
   - component: {fileID: 9133980385069193795}
   - component: {fileID: 9133980385069193796}
   - component: {fileID: 7312911120453807117}
-  m_Layer: 0
+  - component: {fileID: 590769802}
+  m_Layer: 3
   m_Name: RavaObject
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,8 +171,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 0.5
+  speed: 0
   MaxHP: 5
+  jumpingTerm: 1.25
   MinX: -0.1
   MaxX: 0.1
   MinY: -0.1
@@ -196,4 +198,20 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!70 &590769802
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133980385069193797}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.62}
+  m_Size: {x: 0.41, y: 0.29}
+  m_Direction: 0
