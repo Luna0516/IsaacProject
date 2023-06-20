@@ -11,6 +11,7 @@ public class TheSadOnion : ItemBase {
     const string itemName = "The Sad Onion";
     Sprite icon;
     const int itemNum = 1;
+    const string description = "Tears up";
     GradeType grade = GradeType.ItemGrade_3;
     bool usable = false;
     bool stackable = false;
@@ -29,9 +30,14 @@ public class TheSadOnion : ItemBase {
         Name = itemName;
         Icon = icon;
         ItemNum = itemNum;
+        Description = description;
         Grade = grade;
         Usable = usable;
         Stackable = stackable;
         MaxStackSize = maxStackSize;
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D collision) {
+        base.OnCollisionEnter2D(collision);
     }
 }

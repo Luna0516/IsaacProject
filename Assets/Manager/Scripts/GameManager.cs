@@ -39,42 +39,4 @@ public class GameManager : Singleton<GameManager>
     }
      
      */
-
-
-    /// <summary>
-    /// ÄÚÀÎ
-    /// </summary>
-    public int coin = 0;
-    public int Coin {
-        get => coin;
-        set {
-            coin += value;
-            Debug.Log("ÄÚÀÎ È¹µæ : " + coin);
-        }
-    }
-
-    /// <summary>
-    /// ÆøÅº
-    /// </summary>
-    public int bomb = 1;
-    public int Bomb {
-        get => bomb;
-        set {
-            bomb += value;
-            Debug.Log("ÆøÅº È¹µæ : " + bomb);
-        }
-    }
-
-    /// <summary>
-    /// ¿­¼è
-    /// </summary>
-    public int key = 0;
-    public int Key {
-        get => key;
-        set {
-            key += value;
-            Debug.Log("¿­¼è È¹µæ : " + key);
-
-        }
-    }
 }

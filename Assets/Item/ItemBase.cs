@@ -58,7 +58,12 @@ public class ItemBase : MonoBehaviour
     /// 아이템 번호
     /// </summary>
     public int ItemNum { get; protected set; }
-    
+
+    /// <summary>
+    /// 아이템 설명
+    /// </summary>
+    public string Description { get; protected set; }
+
     /// <summary>
     /// 아이템 등급
     /// </summary>
@@ -90,10 +95,8 @@ public class ItemBase : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
+    protected virtual void OnCollisionEnter2D(Collision2D collision) {
         if (!(collision.gameObject.CompareTag("Player")))
             return;
-
-        // 인벤토리 창으로 이동하는 코드
     }
 }
