@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 125902332}
   - component: {fileID: 125902334}
   - component: {fileID: 125902335}
+  - component: {fileID: 125902336}
   m_Layer: 0
   m_Name: Monstro
   m_TagString: Untagged
@@ -246,6 +247,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000035962503, y: -0.01675308}
   m_Size: {x: 1.7491326, y: 1.5624778}
   m_Direction: 1
+--- !u!50 &125902336
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125902331}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &351639565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -784,9 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7edf160365b4c44ad9bcf9346ad410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 5
+  target: {fileID: 893110234}
+  speed: 1
   MaxHP: 10
+  monstropatern: 0
 --- !u!1 &1804759242
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using static MonstroBoss;
 
 public class MonstroBoss : EnemyBase
 {
@@ -13,38 +14,43 @@ public class MonstroBoss : EnemyBase
     int randomPatt=0;
     Vector2 HeadTo;
     SpriteRenderer spriteRenderer;
+
     public enum MonstroPaterns
     {
         Idel = 0, Jump, Attack, superjump
     }
+    public MonstroPaterns monstropatern = MonstroPaterns.Idel;
+
 
     void selectpattern()
     {
-        switch (randomPatt) 
+        randomPatt = Random.Range(0, 3);
+
+        switch (monstropatern) 
         {
-            case 0:
+            case MonstroPaterns.Idel:
                 StartCoroutine(IDel());
                 break;
-            case 1:
+            case MonstroPaterns.Jump:
                 StartCoroutine(jumping());
                 break;
-            case 2:
+            case MonstroPaterns.Attack:
                 StartCoroutine(Attack());
                 break;
-            case 3:
+            case MonstroPaterns.superjump:
                 StartCoroutine(superJump());
                 break;
             default:
                 StartCoroutine(IDel());
                 break;
         }
-        randomPatt = Random.Range(0, 3);
+       
     }
     protected override void Awake()
     {
         animator = transform.GetComponentInChildren<Animator>();
         sppeed = speed;
-        HeadTo = target.position-transform.position;
+
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
         StopAllCoroutines();
     }
@@ -60,13 +66,19 @@ public class MonstroBoss : EnemyBase
     {
         for (int i = 0; i < 03; i++)
         {
+            speed = 0; 
             animator.SetInteger("Jump", 1);
-            superJumper = 2;
-            yield return new WaitForSeconds(2.250f);
+            yield return new WaitForSeconds(0.5f);
+            superJumper += Time.deltaTime+10;
+            speed = sppeed;
+            yield return new WaitForSeconds(0.8f);
+            superJumper -= Time.deltaTime+10;
+            yield return new WaitForSeconds(0.950f);
             speed = 0;
             animator.SetInteger("Jump", 0);
             yield return new WaitForSeconds(1.167f);
             speed = sppeed;
+            superJumper = 1;
         }
         selectpattern();
         StopCoroutine(jumping());
@@ -84,13 +96,22 @@ public class MonstroBoss : EnemyBase
         selectpattern();
         StopCoroutine(Attack());
     }
+    private void Start()
+    {
+        selectpattern();
+    }
     private void Update()
     {
+
         Movement();
+
     }
     protected override void Movement()
     {
+        HeadTo = target.position - transform.position;
+        HeadTo = HeadTo.normalized;
         transform.position += Time.deltaTime * speed * new Vector3(HeadTo.x,HeadTo.y* superJumper, 0);
+        //transform.Translate(Time.deltaTime * speed * HeadTo);
         if (HeadTo.x < 0)
         {
             spriteRenderer.flipX = false;
