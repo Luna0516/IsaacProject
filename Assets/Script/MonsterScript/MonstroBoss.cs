@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using static MonstroBoss;
 
 public class MonstroBoss : EnemyBase
 {
     Animator animator;
     float sppeed;
+
+    [SerializeField]
     float superJumper=1;
+
+    public float jumphigh = 10;
     int randomPatt=0;
     Vector2 HeadTo;
     SpriteRenderer spriteRenderer;
@@ -69,10 +69,10 @@ public class MonstroBoss : EnemyBase
             speed = 0; 
             animator.SetInteger("Jump", 1);
             yield return new WaitForSeconds(0.5f);
-            superJumper += Time.deltaTime+10;
+            jumcal();
             speed = sppeed;
             yield return new WaitForSeconds(0.8f);
-            superJumper -= Time.deltaTime+10;
+
             yield return new WaitForSeconds(0.950f);
             speed = 0;
             animator.SetInteger("Jump", 0);
@@ -85,13 +85,17 @@ public class MonstroBoss : EnemyBase
     }
     IEnumerator superJump()
     {
-        yield return new WaitForSeconds(2);
+
+            yield return null;
+        
     }
 
     IEnumerator Attack()
     {
         speed = 0;
+        animator.SetInteger("Attack", 1);
         yield return new WaitForSeconds(2.333f);
+        animator.SetInteger("Attack", 0);
         speed = sppeed;
         selectpattern();
         StopCoroutine(Attack());
@@ -104,6 +108,15 @@ public class MonstroBoss : EnemyBase
     {
 
         Movement();
+
+    }
+    void jumcal()
+    {
+        float baseflot = 0;
+        while (superJumper>jumphigh)
+        {
+            superJumper = Mathf.Lerp(baseflot , jumphigh ,0.5f);
+        }
 
     }
     protected override void Movement()
@@ -120,5 +133,9 @@ public class MonstroBoss : EnemyBase
         {
             spriteRenderer.flipX = true;
         }
+    }
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision); 
     }
 }
