@@ -2,45 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuidedMissileTear : AttackBase
+public class GuidedMissileTear : MonoBehaviour
 {
-  
-   
-    public Rigidbody2D target;
+    public Transform target;
+    private Rigidbody2D rigid;
 
-    bool isLive = true;
+    public float speed = 5.0f;
 
-    Rigidbody2D rigid;
-    
-
-    protected override void Awake()
+    private void Awake()
     {
-       base.Awake();
-       rigid = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
-        if (!isLive)
-            return;
+        /*Vector2 direction = (Vector2)target.position - rigid.position;
+        direction.Normalize();
 
-        Vector2 dirVec = target.position - rigid.position;
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-
-        rigid.MovePosition(rigid.position + nextVec);
-        rigid.velocity = Vector2.zero;
+        rigid.velocity = transform.up * speed;*/
     }
 
-    private void LateUpdate()
-    {
-        if (!isLive)
-            return;
-    }
 
-    void OnEnable()
-    {
-        target = GetComponent<Rigidbody2D>();
-    }
+
+
 }
 
 
