@@ -3,17 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlayerBullet
+  - Wall
+  - Enemy
+  - Floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Nothing can stop
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Wall
+  - Player
+  - PlayerBullet
   - 
   - 
   - 
@@ -40,7 +44,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Body
-    uniqueID: 2250501941
     locked: 0
