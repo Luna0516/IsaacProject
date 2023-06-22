@@ -1,20 +1,22 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¾ÆÀÌÅÛ Å¸ÀÔ
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 /// </summary>
-public enum ItemType {
+public enum ItemType
+{
     Active,
     Passive,
 
 }
 
 /// <summary>
-/// ¾ÆÀÌÅÛ µî±Þ
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 /// </summary>
-public enum GradeType {
+public enum GradeType
+{
     ItemGrade_0,
     ItemGrade_1,
     ItemGrade_2,
@@ -25,75 +27,78 @@ public enum GradeType {
 public class ItemBase : MonoBehaviour
 {
     /// <summary>
-    /// °ø°Ý·Â º¯È­·®
+    /// ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½È­ï¿½ï¿½
     /// </summary>
     public float Attack { get; protected set; }
 
     /// <summary>
-    /// ÀÌµ¿¼Óµµ º¯È­·®
+    /// ï¿½Ìµï¿½ï¿½Óµï¿½ ï¿½ï¿½È­ï¿½ï¿½
     /// </summary>
     public float Speed { get; protected set; }
 
     /// <summary>
-    /// °ø°Ý¼Óµµ º¯È­·®
+    /// ï¿½ï¿½ï¿½Ý¼Óµï¿½ ï¿½ï¿½È­ï¿½ï¿½
     /// </summary>
     public float AttackSpeed { get; protected set; }
 
     /// <summary>
-    /// ¾ÆÀÌÅÛ Å¸ÀÔ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
     /// </summary>
     public ItemType Item { get; protected set; }
 
     /// <summary>
-    /// ¾ÆÀÌÅÛ ÀÌ¸§
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
     /// </summary>
     public string Name { get; protected set; }
-    
+
     /// <summary>
-    /// ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public Sprite Icon { get; protected set; }
-    
+
     /// <summary>
-    /// ¾ÆÀÌÅÛ ¹øÈ£
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
     /// </summary>
     public int ItemNum { get; protected set; }
-    
+
     /// <summary>
-    /// ¾ÆÀÌÅÛ µî±Þ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     /// </summary>
     public GradeType Grade { get; protected set; }
-    
+
     /// <summary>
-    /// ¾ÆÀÌÅÛ »ç¿ëÇü
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>    
     public bool Usable { get; protected set; }
 
     /// <summary>
-    /// ¾ÆÀÌÅÛ ½ºÅÃÇü
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public bool Stackable { get; protected set; }
 
     /// <summary>
-    /// ½ºÅÃÇüÀÏ¶§ ½ºÅÃ Å©±â
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
     /// </summary>
     public int MaxStackSize { get; protected set; }
 
-    protected virtual void Awake() {
+    protected virtual void Awake()
+    {
         Init();
     }
 
     /// <summary>
-    /// ÃÊ±âÈ­ ÇÔ¼ö
+    /// ï¿½Ê±ï¿½È­ ï¿½Ô¼ï¿½
     /// </summary>
-    protected virtual void Init() {
+    protected virtual void Init()
+    {
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision)
+    {
         if (!(collision.gameObject.CompareTag("Player")))
             return;
 
-        // ÀÎº¥Åä¸® Ã¢À¸·Î ÀÌµ¿ÇÏ´Â ÄÚµå
+        // ï¿½Îºï¿½ï¿½ä¸® Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½
     }
 }

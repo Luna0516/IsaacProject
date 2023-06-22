@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using static MonstroBoss;
 
 public class MonstroBoss : EnemyBase
 {
     Animator animator;
     float sppeed;
 
-    [SerializeField]
-    float superJumper=1;
 
-    public float jumphigh = 10;
+    public float superJumper=1f;
+
+
     int randomPatt=0;
     Vector2 HeadTo;
     SpriteRenderer spriteRenderer;
@@ -62,6 +66,23 @@ public class MonstroBoss : EnemyBase
         selectpattern();
         StopCoroutine(IDel());
     }
+    IEnumerator JumpgageCharge()
+    {
+        while (true)
+        {
+            //transform.position += new Vector3(0, superJumper, 0) * Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, superJumper, transform.position.z), 0.7f);
+            yield return null;
+        }
+    }
+    IEnumerator JumpgageDisCharge()
+    {
+        while (true)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -superJumper, transform.position.z), 0.7f);
+            yield return null;
+        }
+    }
     IEnumerator jumping()
     {
         for (int i = 0; i < 03; i++)
@@ -69,34 +90,33 @@ public class MonstroBoss : EnemyBase
             speed = 0; 
             animator.SetInteger("Jump", 1);
             yield return new WaitForSeconds(0.5f);
-            jumcal();
             speed = sppeed;
+            StartCoroutine(JumpgageCharge());
             yield return new WaitForSeconds(0.8f);
-
+            StopCoroutine(JumpgageCharge());
+            StartCoroutine(JumpgageDisCharge());
             yield return new WaitForSeconds(0.950f);
             speed = 0;
+            StopCoroutine(JumpgageDisCharge());
             animator.SetInteger("Jump", 0);
             yield return new WaitForSeconds(1.167f);
             speed = sppeed;
-            superJumper = 1;
         }
         selectpattern();
         StopCoroutine(jumping());
     }
     IEnumerator superJump()
     {
-
-            yield return null;
-        
+        yield return new WaitForSeconds(2);
     }
 
     IEnumerator Attack()
     {
-        speed = 0;
         animator.SetInteger("Attack", 1);
+        speed = 0;
         yield return new WaitForSeconds(2.333f);
-        animator.SetInteger("Attack", 0);
         speed = sppeed;
+        animator.SetInteger("Attack", 0);
         selectpattern();
         StopCoroutine(Attack());
     }
@@ -110,20 +130,12 @@ public class MonstroBoss : EnemyBase
         Movement();
 
     }
-    void jumcal()
-    {
-        float baseflot = 0;
-        while (superJumper>jumphigh)
-        {
-            superJumper = Mathf.Lerp(baseflot , jumphigh ,0.5f);
-        }
-
-    }
     protected override void Movement()
     {
         HeadTo = target.position - transform.position;
         HeadTo = HeadTo.normalized;
-        transform.position += Time.deltaTime * speed * new Vector3(HeadTo.x,HeadTo.y* superJumper, 0);
+        transform.position += Time.deltaTime * speed * new Vector3(HeadTo.x,HeadTo.y,0);
+
         //transform.Translate(Time.deltaTime * speed * HeadTo);
         if (HeadTo.x < 0)
         {
@@ -133,9 +145,5 @@ public class MonstroBoss : EnemyBase
         {
             spriteRenderer.flipX = true;
         }
-    }
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        base.OnCollisionEnter2D(collision); 
     }
 }
