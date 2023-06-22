@@ -15,6 +15,7 @@ public class AttackBase : MonoBehaviour
     protected virtual void Awake()
     {
         tearExplosion = transform.GetChild(0).gameObject;
+        
     }
 
     void Update()
@@ -33,14 +34,30 @@ public class AttackBase : MonoBehaviour
             TearDie(collision);
         }
     }
-    
+
+    private void OnEnable()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LifeOver(lifeTime)); 
+    }
     public void TearDie(Collision2D collision)
     {
-        
+        if(lifeTime < 0) 
+        {
+            Destroy(gameObject);
+        }
+        else 
+        { 
         tearExplosion.transform.SetParent(null);
         tearExplosion.transform.position = collision.contacts[0].point;
         tearExplosion.SetActive(true);
         Destroy(gameObject);
+        }
     }
 
+    protected IEnumerator LifeOver(float delay = 0.0f)
+    {
+        yield return new WaitForSeconds(delay); 
+        Destroy(gameObject);            
+    }
 }

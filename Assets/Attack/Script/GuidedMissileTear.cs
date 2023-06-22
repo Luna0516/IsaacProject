@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuidedMissileTear : MonoBehaviour
+public class GuidedMissileTear : AttackBase
 {
     public Transform target;
     private Rigidbody2D rigid;
