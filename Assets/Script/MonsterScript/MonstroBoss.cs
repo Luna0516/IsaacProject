@@ -14,7 +14,7 @@ public class MonstroBoss : EnemyBase
 
     public float superJumper=1f;
 
-
+    GameObject originalMonstro;
     int randomPatt=0;
     Vector2 HeadTo;
     SpriteRenderer spriteRenderer;
@@ -52,6 +52,7 @@ public class MonstroBoss : EnemyBase
     }
     protected override void Awake()
     {
+        originalMonstro = transform.GetChild(0).gameObject;
         animator = transform.GetComponentInChildren<Animator>();
         sppeed = speed;
 
@@ -66,40 +67,23 @@ public class MonstroBoss : EnemyBase
         selectpattern();
         StopCoroutine(IDel());
     }
-    IEnumerator JumpgageCharge()
-    {
-        while (true)
-        {
-            //transform.position += new Vector3(0, superJumper, 0) * Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, superJumper, transform.position.z), 0.7f);
-            yield return null;
-        }
-    }
-    IEnumerator JumpgageDisCharge()
-    {
-        while (true)
-        {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -superJumper, transform.position.z), 0.7f);
-            yield return null;
-        }
-    }
+
     IEnumerator jumping()
     {
         for (int i = 0; i < 03; i++)
         {
             speed = 0; 
             animator.SetInteger("Jump", 1);
+            //점프 대기
             yield return new WaitForSeconds(0.5f);
             speed = sppeed;
-            StartCoroutine(JumpgageCharge());
-            yield return new WaitForSeconds(0.8f);
-            StopCoroutine(JumpgageCharge());
-            StartCoroutine(JumpgageDisCharge());
-            yield return new WaitForSeconds(0.950f);
+            //점프
+            yield return new WaitForSeconds(1.750f);
             speed = 0;
-            StopCoroutine(JumpgageDisCharge());
+            //점프 종료
             animator.SetInteger("Jump", 0);
-            yield return new WaitForSeconds(1.167f);
+            //Idel 실행으로 점프 쿨타임
+            yield return new WaitForSeconds(0.5f);
             speed = sppeed;
         }
         selectpattern();
@@ -107,7 +91,24 @@ public class MonstroBoss : EnemyBase
     }
     IEnumerator superJump()
     {
-        yield return new WaitForSeconds(2);
+        for (int i = 0; i < 03; i++)
+        {
+            speed = 0;
+            animator.SetInteger("SuperJump", 1);
+            //점프 대기
+            yield return new WaitForSeconds(0.5f);
+            speed = sppeed;
+            //점프
+            yield return new WaitForSeconds(1.750f);
+            speed = 0;
+            //점프 종료
+            animator.SetInteger("SuperJump", 0);
+            //Idel 실행으로 점프 쿨타임
+            yield return new WaitForSeconds(1.167f);
+            speed = sppeed;
+        }
+        selectpattern();
+        StopCoroutine(superJump());
     }
 
     IEnumerator Attack()
@@ -146,4 +147,11 @@ public class MonstroBoss : EnemyBase
             spriteRenderer.flipX = true;
         }
     }
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+    }
+
+
+
 }

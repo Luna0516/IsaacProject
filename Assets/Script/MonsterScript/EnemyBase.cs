@@ -6,19 +6,18 @@ public class EnemyBase : MonoBehaviour
     public Transform target;
     public float speed = 5f;
     public int MaxHP = 5;
-    int hp = 5;
 
     public int HP
     {
-        get => hp;
-        set
+       get => MaxHP;
+       protected set
         {
-            if (hp != value)
+            if (MaxHP != value)
             {
-                hp = value;
-                if (hp <= 0)
+                MaxHP = value;
+                if (MaxHP <= 0)
                 {
-                    hp = 0;
+                    MaxHP = 0;
                     Die();
                 }
             }
