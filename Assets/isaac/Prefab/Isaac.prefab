@@ -134,11 +134,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tears: {fileID: 4409279204360747590, guid: 0f589c13793f9564ea63f348775e87a0, type: 3}
+  Bomb: {fileID: 6609442778405775963, guid: aef5558f2a790934e8bc8a6abaaab43d, type: 3}
+  ActiveItem: {fileID: 0}
   speed: 2.5
-  tearsSpeed: 2.73
+  attackSpeed: 2.73
   range: 6.5
   maxHealth: 6
-  Health: 0
+  health: 0
+  damage: 0
 --- !u!50 &1672132898
 Rigidbody2D:
   serializedVersion: 4

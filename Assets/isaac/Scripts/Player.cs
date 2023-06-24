@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public class CollisionObject 
+{
+    public GameObject[] aaaaa;
+}
 public class Player : MonoBehaviour
 {
+    
+    ItemBase item;
     /// <summary>
     /// InputAction 연결
     /// </summary>
@@ -33,11 +40,11 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 이동 속도
     /// </summary>
-    public float speed = 1.0f;
+    public float speed;
     /// <summary>
     /// 눈물 연사 속도
     /// </summary>
-    public float tearsSpeed = 2.73f;
+    public float attackSpeed;
     /// <summary>
     /// 사거리
     /// </summary>
@@ -49,7 +56,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 체력
     /// </summary>
-    public float Health;
+    public float health;
     /// <summary>
     /// 눈물에 넣어줄 데미지
     /// </summary>
@@ -74,7 +81,10 @@ public class Player : MonoBehaviour
     /// 폭탄 스폰 시간 (고정)
     /// </summary>
     const float bombSpawn = 2.0f;
-    float waitTime;
+    /// <summary>
+    /// 아이템 먹는 애니메이션 끝나는 시간
+    /// </summary>
+    private float itemDelay = 2.0f;
     /// <summary>
     /// 머리 Transform
     /// </summary>
@@ -98,6 +108,10 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        // 스텟 초기화
+        speed = 1.0f;
+        damage = 1.0f;
+        attackSpeed = 1.0f;
         // 인풋시스템
         playerAction = new PlayerAction();
         // 몸통 관련 항목
@@ -117,30 +131,14 @@ public class Player : MonoBehaviour
         // 몸통 움직일 때 벡터값
         Vector3 dir = new Vector3(dir1.x * speed * Time.deltaTime, dir1.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
-        waitTime += Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
-        // 눈물 딜레이 
-        if(isAutoTear == true) // 1차 확인이 true 일때 
-        {
-            if (tearDelay) // 2차 확인까지 true가 되면
-            {
-                StartCoroutine(TearShootCoroutine()); // 코루틴 실행
-            }
-        }
-
         // 폭탄 딜레이
-        if(isAutoBomb == true) // 1차확인이 true일때
-        {
-            if(bombDelay) // 2차 확인까지 true가 되면
-            {
-                StartCoroutine(BombSpawnDelay()); // 코루틴 실행
-            }
-        }
-
-        
+        BombDelay();
+        // 눈물 딜레이
+        TearDelay();
     }
 
     private void OnEnable()
@@ -172,24 +170,30 @@ public class Player : MonoBehaviour
         playerAction.Active.Active.performed -= OnActiveItem;
         playerAction.Active.Disable();
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Health--;
-            Debug.Log("적과 충돌/ 남은 체력 : " + Health);
+            health--;
+            Debug.Log("적과 충돌/ 남은 체력 : " + health);
         }
         if (collision.gameObject.CompareTag("Item"))
         {
-            bodyAni.SetBool("isGetItem", true);
-            head.gameObject.SetActive(false);
-            // 일정시간 뒤에 이펙트 꺼지게 만들기
-            /*if (waitTime * Time.deltaTime >= 2)
+            StartCoroutine(GetItemDelay());
+            Destroy(collision.gameObject);
+            switch(collision.gameObject.GetComponent<ItemBase>().ItemNum)
             {
-                bodyAni.SetBool("isGetItem", false);
-                head.gameObject.SetActive(true);
-            }*/
+                case 0:
+                    break;
+                case 1:
+                    ItemBase theSadOnion = collision.gameObject.GetComponent<TheSadOnion>();
+                    damage = theSadOnion.Attack + damage;
+                    speed = theSadOnion.Speed + speed;
+                    attackSpeed = theSadOnion.AttackSpeed + attackSpeed;
+                    break;
+
+            }
         }
     }
     
@@ -224,8 +228,11 @@ public class Player : MonoBehaviour
             headAni.SetFloat("Dir_X1", dir1.x);
         }
     }
-
-    private void OnFire(InputAction.CallbackContext context) // 눈물 발사
+    /// <summary>
+    /// 눈물 발사
+    /// </summary>
+    /// <param name="context"></param>
+    private void OnFire(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
         dir2 = value.normalized;
@@ -255,7 +262,10 @@ public class Player : MonoBehaviour
             isAutoTear = false;
         }
     }
-
+    /// <summary>
+    /// 폭탄 딜레이
+    /// </summary>
+    /// <param name="context"></param>
     private void SetBomb(InputAction.CallbackContext context) // 폭탄 딜레이
     {
         
@@ -268,19 +278,21 @@ public class Player : MonoBehaviour
             isAutoBomb = false;
         }
     }
-
+    /// <summary>
+    /// 액티브 사용
+    /// </summary>
+    /// <param name="context"></param>
     private void OnActiveItem(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
 
         }
-        else if (context.canceled)
-        {
-
-        }
     }
-
+    /// <summary>
+    /// 폭탄 딜레이 코루틴
+    /// </summary>
+    /// <returns></returns>
     IEnumerator BombSpawnDelay() // 폭탄 딜레이 코루틴
     {
         GameObject bomb = Instantiate(Bomb);
@@ -291,7 +303,24 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(bombSpawn);
         bombDelay = true;
     }
-
+    /// <summary>
+    /// 폭탄 딜레이
+    /// </summary>
+    void BombDelay()
+    {
+        // 폭탄 딜레이
+        if (isAutoBomb == true) // 1차확인이 true일때
+        {
+            if (bombDelay) // 2차 확인까지 true가 되면
+            {
+                StartCoroutine(BombSpawnDelay()); // 코루틴 실행
+            }
+        }
+    }
+    /// <summary>
+    /// 눈물 발사 코루틴
+    /// </summary>
+    /// <returns></returns>
     IEnumerator TearShootCoroutine() // 눈물 발사 코루틴
     {
         GameObject tears = Instantiate(Tears);
@@ -308,9 +337,34 @@ public class Player : MonoBehaviour
 
         tearDelay = false;
 
-        yield return new WaitForSeconds(tearsSpeed);
+        yield return new WaitForSeconds(attackSpeed);
 
         tearDelay = true;
     }
+    /// <summary>
+    /// 눈물 딜레이
+    /// </summary>
+    void TearDelay()
+    {
+        // 눈물 딜레이 
+        if (isAutoTear == true) // 1차 확인이 true 일때 
+        {
+            if (tearDelay) // 2차 확인까지 true가 되면
+            {
+                StartCoroutine(TearShootCoroutine()); // 코루틴 실행
+            }
+        }
+    }
+
+    IEnumerator GetItemDelay()
+    {
+        bodyAni.SetBool("isGetItem", true);
+        head.gameObject.SetActive(false);
+        yield return new WaitForSeconds(itemDelay);
+        bodyAni.SetBool("isGetItem", false);
+        head.gameObject.SetActive(true);
+    }
 }
+// 아이템에는 스텟이 담겨있으니
+// 아이템을 한번만 먹으면 적용되는 식으로
 

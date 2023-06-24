@@ -6,9 +6,9 @@ public class EnemyBase : MonoBehaviour
     public Transform target;
     public float speed = 5f;
     public int MaxHP = 5;
-    int hp = 5;
+    float hp = 5.0f;
 
-    public int HP
+    public float HP
     {
         get => hp;
         set
@@ -34,7 +34,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            int damage = collision.gameObject.GetComponent<AttackBase>().Damage;
+            float damage = collision.gameObject.GetComponent<Bullet>().damage;
             HP-= damage;
             Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
         }
