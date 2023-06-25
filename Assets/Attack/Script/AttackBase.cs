@@ -48,10 +48,10 @@ public class AttackBase : MonoBehaviour
         }
         else 
         { 
-        tearExplosion.transform.SetParent(null);
-        tearExplosion.transform.position = collision.contacts[0].point;
-        tearExplosion.SetActive(true);
-        Destroy(gameObject);
+            tearExplosion.transform.SetParent(null);
+            tearExplosion.transform.position = collision.contacts[0].point;
+            tearExplosion.SetActive(true);
+            Destroy(gameObject);
         }
     }
 
