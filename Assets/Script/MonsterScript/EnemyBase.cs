@@ -7,6 +7,11 @@ public class EnemyBase : MonoBehaviour
     public float speed = 5f;
     public int MaxHP = 5;
 
+
+
+    /// <summary>
+    /// 체력값을 정의하는 프로퍼티
+    /// </summary>
     public int HP
     {
        get => MaxHP;
@@ -15,10 +20,12 @@ public class EnemyBase : MonoBehaviour
             if (MaxHP != value)
             {
                 MaxHP = value;
+
                 if (MaxHP <= 0)
-                {
+                { 
                     MaxHP = 0;
                     Die();
+                    //MaxHP가 -가 나와버리면 그냥 0으로 지정하고 해당 개체를 죽이는 함수 실행
                 }
             }
         }

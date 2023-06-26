@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class mualigan : EnemyBase
 {
-
     Vector3 Headto;
     GameObject head;
     GameObject body;
