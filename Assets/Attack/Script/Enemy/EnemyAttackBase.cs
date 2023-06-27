@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyAttackBase : MonoBehaviour
 {
-    public Transform player;           // 추적할 플레이어(아이작) 프리팹
+    public Transform player;           // 추적할 플레이어(아이작) 
 
-    public GameObject bullet;          // 적 총알 프리팹
+    public GameObject bullet;          // 적 총알 
     public float shootCooldown = 3.0f; // 총알 발사 쿨다운
     public float startCooldown;        // 발사 쿨다운 초기화 시간
 
