@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,58 +7,51 @@ public class AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
+    public float damage = 2; //임시 데미지
+    public Vector3 dir = Vector3.zero;
+    public float Damage
+    {
+        get { return damage; }
+    }
+
+
+    public Action<float> GiveDamage;//임시
 
     Animator anim;
-    public GameObject tearExplosion;
-
-    public Vector2 dir = Vector2.right;
+    GameObject tearExplosion;
 
     protected virtual void Awake()
     {
         tearExplosion = transform.GetChild(0).gameObject;
+    }
+
+    public void Update()
+    {
+        dir = new Vector3(transform.position.x * speed * Time.deltaTime, transform.position.y * speed * Time.deltaTime, 0.0f); // 위, 아래, 양 옆으로 Input에 따라 공격 변경 예정 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         
-    }
 
-    void Update()
-    {
-        transform.Translate(Time.deltaTime * speed * dir); // 위, 아래, 양 옆으로 Input에 따라 공격 변경 예정 
-    }
-
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            TearDie(collision);
-        }
-        else if (collision.gameObject.CompareTag("Wall"))
-        {
-            TearDie(collision);
-        }
-    }
-
-    private void OnEnable()
-    {
-        StopAllCoroutines();
-        StartCoroutine(LifeOver(lifeTime)); 
-    }
-    public void TearDie(Collision2D collision)
-    {
-        if(lifeTime < 0) 
-        {
-            Destroy(gameObject);
-        }
-        else 
-        { 
             tearExplosion.transform.SetParent(null);
             tearExplosion.transform.position = collision.contacts[0].point;
             tearExplosion.SetActive(true);
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag ("Floor"))
+        {
+            Destroy(this.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Enemy"))//임시 작성 총알 피격
+        {
+            GiveDamage?.Invoke(damage);
+            Destroy(this.gameObject);
+
+        }
     }
 
-    protected IEnumerator LifeOver(float delay = 0.0f)
-    {
-        yield return new WaitForSeconds(delay); 
-        Destroy(gameObject);            
-    }
 }

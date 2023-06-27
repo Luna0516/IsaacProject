@@ -1,90 +1,177 @@
-using Mono.Cecil;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class Player : MonoBehaviour
 {
+
+    ItemBase item;
     /// <summary>
     /// InputAction 연결
     /// </summary>
     PlayerAction playerAction;
-
+    /// <summary>
+    /// body 백터
+    /// </summary>
     Vector2 dir1 = Vector2.zero;
-
-    Vector2 dir2 = Vector2.zero
-;
+    /// <summary>
+    /// head 벡터
+    /// </summary>
+    Vector2 dir2 = Vector2.zero;
     /// <summary>
     /// 눈물
     /// </summary>
     public GameObject Tears;
     /// <summary>
+    /// 폭탄
+    /// </summary>
+    public GameObject SetBomb;
+    /// <summary>
+    /// 액티브 아이템
+    /// </summary>
+    public GameObject ActiveItem;
+    /// <summary>
     /// 이동 속도
     /// </summary>
-    public float speed = 1.0f;
+    public float speed;
     /// <summary>
-    /// 눈물 공격 속도
+    /// 화면에 나올 연사속도
     /// </summary>
-    public float tearsSpeed = 2.73f;
+    float tearSpeed = 2.73f;
+    /// <summary>
+    /// 눈물 연사 속도 계산
+    /// </summary>
+    public float attackSpeed;
+    /// <summary>
+    /// 최대 연사 속도
+    /// </summary>
+    public float maxAttackSpeed = 1.0f;
+    /// <summary>
+    /// 공격속도의 최대값    
+    /// </summary>
+    const float maximumTearSpeed = 5.0f;
+    /// <summary>
+    /// 이동속도의 최대값
+    /// </summary>
+    const float maximumSpeed = 5.0f;
     /// <summary>
     /// 사거리
     /// </summary>
-    public float range = 6.5f;
+    public float range;
     /// <summary>
     /// 최대 체력
     /// </summary>
     public float maxHealth = 6.0f;
-
-    public float Health;
-
-    Transform body;
-
+    /// <summary>
+    /// 체력
+    /// </summary>
+    public float health;
+    /// <summary>
+    /// 눈물에 넣어줄 데미지
+    /// </summary>
+    public float damage;
+    /// <summary>
+    /// 눈물 딜레이 1차확인
+    /// </summary>
+    private bool isAutoTear;
+    /// <summary>
+    /// 눈물 딜레이 2차확인
+    /// </summary>
+    private bool tearDelay;
+    /// <summary>
+    /// 폭탄 딜레이 1차확인
+    /// </summary>
+    private bool bombDelay;
+    /// <summary>
+    /// 폭탄 딜레이 2차확인
+    /// </summary>
+    private bool isAutoBomb;
+    /// <summary>
+    /// 폭탄 스폰 시간 (고정)
+    /// </summary>
+    const float bombSpawn = 2.0f;
+    /// <summary>
+    /// 아이템 먹는 애니메이션 끝나는 시간
+    /// </summary>
+    private float itemDelay = 2.0f;
+    /// <summary>
+    /// 머리 Transform
+    /// </summary>
     Transform head;
-
+    /// <summary>
+    /// 머리 Animator
+    /// </summary>
     Animator headAni;
-
+    /// <summary>
+    /// 몸뚱아리 Transform
+    /// </summary>
+    Transform body;
+    /// <summary>
+    /// 몸통 Animator
+    /// </summary>
     Animator bodyAni;
-
+    /// <summary>
+    /// 몸통(좌우변경) SpriteRenderer
+    /// </summary>
     SpriteRenderer bodySR;
 
-    SpriteRenderer headSR;
+    // 코인, 폭탄, 열쇠, 각종 스텟 (스텟은 일단 패스)
 
-    readonly int moveDirY = Animator.StringToHash("MoveDir_Y");
-
-    readonly int moveDirX = Animator.StringToHash("MoveDir_X");
-
-    readonly int isMove = Animator.StringToHash("isMove");
-
-    readonly int headDirX = Animator.StringToHash("Dir_X1");
-
-    readonly int headDirY = Animator.StringToHash("Dir_Y1");
-
-    readonly int isShoot = Animator.StringToHash("isShoot");
-
-    readonly int shootDirX = Animator.StringToHash("Dir_X2");
-
-    readonly int shootDirY = Animator.StringToHash("Dir_Y2");
+    public int Coin { get; set; }
+    public int Bomb { get; set; }
+    public int Key { get; set; }
+    public float Health
+    {
+        get => health;
+        set { }
+    }
     private void Awake()
     {
+        // 스텟 초기화
+        speed = 1.0f;
+        damage = 1.0f;
+        // 인풋시스템
         playerAction = new PlayerAction();
-
+        // 몸통 관련 항목
         body = transform.Find("bodyIdle");
         bodyAni = body.GetComponent<Animator>();
         bodySR = body.GetComponent<SpriteRenderer>();
-
+        // 머리 관련 항목
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
-        headSR = head.GetComponent<SpriteRenderer>();
+        // 폭탄, 눈물 딜레이 true 변경
+        bombDelay = true;
+        tearDelay = true;
     }
-    
+
     private void Update()
     {
+        // 몸통 움직일 때 벡터값
         Vector3 dir = new Vector3(dir1.x * speed * Time.deltaTime, dir1.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
+    }
+
+    private void FixedUpdate()
+    {
+        // 폭탄 딜레이
+        BombDelay();
+        // 눈물 딜레이
+        TearDelay();
+
+        attackSpeed = maxAttackSpeed / tearSpeed;
+        if (tearSpeed > maximumTearSpeed)
+        {
+            tearSpeed = maximumTearSpeed;
+        }
+
+        Debug.Log($"현재 공격속도 : {attackSpeed}");
+        Debug.Log($"최대 공격속도 : {maxAttackSpeed}");
+        Debug.Log($"공격속도 저장 : {tearSpeed}");
     }
 
     private void OnEnable()
@@ -95,6 +182,11 @@ public class Player : MonoBehaviour
         playerAction.Shot.Enable();
         playerAction.Shot.Cross.performed += OnFire;
         playerAction.Shot.Cross.canceled += OnFire;
+        playerAction.Bomb.Enable();
+        playerAction.Bomb.Bomb.performed += SetBombDelay;
+        playerAction.Bomb.Bomb.canceled += SetBombDelay;
+        playerAction.Active.Enable();
+        playerAction.Active.Active.performed += OnActiveItem;
     }
 
     private void OnDisable()
@@ -105,31 +197,70 @@ public class Player : MonoBehaviour
         playerAction.Shot.Cross.performed -= OnFire;
         playerAction.Shot.Cross.canceled -= OnFire;
         playerAction.Shot.Disable();
+        playerAction.Bomb.Bomb.performed -= SetBombDelay;
+        playerAction.Bomb.Bomb.canceled -= SetBombDelay;
+        playerAction.Bomb.Disable();
+        playerAction.Active.Active.performed -= OnActiveItem;
+        playerAction.Active.Disable();
     }
 
-    private void OnMove(InputAction.CallbackContext context)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            health--;
+            Debug.Log("적과 충돌/ 남은 체력 : " + health);
+            if(health <= 0)
+            {
+                Die();
+            }
+        }
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            StartCoroutine(GetItemDelay());
+            Destroy(collision.gameObject);
+            switch(collision.gameObject.GetComponent<ItemBase>().ItemNum)
+            {
+                case 0:
+                    break;
+                case 1:
+                    ItemBase theSadOnion = collision.gameObject.GetComponent<TheSadOnion>();
+                    damage = theSadOnion.Attack + damage;
+                    speed = theSadOnion.Speed + speed;
+                    tearSpeed = theSadOnion.AttackSpeed + tearSpeed;
+                    
+                    break;
+            }
+        }
+    }
+
+    private void Die()
+    {
+        head.gameObject.SetActive(false);
+        bodyAni.SetTrigger("Die");
+        playerAction.Move.Disable();
+        playerAction.Shot.Disable();
+    }
+
+    private void OnMove(InputAction.CallbackContext context) // 몸통 움직임
     {
         Vector2 value = context.ReadValue<Vector2>();
         dir1 = value;
-        Debug.Log(value);
+        //Debug.Log(value);
 
         if (dir1.x == 0 && dir1.y == 0)
         {
-            bodyAni.SetBool(isMove, false);
-            headAni.SetBool(isMove, false);
+            bodyAni.SetBool("isMove", false);
+            headAni.SetBool("isMove", false);
         }
         else
         {
-            bodyAni.SetBool(isMove, true);
-            headAni.SetBool(isMove, true);
-        }
-
-        bodyAni.SetFloat(moveDirY, dir1.y);
-        headAni.SetFloat(headDirY, dir1.y);
-
-        if (dir1.y != 0)
-        {
-            headSR.flipX = false;
+            bodyAni.SetBool("isMove", true);
+            headAni.SetBool("isMove", true);
+            
+            bodyAni.SetFloat("MoveDir_Y", dir1.y);
+            headAni.SetFloat("Dir_Y1", dir1.y);
+            
             if (dir1.x < 0)
             {
                 bodySR.flipX = true;
@@ -138,108 +269,147 @@ public class Player : MonoBehaviour
             {
                 bodySR.flipX = false;
             }
+            bodyAni.SetFloat("MoveDir_X", dir1.x);
+            headAni.SetFloat("Dir_X1", dir1.x);
         }
-        else // Y 값이 0일때 
-        {
-            if (dir1.x < 0) // 왼쪽으로 움직일때
-            {
-                bodySR.flipX = true; // 플립
-                headSR.flipX = true;
-
-            }
-            else
-            {
-                bodySR.flipX = false; // 플립을 풀어
-                headSR.flipX = false;
-
-            }
-        }
-        bodyAni.SetFloat(moveDirX, dir1.x);
-        headAni.SetFloat(headDirX, dir1.x);
     }
+    /// <summary>
+    /// 눈물 발사
+    /// </summary>
+    /// <param name="context"></param>
     private void OnFire(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        dir2 = value;
-        Debug.Log(value);
+        dir2 = value.normalized;
+        //Debug.Log(value);
 
         if (dir2.x == 0 && dir2.y == 0)
         {
-            headAni.SetBool(isShoot, false);
+            headAni.SetBool("isShoot", false);
         }
         else
         {
-            headAni.SetBool(isShoot, true);
-        }
-        headAni.SetFloat(shootDirY, dir2.y);
-
-        // 왼쪽으로 쏠때
-        // 왼쪽 가면서 왼쪽을 쏘면서 위아래 움직이고 위아래Move떼면 머리플립이 꺼졌다 켜짐. (위아래 Move누를때만 플립X)
-        // 오른쪽 가면서 왼쪽으로 쏘고 Move키 떼면 플립이 안켜짐
-        // 왼쪽 쏘다가 오른쪽으로 움직이고 떼면 플립이 안켜짐
-
-        // 오른쪽으로 쏠때
-        // 오른쪽 쏘다가 왼쪽으로 움직이면 Move쪽으로 머리가 돌아감
-        // 왼쪽 가면서 오른쪽을 쏘면서 위아래 움직이고 떼면 머리 플립이 꺼졌다 켜짐. (위아래 Move누를때만 플립X)
-
-        
-        if (dir2.x < 0) // 왼쪽으로 쏠때
-        {
-            headSR.flipX = true; // X플립
-        }
-        else if (dir1.x > 0) // 몸이 오른쪽으로 움직이면
-        {
-            headSR.flipX = false; // 머가리 X플립 해제
-        }
-        else if (dir1.y != 0)
-        {
-            headSR.flipX = true;
-        }
-
-        else // 오른쪽으로 쏠떄
-        {
-            if (dir2.x > 0) // 오른쪽으로 쏘면
+            headAni.SetBool("isShoot", true);
+            if(dir2.x != 0 && dir2.y != 0)
             {
-                headSR.flipX = false; // x플립 취소
+                dir2.x = 0;
             }
-            else if (dir1.x < 0) // 왼쪽으로 움직이면
-            {
-                headSR.flipX = true; // x플립 활성화
-            }
+            headAni.SetFloat("Dir_X2", dir2.x);
+            headAni.SetFloat("Dir_Y2", dir2.y);
         }
-        headAni.SetFloat(shootDirX, dir2.x);
 
         if (context.performed)
         {
-            StartCoroutine(TearShootCoroutine());
+            isAutoTear = true;
         }
-        else
+        else if(context.canceled)
         {
-            StopAllCoroutines();
+            isAutoTear = false;
         }
-        //OnFire 가 실행이 되   성공
-        //여기서 dir2를 받음 (공격정보) 성공
-
-        //그 쪽 방향으로 눈물을 생성 성공
-
-        //그 쪽 방향으로 눈물이 이동 성공
     }
-    IEnumerator TearShootCoroutine()
+    /// <summary>
+    /// 폭탄 딜레이
+    /// </summary>
+    /// <param name="context"></param>
+    private void SetBombDelay(InputAction.CallbackContext context) // 폭탄 딜레이
     {
-        while (true)
+        
+        if (context.performed)
         {
-            //먼저 Resource에 있는 리소스를 로드를 먼저해야함. ( 1번만 해도댐 Awake or start)
-            //그 로드 된 애를 Instantiate 를 해야 함
-
-            GameObject tears = Instantiate(Tears);
-            Transform tearspawn = transform.GetChild(0);
-            tears.transform.position = tearspawn.position;
-
-            //Instantiate로 만들어진 GameObject 에 방향 정보를 전달을 해야대.
-            Tears tearComponent = tears.GetComponent<Tears>();
-            tearComponent.SetTearDirection(dir2);
-
-            yield return new WaitForSeconds(tearsSpeed);
+            isAutoBomb = true;
         }
+        else if(context.canceled)
+        {
+            isAutoBomb = false;
+        }
+    }
+    /// <summary>
+    /// 액티브 사용
+    /// </summary>
+    /// <param name="context"></param>
+    private void OnActiveItem(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+        }
+    }
+    /// <summary>
+    /// 폭탄 딜레이 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator BombSpawnDelay() // 폭탄 딜레이 코루틴
+    {
+        GameObject bomb = Instantiate(SetBomb);
+
+        bomb.transform.position = body.transform.position;
+
+        bombDelay = false;
+        yield return new WaitForSeconds(bombSpawn);
+        bombDelay = true;
+    }
+    /// <summary>
+    /// 폭탄 딜레이
+    /// </summary>
+    void BombDelay()
+    {
+        // 폭탄 딜레이
+        if (isAutoBomb == true) // 1차확인이 true일때
+        {
+            if (bombDelay) // 2차 확인까지 true가 되면
+            {
+                StartCoroutine(BombSpawnDelay()); // 코루틴 실행
+            }
+        }
+    }
+    /// <summary>
+    /// 눈물 발사 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator TearShootCoroutine() // 눈물 발사 코루틴
+    {
+        GameObject tears = Instantiate(Tears);
+
+        Transform tearspawn = transform.GetChild(0);
+
+        tears.transform.position = tearspawn.position;
+
+        AttackBase tearComponent = tears.GetComponent<AttackBase>();
+
+        tearComponent.damage = damage;
+
+        tearComponent.dir = dir2;
+
+        tearDelay = false;
+
+        yield return new WaitForSeconds(attackSpeed);
+
+        tearDelay = true;
+    }
+    /// <summary>
+    /// 눈물 딜레이
+    /// </summary>
+    void TearDelay()
+    {
+        // 눈물 딜레이 
+        if (isAutoTear == true) // 1차 확인이 true 일때 
+        {
+            if (tearDelay) // 2차 확인까지 true가 되면
+            {
+                StartCoroutine(TearShootCoroutine()); // 코루틴 실행
+            }
+        }
+    }
+
+    IEnumerator GetItemDelay()
+    {
+        bodyAni.SetBool("isGetItem", true);
+        head.gameObject.SetActive(false);
+        yield return new WaitForSeconds(itemDelay);
+        bodyAni.SetBool("isGetItem", false);
+        head.gameObject.SetActive(true);
     }
 }
+// 아이템에는 스텟이 담겨있으니
+// 아이템을 한번만 먹으면 적용되는 식으로
+
