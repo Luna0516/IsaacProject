@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -106,6 +107,12 @@ public class Player : MonoBehaviour
     /// </summary>
     SpriteRenderer bodySR;
 
+    // 체력 프로퍼티 Health로 설정
+    float Health
+    {
+        get => health;
+        set { }
+    }
     private void Awake()
     {
         // 스텟 초기화
@@ -177,6 +184,10 @@ public class Player : MonoBehaviour
         {
             health--;
             Debug.Log("적과 충돌/ 남은 체력 : " + health);
+            if(health <= 0)
+            {
+                Die();
+            }
         }
         if (collision.gameObject.CompareTag("Item"))
         {
@@ -190,13 +201,20 @@ public class Player : MonoBehaviour
                     ItemBase theSadOnion = collision.gameObject.GetComponent<TheSadOnion>();
                     damage = theSadOnion.Attack + damage;
                     speed = theSadOnion.Speed + speed;
-                    attackSpeed = theSadOnion.AttackSpeed + attackSpeed;
+                    attackSpeed = theSadOnion.AttackSpeed - attackSpeed;
                     break;
-
             }
         }
     }
-    
+
+    private void Die()
+    {
+        head.gameObject.SetActive(false);
+        bodyAni.SetTrigger("Die");
+        playerAction.Move.Disable();
+        playerAction.Shot.Disable();
+    }
+
     private void OnMove(InputAction.CallbackContext context) // 몸통 움직임
     {
         Vector2 value = context.ReadValue<Vector2>();
