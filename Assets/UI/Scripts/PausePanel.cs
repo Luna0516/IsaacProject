@@ -37,7 +37,7 @@ public class PausePanel : MonoBehaviour {
 
     IEnumerator DelayPasue(bool active) {
         if (active) {
-            player.PlayerPause();
+            //player.PlayerPause();
         } else {
             GameManager.Inst.QuitPauseGame();
         }
@@ -49,7 +49,7 @@ public class PausePanel : MonoBehaviour {
         if (active) {
             GameManager.Inst.PauseGame();
         } else {
-            player.PlayerQuitPause();
+            //player.PlayerQuitPause();
         }
     }
 }
