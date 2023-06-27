@@ -6,13 +6,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CollisionObject 
-{
-    public GameObject[] aaaaa;
-}
+
 public class Player : MonoBehaviour
 {
-    
+
     ItemBase item;
     /// <summary>
     /// InputAction 연결
@@ -33,7 +30,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 폭탄
     /// </summary>
-    public GameObject Bomb;
+    public GameObject SetBomb;
     /// <summary>
     /// 액티브 아이템
     /// </summary>
@@ -43,13 +40,29 @@ public class Player : MonoBehaviour
     /// </summary>
     public float speed;
     /// <summary>
-    /// 눈물 연사 속도
+    /// 화면에 나올 연사속도
+    /// </summary>
+    float tearSpeed = 2.73f;
+    /// <summary>
+    /// 눈물 연사 속도 계산
     /// </summary>
     public float attackSpeed;
     /// <summary>
+    /// 최대 연사 속도
+    /// </summary>
+    public float maxAttackSpeed = 1.0f;
+    /// <summary>
+    /// 공격속도의 최대값    
+    /// </summary>
+    const float maximumTearSpeed = 5.0f;
+    /// <summary>
+    /// 이동속도의 최대값
+    /// </summary>
+    const float maximumSpeed = 5.0f;
+    /// <summary>
     /// 사거리
     /// </summary>
-    public float range = 6.5f;
+    public float range;
     /// <summary>
     /// 최대 체력
     /// </summary>
@@ -107,7 +120,11 @@ public class Player : MonoBehaviour
     /// </summary>
     SpriteRenderer bodySR;
 
-    // 체력 프로퍼티 Health로 설정
+    // 코인, 폭탄, 열쇠, 각종 스텟 (스텟은 일단 패스)
+
+    int Coin { get; set; }
+    int Bomb { get; set; }
+    int Key { get; set; }
     float Health
     {
         get => health;
@@ -118,7 +135,6 @@ public class Player : MonoBehaviour
         // 스텟 초기화
         speed = 1.0f;
         damage = 1.0f;
-        attackSpeed = 1.0f;
         // 인풋시스템
         playerAction = new PlayerAction();
         // 몸통 관련 항목
@@ -146,6 +162,16 @@ public class Player : MonoBehaviour
         BombDelay();
         // 눈물 딜레이
         TearDelay();
+
+        attackSpeed = maxAttackSpeed / tearSpeed;
+        if (tearSpeed > maximumTearSpeed)
+        {
+            tearSpeed = maximumTearSpeed;
+        }
+
+        Debug.Log($"현재 공격속도 : {attackSpeed}");
+        Debug.Log($"최대 공격속도 : {maxAttackSpeed}");
+        Debug.Log($"공격속도 저장 : {tearSpeed}");
     }
 
     private void OnEnable()
@@ -157,8 +183,8 @@ public class Player : MonoBehaviour
         playerAction.Shot.Cross.performed += OnFire;
         playerAction.Shot.Cross.canceled += OnFire;
         playerAction.Bomb.Enable();
-        playerAction.Bomb.Bomb.performed += SetBomb;
-        playerAction.Bomb.Bomb.canceled += SetBomb;
+        playerAction.Bomb.Bomb.performed += SetBombDelay;
+        playerAction.Bomb.Bomb.canceled += SetBombDelay;
         playerAction.Active.Enable();
         playerAction.Active.Active.performed += OnActiveItem;
     }
@@ -171,8 +197,8 @@ public class Player : MonoBehaviour
         playerAction.Shot.Cross.performed -= OnFire;
         playerAction.Shot.Cross.canceled -= OnFire;
         playerAction.Shot.Disable();
-        playerAction.Bomb.Bomb.performed -= SetBomb;
-        playerAction.Bomb.Bomb.canceled -= SetBomb;
+        playerAction.Bomb.Bomb.performed -= SetBombDelay;
+        playerAction.Bomb.Bomb.canceled -= SetBombDelay;
         playerAction.Bomb.Disable();
         playerAction.Active.Active.performed -= OnActiveItem;
         playerAction.Active.Disable();
@@ -201,7 +227,8 @@ public class Player : MonoBehaviour
                     ItemBase theSadOnion = collision.gameObject.GetComponent<TheSadOnion>();
                     damage = theSadOnion.Attack + damage;
                     speed = theSadOnion.Speed + speed;
-                    attackSpeed = theSadOnion.AttackSpeed - attackSpeed;
+                    tearSpeed = theSadOnion.AttackSpeed + tearSpeed;
+                    
                     break;
             }
         }
@@ -284,7 +311,7 @@ public class Player : MonoBehaviour
     /// 폭탄 딜레이
     /// </summary>
     /// <param name="context"></param>
-    private void SetBomb(InputAction.CallbackContext context) // 폭탄 딜레이
+    private void SetBombDelay(InputAction.CallbackContext context) // 폭탄 딜레이
     {
         
         if (context.performed)
@@ -313,7 +340,7 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     IEnumerator BombSpawnDelay() // 폭탄 딜레이 코루틴
     {
-        GameObject bomb = Instantiate(Bomb);
+        GameObject bomb = Instantiate(SetBomb);
 
         bomb.transform.position = body.transform.position;
 
@@ -347,7 +374,7 @@ public class Player : MonoBehaviour
 
         tears.transform.position = tearspawn.position;
 
-        Bullet tearComponent = tears.GetComponent<Bullet>();
+        AttackBase tearComponent = tears.GetComponent<AttackBase>();
 
         tearComponent.damage = damage;
 
