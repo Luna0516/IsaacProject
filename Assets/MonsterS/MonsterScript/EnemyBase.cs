@@ -6,14 +6,14 @@ public class EnemyBase : MonoBehaviour
 {
     public Transform target;
     public float speed = 5f;
-    public int MaxHP = 5;
-    protected int damage;
+    public float MaxHP = 5;
+    protected float damage;
 
 
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
-    public int HP
+    public float HP
     {
        get => MaxHP;
        protected set

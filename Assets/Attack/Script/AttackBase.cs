@@ -7,14 +7,15 @@ public class AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
-    public int damage = 2; //임시 데미지
-    public int Damage
+    public float damage = 2; //임시 데미지
+    public Vector3 dir = Vector3.zero;
+    public float Damage
     {
         get { return damage; }
     }
 
 
-    public Action<int> GiveDamage;//임시
+    public Action<float> GiveDamage;//임시
 
     Animator anim;
     GameObject tearExplosion;
@@ -24,9 +25,9 @@ public class AttackBase : MonoBehaviour
         tearExplosion = transform.GetChild(0).gameObject;
     }
 
-    private void Update()
+    public void Update()
     {
-        transform.Translate(Time.deltaTime * speed * Vector2.right); // 위, 아래, 양 옆으로 Input에 따라 공격 변경 예정 
+        dir = new Vector3(transform.position.x * speed * Time.deltaTime, transform.position.y * speed * Time.deltaTime, 0.0f); // 위, 아래, 양 옆으로 Input에 따라 공격 변경 예정 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

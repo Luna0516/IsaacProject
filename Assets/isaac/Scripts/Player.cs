@@ -122,10 +122,10 @@ public class Player : MonoBehaviour
 
     // ÄÚÀÎ, ÆøÅº, ¿­¼è, °¢Á¾ ½ºÅİ (½ºÅİÀº ÀÏ´Ü ÆĞ½º)
 
-    int Coin { get; set; }
-    int Bomb { get; set; }
-    int Key { get; set; }
-    float Health
+    public int Coin { get; set; }
+    public int Bomb { get; set; }
+    public int Key { get; set; }
+    public float Health
     {
         get => health;
         set { }
