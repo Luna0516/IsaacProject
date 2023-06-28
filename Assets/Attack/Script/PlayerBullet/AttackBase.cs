@@ -7,6 +7,15 @@ public class AttackBase : MonoBehaviour
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
 
+    // 따로 추가했습니다.
+    public float damage;
+    public float Damage {
+        get => damage;
+        set {
+            damage = value;
+        }
+    }
+
     Animator anim;
     public GameObject tearExplosion;
     SpriteRenderer tear;

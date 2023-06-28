@@ -6,6 +6,15 @@ public class EnemyAttackBase : MonoBehaviour
 {
     public Transform player;           // 추적할 플레이어(아이작) 
 
+    // 따로 추가했습니다.
+    public float damage;
+    public float Damage {
+        get => damage;
+        set {
+            damage = value;
+        }
+    }
+
     public GameObject bullet;          // 적 총알 
     public float shootCooldown = 3.0f; // 총알 발사 쿨다운
     public float startCooldown;        // 발사 쿨다운 초기화 시간
