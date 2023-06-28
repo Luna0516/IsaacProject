@@ -17,14 +17,4 @@ public class Coin : MonoBehaviour
     protected virtual void Start() {
         player = GameManager.Inst.Player;
     }
-
-    protected virtual void OnTriggerEnter2D(Collider2D collision) {
-        if (!(collision.gameObject.CompareTag("Player"))) {
-            return;
-        }
-
-        if (player == null) {
-            return;
-        }
-    }
 }
