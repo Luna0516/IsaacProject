@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
+    public float MonsterDamage=1;
+
     public Transform target;
     public float speed = 5f;
     public float MaxHP = 5;
@@ -11,7 +13,7 @@ public class EnemyBase : MonoBehaviour
 
 
     /// <summary>
-    /// Ã¼·Â°ªÀ» Á¤ÀÇÇÏ´Â ÇÁ·ÎÆÛÆ¼
+    /// ì²´ë ¥ê°’ì„ ì •ì˜í•˜ëŠ” í”„ë¡œí¼í‹°
     /// </summary>
     public float HP
     {
@@ -26,7 +28,7 @@ public class EnemyBase : MonoBehaviour
                 { 
                     MaxHP = 0;
                     Die();
-                    //MaxHP°¡ -°¡ ³ª¿Í¹ö¸®¸é ±×³É 0À¸·Î ÁöÁ¤ÇÏ°í ÇØ´ç °³Ã¼¸¦ Á×ÀÌ´Â ÇÔ¼ö ½ÇÇà
+                    //MaxHPê°€ -ê°€ ë‚˜ì™€ë²„ë¦¬ë©´ ê·¸ëƒ¥ 0ìœ¼ë¡œ ì§€ì •í•˜ê³  í•´ë‹¹ ê°œì²´ë¥¼ ì£½ì´ëŠ” í•¨ìˆ˜ ì‹¤í–‰
                 }
             }
         }
@@ -57,7 +59,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Hitten()
     {
         HP -= damage;
-        Debug.Log($"{gameObject.name}ÀÌ {damage}¸¸Å­ °ø°İ¹Ş¾Ò´Ù. ³²Àº Ã¼·Â: {HP}");
+        Debug.Log($"{gameObject.name}ì´ {damage}ë§Œí¼ ê³µê²©ë°›ì•˜ë‹¤. ë‚¨ì€ ì²´ë ¥: {HP}");
     }
 
     protected IEnumerator damaged(SpriteRenderer sprite, SpriteRenderer sprite1)

@@ -9,11 +9,9 @@ public class Host : EnemyBase
     Animator animator;
     SpriteRenderer spriteRenderer;
     AnimatorStateInfo stateInfo;
-    int animationID;
     int animestate;
     public Player player;
-
-    Action attackmode;
+    bool invincivel = false;
 
 
     protected override void Awake()
@@ -22,18 +20,12 @@ public class Host : EnemyBase
         animator = childe.GetComponent<Animator>();
         spriteRenderer = childe.GetComponent<SpriteRenderer>();
         stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        animationID = Animator.StringToHash("UpdownSkullAttack");
         animestate = Animator.StringToHash("Attack");
-    }
-
-    private void OnEnable()
-    {
-        attackmode += AttackMove;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Ʈ���� �۵�");
+        Debug.Log("트리거 작동");
         if (collision.CompareTag("Player"))
         {
             AttackMove();
@@ -43,8 +35,9 @@ public class Host : EnemyBase
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player") && stateInfo.fullPathHash==animationID)
+        if (collision.transform.CompareTag("PlayerBullet") && invincivel)
         {
+            Debug.Log("호스트가 공격받았다.");
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             Hitten();
             StartCoroutine(damaged(spriteRenderer));
@@ -53,12 +46,14 @@ public class Host : EnemyBase
     void AttackMove()
     {
         StartCoroutine(attackCoroutine());
+        invincivel = true;
     }
     IEnumerator attackCoroutine()
     {
         animator.SetInteger(animestate, 1);
-        yield return new WaitForSeconds(1.817f);
+        yield return new WaitForSeconds(1.9f);
         animator.SetInteger(animestate, 0);
+        invincivel = false;
     }
 
 }
