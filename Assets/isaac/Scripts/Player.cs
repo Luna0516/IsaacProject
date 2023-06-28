@@ -169,9 +169,9 @@ public class Player : MonoBehaviour
             tearSpeed = maximumTearSpeed;
         }
 
-        //Debug.Log($"현재 공격속도 : {attackSpeed}");
-        //Debug.Log($"최대 공격속도 : {maxAttackSpeed}");
-        //Debug.Log($"공격속도 저장 : {tearSpeed}");
+        Debug.Log($"현재 공격속도 : {attackSpeed}");
+        Debug.Log($"최대 공격속도 : {maxAttackSpeed}");
+        Debug.Log($"공격속도 저장 : {tearSpeed}");
     }
 
     private void OnEnable()

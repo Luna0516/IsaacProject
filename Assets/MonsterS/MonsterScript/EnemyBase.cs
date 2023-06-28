@@ -68,6 +68,7 @@ public class EnemyBase : MonoBehaviour
         sprite.color = Color.white;
         sprite1.color = Color.white;
     }
+
     protected IEnumerator damaged(SpriteRenderer sprite)
     {
         sprite.color = Color.red;
