@@ -9,118 +9,117 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-
     ItemBase item;
     /// <summary>
-    /// InputAction ¿¬°á
+    /// InputAction ì—°ê²°
     /// </summary>
     PlayerAction playerAction;
     /// <summary>
-    /// body ¹éÅÍ
+    /// body ë°±í„°
     /// </summary>
     Vector2 dir1 = Vector2.zero;
     /// <summary>
-    /// head º¤ÅÍ
+    /// head ë²¡í„°
     /// </summary>
     Vector2 dir2 = Vector2.zero;
     /// <summary>
-    /// ´«¹°
+    /// ëˆˆë¬¼
     /// </summary>
     public GameObject Tears;
     /// <summary>
-    /// ÆøÅº
+    /// í­íƒ„
     /// </summary>
     public GameObject SetBomb;
     /// <summary>
-    /// ¾×Æ¼ºê ¾ÆÀÌÅÛ
+    /// ì•¡í‹°ë¸Œ ì•„ì´í…œ
     /// </summary>
     public GameObject ActiveItem;
     /// <summary>
-    /// ÀÌµ¿ ¼Óµµ
+    /// ì´ë™ ì†ë„
     /// </summary>
     public float speed;
     /// <summary>
-    /// È­¸é¿¡ ³ª¿Ã ¿¬»ç¼Óµµ
+    /// í™”ë©´ì— ë‚˜ì˜¬ ì—°ì‚¬ì†ë„
     /// </summary>
     float tearSpeed = 2.73f;
     /// <summary>
-    /// ´«¹° ¿¬»ç ¼Óµµ °è»ê
+    /// ëˆˆë¬¼ ì—°ì‚¬ ì†ë„ ê³„ì‚°
     /// </summary>
     public float attackSpeed;
     /// <summary>
-    /// ÃÖ´ë ¿¬»ç ¼Óµµ
+    /// ìµœëŒ€ ì—°ì‚¬ ì†ë„
     /// </summary>
     public float maxAttackSpeed = 1.0f;
     /// <summary>
-    /// °ø°İ¼ÓµµÀÇ ÃÖ´ë°ª    
+    /// ê³µê²©ì†ë„ì˜ ìµœëŒ€ê°’    
     /// </summary>
     const float maximumTearSpeed = 5.0f;
     /// <summary>
-    /// ÀÌµ¿¼ÓµµÀÇ ÃÖ´ë°ª
+    /// ì´ë™ì†ë„ì˜ ìµœëŒ€ê°’
     /// </summary>
     const float maximumSpeed = 5.0f;
     /// <summary>
-    /// »ç°Å¸®
+    /// ì‚¬ê±°ë¦¬
     /// </summary>
     public float range;
     /// <summary>
-    /// ÃÖ´ë Ã¼·Â
+    /// ìµœëŒ€ ì²´ë ¥
     /// </summary>
     public float maxHealth = 6.0f;
     /// <summary>
-    /// Ã¼·Â
+    /// ì²´ë ¥
     /// </summary>
     public float health;
     /// <summary>
-    /// ´«¹°¿¡ ³Ö¾îÁÙ µ¥¹ÌÁö
+    /// ëˆˆë¬¼ì— ë„£ì–´ì¤„ ë°ë¯¸ì§€
     /// </summary>
     public float damage;
     /// <summary>
-    /// ´«¹° µô·¹ÀÌ 1Â÷È®ÀÎ
+    /// ëˆˆë¬¼ ë”œë ˆì´ 1ì°¨í™•ì¸
     /// </summary>
     private bool isAutoTear;
     /// <summary>
-    /// ´«¹° µô·¹ÀÌ 2Â÷È®ÀÎ
+    /// ëˆˆë¬¼ ë”œë ˆì´ 2ì°¨í™•ì¸
     /// </summary>
     private bool tearDelay;
     /// <summary>
-    /// ÆøÅº µô·¹ÀÌ 1Â÷È®ÀÎ
+    /// í­íƒ„ ë”œë ˆì´ 1ì°¨í™•ì¸
     /// </summary>
     private bool bombDelay;
     /// <summary>
-    /// ÆøÅº µô·¹ÀÌ 2Â÷È®ÀÎ
+    /// í­íƒ„ ë”œë ˆì´ 2ì°¨í™•ì¸
     /// </summary>
     private bool isAutoBomb;
     /// <summary>
-    /// ÆøÅº ½ºÆù ½Ã°£ (°íÁ¤)
+    /// í­íƒ„ ìŠ¤í° ì‹œê°„ (ê³ ì •)
     /// </summary>
     const float bombSpawn = 2.0f;
     /// <summary>
-    /// ¾ÆÀÌÅÛ ¸Ô´Â ¾Ö´Ï¸ŞÀÌ¼Ç ³¡³ª´Â ½Ã°£
+    /// ì•„ì´í…œ ë¨¹ëŠ” ì• ë‹ˆë©”ì´ì…˜ ëë‚˜ëŠ” ì‹œê°„
     /// </summary>
     private float itemDelay = 2.0f;
     /// <summary>
-    /// ¸Ó¸® Transform
+    /// ë¨¸ë¦¬ Transform
     /// </summary>
     Transform head;
     /// <summary>
-    /// ¸Ó¸® Animator
+    /// ë¨¸ë¦¬ Animator
     /// </summary>
     Animator headAni;
     /// <summary>
-    /// ¸ö¶×¾Æ¸® Transform
+    /// ëª¸ëš±ì•„ë¦¬ Transform
     /// </summary>
     Transform body;
     /// <summary>
-    /// ¸öÅë Animator
+    /// ëª¸í†µ Animator
     /// </summary>
     Animator bodyAni;
     /// <summary>
-    /// ¸öÅë(ÁÂ¿ìº¯°æ) SpriteRenderer
+    /// ëª¸í†µ(ì¢Œìš°ë³€ê²½) SpriteRenderer
     /// </summary>
     SpriteRenderer bodySR;
 
-    // ÄÚÀÎ, ÆøÅº, ¿­¼è, °¢Á¾ ½ºÅİ (½ºÅİÀº ÀÏ´Ü ÆĞ½º)
+    // ì½”ì¸, í­íƒ„, ì—´ì‡ , ê°ì¢… ìŠ¤í…Ÿ (ìŠ¤í…Ÿì€ ì¼ë‹¨ íŒ¨ìŠ¤)
 
     public int Coin { get; set; }
     public int Bomb { get; set; }
@@ -132,35 +131,35 @@ public class Player : MonoBehaviour
     }
     private void Awake()
     {
-        // ½ºÅİ ÃÊ±âÈ­
+        // ìŠ¤í…Ÿ ì´ˆê¸°í™”
         speed = 1.0f;
         damage = 1.0f;
-        // ÀÎÇ²½Ã½ºÅÛ
+        // ì¸í’‹ì‹œìŠ¤í…œ
         playerAction = new PlayerAction();
-        // ¸öÅë °ü·Ã Ç×¸ñ
+        // ëª¸í†µ ê´€ë ¨ í•­ëª©
         body = transform.Find("bodyIdle");
         bodyAni = body.GetComponent<Animator>();
         bodySR = body.GetComponent<SpriteRenderer>();
-        // ¸Ó¸® °ü·Ã Ç×¸ñ
+        // ë¨¸ë¦¬ ê´€ë ¨ í•­ëª©
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
-        // ÆøÅº, ´«¹° µô·¹ÀÌ true º¯°æ
+        // í­íƒ„, ëˆˆë¬¼ ë”œë ˆì´ true ë³€ê²½
         bombDelay = true;
         tearDelay = true;
     }
 
     private void Update()
     {
-        // ¸öÅë ¿òÁ÷ÀÏ ¶§ º¤ÅÍ°ª
+        // ëª¸í†µ ì›€ì§ì¼ ë•Œ ë²¡í„°ê°’
         Vector3 dir = new Vector3(dir1.x * speed * Time.deltaTime, dir1.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
     }
 
     private void FixedUpdate()
     {
-        // ÆøÅº µô·¹ÀÌ
+        // í­íƒ„ ë”œë ˆì´
         BombDelay();
-        // ´«¹° µô·¹ÀÌ
+        // ëˆˆë¬¼ ë”œë ˆì´
         TearDelay();
 
         attackSpeed = maxAttackSpeed / tearSpeed;
@@ -169,9 +168,9 @@ public class Player : MonoBehaviour
             tearSpeed = maximumTearSpeed;
         }
 
-        Debug.Log($"ÇöÀç °ø°İ¼Óµµ : {attackSpeed}");
-        Debug.Log($"ÃÖ´ë °ø°İ¼Óµµ : {maxAttackSpeed}");
-        Debug.Log($"°ø°İ¼Óµµ ÀúÀå : {tearSpeed}");
+        Debug.Log($"í˜„ì¬ ê³µê²©ì†ë„ : {attackSpeed}");
+        Debug.Log($"ìµœëŒ€ ê³µê²©ì†ë„ : {maxAttackSpeed}");
+        Debug.Log($"ê³µê²©ì†ë„ ì €ì¥ : {tearSpeed}");
     }
 
     private void OnEnable()
@@ -209,7 +208,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             health--;
-            Debug.Log("Àû°ú Ãæµ¹/ ³²Àº Ã¼·Â : " + health);
+            Debug.Log("ì ê³¼ ì¶©ëŒ/ ë‚¨ì€ ì²´ë ¥ : " + health);
             if(health <= 0)
             {
                 Die();
@@ -242,7 +241,7 @@ public class Player : MonoBehaviour
         playerAction.Shot.Disable();
     }
 
-    private void OnMove(InputAction.CallbackContext context) // ¸öÅë ¿òÁ÷ÀÓ
+    private void OnMove(InputAction.CallbackContext context) // ëª¸í†µ ì›€ì§ì„
     {
         Vector2 value = context.ReadValue<Vector2>();
         dir1 = value;
@@ -274,7 +273,7 @@ public class Player : MonoBehaviour
         }
     }
     /// <summary>
-    /// ´«¹° ¹ß»ç
+    /// ëˆˆë¬¼ ë°œì‚¬
     /// </summary>
     /// <param name="context"></param>
     private void OnFire(InputAction.CallbackContext context)
@@ -308,10 +307,10 @@ public class Player : MonoBehaviour
         }
     }
     /// <summary>
-    /// ÆøÅº µô·¹ÀÌ
+    /// í­íƒ„ ë”œë ˆì´
     /// </summary>
     /// <param name="context"></param>
-    private void SetBombDelay(InputAction.CallbackContext context) // ÆøÅº µô·¹ÀÌ
+    private void SetBombDelay(InputAction.CallbackContext context) // í­íƒ„ ë”œë ˆì´
     {
         
         if (context.performed)
@@ -324,7 +323,7 @@ public class Player : MonoBehaviour
         }
     }
     /// <summary>
-    /// ¾×Æ¼ºê »ç¿ë
+    /// ì•¡í‹°ë¸Œ ì‚¬ìš©
     /// </summary>
     /// <param name="context"></param>
     private void OnActiveItem(InputAction.CallbackContext context)
@@ -335,10 +334,10 @@ public class Player : MonoBehaviour
         }
     }
     /// <summary>
-    /// ÆøÅº µô·¹ÀÌ ÄÚ·çÆ¾
+    /// í­íƒ„ ë”œë ˆì´ ì½”ë£¨í‹´
     /// </summary>
     /// <returns></returns>
-    IEnumerator BombSpawnDelay() // ÆøÅº µô·¹ÀÌ ÄÚ·çÆ¾
+    IEnumerator BombSpawnDelay() // í­íƒ„ ë”œë ˆì´ ì½”ë£¨í‹´
     {
         GameObject bomb = Instantiate(SetBomb);
 
@@ -349,24 +348,24 @@ public class Player : MonoBehaviour
         bombDelay = true;
     }
     /// <summary>
-    /// ÆøÅº µô·¹ÀÌ
+    /// í­íƒ„ ë”œë ˆì´
     /// </summary>
     void BombDelay()
     {
-        // ÆøÅº µô·¹ÀÌ
-        if (isAutoBomb == true) // 1Â÷È®ÀÎÀÌ trueÀÏ¶§
+        // í­íƒ„ ë”œë ˆì´
+        if (isAutoBomb == true) // 1ì°¨í™•ì¸ì´ trueì¼ë•Œ
         {
-            if (bombDelay) // 2Â÷ È®ÀÎ±îÁö true°¡ µÇ¸é
+            if (bombDelay) // 2ì°¨ í™•ì¸ê¹Œì§€ trueê°€ ë˜ë©´
             {
-                StartCoroutine(BombSpawnDelay()); // ÄÚ·çÆ¾ ½ÇÇà
+                StartCoroutine(BombSpawnDelay()); // ì½”ë£¨í‹´ ì‹¤í–‰
             }
         }
     }
     /// <summary>
-    /// ´«¹° ¹ß»ç ÄÚ·çÆ¾
+    /// ëˆˆë¬¼ ë°œì‚¬ ì½”ë£¨í‹´
     /// </summary>
     /// <returns></returns>
-    IEnumerator TearShootCoroutine() // ´«¹° ¹ß»ç ÄÚ·çÆ¾
+    IEnumerator TearShootCoroutine() // ëˆˆë¬¼ ë°œì‚¬ ì½”ë£¨í‹´
     {
         GameObject tears = Instantiate(Tears);
 
@@ -387,16 +386,16 @@ public class Player : MonoBehaviour
         tearDelay = true;
     }
     /// <summary>
-    /// ´«¹° µô·¹ÀÌ
+    /// ëˆˆë¬¼ ë”œë ˆì´
     /// </summary>
     void TearDelay()
     {
-        // ´«¹° µô·¹ÀÌ 
-        if (isAutoTear == true) // 1Â÷ È®ÀÎÀÌ true ÀÏ¶§ 
+        // ëˆˆë¬¼ ë”œë ˆì´ 
+        if (isAutoTear == true) // 1ì°¨ í™•ì¸ì´ true ì¼ë•Œ 
         {
-            if (tearDelay) // 2Â÷ È®ÀÎ±îÁö true°¡ µÇ¸é
+            if (tearDelay) // 2ì°¨ í™•ì¸ê¹Œì§€ trueê°€ ë˜ë©´
             {
-                StartCoroutine(TearShootCoroutine()); // ÄÚ·çÆ¾ ½ÇÇà
+                StartCoroutine(TearShootCoroutine()); // ì½”ë£¨í‹´ ì‹¤í–‰
             }
         }
     }
@@ -410,6 +409,6 @@ public class Player : MonoBehaviour
         head.gameObject.SetActive(true);
     }
 }
-// ¾ÆÀÌÅÛ¿¡´Â ½ºÅİÀÌ ´ã°ÜÀÖÀ¸´Ï
-// ¾ÆÀÌÅÛÀ» ÇÑ¹ø¸¸ ¸ÔÀ¸¸é Àû¿ëµÇ´Â ½ÄÀ¸·Î
+// ì•„ì´í…œì—ëŠ” ìŠ¤í…Ÿì´ ë‹´ê²¨ìˆìœ¼ë‹ˆ
+// ì•„ì´í…œì„ í•œë²ˆë§Œ ë¨¹ìœ¼ë©´ ì ìš©ë˜ëŠ” ì‹ìœ¼ë¡œ
 

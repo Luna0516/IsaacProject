@@ -47,7 +47,7 @@ public class Bomb : MonoBehaviour
     }
 
     IEnumerator KnockBack(Rigidbody2D rigid) {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         rigid.velocity = Vector2.zero;
     }
 }

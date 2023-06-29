@@ -14,6 +14,7 @@ public class HP : MonoBehaviour
 
     void Start() {
         player = GameManager.Inst.Player;
+        UpdateHP();
     }
 
     public void UpdateHP() {
@@ -40,5 +41,9 @@ public class HP : MonoBehaviour
             Instantiate(soulHeartHalf, transform);
         }
         */
+    }
+
+    private void LateUpdate() {
+        UpdateHP();
     }
 }
