@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheSadOnion : ItemBase
+public class MomKnife : ItemBase
 {
     float attack = 0;
-    float speed = 0.7f;
+    float speed = 0;
     float attackSpeed = 0;
+    //float attackMag = 1.5f;
     ItemType item = ItemType.Passive;
-    const string itemName = "The Sad Onion";
+    const string itemName = "Mom's Knife";
     Sprite icon;
-    const int itemNum = 1;
-    GradeType grade = GradeType.ItemGrade_3;
+    const int itemNum = 114;
+    GradeType grade = GradeType.ItemGrade_4;
     bool usable = false;
     bool stackable = false;
     int maxStackSize = -1;

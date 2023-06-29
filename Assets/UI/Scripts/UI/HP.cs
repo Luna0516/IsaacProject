@@ -42,4 +42,8 @@ public class HP : MonoBehaviour
         }
         */
     }
+
+    private void LateUpdate() {
+        UpdateHP();
+    }
 }

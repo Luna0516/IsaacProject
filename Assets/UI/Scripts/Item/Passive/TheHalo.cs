@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheSadOnion : ItemBase
+public class TheHalo : ItemBase
 {
-    float attack = 0;
-    float speed = 0.7f;
-    float attackSpeed = 0;
+    float attack = 1.0f;
+    float speed = 0.3f;
+    float attackSpeed = 0.2f;
+    // float range = 1.5f;
+    // maxHealth + 1; Health +1;
     ItemType item = ItemType.Passive;
-    const string itemName = "The Sad Onion";
+    const string itemName = "The Halo";
     Sprite icon;
-    const int itemNum = 1;
-    GradeType grade = GradeType.ItemGrade_3;
+    const int itemNum = 7;
+    GradeType grade = GradeType.ItemGrade_2;
     bool usable = false;
     bool stackable = false;
     int maxStackSize = -1;

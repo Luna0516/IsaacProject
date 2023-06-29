@@ -14,7 +14,6 @@ public class YumHeart : ItemBase
     GradeType grade = GradeType.ItemGrade_1;
     bool usable = true;
     bool stackable = true;
-    int stackSize = 0;
     int maxStackSize = 4;
 
     protected override void Awake() {

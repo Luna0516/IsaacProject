@@ -1,10 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// ������ Ÿ��
-/// </summary>
 public enum ItemType
 {
     Active,
@@ -12,9 +9,6 @@ public enum ItemType
 
 }
 
-/// <summary>
-/// ������ ���
-/// </summary>
 public enum GradeType
 {
     ItemGrade_0,
