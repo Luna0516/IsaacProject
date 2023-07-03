@@ -22,6 +22,8 @@ public class ItemBase : MonoBehaviour
 {
     public float Attack { get; protected set; }
 
+    public float MultiDmg { get; protected set; }
+
     public float Speed { get; protected set; }
 
     public float AttackSpeed { get; protected set; }
