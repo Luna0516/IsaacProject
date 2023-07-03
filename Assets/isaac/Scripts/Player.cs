@@ -43,29 +43,13 @@ public class Player : MonoBehaviour
     /// </summary>
     public float speed;
     /// <summary>
-    /// 화면에 나올 연사속도
-    /// </summary>
-    float tearSpeed = 2.73f;
-    /// <summary>
-    /// 눈물 연사 속도 계산
+    /// 눈물 연사 속도
     /// </summary>
     public float attackSpeed;
     /// <summary>
-    /// 최대 연사 속도
-    /// </summary>
-    public float maxAttackSpeed = 1.0f;
-    /// <summary>
-    /// 공격속도의 최대값    
-    /// </summary>
-    const float maximumAttackSpeed = 5.0f;
-    /// <summary>
-    /// 이동속도의 최대값
-    /// </summary>
-    const float maximumSpeed = 5.0f;
-    /// <summary>
     /// 사거리
     /// </summary>
-    public float range;
+    public float range = 6.5f;
     /// <summary>
     /// 최대 체력
     /// </summary>
@@ -134,6 +118,7 @@ public class Player : MonoBehaviour
         // 스텟 초기화
         speed = 1.0f;
         damage = 1.0f;
+        attackSpeed = 1.0f;
         // 인풋시스템
         playerAction = new PlayerAction();
         // 몸통 관련 항목
@@ -161,16 +146,6 @@ public class Player : MonoBehaviour
         BombDelay();
         // 눈물 딜레이
         TearDelay();
-
-        attackSpeed = maxAttackSpeed / tearSpeed;
-        if (tearSpeed > maximumAttackSpeed)
-        {
-            tearSpeed = maximumAttackSpeed;
-        }
-
-        Debug.Log($"현재 공격속도 : {attackSpeed}");
-        Debug.Log($"최대 공격속도 : {maxAttackSpeed}");
-        Debug.Log($"공격속도 저장 : {tearSpeed}");
     }
 
     private void OnEnable()
@@ -226,8 +201,7 @@ public class Player : MonoBehaviour
                     ItemBase theSadOnion = collision.gameObject.GetComponent<TheSadOnion>();
                     damage = theSadOnion.Attack + damage;
                     speed = theSadOnion.Speed + speed;
-                    tearSpeed = theSadOnion.AttackSpeed + tearSpeed;
-                    
+                    attackSpeed = theSadOnion.AttackSpeed - attackSpeed;
                     break;
             }
         }
