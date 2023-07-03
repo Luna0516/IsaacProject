@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBase : MonoBehaviour
+public class Test_AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
 
     // 따로 추가했습니다.
     public float damage;
-    public float Damage {
+    public float Damage
+    {
         get => damage;
-        set {
+        set
+        {
             damage = value;
         }
     }
@@ -25,9 +27,9 @@ public class AttackBase : MonoBehaviour
     protected virtual void Awake()
     {
         tearExplosion = transform.GetChild(0).gameObject;
-        anim = GetComponent<Animator>();  
+        anim = GetComponent<Animator>();
         tear = GetComponent<SpriteRenderer>();
-        
+
     }
     private void Start()
     {
@@ -52,7 +54,7 @@ public class AttackBase : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("PlayerAttackRange"))
+        if (other.CompareTag("PlayerAttackRange"))
         {
             TearDie(null);
         }
@@ -60,21 +62,21 @@ public class AttackBase : MonoBehaviour
 
     private void OnEnable()
     {
-        
-        StartCoroutine(LifeOver(lifeTime)); 
+
+        StartCoroutine(LifeOver(lifeTime));
     }
     protected virtual void TearDie(Collision2D collision)
     {
-        if(lifeTime < 0) 
+        if (lifeTime < 0)
         {
-            tearExplosion.transform.SetParent(null);            
+            tearExplosion.transform.SetParent(null);
             tear.sprite = null;
             tearExplosion.SetActive(true);
             Destroy(gameObject);
-            
+
         }
-        else 
-        { 
+        else
+        {
             tearExplosion.transform.SetParent(null);
             tearExplosion.transform.position = collision.contacts[0].point;
             tear.sprite = null;
@@ -89,6 +91,7 @@ public class AttackBase : MonoBehaviour
         tearExplosion.transform.SetParent(null);
         tear.sprite = null;
         tearExplosion.SetActive(true);
-        Destroy(gameObject);            
+        Destroy(gameObject);
     }
 }
+
