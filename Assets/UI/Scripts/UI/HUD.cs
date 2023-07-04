@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Attributes : MonoBehaviour
+public class HUD : MonoBehaviour
 {
     Player player;
     TextMeshProUGUI coinCount = null;
