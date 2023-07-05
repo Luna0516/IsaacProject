@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Test_AttackBase : MonoBehaviour
 {
-    public float speed = 1.0f;
-    public float lifeTime = 5.0f;
+    public float speed = 1.0f;          // 총알 속도
+    
+    public float attackRange = 5.0f;    // 공격 사거리
+    public float maxAttackRange = 1.0f; // 최대 공격 사거리
 
-    // 따로 추가했습니다.
+    public float addGravity = 1.0f;     // 중력이 더해지는 거리
+ 
     public float damage;
     public float Damage
     {
@@ -34,6 +37,7 @@ public class Test_AttackBase : MonoBehaviour
     private void Start()
     {
         tearExplosion.SetActive(false);
+        attackRange = maxAttackRange;
     }
     void Update()
     {
@@ -52,22 +56,15 @@ public class Test_AttackBase : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("PlayerAttackRange"))
-        {
-            TearDie(null);
-        }
-    }
 
     private void OnEnable()
     {
 
-        StartCoroutine(LifeOver(lifeTime));
+        StartCoroutine(LifeOver(attackRange));
     }
     protected virtual void TearDie(Collision2D collision)
     {
-        if (lifeTime < 0)
+        if (attackRange < 0)
         {
             tearExplosion.transform.SetParent(null);
             tear.sprite = null;
