@@ -133,12 +133,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4500bf0e6857dd409b827168a19948f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tears: {fileID: 4409279204360747590, guid: 0f589c13793f9564ea63f348775e87a0, type: 3}
+  Tears: {fileID: 1845513070980636630, guid: 58abb9d7ed25f2741985562707683165, type: 3}
+  SetBomb: {fileID: 0}
+  ActiveItem: {fileID: 0}
   speed: 2.5
-  tearsSpeed: 2.73
+  attackSpeed: 2.73
+  maxAttackSpeed: 1
   range: 6.5
   maxHealth: 6
-  Health: 0
+  health: 0
+  damage: 0
 --- !u!50 &1672132898
 Rigidbody2D:
   serializedVersion: 4
