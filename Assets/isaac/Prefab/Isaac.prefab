@@ -136,10 +136,10 @@ MonoBehaviour:
   Tears: {fileID: 1845513070980636630, guid: 58abb9d7ed25f2741985562707683165, type: 3}
   SetBomb: {fileID: 0}
   ActiveItem: {fileID: 0}
-  speed: 2.5
-  attackSpeed: 2.73
-  maxAttackSpeed: 1
+  speed: 2
+  tearSpeed: 2.73
   range: 6.5
+  shotSpeed: 0
   maxHealth: 6
   health: 0
   damage: 0

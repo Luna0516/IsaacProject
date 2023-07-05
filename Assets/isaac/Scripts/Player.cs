@@ -163,6 +163,7 @@ public class Player : MonoBehaviour
             health = value; 
         }
     }
+
     private void Awake()
     {
         // 스텟 초기화
@@ -362,7 +363,6 @@ public class Player : MonoBehaviour
     /// <param name="context"></param>
     private void SetBombDelay(InputAction.CallbackContext context) // 폭탄 딜레이
     {
-        
         if (context.performed)
         {
             isAutoBomb = true;
