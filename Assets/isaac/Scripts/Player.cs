@@ -47,23 +47,12 @@ public class Player : MonoBehaviour
     /// </summary>
     float attackSpeed;
     /// <summary>
-<<<<<<< HEAD
-    /// 최대 연사 속도
-=======
     /// 연사 맥스
->>>>>>> JunHak
     /// </summary>
     float maxAttackSpeed = 1.0f;
-    /// <summary>
-<<<<<<< HEAD
-    /// 공격속도의 최대값    
-    /// </summary>
-    const float maximumTearSpeed = 5.0f;
-=======
     /// 공격속도의 최대값(기본값. 연사 맥스가 올라가면 상한 사라짐)
     /// </summary>
     float maximumTearSpeed = 5.0f;
->>>>>>> JunHak
     /// <summary>
     /// 이동속도의 최대값
     /// </summary>
@@ -73,13 +62,10 @@ public class Player : MonoBehaviour
     /// </summary>
     public float range;
     /// <summary>
-<<<<<<< HEAD
-=======
     /// 눈물 날아가는 속도
     /// </summary>
     public float shotSpeed = 1.0f;
     /// <summary>
->>>>>>> JunHak
     /// 최대 체력
     /// </summary>
     public float maxHealth = 6.0f;
@@ -92,13 +78,10 @@ public class Player : MonoBehaviour
     /// </summary>
     public float damage;
     /// <summary>
-<<<<<<< HEAD
-=======
     /// 데미지 배수
     /// </summary>
     float multiDmg = 1.0f;
     /// <summary>
->>>>>>> JunHak
     /// 눈물 딜레이 1차확인
     /// </summary>
     private bool isAutoTear;
@@ -142,21 +125,12 @@ public class Player : MonoBehaviour
     /// 몸통(좌우변경) SpriteRenderer
     /// </summary>
     SpriteRenderer bodySR;
-<<<<<<< HEAD
-
-    // 코인, 폭탄, 열쇠, 각종 스텟 (스텟은 일단 패스)
 
     public int Coin { get; set; }
     public int Bomb { get; set; }
     public int Key { get; set; }
-    public float Health
-=======
-    // 공격력 이속 공속 눈물속도 사거리
-    public int Coin { get; set; }
-    public int Bomb { get; set; }
-    public int Key { get; set; }
-    public float Damage 
->>>>>>> JunHak
+    public float Damage
+
     {
         get => damage;
         private set => damage = value;
@@ -194,11 +168,8 @@ public class Player : MonoBehaviour
     {
         // 스텟 초기화
         speed = 1.0f;
-<<<<<<< HEAD
-        damage = 1.0f;
-=======
+
         damage = 3.5f;
->>>>>>> JunHak
         // 인풋시스템
         playerAction = new PlayerAction();
         // 몸통 관련 항목
