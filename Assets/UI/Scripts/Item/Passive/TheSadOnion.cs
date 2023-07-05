@@ -5,8 +5,8 @@ using UnityEngine;
 public class TheSadOnion : ItemBase
 {
     float attack = 0;
-    float speed = 0.7f;
-    float attackSpeed = 0;
+    float speed = 0;
+    float attackSpeed = 0.7f;
     ItemType item = ItemType.Passive;
     const string itemName = "The Sad Onion";
     Sprite icon;
