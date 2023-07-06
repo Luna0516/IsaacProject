@@ -23,8 +23,8 @@ public class Attribute : MonoBehaviour
     void LateUpdate() {
         damageValue.text = $"{player.damage:00}";
         speedValue.text = $"{player.speed:00}";
-        shotSpeedValue.text = $"{player.attackSpeed:00}";
-        tearSpeedValue.text = $"{player.attackSpeed:00}";
+        shotSpeedValue.text = $"{player.shotSpeed:00}";
+        tearSpeedValue.text = $"{player.tearSpeed:00}";
         rangeValue.text = $"{player.range:00}";
     }
 }

@@ -41,19 +41,18 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 나올 연사속도
     /// </summary>
-    float tearSpeed = 2.73f;
+    public float tearSpeed = 2.73f;
     /// <summary>
     /// 눈물 연사 속도 계산
     /// </summary>
-    public float attackSpeed;
+    float attackSpeed;
     /// <summary>
-    /// 최대 연사 속도
+    /// 연사 맥스
     /// </summary>
-    public float maxAttackSpeed = 1.0f;
-    /// <summary>
-    /// 공격속도의 최대값    
+    float maxAttackSpeed = 1.0f;
+    /// 공격속도의 최대값(기본값. 연사 맥스가 올라가면 상한 사라짐)
     /// </summary>
-    const float maximumTearSpeed = 5.0f;
+    float maximumTearSpeed = 5.0f;
     /// <summary>
     /// 이동속도의 최대값
     /// </summary>
@@ -62,6 +61,10 @@ public class Player : MonoBehaviour
     /// 사거리
     /// </summary>
     public float range;
+    /// <summary>
+    /// 눈물 날아가는 속도
+    /// </summary>
+    public float shotSpeed = 1.0f;
     /// <summary>
     /// 최대 체력
     /// </summary>
@@ -74,6 +77,10 @@ public class Player : MonoBehaviour
     /// 눈물에 넣어줄 데미지
     /// </summary>
     public float damage;
+    /// <summary>
+    /// 데미지 배수
+    /// </summary>
+    float multiDmg = 1.0f;
     /// <summary>
     /// 눈물 딜레이 1차확인
     /// </summary>
@@ -119,21 +126,50 @@ public class Player : MonoBehaviour
     /// </summary>
     SpriteRenderer bodySR;
 
-    // 코인, 폭탄, 열쇠, 각종 스텟 (스텟은 일단 패스)
-
     public int Coin { get; set; }
     public int Bomb { get; set; }
     public int Key { get; set; }
+    public float Damage
+
+    {
+        get => damage;
+        private set => damage = value;
+    }
+    public float Speed
+    {
+        get => speed;
+        private set => speed = value;
+    }
+    public float TearSpeed 
+    {
+        get => tearSpeed;
+        private set => tearSpeed = value;
+    }
+    public float ShotSpeed
+    {
+        get => shotSpeed;
+        private set => shotSpeed = value;
+    }
+    public float Range
+    {
+        get => range;
+        private set => range = value;
+    }
     public float Health
     {
-        get => health;
-        set { }
+        get => health; 
+        set 
+        { 
+            health = value; 
+        }
     }
+
     private void Awake()
     {
         // 스텟 초기화
         speed = 1.0f;
-        damage = 1.0f;
+
+        damage = 3.5f;
         // 인풋시스템
         playerAction = new PlayerAction();
         // 몸통 관련 항목
@@ -227,10 +263,26 @@ public class Player : MonoBehaviour
                     damage = theSadOnion.Attack + damage;
                     speed = theSadOnion.Speed + speed;
                     tearSpeed = theSadOnion.AttackSpeed + tearSpeed;
-                    
+                    break;
+                case 169:
+                    ItemBase polyphemus = collision.gameObject.GetComponent<Polyphemus>();
+                    damage = polyphemus.Attack + damage;
+                    speed = polyphemus.Speed + speed;
+                    tearSpeed = polyphemus.AttackSpeed + tearSpeed;
+                    multiDmg = polyphemus.MultiDmg * multiDmg;
+                    break;
+                case 182:
+                    ItemBase sacredHeart = collision.gameObject.GetComponent<SacredHeart>();
+                    multiDmg = sacredHeart.MultiDmg * multiDmg;
+                    damage = sacredHeart.Attack + damage;
+                    speed = sacredHeart.Speed + speed;
+                    tearSpeed = sacredHeart.AttackSpeed + tearSpeed;
                     break;
             }
+            damage = damage * multiDmg;
+            multiDmg = 1.0f;
         }
+
     }
 
     private void Die()
@@ -312,7 +364,6 @@ public class Player : MonoBehaviour
     /// <param name="context"></param>
     private void SetBombDelay(InputAction.CallbackContext context) // 폭탄 딜레이
     {
-        
         if (context.performed)
         {
             isAutoBomb = true;
