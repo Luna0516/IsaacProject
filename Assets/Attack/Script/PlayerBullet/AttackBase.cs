@@ -7,7 +7,7 @@ public class AttackBase : MonoBehaviour
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
 
-    // µû·Î Ãß°¡Çß½À´Ï´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
     public float damage;
     public float Damage {
         get => damage;
@@ -35,7 +35,7 @@ public class AttackBase : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(Time.deltaTime * speed * dir); // À§, ¾Æ·¡, ¾ç ¿·À¸·Î Input¿¡ µû¶ó °ø°Ý º¯°æ ¿¹Á¤ 
+        transform.Translate(Time.deltaTime * speed * dir); // ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Inputï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -50,12 +50,21 @@ public class AttackBase : MonoBehaviour
         }
     }
 
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("PlayerAttackRange"))
+        {
+            TearDie(null);
+        }
+    }
+
     private void OnEnable()
     {
         
         StartCoroutine(LifeOver(lifeTime)); 
     }
-    public void TearDie(Collision2D collision)
+    
+    protected virtual void TearDie(Collision2D collision)
     {
         if(lifeTime < 0) 
         {
