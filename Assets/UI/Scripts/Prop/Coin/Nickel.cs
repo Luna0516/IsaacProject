@@ -17,10 +17,11 @@ public class Nickel : Coin
         getTime = clipInfo[0].clip.length;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision) {
-        base.OnTriggerEnter2D(collision);
-        player.Coin += Count;
-        anim.SetTrigger("Get");
-        Destroy(this.gameObject, getTime);
+    void OnTriggerEnter2D(Collider2D collision) {
+        if ((collision.gameObject.CompareTag("Player"))) {
+            player.Coin += Count;
+            anim.SetTrigger("Get");
+            Destroy(this.gameObject, getTime);
+        }
     }
 }

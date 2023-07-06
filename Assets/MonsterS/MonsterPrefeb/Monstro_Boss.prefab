@@ -50,6 +50,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 5
   MaxHP: 5
+  bulletPrefab: {fileID: 5967919590582941009, guid: 26ea565c4d121f2449beab9ec293c31f, type: 3}
 --- !u!50 &8842577937410060270
 Rigidbody2D:
   serializedVersion: 4

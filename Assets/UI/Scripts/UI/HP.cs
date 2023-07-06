@@ -14,6 +14,7 @@ public class HP : MonoBehaviour
 
     void Start() {
         player = GameManager.Inst.Player;
+        UpdateHP();
     }
 
     public void UpdateHP() {
@@ -29,10 +30,10 @@ public class HP : MonoBehaviour
         for (int i = 0; i < player.Health % 2; i++) {
             Instantiate(heartHalf, transform);
         }
-        /*
-        for (int i = 0; i < (player.MaxHealth - player.Health) / 2; i++) {
+        for (int i = 0; i < (player.maxHealth - player.Health) / 2; i++) {
             Instantiate(heartVoid, transform);
         }
+        /*
         for (int i = 0; i < player.SoulHealth / 2; i++) {
             Instantiate(soulHeartFull, transform);
         }
@@ -40,5 +41,9 @@ public class HP : MonoBehaviour
             Instantiate(soulHeartHalf, transform);
         }
         */
+    }
+
+    private void LateUpdate() {
+        UpdateHP();
     }
 }
