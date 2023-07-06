@@ -178,7 +178,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Isaac
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 208090249, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
 --- !u!1001 &147480747
 PrefabInstance:
@@ -294,6 +295,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d877ae295cc1d2488a0714071b9e459, type: 3}
+--- !u!1 &555783655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3792594240594029480, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
+  m_PrefabInstance: {fileID: 16238536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &555783656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555783655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d81c3a3db15fe40a982796696e9f3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tear: {fileID: 0}
+  BombObj: {fileID: 0}
+  tearSpeed: 2.73
+  speed: 2.5
+  range: 0
+  shotSpeed: 1
+  maxHealth: 6
+  health: 0
+  damage: 0
 --- !u!1 &837887819
 GameObject:
   m_ObjectHideFlags: 0

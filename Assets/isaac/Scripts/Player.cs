@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 눈물
     /// </summary>
-    public GameObject Tears;
+    public GameObject Tears;   
     /// <summary>
     /// 폭탄
     /// </summary>
