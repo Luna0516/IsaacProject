@@ -31,7 +31,6 @@ public class Rava : EnemyBase
 
     IEnumerator moveingRava()
     {
-
         while(true)
         {
             yield return new WaitForSeconds(jumpingTerm);

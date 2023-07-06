@@ -8,10 +8,11 @@ using static MonstroBoss;
 
 public class MonstroBoss : EnemyBase
 {
-    /// <summary>
-    /// 애니메이터
-    /// </summary>
-    Animator animator;
+    public GameObject bulletPrefab;
+	/// <summary>
+	/// 애니메이터
+	/// </summary>
+	Animator animator;
 
     /// <summary>
     /// 속도 복사용 변수
@@ -140,8 +141,9 @@ public class MonstroBoss : EnemyBase
             transform.position = target.position;
             yield return new WaitForSeconds(0.950f);
             speed = 0;
-            //점프 종료
-            animator.SetInteger("SuperJump", 0);
+        //점프 종료
+            Splashbullet();
+			animator.SetInteger("SuperJump", 0);
             //Idel 실행으로 점프 쿨타임
             yield return new WaitForSeconds(1.167f);
             speed = sppeed;       
@@ -231,7 +233,18 @@ public class MonstroBoss : EnemyBase
         }
        
     }
-    protected override void Hitten()
+	private void Splashbullet()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			float angle = i * 360f / 10;  // 각도 계산
+			Quaternion rotation = Quaternion.Euler(0f, 0f, angle);  // 회전값 계산
+
+			Vector3 spawnPosition = transform.position;  // 생성 위치 계산
+			GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // 총알 생성
+		}
+	}
+	protected override void Hitten()
     {
         base.Hitten();
         StartCoroutine(damaged(spriteRenderer));
