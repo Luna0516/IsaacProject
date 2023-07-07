@@ -7,15 +7,15 @@ TagManager:
   - PlayerBullet
   - Wall
   - Enemy
-  - Floor
+  - Item
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Tear
   - 
   - 
   - 

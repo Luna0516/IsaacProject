@@ -11,15 +11,23 @@ public class Test_Player : MonoBehaviour
     /// <summary>
     /// 눈물 오브젝트
     /// </summary>
-    public GameObject tear;
+    public GameObject Tear;
     /// <summary>
     /// 폭탄 오브젝트
     /// </summary>
-    public GameObject bomb;
+    public GameObject BombObj;
     /// <summary>
     /// 화면 공속
     /// </summary>
-    public float tearSpeed;
+    public float tearSpeed = 2.73f;
+    /// <summary>
+    /// 눈물 딜레이
+    /// </summary>
+    float currentTearDelay = 0.0f;
+    /// <summary>
+    /// 눈물 딜레이 체크
+    /// </summary>
+    bool IsAttackReady => currentTearDelay < 0;
     /// <summary>
     /// 계산 공속
     /// </summary>
@@ -35,7 +43,7 @@ public class Test_Player : MonoBehaviour
     /// <summary>
     /// 이동속도
     /// </summary>
-    public float speed;
+    public float speed = 2.5f;
     /// <summary>
     /// 최대이동속도
     /// </summary>
@@ -64,6 +72,10 @@ public class Test_Player : MonoBehaviour
     /// 데미지 배수
     /// </summary>
     float multiDmg = 1.0f;
+    /// <summary>
+    /// 눈물 공격키를 눌렀는지 확인하는 변수
+    /// </summary>
+    bool isShoot = false;
     // 머리
     Transform head;
     // 머리 애니
@@ -80,10 +92,63 @@ public class Test_Player : MonoBehaviour
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
+    Action onUseActive;
+    public int Coin { get; set; }
+    public int Bomb { get; set; }
+    public int Key { get; set; }
+    /// <summary>
+    /// 화면에 띄울 damage 프로퍼티
+    /// </summary>
+    public float Damage
+    {
+        get => damage;
+        private set => damage = value;
+    }
+    /// <summary>
+    /// 화면에 띄울 speed 프로퍼티
+    /// </summary>
+    public float Speed
+    {
+        get => speed;
+        private set => speed = value;
+    }
+    /// <summary>
+    /// 화면에 띄울 tearSpeed 프로퍼티
+    /// </summary>
+    public float TearSpeed
+    {
+        get => tearSpeed;
+        private set => tearSpeed = value;
+    }
+    /// <summary>
+    /// 화면에 띄울 shotSpeed 프로퍼티
+    /// </summary>
+    public float ShotSpeed
+    {
+        get => shotSpeed;
+        private set => shotSpeed = value;
+    }
+    /// <summary>
+    /// 화면에 띄울 range 프로퍼티
+    /// </summary>
+    public float Range
+    {
+        get => range;
+        private set => range = value;
+    }
+    /// <summary>
+    /// 화면에 띄울 health 프로퍼티
+    /// </summary>
+    public float Health
+    {
+        get => health;
+        set
+        {
+            health = value;
+        }
+    }
     private void Awake()
     {
-        speed = 2.5f;
-        tearSpeed = 2.73f;
         inputAction = new Test_InputAction();
         // 몸통 관련 항목
         body = transform.Find("bodyIdle");
@@ -97,9 +162,11 @@ public class Test_Player : MonoBehaviour
     {
         Vector3 dir = new Vector3(bodyDir.x * speed * Time.deltaTime, bodyDir.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
+        currentTearDelay -= Time.deltaTime;
     }
     private void FixedUpdate()
     {
+        ShootingTear();
         attackSpeed = maxAttackSpeed / tearSpeed;
         if (tearSpeed > maximumTearSpeed)
         {
@@ -111,34 +178,68 @@ public class Test_Player : MonoBehaviour
         inputAction.Player.Enable();
         inputAction.Player.Move.performed += OnMove;
         inputAction.Player.Move.canceled += OnMove;
-        inputAction.Player.Enable();
         inputAction.Player.Shot.performed += OnFire;
-        inputAction.Player.Shot.canceled += OnFire;
-        inputAction.Player.Enable();
-        
     }
 
     private void OnDisable()
     {
         inputAction.Player.Move.performed -= OnMove;
         inputAction.Player.Move.canceled -= OnMove;
-        inputAction.Player.Disable();
         inputAction.Player.Shot.performed -= OnFire;
-        inputAction.Player.Shot.canceled -= OnFire;
         inputAction.Player.Disable();
-        
     }
-
-
     private void OnMove(InputAction.CallbackContext context)
     {
-
+        Vector2 value = context.ReadValue<Vector2>();
+        bodyDir = value;
     }
     private void OnFire(InputAction.CallbackContext context)
     {
-
+        Vector2 value = context.ReadValue<Vector2>();
+        headDir = value.normalized;
+        if (context.performed)
+        {
+            isShoot = true;
+        }
+        else if (context.canceled)
+        {
+            isShoot = false;
+        }
     }
-    
+    void ShootingTear()
+    {
+        if (IsAttackReady)
+        {
+            if (isShoot == true)
+            {
+                StartCoroutine(TearDelay());
+            }
+        }
+    }
+
+    IEnumerator TearDelay()
+    {
+        GameObject tear = Instantiate(Tear);
+
+        Transform tearSpawn = transform.GetChild(0);
+
+        tear.transform.position = tearSpawn.position;
+
+        AttackBase tearComp = FindObjectOfType<AttackBase>();
+
+        tearComp.damage = damage;
+
+        tearComp.dir = headDir;
+
+        currentTearDelay = attackSpeed; // 딜레이 시간 초기화
+
+        yield return new WaitForSeconds(attackSpeed);
+    }
+    // 내가 눈물 관련 할것
+    // 사거리, 공격속도, 방향, 샷스피드
+
+    // 리펙토링중 기본형태 유지
+    // 구조유지, 변수
 }
 
 
