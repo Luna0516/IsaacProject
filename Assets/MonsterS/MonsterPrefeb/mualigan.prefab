@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf7e7ae8c10c3d4f9755a4339f5de67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MonsterDamage: 0
   target: {fileID: 0}
   speed: 5
   MaxHP: 5
