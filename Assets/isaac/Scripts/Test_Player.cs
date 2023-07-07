@@ -21,6 +21,14 @@ public class Test_Player : MonoBehaviour
     /// </summary>
     public float tearSpeed = 2.73f;
     /// <summary>
+    /// 눈물 딜레이
+    /// </summary>
+    float currentTearDelay = 0.0f;
+    /// <summary>
+    /// 눈물 딜레이 체크
+    /// </summary>
+    bool IsAttackReady => currentTearDelay < 0;
+    /// <summary>
     /// 계산 공속
     /// </summary>
     float attackSpeed;
@@ -64,6 +72,10 @@ public class Test_Player : MonoBehaviour
     /// 데미지 배수
     /// </summary>
     float multiDmg = 1.0f;
+    /// <summary>
+    /// 눈물 공격키를 눌렀는지 확인하는 변수
+    /// </summary>
+    bool isShoot = false;
     // 머리
     Transform head;
     // 머리 애니
@@ -80,7 +92,7 @@ public class Test_Player : MonoBehaviour
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
-
+    Action onUseActive;
     public int Coin { get; set; }
     public int Bomb { get; set; }
     public int Key { get; set; }
@@ -135,7 +147,6 @@ public class Test_Player : MonoBehaviour
             health = value;
         }
     }
-    bool attackReady => attackSpeed <;
     private void Awake()
     {
         inputAction = new Test_InputAction();
@@ -151,9 +162,11 @@ public class Test_Player : MonoBehaviour
     {
         Vector3 dir = new Vector3(bodyDir.x * speed * Time.deltaTime, bodyDir.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
+        currentTearDelay -= Time.deltaTime;
     }
     private void FixedUpdate()
     {
+        ShootingTear();
         attackSpeed = maxAttackSpeed / tearSpeed;
         if (tearSpeed > maximumTearSpeed)
         {
@@ -184,8 +197,24 @@ public class Test_Player : MonoBehaviour
     {
         Vector2 value = context.ReadValue<Vector2>();
         headDir = value.normalized;
-
-        StartCoroutine(TearDelay());
+        if (context.performed)
+        {
+            isShoot = true;
+        }
+        else if (context.canceled)
+        {
+            isShoot = false;
+        }
+    }
+    void ShootingTear()
+    {
+        if (IsAttackReady)
+        {
+            if (isShoot == true)
+            {
+                StartCoroutine(TearDelay());
+            }
+        }
     }
 
     IEnumerator TearDelay()
@@ -202,7 +231,9 @@ public class Test_Player : MonoBehaviour
 
         tearComp.dir = headDir;
 
-        yield return null;
+        currentTearDelay = attackSpeed; // 딜레이 시간 초기화
+
+        yield return new WaitForSeconds(attackSpeed);
     }
     // 내가 눈물 관련 할것
     // 사거리, 공격속도, 방향, 샷스피드

@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Isaac
       objectReference: {fileID: 0}
+    - target: {fileID: 3792594240594029480, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 208090249, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
@@ -312,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d81c3a3db15fe40a982796696e9f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tear: {fileID: 0}
+  Tear: {fileID: 4867646549252388119, guid: bb396976bf00d21499ff8f03bf7c1ff9, type: 3}
   BombObj: {fileID: 0}
   tearSpeed: 2.73
   speed: 2.5
