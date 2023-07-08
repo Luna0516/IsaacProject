@@ -12,6 +12,7 @@ public class Test_Player : MonoBehaviour
     /// 눈물 오브젝트
     /// </summary>
     public GameObject Tear;
+
     /// <summary>
     /// 폭탄 오브젝트
     /// </summary>
@@ -63,7 +64,7 @@ public class Test_Player : MonoBehaviour
     /// <summary>
     /// 현재 체력
     /// </summary>
-    public float health;
+    public float health = 1;
     /// <summary>
     /// 눈물에 넣어줄 데미지
     /// </summary>
@@ -76,6 +77,14 @@ public class Test_Player : MonoBehaviour
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
+    /// <summary>
+    /// 무적시간
+    /// </summary>
+    float invisibleTime = 3.0f;
+    /// <summary>
+    /// 무적시간 초기화용
+    /// </summary>
+    float currentInvisible = 0.0f;
     // 머리
     Transform head;
     // 머리 애니
@@ -157,12 +166,15 @@ public class Test_Player : MonoBehaviour
         // 머리 관련 항목
         head = transform.Find("HeadIdle");
         headAni = head.GetComponent<Animator>();
+        health = maxHealth;
     }
     private void Update()
     {
         Vector3 dir = new Vector3(bodyDir.x * speed * Time.deltaTime, bodyDir.y * speed * Time.deltaTime, 0f);
         transform.position += dir;
         currentTearDelay -= Time.deltaTime;
+        currentInvisible -= Time.deltaTime;
+        
     }
     private void FixedUpdate()
     {
@@ -179,6 +191,7 @@ public class Test_Player : MonoBehaviour
         inputAction.Player.Move.performed += OnMove;
         inputAction.Player.Move.canceled += OnMove;
         inputAction.Player.Shot.performed += OnFire;
+        inputAction.Player.Shot.canceled += OnFire;
     }
 
     private void OnDisable()
@@ -186,37 +199,122 @@ public class Test_Player : MonoBehaviour
         inputAction.Player.Move.performed -= OnMove;
         inputAction.Player.Move.canceled -= OnMove;
         inputAction.Player.Shot.performed -= OnFire;
+        inputAction.Player.Shot.canceled -= OnFire;
         inputAction.Player.Disable();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(InvisibleTime());
+            Debug.Log("적과 충돌/ 남은 체력 : " + health);
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            Destroy(collision.gameObject);
+            switch (collision.gameObject.GetComponent<ItemBase>().ItemNum)
+            {
+                case 0:
+                    break;
+                case 1:
+                    ItemBase theSadOnion = collision.gameObject.GetComponent<TheSadOnion>();
+                    damage = theSadOnion.Attack + damage;
+                    speed = theSadOnion.Speed + speed;
+                    tearSpeed = theSadOnion.AttackSpeed + tearSpeed;
+                    break;
+                case 169:
+                    ItemBase polyphemus = collision.gameObject.GetComponent<Polyphemus>();
+                    damage = polyphemus.Attack + damage;
+                    speed = polyphemus.Speed + speed;
+                    tearSpeed = polyphemus.AttackSpeed + tearSpeed;
+                    multiDmg = polyphemus.MultiDmg * multiDmg;
+                    break;
+                case 182:
+                    ItemBase sacredHeart = collision.gameObject.GetComponent<SacredHeart>();
+                    multiDmg = sacredHeart.MultiDmg * multiDmg;
+                    damage = sacredHeart.Attack + damage;
+                    speed = sacredHeart.Speed + speed;
+                    tearSpeed = sacredHeart.AttackSpeed + tearSpeed;
+                    break;
+            }
+            damage = damage * multiDmg;
+            multiDmg = 1.0f;
+            if(speed > maximumSpeed)
+            {
+                speed = maximumSpeed;
+            }
+        }
     }
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
         bodyDir = value;
+
+        bodyAni.SetBool("isMove", true);
+        bodyAni.SetFloat("MoveDir_X", bodyDir.x);
+        bodyAni.SetFloat("MoveDir_Y", bodyDir.y);
+        headAni.SetFloat("MoveDir_X", bodyDir.x);
+        headAni.SetFloat("MoveDir_Y", bodyDir.y);
     }
     private void OnFire(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        headDir = value.normalized;
+        headDir = value;
+
+        headAni.SetFloat("ShootDir_X", headDir.x);
+        headAni.SetFloat("ShootDir_Y", headDir.y);
         if (context.performed)
         {
+            headAni.SetBool("isShoot", true);
             isShoot = true;
         }
         else if (context.canceled)
         {
+            headAni.SetBool("isShoot", false);
             isShoot = false;
         }
+        if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
+        {
+            headDir.x = 0;
+            headDir.Normalize();
+        }
+    }
+    private void Damaged()
+    {
+        health--;
+        head.gameObject.SetActive(false);
+        bodyAni.SetTrigger("Damage");
+    }
+    IEnumerator InvisibleTime()
+    {
+        Damaged();
+
+        currentInvisible = invisibleTime;
+
+        yield return new WaitForSeconds(currentInvisible);
+
+        head.gameObject.SetActive(true);
+    }
+    private void Die()
+    {
+        inputAction.Player.Disable();
+        bodyAni.SetTrigger("Die");
     }
     void ShootingTear()
     {
-        if (IsAttackReady)
+        if (isShoot == true)
         {
-            if (isShoot == true)
+            if (IsAttackReady)
             {
                 StartCoroutine(TearDelay());
             }
         }
     }
-
+    
     IEnumerator TearDelay()
     {
         GameObject tear = Instantiate(Tear);
@@ -225,7 +323,7 @@ public class Test_Player : MonoBehaviour
 
         tear.transform.position = tearSpawn.position;
 
-        AttackBase tearComp = FindObjectOfType<AttackBase>();
+        AttackBase tearComp = tear.GetComponent<AttackBase>();
 
         tearComp.damage = damage;
 
