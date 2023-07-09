@@ -256,31 +256,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(GetItemDelay());
             Destroy(collision.gameObject);
-            switch(collision.gameObject.GetComponent<Item>().ItemNum)
-            {
-                case 0:
-                    break;
-                case 1:
-                    Item theSadOnion = collision.gameObject.GetComponent<TheSadOnion>().theSadOnion;
-                    damage = theSadOnion.Attack + damage;
-                    speed = theSadOnion.Speed + speed;
-                    tearSpeed = theSadOnion.TearSpeed + tearSpeed;
-                    break;
-                case 169:
-                    Item polyphemus = collision.gameObject.GetComponent<Polyphemus>().polyphemus;
-                    damage = polyphemus.Attack + damage;
-                    speed = polyphemus.Speed + speed;
-                    tearSpeed = polyphemus.TearSpeed + tearSpeed;
-                    multiDmg = polyphemus.MultiDmg * multiDmg;
-                    break;
-                case 182:
-                    Item sacredHeart = collision.gameObject.GetComponent<SacredHeart>().sacredHeart;
-                    multiDmg = sacredHeart.MultiDmg * multiDmg;
-                    damage = sacredHeart.Attack + damage;
-                    speed = sacredHeart.Speed + speed;
-                    tearSpeed = sacredHeart.TearSpeed + tearSpeed;
-                    break;
-            }
+            
             damage = damage * multiDmg;
             multiDmg = 1.0f;
         }
