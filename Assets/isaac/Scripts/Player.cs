@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         // 스텟 초기화
-        speed = 1.0f;
+        //speed = 1.0f;
 
         damage = 3.5f;
         // 인풋시스템
@@ -204,9 +204,11 @@ public class Player : MonoBehaviour
             tearSpeed = maximumTearSpeed;
         }
 
+        /*
         Debug.Log($"현재 공격속도 : {attackSpeed}");
         Debug.Log($"최대 공격속도 : {maxAttackSpeed}");
         Debug.Log($"공격속도 저장 : {tearSpeed}");
+        */
     }
 
     private void OnEnable()

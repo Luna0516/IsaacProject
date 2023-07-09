@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -32,4 +33,6 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f;
     }
+
+    public Action LoadItem;
 }
