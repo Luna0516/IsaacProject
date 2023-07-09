@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TheSadOnion : ItemBase {
+
     public PassiveItem theSadOnion;
 
-    private void Start() {
-        theSadOnion = new("The Sad Onion", 1, 0.0f, 0.0f, 0f, 0.7f, sprite, ItemGrade.Grade_3);
+    protected override void Awake() {
+        base.Awake();
+        theSadOnion = new("The Sad Onion", 1,
+            0, 0, 0, 0.7f, 0, 0,
+            sprite, ItemGrade.Grade_3);
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision) {
@@ -17,3 +21,9 @@ public class TheSadOnion : ItemBase {
         Destroy(this.gameObject);
     }
 }
+
+/*
+ tearsSpeed : +0.7
+
+ learned line : Tears up
+ */

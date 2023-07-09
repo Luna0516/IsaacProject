@@ -10,7 +10,7 @@ public class ItemBase : MonoBehaviour {
 
     public Action<PassiveItem> getItem;
 
-    private void Awake() {
+    protected virtual void Awake() {
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
 

@@ -2,38 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Polyphemus : ItemBase1
-{
-    float attack = (0 + 4) * 2;
-    float speed = 0;
-    float attackSpeed = 0.42f;
-    //float attackMag = 1.5f;
-    ItemType item = ItemType.Passive;
-    const string itemName = "Polyphemus";
-    Sprite icon;
-    const int itemNum = 169;
-    GradeType grade = GradeType.ItemGrade_4;
-    bool usable = false;
-    bool stackable = false;
-    int maxStackSize = -1;
+public class Polyphemus : ItemBase {
+
+    public PassiveItem polyphemus;
 
     protected override void Awake() {
-        icon = GetComponent<SpriteRenderer>().sprite;
         base.Awake();
+        polyphemus = new("Brimstone", 169,
+            4, 0, 0, 0, 0, 0,
+            sprite, ItemGrade.Grade_4);
     }
 
-    protected override void Init() {
-        Attack = attack;
-        Speed = speed;
-        AttackSpeed = attackSpeed;
-        Item = item;
-        Name = itemName;
-        Icon = icon;
-        ItemNum = itemNum;
-        Grade = grade;
-        Usable = usable;
-        Stackable = stackable;
-        MaxStackSize = maxStackSize;
-        StackSize = MaxStackSize;
+    protected override void OnCollisionEnter2D(Collision2D collision) {
+        base.OnCollisionEnter2D(collision);
+
+        getItem?.Invoke(polyphemus);
+
+        Destroy(this.gameObject);
     }
 }
+
+/*
+ attack : (current attack + 4) x 2
+ multiTearSpeed : x0.42
+ 
+ learned line : Mega tears
+ */

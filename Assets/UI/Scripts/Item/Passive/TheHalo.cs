@@ -2,39 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheHalo : ItemBase1
-{
-    float attack = 1.0f;
-    float speed = 0.3f;
-    float attackSpeed = 0.2f;
-    // float range = 1.5f;
-    // maxHealth + 1; Health +1;
-    ItemType item = ItemType.Passive;
-    const string itemName = "The Halo";
-    Sprite icon;
-    const int itemNum = 7;
-    GradeType grade = GradeType.ItemGrade_2;
-    bool usable = false;
-    bool stackable = false;
-    int maxStackSize = -1;
+public class TheHalo : ItemBase {
+
+    public PassiveItem theHalo;
 
     protected override void Awake() {
-        icon = GetComponent<SpriteRenderer>().sprite;
         base.Awake();
+        theHalo = new("The Halo", 101, 
+            1.0f, 0, 0.3f, 0.2f, 0, 1.5f,
+            sprite, ItemGrade.Grade_2);
     }
 
-    protected override void Init() {
-        Attack = attack;
-        Speed = speed;
-        AttackSpeed = attackSpeed;
-        Item = item;
-        Name = itemName;
-        Icon = icon;
-        ItemNum = itemNum;
-        Grade = grade;
-        Usable = usable;
-        Stackable = stackable;
-        MaxStackSize = maxStackSize;
-        StackSize = MaxStackSize;
+    protected override void OnCollisionEnter2D(Collision2D collision) {
+        base.OnCollisionEnter2D(collision);
+
+        getItem?.Invoke(theHalo);
+
+        Destroy(this.gameObject);
     }
 }
+
+/*
+ maxHeart + 1 & RedHeart +1 heal
+
+ attack : +1
+ speed : +0.3
+ tearsSpeed : +0.2
+ range : +1.5
+
+ learned line : All stats up
+ */

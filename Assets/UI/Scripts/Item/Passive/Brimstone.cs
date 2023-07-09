@@ -2,37 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brimstone : ItemBase1
-{
-    float attack = 0;
-    float speed = 0;
-    float attackSpeed = 0.33f;
-    ItemType item = ItemType.Passive;
-    const string itemName = "Brimstone";
-    Sprite icon;
-    const int itemNum = 118;
-    GradeType grade = GradeType.ItemGrade_4;
-    bool usable = false;
-    bool stackable = false;
-    int maxStackSize = -1;
+public class Brimstone : ItemBase {
+
+    public PassiveItem brimstone;
 
     protected override void Awake() {
-        icon = GetComponent<SpriteRenderer>().sprite;
         base.Awake();
+        brimstone = new("Brimstone", 118,
+            0, 0, 0, 0, 0, 0,
+            sprite, ItemGrade.Grade_4);
     }
 
-    protected override void Init() {
-        Attack = attack;
-        Speed = speed;
-        AttackSpeed = attackSpeed;
-        Item = item;
-        Name = itemName;
-        Icon = icon;
-        ItemNum = itemNum;
-        Grade = grade;
-        Usable = usable;
-        Stackable = stackable;
-        MaxStackSize = maxStackSize;
-        StackSize = MaxStackSize;
+    protected override void OnCollisionEnter2D(Collision2D collision) {
+        base.OnCollisionEnter2D(collision);
+
+        getItem?.Invoke(brimstone);
+
+        Destroy(this.gameObject);
     }
 }
+
+/*
+ multiTearSpeed : x0.33
+
+ learned line : Blood laser barrage
+ */

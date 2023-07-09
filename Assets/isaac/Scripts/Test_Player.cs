@@ -216,29 +216,29 @@ public class Test_Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Item"))
         {
             Destroy(collision.gameObject);
-            switch (collision.gameObject.GetComponent<ItemBase1>().ItemNum)
+            switch (collision.gameObject.GetComponent<Item>().ItemNum)
             {
                 case 0:
                     break;
                 case 1:
-                    //ItemBase theSadOnion = collision.gameObject.GetComponent<TheSadOnion>();
-                    //damage = theSadOnion.Attack + damage;
-                    //speed = theSadOnion.Speed + speed;
-                    //tearSpeed = theSadOnion.AttackSpeed + tearSpeed;
+                    Item theSadOnion = collision.gameObject.GetComponent<TheSadOnion>().theSadOnion;
+                    damage = theSadOnion.Attack + damage;
+                    speed = theSadOnion.Speed + speed;
+                    tearSpeed = theSadOnion.TearSpeed + tearSpeed;
                     break;
                 case 169:
-                    ItemBase1 polyphemus = collision.gameObject.GetComponent<Polyphemus>();
+                    Item polyphemus = collision.gameObject.GetComponent<Polyphemus>().polyphemus;
                     damage = polyphemus.Attack + damage;
                     speed = polyphemus.Speed + speed;
-                    tearSpeed = polyphemus.AttackSpeed + tearSpeed;
+                    tearSpeed = polyphemus.TearSpeed + tearSpeed;
                     multiDmg = polyphemus.MultiDmg * multiDmg;
                     break;
                 case 182:
-                    ItemBase1 sacredHeart = collision.gameObject.GetComponent<SacredHeart>();
+                    Item sacredHeart = collision.gameObject.GetComponent<SacredHeart>().sacredHeart;
                     multiDmg = sacredHeart.MultiDmg * multiDmg;
                     damage = sacredHeart.Attack + damage;
                     speed = sacredHeart.Speed + speed;
-                    tearSpeed = sacredHeart.AttackSpeed + tearSpeed;
+                    tearSpeed = sacredHeart.TearSpeed + tearSpeed;
                     break;
             }
             damage = damage * multiDmg;
