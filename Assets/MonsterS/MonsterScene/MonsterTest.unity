@@ -123,28 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &174524670
+--- !u!1001 &186771228
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 208090249, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.7005553
+      value: -2.586776
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8476647
+      value: 2.026533
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.z
@@ -184,11 +180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
---- !u!4 &174524671 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
-  m_PrefabInstance: {fileID: 174524670}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &388316472
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,10 +274,10 @@ PrefabInstance:
     - target: {fileID: 548254821885502005, guid: ad6402cdd97957248b75d036e19a4608, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 174524671}
+      objectReference: {fileID: 0}
     - target: {fileID: 548254821885502006, guid: ad6402cdd97957248b75d036e19a4608, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 548254821885502006, guid: ad6402cdd97957248b75d036e19a4608, type: 3}
       propertyPath: m_LocalPosition.x

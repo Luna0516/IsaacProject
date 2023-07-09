@@ -33,6 +33,8 @@ public class MonstroBoss : EnemyBase
     SpriteRenderer spriteRenderer;
 
 
+
+
     protected override void Awake()
     {
         //애니메이터 불러오기
@@ -244,6 +246,14 @@ public class MonstroBoss : EnemyBase
 			GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // 총알 생성
 		}
 	}
+    void bulletattack()
+    {
+        for (int i = 0; i < 13; i++)
+        {
+
+        }
+    }
+
 	protected override void Hitten()
     {
         base.Hitten();
