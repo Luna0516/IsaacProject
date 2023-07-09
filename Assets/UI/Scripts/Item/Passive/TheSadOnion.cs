@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TheSadOnion : ItemBase {
-
-    public PassiveItem theSadOnion;
-
     protected override void Awake() {
         base.Awake();
-        theSadOnion = new("The Sad Onion", 1,
+        passiveItem = new("The Sad Onion", 1,
             0, 0, 0, 0.7f, 0, 0,
             sprite, ItemGrade.Grade_3);
     }
@@ -16,7 +13,7 @@ public class TheSadOnion : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(theSadOnion);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

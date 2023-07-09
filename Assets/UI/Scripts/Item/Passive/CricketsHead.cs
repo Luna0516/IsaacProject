@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CricketsHead : ItemBase {
-
-    public PassiveItem cricketsHead;
-
     protected override void Awake() {
         base.Awake();
-        cricketsHead = new("Brimstone", 4,
+        passiveItem = new("Brimstone", 4,
             0.5f, 1.5f, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_4);
     }
@@ -16,7 +13,7 @@ public class CricketsHead : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(cricketsHead);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

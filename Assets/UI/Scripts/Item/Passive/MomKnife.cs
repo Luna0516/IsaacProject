@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MomKnife : ItemBase {
-
-    public PassiveItem momKnife;
-
     protected override void Awake() {
         base.Awake();
-        momKnife = new("Brimstone", 4,
+        passiveItem = new("Brimstone", 4,
             0, 0, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_4);
     }
@@ -16,7 +13,7 @@ public class MomKnife : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(momKnife);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

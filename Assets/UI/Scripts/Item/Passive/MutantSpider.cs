@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MutantSpider : ItemBase {
-
-    public PassiveItem mutantSpider;
-
     protected override void Awake() {
         base.Awake();
-        mutantSpider = new("Brimstone", 153,
+        passiveItem = new("Brimstone", 153,
             0, 1, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_3);
     }
@@ -16,7 +13,7 @@ public class MutantSpider : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(mutantSpider);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

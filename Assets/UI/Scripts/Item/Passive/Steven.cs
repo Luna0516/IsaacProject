@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Steven : ItemBase {
-
-    public PassiveItem steven;
-
     protected override void Awake() {
         base.Awake();
-        steven = new("Steven", 50,
+        passiveItem = new("Steven", 50,
             1.0f, 0, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_3);
     }
@@ -16,7 +13,7 @@ public class Steven : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(steven);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

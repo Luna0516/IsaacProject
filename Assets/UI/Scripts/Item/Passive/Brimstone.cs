@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Brimstone : ItemBase {
-
-    public PassiveItem brimstone;
-
     protected override void Awake() {
         base.Awake();
-        brimstone = new("Brimstone", 118,
+        passiveItem = new("Brimstone", 118,
             0, 0, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_4);
     }
@@ -16,7 +13,7 @@ public class Brimstone : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(brimstone);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

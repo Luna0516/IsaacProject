@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TheHalo : ItemBase {
-
-    public PassiveItem theHalo;
-
     protected override void Awake() {
         base.Awake();
-        theHalo = new("The Halo", 101, 
+        passiveItem = new("The Halo", 101, 
             1.0f, 0, 0.3f, 0.2f, 0, 1.5f,
             sprite, ItemGrade.Grade_2);
     }
@@ -16,7 +13,7 @@ public class TheHalo : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(theHalo);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

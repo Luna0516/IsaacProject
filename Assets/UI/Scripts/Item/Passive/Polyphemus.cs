@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Polyphemus : ItemBase {
-
-    public PassiveItem polyphemus;
-
     protected override void Awake() {
         base.Awake();
-        polyphemus = new("Brimstone", 169,
+        passiveItem = new("Brimstone", 169,
             4, 0, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_4);
     }
@@ -16,7 +13,7 @@ public class Polyphemus : ItemBase {
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(polyphemus);
+        getItem?.Invoke(passiveItem);
 
         Destroy(this.gameObject);
     }

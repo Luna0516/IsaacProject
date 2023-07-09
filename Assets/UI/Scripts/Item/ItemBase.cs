@@ -8,6 +8,8 @@ public class ItemBase : MonoBehaviour {
 
     protected Sprite sprite;
 
+    public PassiveItem passiveItem = null;
+
     public Action<PassiveItem> getItem;
 
     protected virtual void Awake() {
