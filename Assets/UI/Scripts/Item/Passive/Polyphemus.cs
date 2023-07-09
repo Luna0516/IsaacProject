@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Polyphemus : ItemBase
+public class Polyphemus : ItemBase1
 {
     float attack = (0 + 4) * 2;
     float speed = 0;

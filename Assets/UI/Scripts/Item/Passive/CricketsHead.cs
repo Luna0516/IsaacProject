@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CricketsHead : ItemBase
+public class CricketsHead : ItemBase1
 {
     float attack = 0.5f;
     float speed = 0;

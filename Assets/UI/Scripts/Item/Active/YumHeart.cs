@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YumHeart : ItemBase
+public class YumHeart : ItemBase1
 {
     float attack = 0;
     float speed = 0;

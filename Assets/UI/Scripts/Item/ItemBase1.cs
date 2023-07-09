@@ -18,7 +18,7 @@ public enum GradeType
     ItemGrade_4
 }
 
-public class ItemBase : MonoBehaviour
+public class ItemBase1 : MonoBehaviour
 {
     public float Attack { get; protected set; }
 

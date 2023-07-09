@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ItemAP : MonoBehaviour
-{
+public class ItemBase : MonoBehaviour {
     Player player = null;
 
-    public Sprite sprite;
+    protected Sprite sprite;
 
     public Action<PassiveItem> getItem;
 
-    void Awake() {
+    private void Awake() {
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Steven : ItemBase
+public class Steven : ItemBase1
 {
     float attack = 1;
     float speed = 0;

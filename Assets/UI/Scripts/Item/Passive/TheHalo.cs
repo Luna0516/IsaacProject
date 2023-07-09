@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheHalo : ItemBase
+public class TheHalo : ItemBase1
 {
     float attack = 1.0f;
     float speed = 0.3f;

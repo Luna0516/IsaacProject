@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BloodOfTheMartyr : ItemBase
+public class BloodOfTheMartyr : ItemBase1
 {
     float attack = 1.0f;
     float speed = 0;

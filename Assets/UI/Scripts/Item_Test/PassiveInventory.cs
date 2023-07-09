@@ -9,12 +9,14 @@ public class PassiveInventory : MonoBehaviour
 
     PassiveItem[] passiveItems;
     GameObject[] icons;
+    ItemBase[] item;
 
     int count = 0;
 
     private void Awake() {
         passiveItems = new PassiveItem[iconLength];
         icons = new GameObject[iconLength];
+        item = new ItemBase[4];
 
         GameManager.Inst.LoadItem += FindItem;
 
@@ -24,9 +26,11 @@ public class PassiveInventory : MonoBehaviour
     }
 
     void FindItem() {
-        ItemAP item = FindObjectOfType<ItemAP>();
+        item = FindObjectsOfType<ItemBase>();
         if (item != null) {
-            item.getItem += GetPassive;
+            foreach (ItemBase one in item) {
+                one.getItem += GetPassive;
+            }
         }
     }
 
@@ -36,5 +40,7 @@ public class PassiveInventory : MonoBehaviour
         }
         passiveItems[count] = item;
         icons[count].GetComponent<Image>().sprite = passiveItems[count].Icon;
+
+        count += 1;
     }
 }
