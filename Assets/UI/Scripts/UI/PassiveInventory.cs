@@ -23,6 +23,8 @@ public class PassiveInventory : MonoBehaviour
         for(int i = 0; i< iconLength; i++) {
             icons[i] = transform.GetChild(i).GetChild(0).gameObject;
         }
+
+        FindItem();
     }
 
     void FindItem() {
