@@ -7,7 +7,9 @@ public class Test_AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
-    public float timePercent = 0.9f;
+    
+    [Range(0f, 100f)]
+    public int timePercent;
     
     public float damage;
     public float Damage
@@ -20,7 +22,7 @@ public class Test_AttackBase : MonoBehaviour
     }
 
     Animator anim;
-    public GameObject tearExplosion;
+    GameObject tearExplosion;
     SpriteRenderer tear;
 
     public Vector2 dir = Vector2.right;
@@ -89,7 +91,7 @@ public class Test_AttackBase : MonoBehaviour
     protected virtual void AddGravity()
     {
         Vector2 dropTear = new Vector2(0, -0.1f);
-        timePercent = lifeTime * 0.9f;
+        //timePercent = lifeTime * 0.9f;
 
         if(lifeTime * timePercent > 0.9f)
         {

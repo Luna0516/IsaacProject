@@ -1375,6 +1375,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test_Original_Tear
       objectReference: {fileID: 0}
+    - target: {fileID: 4768892508479253241, guid: 0741920f2a0bbe547b53f1b051a92852, type: 3}
+      propertyPath: timePercent
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0741920f2a0bbe547b53f1b051a92852, type: 3}
 --- !u!1 &3635953346447615152
