@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -74,6 +75,10 @@ public class Test_Player : MonoBehaviour
     /// </summary>
     float multiDmg = 1.0f;
     /// <summary>
+    /// 아이템을 먹은 후 데미지 배수
+    /// </summary>
+    float currentMultiDmg;
+    /// <summary>
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
@@ -101,7 +106,7 @@ public class Test_Player : MonoBehaviour
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
-    Action onUseActive;
+    public Action onUseActive;
     public int Coin { get; set; }
     public int Bomb { get; set; }
     public int Key { get; set; }
@@ -151,10 +156,7 @@ public class Test_Player : MonoBehaviour
     public float Health
     {
         get => health;
-        set
-        {
-            health = value;
-        }
+        private set => health = value;
     }
     private void Awake()
     {
@@ -215,9 +217,18 @@ public class Test_Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Item"))
         {
-            // 상속 순서 : 아이템번호 공격력 공격력배수 이속 공속 샷스 사거리
-            //ItemBase item = collision.gameObject.GetComponent<>
-            damage = damage * multiDmg;
+            Item passive = collision.gameObject.GetComponent<ItemBase>().passiveItem;
+            Damage += passive.Attack;
+            if(passive.MultiDmg != 0)
+            {
+                multiDmg *= passive.MultiDmg;
+            }
+            Speed += passive.Speed;
+            Range += passive.Range;
+            ShotSpeed += passive.ShotSpeed;
+            TearSpeed += passive.TearSpeed;
+            Debug.Log("multi : " + multiDmg);
+            Damage = Damage * currentMultiDmg;
             multiDmg = 1.0f;
             if(speed > maximumSpeed)
             {
@@ -301,7 +312,7 @@ public class Test_Player : MonoBehaviour
 
         AttackBase tearComp = tear.GetComponent<AttackBase>();
 
-        tearComp.damage = damage;
+        tearComp.damage = Damage;
 
         tearComp.dir = headDir;
 
