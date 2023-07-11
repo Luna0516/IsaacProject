@@ -213,7 +213,7 @@ public class Test_Player : MonoBehaviour
                 Die();
             }
         }
-        if (collision.gameObject.CompareTag("Item"))
+        /*if (collision.gameObject.CompareTag("Item"))
         {
             Destroy(collision.gameObject);
             switch (collision.gameObject.GetComponent<Item>().ItemNum)
@@ -247,7 +247,7 @@ public class Test_Player : MonoBehaviour
             {
                 speed = maximumSpeed;
             }
-        }
+        }*/
     }
     private void OnMove(InputAction.CallbackContext context)
     {

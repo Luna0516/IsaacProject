@@ -252,7 +252,7 @@ public class Player : MonoBehaviour
                 Die();
             }
         }
-        if (collision.gameObject.CompareTag("Item"))
+        /*if (collision.gameObject.CompareTag("Item"))
         {
             StartCoroutine(GetItemDelay());
             Destroy(collision.gameObject);
@@ -283,7 +283,7 @@ public class Player : MonoBehaviour
             }
             damage = damage * multiDmg;
             multiDmg = 1.0f;
-        }
+        }*/
 
     }
 
