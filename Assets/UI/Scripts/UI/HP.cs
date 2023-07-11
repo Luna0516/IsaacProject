@@ -24,13 +24,13 @@ public class HP : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
 
-        for (int i = 0; i < player.Health / 2; i++) {
+        for (int i = 0; i < (int)(player.Health / 2); i++) {
             Instantiate(heartFull, transform);
         }
         for (int i = 0; i < player.Health % 2; i++) {
             Instantiate(heartHalf, transform);
         }
-        for (int i = 0; i < (player.maxHealth - player.Health) / 2; i++) {
+        for (int i = 0; i < (int)((player.maxHealth - player.Health) / 2); i++) {
             Instantiate(heartVoid, transform);
         }
         /*

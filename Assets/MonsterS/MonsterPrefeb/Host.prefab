@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548254821885502006}
-  - component: {fileID: 548254821885502004}
-  - component: {fileID: 548254821885502005}
   m_Layer: 0
   m_Name: Host
   m_TagString: Enemy
@@ -30,44 +28,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9051107647725539884}
   - {fileID: 548254823252764432}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &548254821885502004
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548254821885502025}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.92
---- !u!114 &548254821885502005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548254821885502025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27cf62f472e9ca441a28ed5c97b452d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MonsterDamage: 0
-  target: {fileID: 0}
-  speed: 5
-  MaxHP: 5
-  bulletPrefab: {fileID: 5967919590582941009, guid: 26ea565c4d121f2449beab9ec293c31f, type: 3}
 --- !u!1 &548254823252764435
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,10 +41,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548254823252764432}
+  - component: {fileID: 5001680318922881160}
   - component: {fileID: 548254823252764446}
   - component: {fileID: 548254823252764433}
   - component: {fileID: 548254823252764447}
   - component: {fileID: 548254823252764444}
+  - component: {fileID: 57724873}
   m_Layer: 9
   m_Name: UpDownSkullsp
   m_TagString: Enemy
@@ -99,10 +65,28 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9051107647725539884}
   m_Father: {fileID: 548254821885502006}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5001680318922881160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548254823252764435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27cf62f472e9ca441a28ed5c97b452d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterDamage: 1
+  target: {fileID: 0}
+  speed: 5
+  MaxHP: 5
+  bulletPrefab: {fileID: 0}
 --- !u!212 &548254823252764446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -213,6 +197,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &57724873
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548254823252764435}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.92
 --- !u!1 &1865783189862133834
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,10 +237,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865783189862133834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.62, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 548254821885502006}
+  m_Father: {fileID: 548254823252764432}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

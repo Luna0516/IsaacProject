@@ -37,6 +37,7 @@ public class MonstroBoss : EnemyBase
 
     protected override void Awake()
     {
+        base.Awake();
         //애니메이터 불러오기
         animator = transform.GetComponentInChildren<Animator>();
 
@@ -45,6 +46,7 @@ public class MonstroBoss : EnemyBase
     }
     private void Start()
     {
+        
         //속도 복사용 변수에 복사
         sppeed = speed;
 
