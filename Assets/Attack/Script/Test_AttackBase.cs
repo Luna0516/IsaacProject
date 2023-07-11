@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Test_AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
-
+    public float timePercent = 0.9f;
     
     public float damage;
     public float Damage
@@ -62,7 +63,6 @@ public class Test_AttackBase : MonoBehaviour
 
     private void OnEnable()
     {
-
         StartCoroutine(LifeOver(lifeTime));
     }
 
@@ -84,6 +84,18 @@ public class Test_AttackBase : MonoBehaviour
             tearExplosion.SetActive(true);
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void AddGravity()
+    {
+        Vector2 dropTear = new Vector2(0, -0.1f);
+        timePercent = lifeTime * 0.9f;
+
+        if(lifeTime * timePercent > 0.9f)
+        {
+            transform.Translate(dropTear * Time.deltaTime);
+        }
+
     }
 
     protected IEnumerator LifeOver(float delay = 0.0f)
