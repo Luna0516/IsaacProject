@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class ActiveInventory : MonoBehaviour
 {
-    int iconLength = 4;
-
-    ActiveItem activeItem;
     Image icon;
     ItemBase[] items = new ItemBase[4];
 
@@ -30,7 +27,9 @@ public class ActiveInventory : MonoBehaviour
         }
     }
 
-    void SetActive(ActiveItem item) {        
+    void SetActive(ActiveItem item) {
+        transform.GetChild(1).gameObject.SetActive(false);
+
         icon.sprite = item.Icon;
         icon.color = Color.white;
 
