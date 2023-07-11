@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     public float MonsterDamage=1;
-
+    GameManager Manager;
     public Transform target;
     public float speed = 5f;
     public float MaxHP = 5;
     protected float damage;
+
+
 
 
     /// <summary>
@@ -36,6 +38,12 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        Manager = GetComponent<GameManager>();
+        target = Manager.Player.transform;
+        
+    }
+    private void Start()
+    {
 
     }
 
@@ -55,6 +63,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Die()
     {
         Destroy(this.gameObject);
+
     }
     protected virtual void Hitten()
     {
