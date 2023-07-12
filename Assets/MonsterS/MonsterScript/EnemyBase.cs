@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
@@ -11,8 +12,13 @@ public class EnemyBase : MonoBehaviour
     public float MaxHP = 5;
     protected float damage;
 
+    Bloodshit bloodpack;
 
+    GameObject[] blood;
+    Sprite[] sprites;
+    SpriteRenderer[] renderers;
 
+    
 
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
@@ -40,11 +46,15 @@ public class EnemyBase : MonoBehaviour
     {
         Manager = GetComponent<GameManager>();
         target = Manager.Player.transform;
-        
+        bloodpack = FindObjectOfType<Bloodshit>();
     }
     private void Start()
     {
-
+        sprites = new Sprite[bloodpack.sprites.Length];
+        for (int i = 0; i < bloodpack.sprites.Length; i++)
+        {
+            sprites[i] = bloodpack.sprites[i];
+        }
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -62,8 +72,19 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Die()
     {
+        int bloodCount = UnityEngine.Random.Range(1, 3);
+        for(int i = 0; i < bloodCount; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, sprites.Length);
+        float X = UnityEngine.Random.Range(transform.position.x - 1, transform.position.x + 2);
+        float Y = UnityEngine.Random.Range(transform.position.y - 1, transform.position.y);
+        Vector3 bloodpos = new Vector3(X, Y, 0);
+        GameObject bloodshit = Instantiate(blood[i], bloodpos,Quaternion.identity);
+            bloodshit.AddComponent<SpriteRenderer>();
+            renderers[i] = blood[i].GetComponent<SpriteRenderer>();
+            renderers[i].sprite = sprites[randomIndex];
+        }
         Destroy(this.gameObject);
-
     }
     protected virtual void Hitten()
     {
