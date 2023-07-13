@@ -44,16 +44,41 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Manager = GetComponent<GameManager>();
-        target = Manager.Player.transform;
-        bloodpack = FindObjectOfType<Bloodshit>();
+        Manager = FindObjectOfType<GameManager>(); // 게임 매니저를 찾아서 할당
+        if (Manager == null)
+        {
+            Debug.LogError("GameManager not found."); // 게임 매니저가 없을 경우 오류 메시지 출력
+        }
+
+        Player player = FindObjectOfType<Player>(); // 플레이어를 찾아서 할당
+        if (player != null)
+        {
+            target = player.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found."); // 플레이어가 없을 경우 오류 메시지 출력
+        }
+
+        bloodpack = FindObjectOfType<Bloodshit>(); 
+        if (bloodpack == null)
+        {
+            Debug.LogError("Bloodshit not found.1"); // Bloodshit 오브젝트가 없을 경우 오류 메시지 출력
+        }
     }
     private void Start()
     {
-        sprites = new Sprite[bloodpack.sprites.Length];
-        for (int i = 0; i < bloodpack.sprites.Length; i++)
+        if (bloodpack != null)
         {
-            sprites[i] = bloodpack.sprites[i];
+            this.sprites = new Sprite[bloodpack.sprites.Length];
+            for (int i = 0; i < bloodpack.sprites.Length; i++)
+            {
+                this.sprites[i] = bloodpack.sprites[i];
+            }
+        }
+        else
+        {
+            Debug.LogError("Bloodshit not found.2"); // Bloodshit 오브젝트가 없을 경우 오류 메시지 출력
         }
     }
 
@@ -72,7 +97,7 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Die()
     {
-        int bloodCount = UnityEngine.Random.Range(1, 3);
+        int bloodCount = UnityEngine.Random.Range(1, 4);
         for(int i = 0; i < bloodCount; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, sprites.Length);
