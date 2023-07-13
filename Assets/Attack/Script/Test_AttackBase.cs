@@ -7,8 +7,14 @@ public class Test_AttackBase : MonoBehaviour
 {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
-    public float timePercent = 0.9f;
-    
+
+    public float dropDuration = 0.5f; // ¹ØÀ¸·Î ¶³¾îÁö´Â ½Ã°£
+    public float dropDistance = 1.0f; // ¹ØÀ¸·Î ¶³¾îÁö´Â °Å¸®
+
+    private float elapsedTime = 0.0f;
+    private bool isDropping = false;
+    private Vector2 initialPosition;
+
     public float damage;
     public float Damage
     {
@@ -20,26 +26,31 @@ public class Test_AttackBase : MonoBehaviour
     }
 
     Animator anim;
-    public GameObject tearExplosion;
+    GameObject tearExplosion;
     SpriteRenderer tear;
+    
 
-    public Vector2 dir = Vector2.right;
 
     protected virtual void Awake()
     {
         tearExplosion = transform.GetChild(0).gameObject;
         anim = GetComponent<Animator>();
         tear = GetComponent<SpriteRenderer>();
-
     }
     private void Start()
     {
         tearExplosion.SetActive(false);
+        initialPosition = transform.position;
+        
     }
     void Update()
     {
-        transform.Translate(Time.deltaTime * speed * dir);
+
+        AddGravity();
+        
+        
     }
+    
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -53,13 +64,6 @@ public class Test_AttackBase : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("PlayerAttackRange"))
-        {
-            TearDie(null);
-        }
-    }
 
     private void OnEnable()
     {
@@ -88,12 +92,16 @@ public class Test_AttackBase : MonoBehaviour
 
     protected virtual void AddGravity()
     {
-        Vector2 dropTear = new Vector2(0, -0.1f);
-        timePercent = lifeTime * 0.9f;
-
-        if(lifeTime * timePercent > 0.9f)
+        if (!isDropping)
         {
-            transform.Translate(dropTear * Time.deltaTime);
+            transform.Translate(Time.deltaTime * speed * Vector2.right);
+        }
+        else
+        {
+            elapsedTime += Time.deltaTime;
+            float dropHeight = Mathf.Lerp(0, -dropDistance, elapsedTime / dropDuration);
+
+            transform.position = initialPosition + Vector2.down * dropHeight;
         }
 
     }
@@ -101,9 +109,16 @@ public class Test_AttackBase : MonoBehaviour
     protected IEnumerator LifeOver(float delay = 0.0f)
     {
         yield return new WaitForSeconds(delay);
+        StartDrop();
         tearExplosion.transform.SetParent(null);
         tear.sprite = null;
         tearExplosion.SetActive(true);
         Destroy(gameObject);
+    }
+
+    private void StartDrop()
+    {
+        isDropping = true;
+        elapsedTime = 0.0f;
     }
 }
