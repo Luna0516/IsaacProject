@@ -40,6 +40,7 @@ public class Host : EnemyBase
     /// </summary>
     protected override void Awake()
     {
+        base.Awake();
 		turret=transform.GetChild(0).gameObject;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
