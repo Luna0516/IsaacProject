@@ -9,7 +9,9 @@ public class ItemBase : MonoBehaviour {
     protected Sprite sprite;
 
     public PassiveItem passiveItem = null;
+    public ActiveItem activeItem = null;
 
+    public Action<ActiveItem> setItem;
     public Action<PassiveItem> getItem;
 
     protected virtual void Awake() {
@@ -21,9 +23,7 @@ public class ItemBase : MonoBehaviour {
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision) {
-        player = collision.gameObject.GetComponent<Player>();
-
-        if (player == null)
+        if(!collision.gameObject.CompareTag("Player"))
             return;
     }
 }

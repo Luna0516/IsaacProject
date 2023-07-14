@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,7 +103,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 105
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db09f1b69c1a7654aa046b64f97effe0
+      internalID: -293928851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 105
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa8e1acbe0c29f0409a49038047b5da2
+      internalID: 1647415301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 106
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f0c2101fab8ca49a31ab1cc106ae73
+      internalID: 1486399748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 106
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da71d2622b0bfdf4891972041580c040
+      internalID: -1660962902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 75
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec93edbc4cc1c34f8fd9e2f55b9282c
+      internalID: -1513862019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_5
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 75
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d209907967825834a9ede34001bae73b
+      internalID: 506343941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_6
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 76
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0f0981a1c8b55c488bba767b9f5350f
+      internalID: 1126869432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_7
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 76
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39fac290c5b305468a3d22a75829d76
+      internalID: 836286438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 35
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e53e16be2e8aba4c86248c37d49b4c5
+      internalID: 1766881216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_9
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 37
+        width: 12
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9bc321a69268b49b048340645ce8ce
+      internalID: 2128355532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_10
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 47
+        width: 24
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d430346a146dc714ea28237699c5bc92
+      internalID: -1773286921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_11
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 42
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff8de5c67a37c164caafb25a3d5248a2
+      internalID: -1619911013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9cad225b065954c85552cf40e5561a
+      internalID: 1661668487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_13
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 9
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea69d82bc34021546902a9c8bfd9d2c8
+      internalID: 1944035615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_14
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 9
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06ea5545e48f1ce479f45f701d54c29e
+      internalID: 1299151132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Pooter_15
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 9
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b1d0b4c57c3274bb168de16a6d7a8a
+      internalID: 1779435459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +450,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PC Computer - The Binding of Isaac Rebirth - Pooter_0: -293928851
+      PC Computer - The Binding of Isaac Rebirth - Pooter_1: 1647415301
+      PC Computer - The Binding of Isaac Rebirth - Pooter_10: -1773286921
+      PC Computer - The Binding of Isaac Rebirth - Pooter_11: -1619911013
+      PC Computer - The Binding of Isaac Rebirth - Pooter_12: 1661668487
+      PC Computer - The Binding of Isaac Rebirth - Pooter_13: 1944035615
+      PC Computer - The Binding of Isaac Rebirth - Pooter_14: 1299151132
+      PC Computer - The Binding of Isaac Rebirth - Pooter_15: 1779435459
+      PC Computer - The Binding of Isaac Rebirth - Pooter_2: 1486399748
+      PC Computer - The Binding of Isaac Rebirth - Pooter_3: -1660962902
+      PC Computer - The Binding of Isaac Rebirth - Pooter_4: -1513862019
+      PC Computer - The Binding of Isaac Rebirth - Pooter_5: 506343941
+      PC Computer - The Binding of Isaac Rebirth - Pooter_6: 1126869432
+      PC Computer - The Binding of Isaac Rebirth - Pooter_7: 836286438
+      PC Computer - The Binding of Isaac Rebirth - Pooter_8: 1766881216
+      PC Computer - The Binding of Isaac Rebirth - Pooter_9: 2128355532
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

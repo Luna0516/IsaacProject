@@ -18,10 +18,10 @@ public class bloodycry : EnemyBase
 
     protected override void Awake()
     {
+        base.Awake();
         startcor = hittedanime();
         head = transform.GetChild(1).gameObject;
         body = transform.GetChild(0).gameObject;
-
         headsprite = head.GetComponent<SpriteRenderer>();
         bodysprite = body.GetComponent<SpriteRenderer>();
         headanimator = head.GetComponent<Animator>();

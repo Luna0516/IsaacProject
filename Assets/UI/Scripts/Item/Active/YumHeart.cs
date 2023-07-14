@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class YumHeart : ItemBase {
 
-    public ActiveItem yumHeart;
-
     protected override void Awake() {
         base.Awake();
-        yumHeart = new("Yum Heart", 1,
-            0, 0, 0, 0.7f, 0, 0,
-            sprite, ItemGrade.Grade_3,
+        activeItem = new("Yum Heart", 45,
+            0, 1.0f, 0, 0, 0, 0,
+            sprite, ItemGrade.Grade_1,
             4);
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        // getItem?.Invoke(yumHeart);
+        setItem?.Invoke(activeItem);
 
         Destroy(this.gameObject);
     }
@@ -26,5 +24,5 @@ public class YumHeart : ItemBase {
 /*
  RedHeart +1 heal
 
- learned line : Reusable regeneration 
+ learned line : Reusable regeneration
  */

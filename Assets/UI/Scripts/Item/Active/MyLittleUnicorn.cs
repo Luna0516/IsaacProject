@@ -2,25 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheSadOnion : ItemBase {
+public class MyLittleUnicorn : ItemBase {
+
     protected override void Awake() {
         base.Awake();
-        passiveItem = new("The Sad Onion", 1,
-            0, 1.0f, 0, 0.7f, 0, 0,
-            sprite, ItemGrade.Grade_3);
+        activeItem = new("My Little Unicorn", 77,
+            0, 1.0f, 0.28f, 0, 0, 0,
+            sprite, ItemGrade.Grade_1,
+            4);
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision) {
         base.OnCollisionEnter2D(collision);
 
-        getItem?.Invoke(passiveItem);
+        setItem?.Invoke(activeItem);
 
         Destroy(this.gameObject);
     }
 }
 
 /*
- tearsSpeed : +0.7
+ 6sec / speed +0.28
+ 20damage * 2
 
- learned line : Tears up
+ learned line : Temporary badass
  */
