@@ -202,7 +202,7 @@ public class Test_Player : MonoBehaviour
         inputAction.Player.Shot.canceled -= OnFire;
         inputAction.Player.Disable();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -248,7 +248,7 @@ public class Test_Player : MonoBehaviour
                 speed = maximumSpeed;
             }
         }
-    }
+    }*/
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();

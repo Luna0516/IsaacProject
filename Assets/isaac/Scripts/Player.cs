@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
         playerAction.Active.Disable();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -285,7 +285,7 @@ public class Player : MonoBehaviour
             multiDmg = 1.0f;
         }
 
-    }
+    }*/
 
     private void Die()
     {
