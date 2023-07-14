@@ -140,11 +140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.58
+      value: -6.66
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.41
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.z
@@ -268,12 +268,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tear: {fileID: 4867646549252388119, guid: bb396976bf00d21499ff8f03bf7c1ff9, type: 3}
-  BombObj: {fileID: 0}
   tearSpeed: 2.73
-  speed: 2.5
   range: 0
   shotSpeed: 1
-  maxHealth: 6
+  speed: 2.5
+  BombObj: {fileID: 0}
+  maxHealth: 1
   health: 0
   damage: 3.5
 --- !u!1 &837887819
@@ -733,6 +733,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3538467105355157887, guid: 367d4f3625061fc4996e5f84df481c6e, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     - target: {fileID: 7485121974733750744, guid: 367d4f3625061fc4996e5f84df481c6e, type: 3}
       propertyPath: m_RootOrder
       value: 7
