@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Bloodshit : MonoBehaviour
 {
+    public GameObject bloodObject;
     public Sprite[] sprites;
 }

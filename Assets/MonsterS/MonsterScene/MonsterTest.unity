@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 208090249, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
+      propertyPath: Tears
+      value: 
+      objectReference: {fileID: 1845513070980636630, guid: 58abb9d7ed25f2741985562707683165, type: 3}
+    - target: {fileID: 208090249, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
@@ -860,6 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe519fbef0e498748bbe9703338f6f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodObject: {fileID: 6404622750835960673, guid: 617b4bff25d251c4882ec86a828f97a0, type: 3}
   sprites:
   - {fileID: 1554663758, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}
   - {fileID: 883743744, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}

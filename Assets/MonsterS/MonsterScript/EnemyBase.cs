@@ -82,6 +82,8 @@ public class EnemyBase : MonoBehaviour
         {
             Debug.LogError("Bloodshit not found.2"); // Bloodshit 오브젝트가 없을 경우 오류 메시지 출력
         }
+
+        blood = bloodpack.bloodObject;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -101,6 +103,7 @@ public class EnemyBase : MonoBehaviour
     {
         int bloodCount = UnityEngine.Random.Range(1, 4);
         bloodcollect = new GameObject[bloodCount];
+        renderers = new SpriteRenderer[bloodCount];
         for (int i = 0; i < bloodCount; i++)
         {
         int randomIndex = UnityEngine.Random.Range(0, sprites.Length);

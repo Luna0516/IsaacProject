@@ -130,16 +130,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3792594240594029480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4500bf0e6857dd409b827168a19948f, type: 3}
+  m_Script: {fileID: 11500000, guid: 24d81c3a3db15fe40a982796696e9f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tears: {fileID: 1845513070980636630, guid: 58abb9d7ed25f2741985562707683165, type: 3}
+  Tears: {fileID: 0}
   SetBomb: {fileID: 0}
   ActiveItem: {fileID: 0}
-  speed: 2
+  speed: 0
   tearSpeed: 2.73
-  range: 6.5
-  shotSpeed: 0
+  range: 0
+  shotSpeed: 1
   maxHealth: 6
   health: 0
   damage: 0
