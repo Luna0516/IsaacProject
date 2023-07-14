@@ -123,28 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &16238536
+--- !u!1001 &443946393
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 893110237, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 1421279137304812508, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
+      propertyPath: speed
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.66
+      value: -1.5277016
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59
+      value: 1.1306099
       objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
       propertyPath: m_LocalPosition.z
@@ -182,12 +182,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Isaac
       objectReference: {fileID: 0}
-    - target: {fileID: 3792594240594029480, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 208090249, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
 --- !u!1001 &545619913
 PrefabInstance:
@@ -250,32 +245,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d877ae295cc1d2488a0714071b9e459, type: 3}
---- !u!1 &555783655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3792594240594029480, guid: fc22f52324aef2e42b2dc7d22ef84d91, type: 3}
-  m_PrefabInstance: {fileID: 16238536}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &555783656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555783655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d81c3a3db15fe40a982796696e9f3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tear: {fileID: 4867646549252388119, guid: bb396976bf00d21499ff8f03bf7c1ff9, type: 3}
-  tearSpeed: 2.73
-  range: 0
-  shotSpeed: 1
-  speed: 2.5
-  BombObj: {fileID: 0}
-  maxHealth: 1
-  health: 0
-  damage: 3.5
 --- !u!1 &837887819
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +464,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9133980385069193795, guid: cc182cb54469edc40b42f457e23e222f, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9133980385069193795, guid: cc182cb54469edc40b42f457e23e222f, type: 3}
       propertyPath: m_LocalPosition.x

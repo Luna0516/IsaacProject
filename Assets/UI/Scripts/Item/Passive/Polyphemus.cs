@@ -6,7 +6,7 @@ public class Polyphemus : ItemBase {
     protected override void Awake() {
         base.Awake();
         passiveItem = new("Brimstone", 169,
-            4, 0, 0, 0, 0, 0,
+            4, 2, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_4);
     }
 

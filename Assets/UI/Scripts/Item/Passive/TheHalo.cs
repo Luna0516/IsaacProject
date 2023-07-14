@@ -6,7 +6,7 @@ public class TheHalo : ItemBase {
     protected override void Awake() {
         base.Awake();
         passiveItem = new("The Halo", 101, 
-            1.0f, 0, 0.3f, 0.2f, 0, 1.5f,
+            1.0f, 1, 0.3f, 0.2f, 0, 1.5f,
             sprite, ItemGrade.Grade_2);
     }
 
