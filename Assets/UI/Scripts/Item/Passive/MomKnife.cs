@@ -6,7 +6,7 @@ public class MomKnife : ItemBase {
     protected override void Awake() {
         base.Awake();
         passiveItem = new("Brimstone", 4,
-            0, 0, 0, 0, 0, 0,
+            0, 1.0f, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_4);
     }
 

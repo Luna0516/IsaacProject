@@ -7,7 +7,7 @@ public class MyLittleUnicorn : ItemBase {
     protected override void Awake() {
         base.Awake();
         activeItem = new("My Little Unicorn", 77,
-            0, 0, 0.28f, 0, 0, 0,
+            0, 1.0f, 0.28f, 0, 0, 0,
             sprite, ItemGrade.Grade_1,
             4);
     }
