@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class Test_Player : MonoBehaviour
+public class Player : MonoBehaviour
 {
     #region 눈물관련
     /// <summary>
@@ -84,7 +84,7 @@ public class Test_Player : MonoBehaviour
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
 
-    new CircleCollider2D collider;
+    CircleCollider2D collider;
     #endregion
     #region 체력
     /// <summary>
@@ -186,11 +186,11 @@ public class Test_Player : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         inputAction = new Test_InputAction();
         // 몸통 관련 항목
-        body = transform.Find("bodyIdle");
+        body = transform.GetChild(1);
         bodyAni = body.GetComponent<Animator>();
         bodySR = body.GetComponent<SpriteRenderer>();
         // 머리 관련 항목
-        head = transform.Find("HeadIdle");
+        head = transform.GetChild(2);
         headAni = head.GetComponent<Animator>();
         health = maxHealth;
     }
@@ -237,6 +237,7 @@ public class Test_Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Item"))
         {
+            StartCoroutine(GetItem());
             Item passive = collision.gameObject.GetComponent<ItemBase>().passiveItem;
             currentDmg += passive.Attack;
             currentMultiDmg *= passive.MultiDmg;
@@ -278,6 +279,15 @@ public class Test_Player : MonoBehaviour
             }
         }
     }
+    IEnumerator GetItem()
+    {
+        bodyAni.SetTrigger("GetItem");
+        head.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.9f);
+
+        head.gameObject.SetActive(true);
+    }
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
@@ -312,6 +322,24 @@ public class Test_Player : MonoBehaviour
             headDir.Normalize();
         }
     }
+    IEnumerator TearDelay()
+    {
+        GameObject tear = Instantiate(Tear);
+
+        Transform tearSpawn = transform.GetChild(0);
+
+        tear.transform.position = tearSpawn.position;
+
+        AttackBase tearComp = tear.GetComponent<AttackBase>();
+
+        tearComp.damage = Damage;
+
+        tearComp.dir = headDir;
+
+        currentTearDelay = attackSpeed; // 딜레이 시간 초기화
+
+        yield return new WaitForSeconds(attackSpeed);
+    }
     private void Damaged()
     {
         if (Health > 0)
@@ -336,14 +364,6 @@ public class Test_Player : MonoBehaviour
         head.gameObject.SetActive(true);
         collider.enabled = true;
     }
-    private void Die()
-    {
-        bodyAni.SetTrigger("Die");
-        StopAllCoroutines();
-        inputAction.Player.Disable();
-        collider.enabled = false;
-        head.gameObject.SetActive(false);
-    }
     void ShootingTear()
     {
         if (isShoot == true)
@@ -354,24 +374,15 @@ public class Test_Player : MonoBehaviour
             }
         }
     }
-    IEnumerator TearDelay()
+    private void Die()
     {
-        GameObject tear = Instantiate(Tear);
-
-        Transform tearSpawn = transform.GetChild(0);
-
-        tear.transform.position = tearSpawn.position;
-
-        AttackBase tearComp = tear.GetComponent<AttackBase>();
-
-        tearComp.damage = Damage;
-
-        tearComp.dir = headDir;
-
-        currentTearDelay = attackSpeed; // 딜레이 시간 초기화
-
-        yield return new WaitForSeconds(attackSpeed);
+        bodyAni.SetTrigger("Die");
+        StopAllCoroutines();
+        inputAction.Player.Disable();
+        collider.enabled = false;
+        head.gameObject.SetActive(false);
     }
+    
     // 내가 눈물 관련 할것
     // 사거리, 공격속도, 방향, 샷스피드
 
