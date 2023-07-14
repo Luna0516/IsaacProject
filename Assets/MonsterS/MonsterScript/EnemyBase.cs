@@ -14,7 +14,9 @@ public class EnemyBase : MonoBehaviour
 
     Bloodshit bloodpack;
 
-    GameObject[] blood;
+    GameObject blood;
+
+    GameObject[] bloodcollect;
     Sprite[] sprites;
     SpriteRenderer[] renderers;
 
@@ -80,6 +82,8 @@ public class EnemyBase : MonoBehaviour
         {
             Debug.LogError("Bloodshit not found.2"); // Bloodshit 오브젝트가 없을 경우 오류 메시지 출력
         }
+
+        blood = bloodpack.bloodObject;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -98,15 +102,18 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Die()
     {
         int bloodCount = UnityEngine.Random.Range(1, 4);
-        for(int i = 0; i < bloodCount; i++)
+        bloodcollect = new GameObject[bloodCount];
+        renderers = new SpriteRenderer[bloodCount];
+        for (int i = 0; i < bloodCount; i++)
         {
-            int randomIndex = UnityEngine.Random.Range(0, sprites.Length);
+        int randomIndex = UnityEngine.Random.Range(0, sprites.Length);
         float X = UnityEngine.Random.Range(transform.position.x - 1, transform.position.x + 2);
         float Y = UnityEngine.Random.Range(transform.position.y - 1, transform.position.y);
         Vector3 bloodpos = new Vector3(X, Y, 0);
-        GameObject bloodshit = Instantiate(blood[i], bloodpos,Quaternion.identity);
+        GameObject bloodshit = Instantiate(blood, bloodpos,Quaternion.identity);
             bloodshit.AddComponent<SpriteRenderer>();
-            renderers[i] = blood[i].GetComponent<SpriteRenderer>();
+            bloodcollect[i] = bloodshit;
+            renderers[i] = bloodshit.GetComponent<SpriteRenderer>();
             renderers[i].sprite = sprites[randomIndex];
         }
         Destroy(this.gameObject);
