@@ -11,14 +11,6 @@ public class MyLittleUnicorn : ItemBase {
             sprite, ItemGrade.Grade_1,
             4);
     }
-
-    protected override void OnCollisionEnter2D(Collision2D collision) {
-        base.OnCollisionEnter2D(collision);
-
-        setItem?.Invoke(activeItem);
-
-        Destroy(this.gameObject);
-    }
 }
 
 /*

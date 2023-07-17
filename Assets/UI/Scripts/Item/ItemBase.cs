@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class ItemBase : MonoBehaviour {
-    Player player = null;
+    //Player player = null;
 
     protected Sprite sprite;
 
@@ -22,8 +22,20 @@ public class ItemBase : MonoBehaviour {
         GameManager.Inst.LoadItem?.Invoke();
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision) {
-        if(!collision.gameObject.CompareTag("Player"))
-            return;
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            
+            if (passiveItem != null) {
+                getItem?.Invoke(passiveItem);
+                Destroy(this.gameObject);
+            }
+            if (activeItem != null) {
+                setItem?.Invoke(activeItem);
+                GameObject obj = FindObjectOfType<ActiveInventory>().gameObject;
+                this.gameObject.SetActive(false);
+                this.transform.parent = obj.transform;
+            }
+
+        }
     }
 }

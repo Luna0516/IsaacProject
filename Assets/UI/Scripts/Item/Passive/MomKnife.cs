@@ -9,14 +9,6 @@ public class MomKnife : ItemBase {
             0, 1.0f, 0, 0, 0, 0,
             sprite, ItemGrade.Grade_4);
     }
-
-    protected override void OnCollisionEnter2D(Collision2D collision) {
-        base.OnCollisionEnter2D(collision);
-
-        getItem?.Invoke(passiveItem);
-
-        Destroy(this.gameObject);
-    }
 }
 
 /*

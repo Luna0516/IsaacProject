@@ -9,14 +9,6 @@ public class TheHalo : ItemBase {
             1.0f, 1.0f, 0.3f, 0.2f, 0, 1.5f,
             sprite, ItemGrade.Grade_2);
     }
-
-    protected override void OnCollisionEnter2D(Collision2D collision) {
-        base.OnCollisionEnter2D(collision);
-
-        getItem?.Invoke(passiveItem);
-
-        Destroy(this.gameObject);
-    }
 }
 
 /*
