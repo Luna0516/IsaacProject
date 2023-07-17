@@ -42,9 +42,9 @@ public class MonstroBoss : EnemyBase
         //스프라이트 렌더러 불러오기
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
     }
-    private void Start()
+    protected override void Start()
     {
-        
+        base.Start();
         //속도 복사용 변수에 복사
         sppeed = speed;
 
