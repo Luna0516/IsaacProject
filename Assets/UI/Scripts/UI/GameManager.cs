@@ -6,7 +6,6 @@ using System;
 public class GameManager : Singleton<GameManager>
 {
     Player player;
-
     public Player Player
     {
         get 
@@ -19,10 +18,21 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    ActiveInventory activeInventory;
+    public ActiveInventory ActiveInventory {
+        get {
+            if (activeInventory == null) {
+                OnInitialize();
+            }
+            return activeInventory;
+        }
+    }
+
     protected override void OnInitialize()
     {
         base.OnInitialize();
         player = FindObjectOfType<Player>();
+        activeInventory = FindObjectOfType<ActiveInventory>();
     }
 
     public void PauseGame() {
