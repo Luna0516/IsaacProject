@@ -257,8 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  lifeTime: 5
-  dropDuration: 3
-  dropDistance: 1
+  lifeTime: 1
+  dropDuration: 0.8
+  dropDistance: 0.3
   dir: {x: 1, y: 0}
   damage: 0
