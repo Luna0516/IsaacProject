@@ -8,7 +8,7 @@ public class ItemBase : MonoBehaviour {
 
     ActiveInventory activeInventory;
 
-    protected Sprite sprite;
+    public Sprite sprite;
 
     public PassiveItem passiveItem = null;
     public ActiveItem activeItem = null;
