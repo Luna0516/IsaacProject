@@ -81,7 +81,7 @@ public class EnemyBase : MonoBehaviour
         {
             this.meatsprites[i]= bloodpack.MeatSprite[i];
         }
-
+        meat = bloodpack.meatObject;
         blood = bloodpack.bloodObject;//bloodpack에 비어있는 gameobject를 할당해 놓았다. 그걸 blood에 넣어 초기화시킨다.
 
     }
@@ -137,7 +137,7 @@ public class EnemyBase : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, meatsprites.Length);
             GameObject meatshit = Instantiate(meat, transform.position, Quaternion.identity);
             meatcollect[i] = meatshit;
-            meatrenderers[i] = meatshit.GetComponent<SpriteRenderer>();
+            meatrenderers[i] = meatshit.GetComponentInChildren<SpriteRenderer>();
             meatrenderers[i].sprite = meatsprites[randomIndex];
         }
 
