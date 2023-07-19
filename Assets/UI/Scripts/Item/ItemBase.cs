@@ -6,7 +6,7 @@ using System;
 public class ItemBase : MonoBehaviour {
     Player player = null;
 
-    protected Sprite sprite;
+    public Sprite sprite;
 
     public PassiveItem passiveItem = null;
 

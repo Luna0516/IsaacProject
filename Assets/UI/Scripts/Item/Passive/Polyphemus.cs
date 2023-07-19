@@ -5,8 +5,13 @@ using UnityEngine;
 public class Polyphemus : ItemBase {
     protected override void Awake() {
         base.Awake();
+<<<<<<< Updated upstream
         passiveItem = new("Brimstone", 169,
             4, 2, 0, 0, 0, 0,
+=======
+        passiveItem = new("Polyphemus", 169,
+            4, 2.0f, 0, 0, 0, 0,
+>>>>>>> Stashed changes
             sprite, ItemGrade.Grade_4);
     }
 
