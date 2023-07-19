@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodObject: {fileID: 6404622750835960673, guid: 617b4bff25d251c4882ec86a828f97a0, type: 3}
-  sprites:
+  meatObject: {fileID: 1305249523445921363, guid: 3cc78a796bda1134980996c1b19f768b, type: 3}
+  BloodSprite:
   - {fileID: 1554663758, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}
   - {fileID: 883743744, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}
   - {fileID: -2016043893, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}
@@ -74,3 +75,20 @@ MonoBehaviour:
   - {fileID: -1930803539, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}
   - {fileID: 1089980907, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}
   - {fileID: -219035167, guid: fe3a116ebb5f19a4f8c5c893c1c29805, type: 3}
+  MeatSprite:
+  - {fileID: 2019948418, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: 1108610021, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -468408442, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: 23144505, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -1078135907, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -1931694968, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: 784676086, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -1468097826, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: 810479592, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: 271562563, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: 1884747016, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: 1441472414, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -585876870, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -1252928283, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -588043548, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
+  - {fileID: -1236064300, guid: ce56add8fc1165e469cf60bdafbfd473, type: 3}
