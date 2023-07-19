@@ -52,10 +52,10 @@ public class AttackBase : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("PlayerAttackRange"))
+        /*if(other.CompareTag("PlayerAttackRange"))
         {
             TearDie(null);
-        }
+        }*/
     }
 
     private void OnEnable()
