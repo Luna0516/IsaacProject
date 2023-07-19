@@ -134,7 +134,7 @@ public class AttackBase : MonoBehaviour
 
     }
 
-    protected IEnumerator LifeOver(float delay = 0.0f)
+    protected virtual IEnumerator LifeOver(float delay = 0.0f)
     {
         yield return new WaitForSeconds(dropDuration);
         //StartDrop();
