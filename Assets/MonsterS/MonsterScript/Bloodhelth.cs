@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class Bloodhelth : MonoBehaviour
 {
+    Bloodshit bloodshit;
     Color clo;
-    SpriteRenderer spritealpha;
+    SpriteRenderer spriteRneder;
     public float lifeTime;
     float thislifeTime;
+    int randomindex=0;
 
-    private void Start()
+
+    private void Awake()
     {
-        spritealpha = GetComponent<SpriteRenderer>();
-        lifeTime = Random.Range(15f, 50f);
-        clo = spritealpha.color;
-        thislifeTime = lifeTime;
+        bloodshit = FindObjectOfType<Bloodshit>();
+        randomindex = Random.Range(0, bloodshit.BloodSprite.Length);
     }
-
+    private void OnEnable()
+    {
+        spriteRneder = GetComponent<SpriteRenderer>();
+        lifeTime = Random.Range(15f, 50f);
+        clo = spriteRneder.color;
+        thislifeTime = lifeTime;
+        spriteRneder.sprite = bloodshit.BloodSprite[randomindex];
+    }
     private void Update()
     {
         lifeTime -= Time.deltaTime;
         float guage = Mathf.Lerp(0f, 1f, lifeTime / thislifeTime);
         clo.a = guage;
-        spritealpha.color = clo;
+        spriteRneder.color = clo;
 
         if (lifeTime < 0)
         {
             Destroy(gameObject);
+            //this.gameObject.SetActive(false);
         }
     }
 }

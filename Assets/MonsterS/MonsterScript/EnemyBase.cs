@@ -11,29 +11,12 @@ public class EnemyBase : MonoBehaviour
     public float speed = 5f;
     public float MaxHP = 5;
     protected float damage;
-
     GameObject spawneffect;
-
-
-
     Bloodshit bloodpack;
-
     GameObject meat;
-    GameObject blood;
-
-    GameObject[] bloodcollect;
-    GameObject[] meatcollect;
-
-   
+    GameObject blood;  
     Sprite[] bloodsprites;
     Sprite[] meatsprites;
-
-
-    SpriteRenderer[] bloodrenderers;
-    SpriteRenderer[] meatrenderers;
-
-    
-
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -113,32 +96,21 @@ public class EnemyBase : MonoBehaviour
     void bloodshatter()//피를 흩뿌리는 함수
     {
         int bloodCount = UnityEngine.Random.Range(3, 6);//피의 갯수 1~3 사이 정수를 만든다.
-        bloodcollect = new GameObject[bloodCount];//bloodclollect 라는 게임 오브젝트 배열에 피의 갯수만큼 게임 오브젝트 배열을 초기화한다.
-        bloodrenderers = new SpriteRenderer[bloodCount];//renderers라는 SpriteRenderer 배열에 피의 갯수만큼 SpriteRenderer배열을 초기화한다.
+
         for (int i = 0; i < bloodCount; i++)//피의 갯수만큼 반복작업
         {
-            int randomIndex = UnityEngine.Random.Range(0, bloodsprites.Length);//피의 종류 sprite 배열에서 숫자 하나를 고른다.
             float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
             GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
-            bloodcollect[i] = bloodshit;//bloodcollect 배열에 i째 bloodshit 오브젝트를 저장
-            bloodrenderers[i] = bloodshit.GetComponent<SpriteRenderer>();//bloodshit의 spriterenderer컴포넌트를 renderer배열의 i번째에 저장
-            bloodrenderers[i].sprite = bloodsprites[randomIndex];//i번째 spriterenderer의 sprite에 sprites 배열에서 랜덤 모양을 찾아서 넣어준다.
         }
     }
     void meatshatter()//고기를 흩뿌리는 함수
     {
         int meatCount = UnityEngine.Random.Range(3, 6);
-        meatcollect = new GameObject[meatCount];
-        meatrenderers = new SpriteRenderer[meatCount];
         for (int i = 0; i < meatCount; i++)
         {
-            int randomIndex = UnityEngine.Random.Range(0, meatsprites.Length);
             GameObject meatshit = Instantiate(meat, transform.position, Quaternion.identity);
-            meatcollect[i] = meatshit;
-            meatrenderers[i] = meatshit.GetComponentInChildren<SpriteRenderer>();
-            meatrenderers[i].sprite = meatsprites[randomIndex];
         }
 
     }

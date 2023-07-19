@@ -49,8 +49,4 @@ public class mualigan : EnemyBase
         base.Hitten();
         StartCoroutine(damaged(headsprite,bodysprite));
     }
-
-
-
-
 }

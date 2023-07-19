@@ -12,10 +12,7 @@ public class bloodycry : EnemyBase
     Animator headanimator;
     Animator bodyanimator;
     IEnumerator startcor;
-
-
     bool moveactive=false;
-
     protected override void Awake()
     {
         base.Awake();
