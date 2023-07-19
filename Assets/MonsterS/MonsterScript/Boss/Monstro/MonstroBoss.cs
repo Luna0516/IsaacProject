@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UIElements;
 using static MonstroBoss;
 
 public class MonstroBoss : EnemyBase
@@ -32,6 +33,7 @@ public class MonstroBoss : EnemyBase
     /// </summary>
     SpriteRenderer spriteRenderer;
 
+    public Transform turret;
 
     protected override void Awake()
     {
@@ -41,6 +43,8 @@ public class MonstroBoss : EnemyBase
 
         //스프라이트 렌더러 불러오기
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
+
+        turret = transform.GetChild(1);
     }
     protected override void Start()
     {
@@ -163,15 +167,15 @@ public class MonstroBoss : EnemyBase
 
         //공격을 위해 이동을 멈춘다.
         speed = 0;
-
         //공격 하는동안 대기
-        yield return new WaitForSeconds(2.333f);
-
-        //speed값 복원
-        speed = sppeed;
+        yield return new WaitForSeconds(0.5f);
+        ShatteredBullet();
+        yield return new WaitForSeconds(1.5f);
 
         //애니메이션 종료
         animator.SetInteger("Attack", 0);
+        //speed값 복원
+        speed = sppeed;
 
         //다음 패턴 선택 함수 실행
         selectpattern();
@@ -212,10 +216,28 @@ public class MonstroBoss : EnemyBase
         StopAllCoroutines();
 
         //랜덤패턴 int 변수에 랜덤값 대입
-        randomPatt = Random.Range(0, 4);
+        randomPatt = Random.Range(0, 101);
+        //확률 조정용 변수
+        int pattern = 0;
 
+        if (randomPatt <10)
+        {
+            pattern = 0;
+        }
+        else if (randomPatt <30) 
+        {
+            pattern = 1;
+        }
+        else if(randomPatt<70)
+        {
+            pattern = 2;
+        }
+        else
+        {
+            pattern = 3;
+        }
         //스위치에 랜덤값 넣고 각 패턴의 코루틴 실행
-        switch (randomPatt) 
+        switch (pattern) 
         {
             case 0:
                 StartCoroutine(IDel());
@@ -246,9 +268,35 @@ public class MonstroBoss : EnemyBase
 			GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // 총알 생성
 		}
 	}
+    void ShatteredBullet()
+    {
+        if (HeadTo.x < 0)
+        { turret.rotation = Quaternion.Euler(0, 0, 90); }
+        else
+        { turret.rotation = Quaternion.Euler(0, 0, -90); }
+        int randomshot = Random.Range(7, 15);
+        for (int i = 0;  i < randomshot; i++)
+        {
+            float Shattering = Random.Range(-45, 46);
+            Quaternion shotgack = Quaternion.Euler(0,0, Shattering);
+            float randx = Random.Range(-0.5f, 0.6f);
+            float randy = Random.Range(-0.5f, 0.6f);
+            GameObject bullet = Instantiate(bulletPrefab,new Vector3(turret.transform.position.x+ randx, turret.transform.position.y+ randy,0), turret.rotation*shotgack);
+        }
+    }
 	protected override void Hitten()
     {
         base.Hitten();
         StartCoroutine(damaged(spriteRenderer));
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y - 0.5f, 0), new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y - 0.5f, 0));
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y - 0.5f, 0), new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y + 0.5f, 0));
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y + 0.5f, 0), new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y + 0.5f, 0));
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y + 0.5f, 0), new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y - 0.5f, 0));
     }
 }

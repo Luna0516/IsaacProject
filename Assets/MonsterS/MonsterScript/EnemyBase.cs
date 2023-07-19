@@ -11,21 +11,12 @@ public class EnemyBase : MonoBehaviour
     public float speed = 5f;
     public float MaxHP = 5;
     protected float damage;
-
     GameObject spawneffect;
-
-
-
     Bloodshit bloodpack;
-
-    GameObject blood;
-
-    GameObject[] bloodcollect;
-    Sprite[] sprites;
-    SpriteRenderer[] renderers;
-
-    
-
+    GameObject meat;
+    GameObject blood;  
+    Sprite[] bloodsprites;
+    Sprite[] meatsprites;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -61,11 +52,19 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Start()
     {
-        this.sprites = new Sprite[bloodpack.sprites.Length];//bloodpack.sprites 배열의 길이만큼 enemybase sprites 배열 초기화
-            for (int i = 0; i < bloodpack.sprites.Length; i++)
+        this.bloodsprites = new Sprite[bloodpack.BloodSprite.Length];//bloodpack.sprites 배열의 길이만큼 enemybase sprites 배열 초기화
+            for (int i = 0; i < bloodpack.BloodSprite.Length; i++)
             {
-                this.sprites[i] = bloodpack.sprites[i];//bloodpack에 입력해둔 스프라이트들을 Enemy Base 스프라이트 배열에 복사
+                this.bloodsprites[i] = bloodpack.BloodSprite[i];//bloodpack에 입력해둔 스프라이트들을 Enemy Base 스프라이트 배열에 복사
             }
+
+
+       this.meatsprites = new Sprite[bloodpack.MeatSprite.Length];
+        for(int i = 0; i<bloodpack.MeatSprite.Length; i++)
+        {
+            this.meatsprites[i]= bloodpack.MeatSprite[i];
+        }
+        meat = bloodpack.meatObject;
         blood = bloodpack.bloodObject;//bloodpack에 비어있는 gameobject를 할당해 놓았다. 그걸 blood에 넣어 초기화시킨다.
 
     }
@@ -91,24 +90,29 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Die()
     {
         bloodshatter();
+        meatshatter();
         Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
     void bloodshatter()//피를 흩뿌리는 함수
     {
-        int bloodCount = UnityEngine.Random.Range(1, 4);//피의 갯수 1~3 사이 정수를 만든다.
-        bloodcollect = new GameObject[bloodCount];//bloodclollect 라는 게임 오브젝트 배열에 피의 갯수만큼 게임 오브젝트 배열을 초기화한다.
-        renderers = new SpriteRenderer[bloodCount];//renderers라는 SpriteRenderer 배열에 피의 갯수만큼 SpriteRenderer배열을 초기화한다.
+        int bloodCount = UnityEngine.Random.Range(3, 6);//피의 갯수 1~3 사이 정수를 만든다.
+
         for (int i = 0; i < bloodCount; i++)//피의 갯수만큼 반복작업
         {
-            int randomIndex = UnityEngine.Random.Range(0, sprites.Length);//피의 종류 sprite 배열에서 숫자 하나를 고른다.
-            float X = UnityEngine.Random.Range(transform.position.x - 1, transform.position.x + 2);//피의 위치 조절용 X축
-            float Y = UnityEngine.Random.Range(transform.position.y - 1, transform.position.y);//피의 위치 조절용 Y축
+            float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
+            float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
             GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
-            bloodcollect[i] = bloodshit;//bloodcollect 배열에 i째 bloodshit 오브젝트를 저장
-            renderers[i] = bloodshit.GetComponent<SpriteRenderer>();//bloodshit의 spriterenderer컴포넌트를 renderer배열의 i번째에 저장
-            renderers[i].sprite = sprites[randomIndex];//i번째 spriterenderer의 sprite에 sprites 배열에서 랜덤 모양을 찾아서 넣어준다.
         }
+    }
+    void meatshatter()//고기를 흩뿌리는 함수
+    {
+        int meatCount = UnityEngine.Random.Range(3, 6);
+        for (int i = 0; i < meatCount; i++)
+        {
+            GameObject meatshit = Instantiate(meat, transform.position, Quaternion.identity);
+        }
+
     }
     protected virtual void Hitten()
     {
