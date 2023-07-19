@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5177629236619535226}
   - component: {fileID: 8999015640885689993}
   - component: {fileID: 8608663031638201419}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TheHalo
   m_TagString: Item
   m_Icon: {fileID: 0}

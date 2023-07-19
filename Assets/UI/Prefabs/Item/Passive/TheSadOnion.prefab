@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6570801785762402338}
   - component: {fileID: 6570801785762402337}
   - component: {fileID: 6570801785762402366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TheSadOnion
   m_TagString: Item
   m_Icon: {fileID: 0}

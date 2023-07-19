@@ -19,9 +19,12 @@ public class GameManager : Singleton<GameManager>
     }
 
     ActiveInventory activeInventory;
-    public ActiveInventory ActiveInventory {
-        get {
-            if (activeInventory == null) {
+    public ActiveInventory ActiveInventory
+    {
+        get 
+        {
+            if (activeInventory == null) 
+            {
                 OnInitialize();
             }
             return activeInventory;
@@ -35,14 +38,17 @@ public class GameManager : Singleton<GameManager>
         activeInventory = FindObjectOfType<ActiveInventory>();
     }
 
-    public void PauseGame() {
+    public Action LoadItem;
+
+    public void PauseGame() 
+    {
         Time.timeScale = 0;
         Time.fixedDeltaTime = 0;
     }
-    public void QuitPauseGame() {
+
+    public void QuitPauseGame() 
+    {
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f;
     }
-
-    public Action LoadItem;
 }
