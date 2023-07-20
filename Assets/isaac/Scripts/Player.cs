@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 폭탄 오브젝트
     /// </summary>
-    public GameObject BombObj;
+    public GameObject bombObj;
     // 머리
     Transform head;
     // 머리 애니
@@ -203,11 +203,7 @@ public class Player : MonoBehaviour
         headAni = head.GetComponent<Animator>();
         health = maxHealth;
         Speed = 2.5f;
-        tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
-        TearSpeed = 30 / (tearDelay + 1);
-        TearSpeed = (float)Math.Round(tearSpeed, 2);
-        tearFire = 1 / tearSpeed;
-        tearFire = (float)Math.Round(tearFire, 2);
+        TearSpeedCaculate();
     }
     private void Update()
     {
@@ -219,10 +215,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         ShootingTear();
-        if (tearSpeed > fireRate)
-        {
-            TearSpeed = fireRate;
-        }
+        
     }
     private void OnEnable()
     {
@@ -231,7 +224,9 @@ public class Player : MonoBehaviour
         inputAction.Player.Move.canceled += OnMove;
         inputAction.Player.Shot.performed += OnFire;
         inputAction.Player.Shot.canceled += OnFire;
+        inputAction.Player.Bomb.performed += SetBomb;
     }
+
 
     private void OnDisable()
     {
@@ -239,7 +234,13 @@ public class Player : MonoBehaviour
         inputAction.Player.Move.canceled -= OnMove;
         inputAction.Player.Shot.performed -= OnFire;
         inputAction.Player.Shot.canceled -= OnFire;
+        inputAction.Player.Bomb.performed -= SetBomb;
         inputAction.Player.Disable();
+    }
+    private void SetBomb(InputAction.CallbackContext context)
+    {
+        bombObj = Instantiate(bombObj);
+        bombObj.transform.position = transform.position;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -285,32 +286,13 @@ public class Player : MonoBehaviour
                     Damage += 1f;
                 
                 Damage = (float)Math.Round(Damage, 2);
-
-                switch (passive.ItemNum)
-                {
-                    case 169:
-                        isGetPolyphemus = true;
-                        break;
-                    case 182:
-                        isGetScaredHeart = true;
-                        break;
-                }
-                if (isGetPolyphemus)
-                    fireRate *= 0.42f;
                 if (speed > maximumSpeed)
                 {
                     speed = maximumSpeed;
                 }
-                tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
-                tearDelay = (float)Math.Round(tearDelay, 1);
-                if (tearDelay <= fireRate && !delayLimit)
-                {
-                    tearDelay = fireRate;
-                }
-                TearSpeed = 30 / (tearDelay + 1);
-                TearSpeed = (float)Math.Round(tearSpeed, 2);
-                tearFire = 1 / tearSpeed;
-                tearFire = (float)Math.Round(tearFire, 2);
+                
+                TearSpeedCaculate();
+                
             }
         }
     }
@@ -410,6 +392,21 @@ public class Player : MonoBehaviour
                 StartCoroutine(TearDelay());
             }
         }
+    }
+    void TearSpeedCaculate()
+    {
+        
+        TearSpeed = 30 / (tearDelay + 1);
+        TearSpeed = (float)Math.Round(tearSpeed, 2);
+        if (TearSpeed >= fireRate)
+        {
+            TearSpeed = fireRate;
+        }
+        tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
+        tearDelay = (float)Math.Round(tearDelay, 1);
+        tearFire = 1 / TearSpeed;
+        tearFire = (float)Math.Round(tearFire, 2);
+        
     }
     private void Die()
     {
