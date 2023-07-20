@@ -6,6 +6,8 @@ using System;
 public class GameManager : Singleton<GameManager>
 {
     Player player;
+
+
     public Player Player
     {
         get 
@@ -51,4 +53,16 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f;
     }
+
+
+
+
+
+
+
+
+    public GameObject bloodObject;
+    public GameObject meatObject;
+    public Sprite[] BloodSprite;
+    public Sprite[] MeatSprite;
 }

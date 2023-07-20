@@ -5,23 +5,23 @@ using UnityEngine;
 public class Meatshit : MonoBehaviour
 {
 
-   //°í±êµ¢ÀÌ°¡ ÀÌµ¿ÇÏ´Â ÄÚµå¸¦ Â¥¾ßÇÑ´Ù.
+   //ê³ ê¹ƒë©ì´ê°€ ì´ë™í•˜ëŠ” ì½”ë“œë¥¼ ì§œì•¼í•œë‹¤.
     Vector2 moveDir;
     public float movespeed=0f;
     public float MeatLifeTime=10f;
     int random;
     SpriteRenderer rend;
-    Bloodshit bloodshit;
+    GameManager manager;
 
     private void Awake()
     {
-        bloodshit = FindObjectOfType<Bloodshit>();
+        manager = GameManager.Inst;
         rend = GetComponentInChildren<SpriteRenderer>();
-        random = Random.Range(0,bloodshit.MeatSprite.Length);
+        random = Random.Range(0,manager.MeatSprite.Length);
     }
     private void OnEnable()
     {
-        rend.sprite = bloodshit.MeatSprite[random];
+        rend.sprite = manager.MeatSprite[random];
         float x = Random.Range(-1f, 1.1f);
         float y = Random.Range(-1f, 1.1f);
         MeatLifeTime = Random.Range(5f, 11f);
