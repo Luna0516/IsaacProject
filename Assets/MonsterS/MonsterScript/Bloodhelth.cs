@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bloodhelth : MonoBehaviour
 {
-    Bloodshit bloodshit;
+    GameManager manager;
     Color clo;
     SpriteRenderer spriteRneder;
     public float lifeTime;
@@ -14,8 +14,8 @@ public class Bloodhelth : MonoBehaviour
 
     private void Awake()
     {
-        bloodshit = FindObjectOfType<Bloodshit>();
-        randomindex = Random.Range(0, bloodshit.BloodSprite.Length);
+        manager = GameManager.Inst;
+        randomindex = Random.Range(0, manager.BloodSprite.Length);
     }
     private void OnEnable()
     {
@@ -23,7 +23,7 @@ public class Bloodhelth : MonoBehaviour
         lifeTime = Random.Range(15f, 50f);
         clo = spriteRneder.color;
         thislifeTime = lifeTime;
-        spriteRneder.sprite = bloodshit.BloodSprite[randomindex];
+        spriteRneder.sprite = manager.BloodSprite[randomindex];
     }
     private void Update()
     {

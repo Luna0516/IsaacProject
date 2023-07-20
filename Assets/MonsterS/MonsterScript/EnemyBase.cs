@@ -7,16 +7,14 @@ public class EnemyBase : MonoBehaviour
 {
     public float MonsterDamage=1;
     GameManager Manager;
+    Player player=null;
     public Transform target;
     public float speed = 5f;
     public float MaxHP = 5;
     protected float damage;
     GameObject spawneffect;
-    Bloodshit bloodpack;
     GameObject meat;
     GameObject blood;  
-    Sprite[] bloodsprites;
-    Sprite[] meatsprites;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -41,32 +39,15 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Manager = FindObjectOfType<GameManager>(); // 게임 매니저를 찾아서 할당
-        Player player = FindObjectOfType<Player>(); // 플레이어를 찾아서 할당
+        Manager = GameManager.Inst;
         if (player != null)
         {
-            target = player.transform;
+        player = Manager.Player; // 플레이어를 찾아서 할당
+        target = player.transform;
         }
-        bloodpack = FindObjectOfType<Bloodshit>();
         spawneffect = transform.GetChild(2).gameObject;
-    }
-    protected virtual void Start()
-    {
-        this.bloodsprites = new Sprite[bloodpack.BloodSprite.Length];//bloodpack.sprites 배열의 길이만큼 enemybase sprites 배열 초기화
-            for (int i = 0; i < bloodpack.BloodSprite.Length; i++)
-            {
-                this.bloodsprites[i] = bloodpack.BloodSprite[i];//bloodpack에 입력해둔 스프라이트들을 Enemy Base 스프라이트 배열에 복사
-            }
-
-
-       this.meatsprites = new Sprite[bloodpack.MeatSprite.Length];
-        for(int i = 0; i<bloodpack.MeatSprite.Length; i++)
-        {
-            this.meatsprites[i]= bloodpack.MeatSprite[i];
-        }
-        meat = bloodpack.meatObject;
-        blood = bloodpack.bloodObject;//bloodpack에 비어있는 gameobject를 할당해 놓았다. 그걸 blood에 넣어 초기화시킨다.
-
+        meat = Manager.meatObject;
+        blood = Manager.bloodObject;//bloodpack에 비어있는 gameobject를 할당해 놓았다. 그걸 blood에 넣어 초기화시킨다.
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)

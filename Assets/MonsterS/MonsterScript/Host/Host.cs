@@ -6,37 +6,37 @@ using UnityEngine;
 public class Host : EnemyBase
 {
     /// <summary>
-    /// ÀûÀÌ »ç¿ëÇÒ ÃÑ¾Ë ÇÁ¸®Æé
+    /// ì ì´ ì‚¬ìš©í•  ì´ì•Œ í”„ë¦¬í©
     /// </summary>
     public GameObject bulletPrefab;
 
     /// <summary>
-    /// ÅÍ·¿
+    /// í„°ë ›
     /// </summary>
     GameObject turret;
 
     /// <summary>
-    /// ¾Ö´Ï¸ŞÀÌÅÍ
+    /// ì• ë‹ˆë©”ì´í„°
     /// </summary>
     Animator animator;
 
     /// <summary>
-    /// ½ºÇÁ¶óÀÌÆ® ·»´õ·¯
+    /// ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬
     /// </summary>
     SpriteRenderer spriteRenderer;
 
     /// <summary>
-    /// "°ø°İ"ÀÌ¶ó´Â ¹®ÀÚ¸¦ ´ã°íÀÖ´Â int°ª
+    /// "ê³µê²©"ì´ë¼ëŠ” ë¬¸ìë¥¼ ë‹´ê³ ìˆëŠ” intê°’
     /// </summary>
     int animestate;
 
     /// <summary>
-    /// ¹«Àû »óÅÂ ÆÇÁ¤ (ÁÖÀÇ : falseÀÏ¶§ ¹«ÀûÀÔ´Ï´Ù.)
+    /// ë¬´ì  ìƒíƒœ íŒì • (ì£¼ì˜ : falseì¼ë•Œ ë¬´ì ì…ë‹ˆë‹¤.)
     /// </summary>
     bool invincivle=false;
 
     /// <summary>
-    /// Awake °¢ º¯¼ö¿¡ °ª ³Ö¾îÁÖ´Â ÀÛ¾÷
+    /// Awake ê° ë³€ìˆ˜ì— ê°’ ë„£ì–´ì£¼ëŠ” ì‘ì—…
     /// </summary>
     protected override void Awake()
     {
@@ -47,96 +47,96 @@ public class Host : EnemyBase
         animestate = Animator.StringToHash("Attack");
     }
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ °ø°İ¹üÀ§ ³»·Î µé¾î¿Ô´Ù°¡ ³ª°¥¶§ Æ®¸®°Å
+    /// í”Œë ˆì´ì–´ê°€ ê³µê²©ë²”ìœ„ ë‚´ë¡œ ë“¤ì–´ì™”ë‹¤ê°€ ë‚˜ê°ˆë•Œ íŠ¸ë¦¬ê±°
     /// </summary>
-    /// <param name="collision">ºÎ‹HÈ÷´Â ´ë»ó</param>
+    /// <param name="collision">ë¶€ë”«íˆëŠ” ëŒ€ìƒ</param>
     private void OnTriggerExit2D(Collider2D collision)
     {
-        ///Á¶°Ç¹® : collisionÀÇ ÅÂ±×°¡ PlayerÀÏ °æ¿ì
+        ///ì¡°ê±´ë¬¸ : collisionì˜ íƒœê·¸ê°€ Playerì¼ ê²½ìš°
         if (collision.CompareTag("Player"))
         {
-            ///°ø°İ ÀÛµ¿ ÇÔ¼ö
+            ///ê³µê²© ì‘ë™ í•¨ìˆ˜
             AttackMove();
         }
     }
 
     /// <summary>
-    /// ¸ó½ºÅÍ °³Ã¼°¡ °ø°İ¹Ş´Â Äİ¸®Á¯
+    /// ëª¬ìŠ¤í„° ê°œì²´ê°€ ê³µê²©ë°›ëŠ” ì½œë¦¬ì ¼
     /// </summary>
-    /// <param name="collision">ºÎ‹HÈù °³Ã¼</param>
+    /// <param name="collision">ë¶€ë”«íŒ ê°œì²´</param>
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        ///Á¶°Ç¹® : ºÎ‹HÈù °³Ã¼ÀÇ ÅÂ±×°¡ "PlayerBullet"ÀÏ °æ¿ì, ±×.¸®.°í. ¹«Àû ÆÇÁ¤ÀÌ TrueÀÏ °æ¿ì ÀÛµ¿ÇÕ´Ï´Ù.
+        ///ì¡°ê±´ë¬¸ : ë¶€ë”«íŒ ê°œì²´ì˜ íƒœê·¸ê°€ "PlayerBullet"ì¼ ê²½ìš°, ê·¸.ë¦¬.ê³ . ë¬´ì  íŒì •ì´ Trueì¼ ê²½ìš° ì‘ë™í•©ë‹ˆë‹¤.
         if (collision.gameObject.CompareTag("PlayerBullet")&&invincivle)
         {
-            ///collisionÀÇ DamageÇÁ·ÎÆÛÆ¼¸¦ ºÒ·¯¿Í¼­ damage º¯¼ö¿¡ ³Ö°í Enemy Base Å¬·¡½º º¯¼ö¿¡ Àû¿ëÇÕ´Ï´Ù.
+            ///collisionì˜ Damageí”„ë¡œí¼í‹°ë¥¼ ë¶ˆëŸ¬ì™€ì„œ damage ë³€ìˆ˜ì— ë„£ê³  Enemy Base í´ë˜ìŠ¤ ë³€ìˆ˜ì— ì ìš©í•©ë‹ˆë‹¤.
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
-            ///°ø°İ ¹Ş´Â ÇÔ¼ö È£Ãâ
+            ///ê³µê²© ë°›ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
             Hitten();
         }
     }
 
     /// <summary>
-    /// °ø°İ ¾×¼Ç ÇÔ¼ö
+    /// ê³µê²© ì•¡ì…˜ í•¨ìˆ˜
     /// </summary>
     void AttackMove()
     {
-        ///°ø°İ ÄÚ·çÆ¾ ½ÇÇà
+        ///ê³µê²© ì½”ë£¨í‹´ ì‹¤í–‰
         StartCoroutine(attackCoroutine(invincivle));
     }
 
 
 /// <summary>
-/// °ø°İ¾×¼Ç¿ë ÄÚ·çÆ¾
+/// ê³µê²©ì•¡ì…˜ìš© ì½”ë£¨í‹´
 /// </summary>
-/// <param name="attackmode">ÀÌ°÷¿¡ ¹«Àû »óÅÂ ³í¸®º¯¼ö¸¦ È°¿ëÇÕ´Ï´Ù.</param>
+/// <param name="attackmode">ì´ê³³ì— ë¬´ì  ìƒíƒœ ë…¼ë¦¬ë³€ìˆ˜ë¥¼ í™œìš©í•©ë‹ˆë‹¤.</param>
 /// <returns></returns>
     IEnumerator attackCoroutine(bool attackmode)
     {
-        //Á¶°Ç¹® : attackmode Áï invincivle°ªÀÌ ÂüÀÌ ¾Æ´Ò¶§(¹«ÀûÀÏ¶§) ½ÇÇàµË´Ï´Ù.
+        //ì¡°ê±´ë¬¸ : attackmode ì¦‰ invincivleê°’ì´ ì°¸ì´ ì•„ë‹ë•Œ(ë¬´ì ì¼ë•Œ) ì‹¤í–‰ë©ë‹ˆë‹¤.
         if (attackmode != true)
         {
-        //¹«Àû »óÅÂ¸¦ Ç®°í 
+        //ë¬´ì  ìƒíƒœë¥¼ í’€ê³  
         invincivle = true;
-        //¾Ö´Ï¸ŞÀÌÅÍ¸¦ °ø°İ »óÅÂ·Î ¸¸µé°í
+        //ì• ë‹ˆë©”ì´í„°ë¥¼ ê³µê²© ìƒíƒœë¡œ ë§Œë“¤ê³ 
         animator.SetInteger(animestate, 1);
-        //0.8ÃÊ ´ë±âÇÕ´Ï´Ù.
+        //0.8ì´ˆ ëŒ€ê¸°í•©ë‹ˆë‹¤.
         yield return new WaitForSeconds(0.8f);
-        //´ë±â ÈÄ¿¡ 3¹ßÀÇ ÅºÈ¯À» ¹ß»çÇÏ´Â ¹İº¹¹®ÀÔ´Ï´Ù.
+        //ëŒ€ê¸° í›„ì— 3ë°œì˜ íƒ„í™˜ì„ ë°œì‚¬í•˜ëŠ” ë°˜ë³µë¬¸ì…ë‹ˆë‹¤.
         for (int i = 0; i < 3; i++)
         {
             bulletshotting(invincivle);
 			yield return new WaitForSeconds(0.2f);
 		}
-        //¹ß»ç ÈÄ¿¡ °ø°İ »óÅÂ¸¦ ÇØÁ¦ÇÏ°í
+        //ë°œì‚¬ í›„ì— ê³µê²© ìƒíƒœë¥¼ í•´ì œí•˜ê³ 
 		animator.SetInteger(animestate, 0);
-        //¹«Àû»óÅÂ·Î µ¹ÀÔÇÕ´Ï´Ù.
+        //ë¬´ì ìƒíƒœë¡œ ëŒì…í•©ë‹ˆë‹¤.
         invincivle = false;
         }
     }
     /// <summary>
-    /// ÃÑ¾Ë ¹ß»ç ÇÔ¼ö
+    /// ì´ì•Œ ë°œì‚¬ í•¨ìˆ˜
     /// </summary>
-    /// <param name="shotcool">ÀÌ°÷¿¡ invincivle ³í¸®º¯¼ö¸¦ È°¿ëÇÕ´Ï´Ù.</param>
+    /// <param name="shotcool">ì´ê³³ì— invincivle ë…¼ë¦¬ë³€ìˆ˜ë¥¼ í™œìš©í•©ë‹ˆë‹¤.</param>
     void bulletshotting(bool shotcool)
     {
-        //¹«ÀûÀÌ ¾Æ´Ò°æ¿ì ÃÑ¾ËÀ» ¹ß»çÇÕ´Ï´Ù.
+        //ë¬´ì ì´ ì•„ë‹ê²½ìš° ì´ì•Œì„ ë°œì‚¬í•©ë‹ˆë‹¤.
         if(shotcool)
         { 
-            //ÅÍ·¿ÀÇ °¢µµ ÁöÁ¤ : ÅÍ·¿Àº ÇÃ·¹ÀÌ¾î¸¦ °Ü³ÉÇÕ´Ï´Ù.
+            //í„°ë ›ì˜ ê°ë„ ì§€ì • : í„°ë ›ì€ í”Œë ˆì´ì–´ë¥¼ ê²¨ëƒ¥í•©ë‹ˆë‹¤.
         turret.transform.rotation = Quaternion.LookRotation(Vector3.forward,target.position-transform.position);
-            //ÃÑ¾Ë ÇÁ¸®ÆéÀ¸·ÎºÎÅÍ °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÏ¿© ÅÍ·¿ÀÇ À§Ä¡¿Í °¢µµ¿¡¼­ ÃÑ¾ËÀ» ¸¸µé¾î³À´Ï´Ù.
+            //ì´ì•Œ í”„ë¦¬í©ìœ¼ë¡œë¶€í„° ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•˜ì—¬ í„°ë ›ì˜ ìœ„ì¹˜ì™€ ê°ë„ì—ì„œ ì´ì•Œì„ ë§Œë“¤ì–´ëƒ…ë‹ˆë‹¤.
         GameObject bullet = Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
         }
     }
 
     /// <summary>
-    /// ¸Â´Â Ã³¸® ÇÔ¼ö
+    /// ë§ëŠ” ì²˜ë¦¬ í•¨ìˆ˜
     /// </summary>
     protected override void Hitten()
     {
         base.Hitten();
-        //¸Â¾ÒÀ»¶§ ½ºÇÁ¶óÀÌÆ® ·»´õ·¯°¡ ºÓÀº»öÀ¸·Î º¯ÇÕ´Ï´Ù.
+        //ë§ì•˜ì„ë•Œ ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ê°€ ë¶‰ì€ìƒ‰ìœ¼ë¡œ ë³€í•©ë‹ˆë‹¤.
         StartCoroutine(damaged(spriteRenderer));
     }
 }
