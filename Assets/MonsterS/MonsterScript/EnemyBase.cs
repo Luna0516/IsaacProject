@@ -40,10 +40,14 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Awake()
     {
         Manager = GameManager.Inst;
-        if (player != null)
+        if (player == null)
         {
         player = Manager.Player; // 플레이어를 찾아서 할당
         target = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
         }
         spawneffect = transform.GetChild(2).gameObject;
         meat = Manager.meatObject;
