@@ -8,8 +8,7 @@ public class Fly : EnemyBase
 
     private void Update()
     {
-        headto = target.position - this.transform.position;
-        this.gameObject.transform.Translate(Time.deltaTime*speed*target.transform.position);
-
+        headto = (target.position - transform.position).normalized;
+        this.gameObject.transform.Translate(Time.deltaTime*speed* headto);
     }
 }
