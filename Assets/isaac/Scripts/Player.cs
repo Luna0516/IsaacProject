@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 무적시간
     /// </summary>
-    float invisibleTime = 0.9f;
+    float invisibleTime = 1.16f;
     /// <summary>
     /// 무적시간 초기화용
     /// </summary>
@@ -215,7 +215,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         ShootingTear();
-        
     }
     private void OnEnable()
     {
@@ -365,8 +364,15 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(InvisibleTime());
             health--;
-            head.gameObject.SetActive(false);
-            bodyAni.SetTrigger("Damage");
+            if(Health == 0)
+            {
+                Die();
+            }
+            else
+            {
+                bodyAni.SetTrigger("Damage");
+                head.gameObject.SetActive(false);
+            }
         }
         else if (Health <= 0)
         {
@@ -415,6 +421,7 @@ public class Player : MonoBehaviour
         inputAction.Player.Disable();
         collider.enabled = false;
         head.gameObject.SetActive(false);
+        GameManager.Inst.PauseGame();
     }
 }
 
