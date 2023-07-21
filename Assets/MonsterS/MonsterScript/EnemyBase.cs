@@ -8,7 +8,7 @@ public class EnemyBase : MonoBehaviour
     public float MonsterDamage=1;
     GameManager Manager;
     Player player=null;
-    public Transform target;
+    protected Transform target;
     public float speed = 5f;
     public float MaxHP = 5;
     protected float damage;
