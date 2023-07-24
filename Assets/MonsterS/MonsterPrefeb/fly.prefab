@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterDamage: 1
   speed: 1
-  MaxHP: 5
+  MaxHP: 3
 --- !u!95 &2813975671658389335
 Animator:
   serializedVersion: 5

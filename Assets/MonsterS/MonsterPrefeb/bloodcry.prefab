@@ -263,9 +263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterDamage: 1
-  target: {fileID: 0}
   speed: 3
-  MaxHP: 5
+  MaxHP: 10
 --- !u!58 &5158294031196552353
 CircleCollider2D:
   m_ObjectHideFlags: 0

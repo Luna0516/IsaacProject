@@ -10,26 +10,30 @@ public class EnemyBase : MonoBehaviour
     Player player=null;
     protected Transform target;
     public float speed = 5f;
+
     public float MaxHP = 5;
+    float hp;
     protected float damage;
     GameObject spawneffect;
     GameObject meat;
-    GameObject blood;  
+    GameObject blood;
+
+    public Color bloodcoller=Color.white;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
     public float HP
     {
-       get => MaxHP;
+       get => hp;
        protected set
         {
-            if (MaxHP != value)
+            if (hp != value)
             {
-                MaxHP = value;
+                hp = value;
 
-                if (MaxHP <= 0)
+                if (hp <= 0)
                 { 
-                    MaxHP = 0;
+                    hp = 0;
                     Die();
                     //MaxHP가 -가 나와버리면 그냥 0으로 지정하고 해당 개체를 죽이는 함수 실행
                 }
@@ -65,7 +69,13 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        HPInitial();
         spawneffect.SetActive(true);
+    }
+
+    private void HPInitial()
+    {
+        hp = MaxHP;
     }
 
     protected virtual void Movement()
@@ -76,9 +86,10 @@ public class EnemyBase : MonoBehaviour
     {
         bloodshatter();
         meatshatter();
-        Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
+        gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
-    void bloodshatter()//피를 흩뿌리는 함수
+
+    protected virtual void bloodshatter()//피를 흩뿌리는 함수
     {
         int bloodCount = UnityEngine.Random.Range(3, 6);//피의 갯수 1~3 사이 정수를 만든다.
 
@@ -88,6 +99,7 @@ public class EnemyBase : MonoBehaviour
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
             GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
+            bloodshit.GetComponent<SpriteRenderer>().color = bloodcoller;
         }
     }
     void meatshatter()//고기를 흩뿌리는 함수
