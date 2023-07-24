@@ -4,11 +4,9 @@ using UnityEngine;
 using System;
 
 public class ItemBase : MonoBehaviour {
-    //Player player = null;
-
     ActiveInventory activeInventory;
 
-    public Sprite sprite;
+    protected Sprite sprite;
 
     public PassiveItem passiveItem = null;
     public ActiveItem activeItem = null;
@@ -18,6 +16,13 @@ public class ItemBase : MonoBehaviour {
 
     protected virtual void Awake() {
         sprite = GetComponent<SpriteRenderer>().sprite;
+    }
+
+    void Die() {
+        DieEffect();
+    }
+    protected virtual void DieEffect() {
+
     }
 
     private void OnEnable() {

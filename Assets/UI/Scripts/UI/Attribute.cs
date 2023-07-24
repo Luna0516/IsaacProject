@@ -16,15 +16,15 @@ public class Attribute : MonoBehaviour
         damageValue = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
         speedValue = transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
         shotSpeedValue = transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
-        tearSpeedValue = transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
-        rangeValue = transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
+        tearSpeedValue = transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>();
+        rangeValue = transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
     void LateUpdate() {
-        damageValue.text = $"{player.damage:00}";
-        speedValue.text = $"{player.speed:00}";
-        shotSpeedValue.text = $"{player.shotSpeed:00}";
-        tearSpeedValue.text = $"{player.tearSpeed:00}";
-        rangeValue.text = $"{player.range:00}";
+        damageValue.text = $"{player.Damage:F1}";
+        speedValue.text = $"{player.Speed:F1}";
+        shotSpeedValue.text = $"{player.ShotSpeed:F1}";
+        tearSpeedValue.text = $"{player.TearSpeed:F1}";
+        rangeValue.text = $"{player.Range:F1}";
     }
 }
