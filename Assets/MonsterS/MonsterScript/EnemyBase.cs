@@ -16,9 +16,7 @@ public class EnemyBase : MonoBehaviour
     protected float damage;
     GameObject spawneffect;
     GameObject meat;
-    GameObject blood;
-
-    public Color bloodcoller=Color.white;
+    protected GameObject blood;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -40,6 +38,7 @@ public class EnemyBase : MonoBehaviour
             }
         }
     }
+
 
     protected virtual void Awake()
     {
@@ -99,7 +98,6 @@ public class EnemyBase : MonoBehaviour
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
             GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
-            bloodshit.GetComponent<SpriteRenderer>().color = bloodcoller;
         }
     }
     void meatshatter()//고기를 흩뿌리는 함수

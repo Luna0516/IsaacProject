@@ -74,7 +74,10 @@ public class bloodycry : EnemyBase
     protected override void Hitten()
     {
         base.Hitten();
+        if(this.gameObject.activeSelf)
+        { 
         StartCoroutine(damaged(headsprite,bodysprite));
+        }
     }
     IEnumerator hittedanime()
     {

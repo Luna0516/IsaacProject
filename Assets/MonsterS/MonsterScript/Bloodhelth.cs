@@ -5,23 +5,23 @@ using UnityEngine;
 public class Bloodhelth : MonoBehaviour
 {
     GameManager manager;
-    Color clo;
+    public Color clo;
+
     SpriteRenderer spriteRneder;
     public float lifeTime;
     float thislifeTime;
     int randomindex=0;
 
-
     private void Awake()
     {
         manager = GameManager.Inst;
-        randomindex = Random.Range(0, manager.BloodSprite.Length);
+        spriteRneder = GetComponent<SpriteRenderer>();   
+        clo=spriteRneder.color;
     }
     private void OnEnable()
     {
-        spriteRneder = GetComponent<SpriteRenderer>();
+        randomindex = Random.Range(0, manager.BloodSprite.Length);
         lifeTime = Random.Range(15f, 50f);
-        clo = spriteRneder.color;
         thislifeTime = lifeTime;
         spriteRneder.sprite = manager.BloodSprite[randomindex];
     }
@@ -34,8 +34,7 @@ public class Bloodhelth : MonoBehaviour
 
         if (lifeTime < 0)
         {
-            Destroy(gameObject);
-            //this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 }
