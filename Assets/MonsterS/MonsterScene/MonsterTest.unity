@@ -251,7 +251,7 @@ MonoBehaviour:
   MonsterDamage: 1
   speed: 5
   MaxHP: 5
-  bloodcoller: {r: 0.29910004, g: 1, b: 0, a: 0}
+  bloodColor: {r: 0.33333334, g: 1, b: 0, a: 1}
   coolTime: 0
 --- !u!58 &2461267
 CircleCollider2D:
@@ -811,6 +811,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3930142187203254644, guid: 6642a72655b9eea42920484e95528b01, type: 3}
+      propertyPath: m_Size.y
+      value: 0.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930142187203254644, guid: 6642a72655b9eea42920484e95528b01, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552354, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_Name
       value: bloodcry
