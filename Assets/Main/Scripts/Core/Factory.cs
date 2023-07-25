@@ -16,6 +16,8 @@ public class Factory : Singleton<Factory>
 {
     TearPool tearPool;
     TearExplosionPool tearExplosionPool;
+    BloodPool bloodPool;
+    MeatPool meatPool;
 
     protected override void OnInitialize()
     {
@@ -23,10 +25,13 @@ public class Factory : Singleton<Factory>
 
         tearPool = GetComponentInChildren<TearPool>();
         tearExplosionPool = GetComponentInChildren<TearExplosionPool>();
+		bloodPool = GetComponentInChildren<BloodPool>();
+        meatPool = GetComponentInChildren<MeatPool>();
 
-
-        tearPool?.Initialize();
+		tearPool?.Initialize();
         tearExplosionPool?.Initialize();
+        bloodPool?.Initialize();
+        meatPool?.Initialize();
     }
 
     /// <summary>
@@ -45,11 +50,16 @@ public class Factory : Singleton<Factory>
                 result = tearExplosionPool?.GetObject(spawn)?.gameObject;
                 break;
             case PoolObjectType.EnemyBullet:
+
                 break;
             case PoolObjectType.EnemyBlood:
-                break;
+				result = bloodPool?.GetObject(spawn)?.gameObject;
+
+				break;
             case PoolObjectType.EnemyMeat:
-                break;
+				result = meatPool?.GetObject(spawn)?.gameObject;
+
+				break;
             default:
                 break;
         }
