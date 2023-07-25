@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Meatshit : MonoBehaviour
+public class Meatshit : PooledObject
 {
 
    //고깃덩이가 이동하는 코드를 짜야한다.
@@ -40,6 +40,6 @@ public class Meatshit : MonoBehaviour
         yield return new WaitForSeconds(1f);
         movespeed = 0f;
         yield return new WaitForSeconds(MeatLifeTime);
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }

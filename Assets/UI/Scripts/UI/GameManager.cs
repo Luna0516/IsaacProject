@@ -80,8 +80,7 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public GameObject bloodObject;
-    public GameObject meatObject;
+
     public Sprite[] BloodSprite;
     public Sprite[] MeatSprite;
 }
