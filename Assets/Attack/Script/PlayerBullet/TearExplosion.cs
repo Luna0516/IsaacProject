@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TearExplosion : MonoBehaviour
+public class TearExplosion : PooledObject
 {
     Animator anim;
 
@@ -12,6 +12,6 @@ public class TearExplosion : MonoBehaviour
     }
     private void Start()
     {
-        Destroy(gameObject, anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+        StartCoroutine(LifeOver(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length));
     }
 }

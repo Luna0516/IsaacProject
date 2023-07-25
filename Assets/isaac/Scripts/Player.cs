@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 눈물 오브젝트
     /// </summary>
-    public GameObject Tear;
+    // public GameObject Tear;
     /// <summary>
     /// 화면 공속
     /// </summary>
@@ -342,7 +342,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator TearDelay()
     {
-        GameObject tear = Instantiate(Tear);
+        GameObject tear = Factory.Inst.GetObject(PoolObjectType.Tear);
 
         Transform tearSpawn = transform.GetChild(0);
 
