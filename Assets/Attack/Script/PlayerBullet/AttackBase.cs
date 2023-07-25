@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AttackBase : PooledObject {
+public class AttackBase : PooledObject
+{
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
 
-    public float dropDuration = 2.0f; // 밑으로 떨어지는 시간
+    public float dropDuration = 10.0f; // 밑으로 떨어지는 시간
     public float dropDistance = 1.0f; // 밑으로 떨어지는 거리
 
     private float elapsedTime = 0.0f;
@@ -69,7 +70,10 @@ public class AttackBase : PooledObject {
 
     private void OnEnable()
     {
+        elapsedTime = 0.0f;
+        isDropping = false;
         StartCoroutine(LifeOver(lifeTime));
+        //Init() 함수로 초기화 적용 시키기.. 
     }
 
     protected virtual void TearDie(Collision2D collision)
@@ -93,39 +97,34 @@ public class AttackBase : PooledObject {
             gameObject.SetActive(false);
         }
     }
-    
+
     protected virtual void AddGravity()
     {
-            elapsedTime += Time.deltaTime;
-
-
+        elapsedTime += Time.deltaTime;
+        transform.Translate(Time.deltaTime * speed * dir);
+        isDropping = true;
         if (!isDropping)
         {
-            transform.Translate(Time.deltaTime * speed * dir);
-            if(elapsedTime >= dropDuration)
+
+            if (elapsedTime >= dropDuration)
             {
-                
                 StartDrop();
             }
         }
-        else if(isDropping && elapsedTime > 0 ) 
+        else if (isDropping && elapsedTime > 0)
         {
-           
+
             //float dropHeight = Mathf.Lerp(0, -dropDistance, (elapsedTime / dropDuration) * 0.05f);
-            if( dir.x == 1 || dir.x== -1)
+            if (dir.x == 1 || dir.x == -1)
             {
-                float normalizedTime = elapsedTime / dropDuration;
+                float normalizedTime = elapsedTime * 0.05f / dropDuration;
                 //float dropHeight = Mathf.Lerp(dropStartHeight, -dropDistance, normalizedTime * normalizedTime);
 
                 float dropHeight = Mathf.SmoothStep(dropStartHeight, -dropDistance, normalizedTime);
 
                 transform.Translate(Vector2.down * -dropHeight);
             }
-            else
-            {
-                transform.Translate(Time.deltaTime * speed * dir);
-            }
-            
+
 
 
 
@@ -152,7 +151,7 @@ public class AttackBase : PooledObject {
 
         elapsedTime = 0.0f;
         isDropping = true;
-        
+
     }
 }
 
