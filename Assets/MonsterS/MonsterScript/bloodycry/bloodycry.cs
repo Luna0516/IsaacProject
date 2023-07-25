@@ -12,16 +12,13 @@ public class bloodycry : EnemyBase
     Animator headanimator;
     Animator bodyanimator;
     IEnumerator startcor;
-
-
     bool moveactive=false;
-
     protected override void Awake()
     {
+        base.Awake();
         startcor = hittedanime();
         head = transform.GetChild(1).gameObject;
         body = transform.GetChild(0).gameObject;
-
         headsprite = head.GetComponent<SpriteRenderer>();
         bodysprite = body.GetComponent<SpriteRenderer>();
         headanimator = head.GetComponent<Animator>();
@@ -77,7 +74,10 @@ public class bloodycry : EnemyBase
     protected override void Hitten()
     {
         base.Hitten();
+        if(this.gameObject.activeSelf)
+        { 
         StartCoroutine(damaged(headsprite,bodysprite));
+        }
     }
     IEnumerator hittedanime()
     {

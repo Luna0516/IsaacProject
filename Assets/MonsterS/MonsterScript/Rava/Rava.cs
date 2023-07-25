@@ -20,7 +20,7 @@ public class Rava : EnemyBase
     {
         transform.Translate(Time.deltaTime * speed * targetPosition);
     }
-    private void Start()
+void Start()
     {
         Ravanian = transform.GetChild(0).gameObject;
         sprite = Ravanian.GetComponent<SpriteRenderer>();

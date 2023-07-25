@@ -13,6 +13,7 @@ public class mualigan : EnemyBase
 
     protected override void Awake()
     {
+        base.Awake();
         head = transform.GetChild(1).gameObject;
         body = transform.GetChild(0).gameObject;
         headsprite = head.GetComponent<SpriteRenderer>();
@@ -48,8 +49,4 @@ public class mualigan : EnemyBase
         base.Hitten();
         StartCoroutine(damaged(headsprite,bodysprite));
     }
-
-
-
-
 }

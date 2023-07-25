@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Enemy
   - Item
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -16,6 +17,7 @@ TagManager:
   - Water
   - UI
   - Tear
+  - Item
   - 
   - 
   - 
@@ -39,8 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Enemy
   m_SortingLayers:
   - name: Default
     uniqueID: 0

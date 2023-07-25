@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &204939028540094852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3704818064544275904}
+  m_Layer: 31
+  m_Name: turret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3704818064544275904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204939028540094852}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8842577937410060268}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8842577937410060259
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +42,7 @@ GameObject:
   - component: {fileID: 8842577937410060268}
   - component: {fileID: 8842577937410060269}
   - component: {fileID: 8842577937410060270}
-  m_Layer: 3
+  m_Layer: 31
   m_Name: Monstro_Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -31,6 +62,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8842577938082247081}
+  - {fileID: 3704818064544275904}
+  - {fileID: 178735193750491251}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,9 +81,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterDamage: 0
   target: {fileID: 0}
-  speed: 5
+  speed: 2
   MaxHP: 5
   bulletPrefab: {fileID: 5967919590582941009, guid: 26ea565c4d121f2449beab9ec293c31f, type: 3}
+  turret: {fileID: 3704818064544275904}
 --- !u!50 &8842577937410060270
 Rigidbody2D:
   serializedVersion: 4
@@ -84,7 +118,7 @@ GameObject:
   - component: {fileID: 8842577938082247080}
   - component: {fileID: 8842577938082247082}
   - component: {fileID: 8842577938082247083}
-  m_Layer: 9
+  m_Layer: 31
   m_Name: Monstro
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -195,3 +229,69 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000035962503, y: -0.01675308}
   m_Size: {x: 1.7491326, y: 1.5624778}
   m_Direction: 1
+--- !u!1001 &4665626611649630929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8842577937410060268}
+    m_Modifications:
+    - target: {fileID: 4811353040393568929, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_Name
+      value: SpawnEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568929, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 542722de0e86b0441875fc0035668279, type: 3}
+--- !u!4 &178735193750491251 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
+  m_PrefabInstance: {fileID: 4665626611649630929}
+  m_PrefabAsset: {fileID: 0}

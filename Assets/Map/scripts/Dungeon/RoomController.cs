@@ -37,11 +37,11 @@ public class RoomController : MonoBehaviour
 
     void Start()
     {
-        Loadroom("Start", 0, 0);
+        /*Loadroom("Start", 0, 0);
         Loadroom("Empty", 1, 0);
         Loadroom("Empty", -1, 0);
         Loadroom("Empty", 0, 1);
-        Loadroom("Empty", 0, -1);
+        Loadroom("Empty", 0, -1);*/
 
     }
 

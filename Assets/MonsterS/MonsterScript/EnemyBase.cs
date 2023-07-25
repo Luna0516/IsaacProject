@@ -1,34 +1,37 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
     public float MonsterDamage=1;
     GameManager Manager;
-    public Transform target;
+    Player player=null;
+    protected Transform target;
     public float speed = 5f;
+
     public float MaxHP = 5;
+    float hp;
     protected float damage;
-
-
-
-
+    GameObject spawneffect;
+    GameObject meat;
+    protected GameObject blood;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
     public float HP
     {
-       get => MaxHP;
+       get => hp;
        protected set
         {
-            if (MaxHP != value)
+            if (hp != value)
             {
-                MaxHP = value;
+                hp = value;
 
-                if (MaxHP <= 0)
+                if (hp <= 0)
                 { 
-                    MaxHP = 0;
+                    hp = 0;
                     Die();
                     //MaxHP가 -가 나와버리면 그냥 0으로 지정하고 해당 개체를 죽이는 함수 실행
                 }
@@ -36,15 +39,22 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+
     protected virtual void Awake()
     {
-        Manager = GetComponent<GameManager>();
-        target = Manager.Player.transform;
-        
-    }
-    private void Start()
-    {
-
+        Manager = GameManager.Inst;
+        if (player == null)
+        {
+        player = Manager.Player; // 플레이어를 찾아서 할당
+        target = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
+        }
+        spawneffect = transform.GetChild(2).gameObject;
+        meat = Manager.meatObject;
+        blood = Manager.bloodObject;//bloodpack에 비어있는 gameobject를 할당해 놓았다. 그걸 blood에 넣어 초기화시킨다.
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -56,13 +66,47 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+    protected virtual void OnEnable()
+    {
+        HPInitial();
+        spawneffect.SetActive(true);
+    }
+
+    private void HPInitial()
+    {
+        hp = MaxHP;
+    }
+
     protected virtual void Movement()
     {
 
     }
     protected virtual void Die()
     {
-        Destroy(this.gameObject);
+        bloodshatter();
+        meatshatter();
+        gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
+    }
+
+    protected virtual void bloodshatter()//피를 흩뿌리는 함수
+    {
+        int bloodCount = UnityEngine.Random.Range(3, 6);//피의 갯수 1~3 사이 정수를 만든다.
+
+        for (int i = 0; i < bloodCount; i++)//피의 갯수만큼 반복작업
+        {
+            float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
+            float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
+            Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
+            GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
+        }
+    }
+    void meatshatter()//고기를 흩뿌리는 함수
+    {
+        int meatCount = UnityEngine.Random.Range(3, 6);
+        for (int i = 0; i < meatCount; i++)
+        {
+            GameObject meatshit = Instantiate(meat, transform.position, Quaternion.identity);
+        }
 
     }
     protected virtual void Hitten()

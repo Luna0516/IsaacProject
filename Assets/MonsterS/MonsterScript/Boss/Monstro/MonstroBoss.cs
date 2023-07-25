@@ -4,196 +4,197 @@ using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UIElements;
 using static MonstroBoss;
 
 public class MonstroBoss : EnemyBase
 {
     public GameObject bulletPrefab;
 	/// <summary>
-	/// ¾Ö´Ï¸ŞÀÌÅÍ
+	/// ì• ë‹ˆë©”ì´í„°
 	/// </summary>
 	Animator animator;
 
     /// <summary>
-    /// ¼Óµµ º¹»ç¿ë º¯¼ö
+    /// ì†ë„ ë³µì‚¬ìš© ë³€ìˆ˜
     /// </summary>
     float sppeed;
 
     /// <summary>
-    /// ÆĞÅÏ ¼±ÅÃ º¯¼ö
+    /// íŒ¨í„´ ì„ íƒ ë³€ìˆ˜
     /// </summary>
     int randomPatt=0;
 
-    //¹æÇâ ¼±ÅÃ º¯¼ö
+    //ë°©í–¥ ì„ íƒ ë³€ìˆ˜
     Vector2 HeadTo;
 
     /// <summary>
-    /// ½ºÇÁ¶óÀÌÆ® ·»´õ·¯
+    /// ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬
     /// </summary>
     SpriteRenderer spriteRenderer;
 
-
-
+    public Transform turret;
 
     protected override void Awake()
     {
         base.Awake();
-        //¾Ö´Ï¸ŞÀÌÅÍ ºÒ·¯¿À±â
+        //ì• ë‹ˆë©”ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
         animator = transform.GetComponentInChildren<Animator>();
 
-        //½ºÇÁ¶óÀÌÆ® ·»´õ·¯ ºÒ·¯¿À±â
+        //ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ ë¶ˆëŸ¬ì˜¤ê¸°
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
+
+        turret = transform.GetChild(1);
     }
-    private void Start()
+     void Start()
     {
-        
-        //¼Óµµ º¹»ç¿ë º¯¼ö¿¡ º¹»ç
+        //ì†ë„ ë³µì‚¬ìš© ë³€ìˆ˜ì— ë³µì‚¬
         sppeed = speed;
 
-        //ÆĞÅÏ ¼±ÅÃ ÇÔ¼ö ½ÇÇà
+        //íŒ¨í„´ ì„ íƒ í•¨ìˆ˜ ì‹¤í–‰
         selectpattern();
     }
     private void Update()
     { 
-        //ÀÌµ¿ ÇÔ¼ö ½ÇÇà
+        //ì´ë™ í•¨ìˆ˜ ì‹¤í–‰
         Movement();
     }
 
-    //°ø°İ ¹ŞÀ»°æ¿ì Ã¼·Â ±ğÀÓ(EnemyBase ¿À¹ö¶óÀÌµå)
+    //ê³µê²© ë°›ì„ê²½ìš° ì²´ë ¥ ê¹ì„(EnemyBase ì˜¤ë²„ë¼ì´ë“œ)
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
     }
 
     /// <summary>
-    /// ´ë±â»óÅÂ µ¿ÀÛ ÄÚ·çÆ¾
+    /// ëŒ€ê¸°ìƒíƒœ ë™ì‘ ì½”ë£¨í‹´
     /// </summary>
     /// <returns></returns>
     IEnumerator IDel()
     {       
-        //¿òÁ÷ÀÌÁö ¾Ê±â ¶§¹®¿¡ speed´Â 0
+        //ì›€ì§ì´ì§€ ì•Šê¸° ë•Œë¬¸ì— speedëŠ” 0
         speed = 0;
 
-        //¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ Å¸ÀÓ¸¸Å­ ´ë±â(1.167ÃÊ)
+        //ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ íƒ€ì„ë§Œí¼ ëŒ€ê¸°(1.167ì´ˆ)
         yield return new WaitForSeconds(1.167f);
 
-        //speed°ª sppeed°ª¿¡ º¹»ç
+        //speedê°’ sppeedê°’ì— ë³µì‚¬
         speed = sppeed;
 
-        //ÆĞÅÏ ÁöÁ¤ ÇÔ¼ö ½ÇÇà
+        //íŒ¨í„´ ì§€ì • í•¨ìˆ˜ ì‹¤í–‰
         selectpattern();
     }
 
     /// <summary>
-    /// Á¡ÇÁÆĞÅÏ µ¿ÀÛ ÄÚ·çÆ¾
+    /// ì í”„íŒ¨í„´ ë™ì‘ ì½”ë£¨í‹´
     /// </summary>
     /// <returns></returns>
     IEnumerator jumping()
     {
-        //3¹ø ¹İº¹ ¹İº¹¹®
+        //3ë²ˆ ë°˜ë³µ ë°˜ë³µë¬¸
         for (int i = 0; i < 03; i++)
         {
-            //Á¡ÇÁ ÁØºñ ÀÚ¼¼¸¦ À§ÇÑ speed°ª 0
+            //ì í”„ ì¤€ë¹„ ìì„¸ë¥¼ ìœ„í•œ speedê°’ 0
             speed = 0; 
 
-            //¾Ö´Ï¸ŞÀÌÅÍ jump ½ÇÇà
+            //ì• ë‹ˆë©”ì´í„° jump ì‹¤í–‰
             animator.SetInteger("Jump", 1);
 
-            //Á¡ÇÁ ´ë±â ½Ã°£(0.5ÃÊ)ÈÄ Á¡ÇÁ ½ÇÇà
+            //ì í”„ ëŒ€ê¸° ì‹œê°„(0.5ì´ˆ)í›„ ì í”„ ì‹¤í–‰
             yield return new WaitForSeconds(0.5f);
-            //Á¡ÇÁ ½ÇÇà Áö±İ ÇÏ´ÃÀ» ³¯°í ÀÖÀ½
+            //ì í”„ ì‹¤í–‰ ì§€ê¸ˆ í•˜ëŠ˜ì„ ë‚ ê³  ìˆìŒ
 
-            //ÇÃ·¹ÀÌ¾îÂÊÀ¸·Î ÀÌµ¿ÇÏ¸é¼­ ³¯¾Æ¾ß ÇÏ´Ï speed°ª¿¡ º¹»çÇØµÎ¾ú´ø sppeed°ª ´ëÀÔ
+            //í”Œë ˆì´ì–´ìª½ìœ¼ë¡œ ì´ë™í•˜ë©´ì„œ ë‚ ì•„ì•¼ í•˜ë‹ˆ speedê°’ì— ë³µì‚¬í•´ë‘ì—ˆë˜ sppeedê°’ ëŒ€ì…
             speed = sppeed;
 
-            //Á¡ÇÁ È°°ø ½Ã°£ ´ë±â
+            //ì í”„ í™œê³µ ì‹œê°„ ëŒ€ê¸°
             yield return new WaitForSeconds(1.750f);
-            //¹Ù´Ú¿¡ ÂøÁöÇÑ »óÅÂÀÓ
+            //ë°”ë‹¥ì— ì°©ì§€í•œ ìƒíƒœì„
 
-            //¹Ù´Ú¿¡ ÂøÁöÇßÀ½À¸·Î speed°ªÀº 0
+            //ë°”ë‹¥ì— ì°©ì§€í–ˆìŒìœ¼ë¡œ speedê°’ì€ 0
             speed = 0;
 
-            //Á¡ÇÁ Á¾·á
+            //ì í”„ ì¢…ë£Œ
             animator.SetInteger("Jump", 0);
 
-            //Idel ½ÇÇàÀ¸·Î Á¡ÇÁ ÄğÅ¸ÀÓ
+            //Idel ì‹¤í–‰ìœ¼ë¡œ ì í”„ ì¿¨íƒ€ì„
             yield return new WaitForSeconds(0.5f);
 
-            //´ÙÀ½ »óÅÂ¸¦ À§ÇØ speed°ª¿¡ ´Ù½Ã sppeed¸¦ ³Ö¾î¼­ speed º¯¼ö ¿øº»À¸·Î µÇµ¹¸°´Ù.
+            //ë‹¤ìŒ ìƒíƒœë¥¼ ìœ„í•´ speedê°’ì— ë‹¤ì‹œ sppeedë¥¼ ë„£ì–´ì„œ speed ë³€ìˆ˜ ì›ë³¸ìœ¼ë¡œ ë˜ëŒë¦°ë‹¤.
             speed = sppeed;
         }
-        //¹İº¹ Á¾·á ´ÙÀ½ ÆĞÅÏÀ» À§ÇØ ÆĞÅÏ ÁöÁ¤ ÇÔ¼ö ½ÇÇà
+        //ë°˜ë³µ ì¢…ë£Œ ë‹¤ìŒ íŒ¨í„´ì„ ìœ„í•´ íŒ¨í„´ ì§€ì • í•¨ìˆ˜ ì‹¤í–‰
         selectpattern();
     }
-    //Á¡ÇÁ ÆĞÅÏ ÄÚ·çÆ¾ Á¾·á
+    //ì í”„ íŒ¨í„´ ì½”ë£¨í‹´ ì¢…ë£Œ
 
 /// <summary>
-/// ½´ÆÛÁ¡ÇÁ ÆĞÅÏ µ¿ÀÛ ÄÚ·çÆ¾
+/// ìŠˆí¼ì í”„ íŒ¨í„´ ë™ì‘ ì½”ë£¨í‹´
 /// </summary>
 /// <returns></returns>
     IEnumerator superJump()
     {
-        //±âº»ÀûÀÎ ¸ÅÄ¿´ÏÁòÀº Á¡ÇÁ ÆĞÅÏ°ú µ¿ÀÏÇÏ³ª ¹İº¹Àº ÇÏÁö ¾Ê´Â´Ù.
+        //ê¸°ë³¸ì ì¸ ë§¤ì»¤ë‹ˆì¦˜ì€ ì í”„ íŒ¨í„´ê³¼ ë™ì¼í•˜ë‚˜ ë°˜ë³µì€ í•˜ì§€ ì•ŠëŠ”ë‹¤.
             speed = 0;
             animator.SetInteger("SuperJump", 1);
-            //Á¡ÇÁ ´ë±â
+            //ì í”„ ëŒ€ê¸°
             yield return new WaitForSeconds(0.5f);
             speed = sppeed;
-            //Á¡ÇÁ
+            //ì í”„
             yield return new WaitForSeconds(0.8f);
-        //È°°ø µµÁß¿¡ ÇÃ·¹ÀÌ¾î ¸Ó¸® À§·Î ¶³¾îÁú¼ö ÀÖµµ·Ï À§Ä¡°ªÀ» Å¸±ê°ªÀ¸·Î ¼öÁ¤
+        //í™œê³µ ë„ì¤‘ì— í”Œë ˆì´ì–´ ë¨¸ë¦¬ ìœ„ë¡œ ë–¨ì–´ì§ˆìˆ˜ ìˆë„ë¡ ìœ„ì¹˜ê°’ì„ íƒ€ê¹ƒê°’ìœ¼ë¡œ ìˆ˜ì •
             transform.position = target.position;
             yield return new WaitForSeconds(0.950f);
             speed = 0;
-        //Á¡ÇÁ Á¾·á
+        //ì í”„ ì¢…ë£Œ
             Splashbullet();
 			animator.SetInteger("SuperJump", 0);
-            //Idel ½ÇÇàÀ¸·Î Á¡ÇÁ ÄğÅ¸ÀÓ
+            //Idel ì‹¤í–‰ìœ¼ë¡œ ì í”„ ì¿¨íƒ€ì„
             yield return new WaitForSeconds(1.167f);
             speed = sppeed;       
         selectpattern();
     }
 
     /// <summary>
-    /// °ø°İÆĞÅÏ µ¿ÀÛ ½ÇÇà ÄÚ·çÆ¾
+    /// ê³µê²©íŒ¨í„´ ë™ì‘ ì‹¤í–‰ ì½”ë£¨í‹´
     /// </summary>
     /// <returns></returns>
     IEnumerator Attack()
     {
-        //°ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+        //ê³µê²© ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
         animator.SetInteger("Attack", 1);
 
-        //°ø°İÀ» À§ÇØ ÀÌµ¿À» ¸ØÃá´Ù.
+        //ê³µê²©ì„ ìœ„í•´ ì´ë™ì„ ë©ˆì¶˜ë‹¤.
         speed = 0;
+        //ê³µê²© í•˜ëŠ”ë™ì•ˆ ëŒ€ê¸°
+        yield return new WaitForSeconds(0.5f);
+        ShatteredBullet();
+        yield return new WaitForSeconds(1.5f);
 
-        //°ø°İ ÇÏ´Âµ¿¾È ´ë±â
-        yield return new WaitForSeconds(2.333f);
-
-        //speed°ª º¹¿ø
+        //ì• ë‹ˆë©”ì´ì…˜ ì¢…ë£Œ
+        animator.SetInteger("Attack", 0);
+        //speedê°’ ë³µì›
         speed = sppeed;
 
-        //¾Ö´Ï¸ŞÀÌ¼Ç Á¾·á
-        animator.SetInteger("Attack", 0);
-
-        //´ÙÀ½ ÆĞÅÏ ¼±ÅÃ ÇÔ¼ö ½ÇÇà
+        //ë‹¤ìŒ íŒ¨í„´ ì„ íƒ í•¨ìˆ˜ ì‹¤í–‰
         selectpattern();
     }
 
     /// <summary>
-    /// ¸ó½ºÆ®·Î ÀÌµ¿ ÇÔ¼ö(¿À¹ö¶óÀÌµå(º£ÀÌ½º ¾øÀ½))
+    /// ëª¬ìŠ¤íŠ¸ë¡œ ì´ë™ í•¨ìˆ˜(ì˜¤ë²„ë¼ì´ë“œ(ë² ì´ìŠ¤ ì—†ìŒ))
     /// </summary>
     protected override void Movement()
     {
-        //¹æÇâ°ª ±¸ÇÏ±â
+        //ë°©í–¥ê°’ êµ¬í•˜ê¸°
         HeadTo = target.position - transform.position;
 
-        //Á¤±ÔÈ­
+        //ì •ê·œí™”
         HeadTo = HeadTo.normalized;
 
-        //ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ÀÌµ¿ÇÏ´Â ½Ä
+        //í”Œë ˆì´ì–´ë¥¼ í–¥í•´ ì´ë™í•˜ëŠ” ì‹
         transform.position += Time.deltaTime * speed * new Vector3(HeadTo.x,HeadTo.y,0);
 
-        //¹æÇâ¿¡ µû¶ó ½ºÇÁ¶óÀÌÆ® ·»´õ·¯ÀÇ Flip°ªÀ» ¼öÁ¤ÇÏ´Â Á¶°Ç¹®
+        //ë°©í–¥ì— ë”°ë¼ ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ì˜ Flipê°’ì„ ìˆ˜ì •í•˜ëŠ” ì¡°ê±´ë¬¸
         if (HeadTo.x < 0)
         {
             spriteRenderer.flipX = false;
@@ -206,18 +207,36 @@ public class MonstroBoss : EnemyBase
 
 
     /// <summary>
-    /// ´ÙÀ½ ÆĞÅÏ ¼±ÅÃ ÇÔ¼ö
+    /// ë‹¤ìŒ íŒ¨í„´ ì„ íƒ í•¨ìˆ˜
     /// </summary>
     void selectpattern()
     { 
-        //¾ÆÁ÷ ³¡³ªÁö ¾ÊÀº ¸ğµç ÄÚ·çÆ¾ Á¤Áö
+        //ì•„ì§ ëë‚˜ì§€ ì•Šì€ ëª¨ë“  ì½”ë£¨í‹´ ì •ì§€
         StopAllCoroutines();
 
-        //·£´ıÆĞÅÏ int º¯¼ö¿¡ ·£´ı°ª ´ëÀÔ
-        randomPatt = Random.Range(0, 4);
+        //ëœë¤íŒ¨í„´ int ë³€ìˆ˜ì— ëœë¤ê°’ ëŒ€ì…
+        randomPatt = Random.Range(0, 101);
+        //í™•ë¥  ì¡°ì •ìš© ë³€ìˆ˜
+        int pattern = 0;
 
-        //½ºÀ§Ä¡¿¡ ·£´ı°ª ³Ö°í °¢ ÆĞÅÏÀÇ ÄÚ·çÆ¾ ½ÇÇà
-        switch (randomPatt) 
+        if (randomPatt <10)
+        {
+            pattern = 0;
+        }
+        else if (randomPatt <30) 
+        {
+            pattern = 1;
+        }
+        else if(randomPatt<70)
+        {
+            pattern = 2;
+        }
+        else
+        {
+            pattern = 3;
+        }
+        //ìŠ¤ìœ„ì¹˜ì— ëœë¤ê°’ ë„£ê³  ê° íŒ¨í„´ì˜ ì½”ë£¨í‹´ ì‹¤í–‰
+        switch (pattern) 
         {
             case 0:
                 StartCoroutine(IDel());
@@ -241,24 +260,42 @@ public class MonstroBoss : EnemyBase
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			float angle = i * 360f / 10;  // °¢µµ °è»ê
-			Quaternion rotation = Quaternion.Euler(0f, 0f, angle);  // È¸Àü°ª °è»ê
+			float angle = i * 360f / 10;  // ê°ë„ ê³„ì‚°
+			Quaternion rotation = Quaternion.Euler(0f, 0f, angle);  // íšŒì „ê°’ ê³„ì‚°
 
-			Vector3 spawnPosition = transform.position;  // »ı¼º À§Ä¡ °è»ê
-			GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // ÃÑ¾Ë »ı¼º
+			Vector3 spawnPosition = transform.position;  // ìƒì„± ìœ„ì¹˜ ê³„ì‚°
+			GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // ì´ì•Œ ìƒì„±
 		}
 	}
-    void bulletattack()
+    void ShatteredBullet()
     {
-        for (int i = 0; i < 13; i++)
+        if (HeadTo.x < 0)
+        { turret.rotation = Quaternion.Euler(0, 0, 90); }
+        else
+        { turret.rotation = Quaternion.Euler(0, 0, -90); }
+        int randomshot = Random.Range(7, 15);
+        for (int i = 0;  i < randomshot; i++)
         {
-
+            float Shattering = Random.Range(-45, 46);
+            Quaternion shotgack = Quaternion.Euler(0,0, Shattering);
+            float randx = Random.Range(-0.5f, 0.6f);
+            float randy = Random.Range(-0.5f, 0.6f);
+            GameObject bullet = Instantiate(bulletPrefab,new Vector3(turret.transform.position.x+ randx, turret.transform.position.y+ randy,0), turret.rotation*shotgack);
         }
     }
-
 	protected override void Hitten()
     {
         base.Hitten();
         StartCoroutine(damaged(spriteRenderer));
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y - 0.5f, 0), new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y - 0.5f, 0));
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y - 0.5f, 0), new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y + 0.5f, 0));
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y + 0.5f, 0), new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y + 0.5f, 0));
+        Gizmos.DrawLine(new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y + 0.5f, 0), new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y - 0.5f, 0));
     }
 }
