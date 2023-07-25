@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AttackBase : MonoBehaviour
-{
+public class AttackBase : PooledObject {
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
 
@@ -30,7 +29,7 @@ public class AttackBase : MonoBehaviour
     }
 
     Animator anim;
-    GameObject tearExplosion;
+    //GameObject tearExplosion;
     SpriteRenderer tear;
 
     private float dropStartHeight = 0.0f;
@@ -38,13 +37,13 @@ public class AttackBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        tearExplosion = transform.GetChild(0).gameObject;
+        //tearExplosion = transform.GetChild(0).gameObject;
         anim = GetComponent<Animator>();
         tear = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
-        tearExplosion.SetActive(false);
+        //tearExplosion.SetActive(false);
         initialPosition = this.transform.position;
 
     }
@@ -77,19 +76,21 @@ public class AttackBase : MonoBehaviour
     {
         if (lifeTime < 0)
         {
-            tearExplosion.transform.SetParent(null);
-            tear.sprite = null;
-            tearExplosion.SetActive(true);
-            Destroy(gameObject);
+            //tearExplosion.transform.SetParent(null);
+            //tear.sprite = null;
+            //tearExplosion.SetActive(true);
+            Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
+            gameObject.SetActive(false);
 
         }
         else
         {
-            tearExplosion.transform.SetParent(null);
-            tearExplosion.transform.position = collision.contacts[0].point;
-            tear.sprite = null;
-            tearExplosion.SetActive(true);
-            Destroy(gameObject);
+            //tearExplosion.transform.SetParent(null);
+            //tearExplosion.transform.position = collision.contacts[0].point;
+            //tear.sprite = null;
+            //tearExplosion.SetActive(true);
+            Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
+            gameObject.SetActive(false);
         }
     }
     
@@ -134,15 +135,16 @@ public class AttackBase : MonoBehaviour
 
     }
 
-    protected virtual IEnumerator LifeOver(float delay = 0.0f)
+    protected override IEnumerator LifeOver(float delay = 0.0f)
     {
         yield return new WaitForSeconds(dropDuration);
         //StartDrop();
         yield return new WaitForSeconds(delay - dropDuration);
-        tearExplosion.transform.SetParent(null);
-        tear.sprite = null;
-        tearExplosion.SetActive(true);
-        Destroy(gameObject);
+        Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
+        //tearExplosion.transform.SetParent(null);
+        //tear.sprite = null;
+        //tearExplosion.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     private void StartDrop()
