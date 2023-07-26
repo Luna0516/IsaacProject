@@ -15,8 +15,6 @@ public class EnemyBase : MonoBehaviour
     float hp;
     protected float damage;
     GameObject spawneffect;
-    GameObject meat;
-    protected GameObject blood;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
