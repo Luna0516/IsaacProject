@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class shit : EnemyBase
@@ -10,15 +11,16 @@ public class shit : EnemyBase
     Vector3 Headto;
     public Color bloodColor = Color.white;
     public float power = 1f;
-    public float coolTime = 5f;
+    public float coolTime;
+    float coolTimeCopy;
+    public GameObject flyer;
 
     protected override void Awake()
     {
         base.Awake();
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();        
     }
     private void Start()
     {
@@ -35,12 +37,18 @@ public class shit : EnemyBase
         { spriteRenderer.flipX = false; }     
     }
 
-
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        coolTime = Random.Range(1,3);
+        coolTimeCopy = coolTime;
+    }
 
 
     void Attack()
     {
         rig.AddForce(Headto*power);
+
         animator.SetTrigger("Attack");
     }
     IEnumerator attackcool()
@@ -55,18 +63,25 @@ public class shit : EnemyBase
             else
             {
                 Attack();
-                coolTime = 5f;
-                yield return new WaitForSeconds(5f); // 5초 기다림
+                coolTime = coolTimeCopy;
+                yield return new WaitForSeconds(coolTime); // 5초 기다림
             }
         }
     }
 
-
-
     protected override void Die()
     {
         bloodshatter();
-        gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
+        int rand = Random.Range(2, 5);
+        float ranX = Random.Range(-1, 1.1f);
+        float ranY = Random.Range(-1, 1.1f);
+
+        Vector2 pos = new Vector2(ranX,ranY);
+        for(int i = 0; i<rand; i++)
+        {
+        GameObject fly = Instantiate(flyer,(Vector2)this.transform.position + pos, this.transform.rotation);
+        }
+        Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
 
     protected override void bloodshatter()

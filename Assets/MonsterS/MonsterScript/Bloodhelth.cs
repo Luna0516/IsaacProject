@@ -6,7 +6,6 @@ public class Bloodhelth : PooledObject
 {
     GameManager manager;
     public Color clo;
-
     SpriteRenderer spriteRneder;
     public float lifeTime;
     float thislifeTime;
@@ -24,6 +23,11 @@ public class Bloodhelth : PooledObject
         lifeTime = Random.Range(15f, 50f);
         thislifeTime = lifeTime;
         spriteRneder.sprite = manager.BloodSprite[randomindex];
+    }
+    protected override void OnDisable()
+    {
+        clo = Color.white;
+        base.OnDisable();
     }
     private void Update()
     {
