@@ -9318,7 +9318,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2461219586959085014, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: poolSize
-      value: 4
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2461219587112762858, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: m_RootOrder
