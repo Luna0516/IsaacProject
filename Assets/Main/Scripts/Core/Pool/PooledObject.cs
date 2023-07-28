@@ -23,7 +23,7 @@ public class PooledObject : MonoBehaviour
     /// </summary>
     /// <param name="delay">비활성화가 될때까지 걸리는 시간(기본 = 0.0f)</param>
     /// <returns></returns>
-    protected virtual IEnumerator LifeOver(float delay = 0.0f)
+    protected virtual IEnumerator Gravity_Life(float delay = 0.0f)
     {
         yield return new WaitForSeconds(delay); // delay만큼 대기하고
         gameObject.SetActive(false);            // 게임 오브젝트 비활성화

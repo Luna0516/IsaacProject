@@ -14,6 +14,6 @@ public class TearExplosion : PooledObject
     private void OnEnable() {
         float animTime = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
 
-        StartCoroutine(LifeOver(animTime));
+        StartCoroutine(Gravity_Life(animTime));
     }
 }

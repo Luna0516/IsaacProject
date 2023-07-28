@@ -26,23 +26,23 @@ public class KnifeAttack : AttackBase
     private void Start()
     {
         startPoint = transform.position;
-        StartCoroutine(LifeOver(returnDelay));
+        StartCoroutine(Gravity_Life(returnDelay));
     }
 
     private void Update()
     {
-        AddGravity();
+        
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
     }
-    protected override void AddGravity()
+    /*protected override void AddGravity()
     {
         startPoint = player.transform.position;
         player.range = 3.0f;
-        Vector2 targetPosition = new Vector2(startPoint.x + 0.5f, startPoint.y); // ½ÃÀÛ ¹× È¸¼ö ÁöÁ¡
+        Vector2 targetPosition = new Vector2(startPoint.x + 0.5f, startPoint.y); // ì‹œì‘ ë° íšŒìˆ˜ ì§€ì 
 
         if (!isReturning)
         {
@@ -58,14 +58,14 @@ public class KnifeAttack : AttackBase
         }
 
 
-    }
+    }*/
     protected override void TearDie(Collision2D collision)
     {
         //base.TearDie(collision);
     }
 
-    // ÇØ´ç ½ºÅ©¸³Æ®¿¡¼­´Â Ä® º¹±Í µô·¹ÀÌ ¿ªÇÒÀ» ÇÔ
-    protected override IEnumerator LifeOver(float delay) 
+    // í•´ë‹¹ ìŠ¤í¬ë¦½íŠ¸ì—ì„œëŠ” ì¹¼ ë³µê·€ ë”œë ˆì´ ì—­í• ì„ í•¨
+    protected override IEnumerator Gravity_Life(float delay) 
     {
         yield return new WaitForSeconds(delay);
 

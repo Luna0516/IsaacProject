@@ -50,7 +50,7 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -136,9 +136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1215b6feb527ecd4abd4eeef579cb287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 4
   lifeTime: 1
+  rangeToLife: 2.5
   dropDuration: 0.8
   dropDistance: 0.3
+  moveDir: {x: 0, y: 0}
   dir: {x: 1, y: 0}
   damage: 0

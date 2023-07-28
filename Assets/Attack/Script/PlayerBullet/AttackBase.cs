@@ -6,80 +6,64 @@ using UnityEngine.UIElements;
 public class AttackBase : PooledObject
 {
     
-    public float speed = 1.0f;
-    public float lifeTime = 5.0f;
+    public float speed = 1.0f;          // 총알 속도
+    public float lifeTime = 5.0f;       // 총알 사거리 (지속시간)
+    public float rangeToLife = 2.5f;    // 플레이어 눈물 사거리 lifeTime(초)으로 나눌 수치 
+    public float dropDuration = 10.0f;  // 밑으로 떨어지는 시간
+    public float dropDistance = 1.0f;   // 밑으로 떨어지는 거리
+    public float startGravity = 0.8f;   // 중력적용 시점
 
-    public float dropDuration = 10.0f; // 밑으로 떨어지는 시간
-    public float dropDistance = 1.0f; // 밑으로 떨어지는 거리
-
-    private float elapsedTime = 0.0f;
-    private bool isDropping = false;
+    public Vector2 moveDir = Vector2.zero;  // 이동 방향
+    public Vector2 dir = Vector2.right;     // 발사 방향
     
-    private Vector2 initialPosition;
-
-    public Vector2 moveDir = Vector2.zero;
-    public Vector2 dir = Vector2.right;
-
+    /// <summary>
+    /// 컴포넌트들
+    /// </summary>
     Player player;
+    Rigidbody2D rigidBody;
 
+    public float damage;    // 눈물 데미지
 
-    public float damage;
-    public float Damage
+    /// <summary>
+    /// 눈물 데미지 프로퍼티
+    /// </summary>
+    public float Damage     
     {
         get => damage;
         set
         {
             if(value < 0)
             {
-                damage = 0;
+                damage = 0; // 데미지 - 값으로 떨어지는 것 방지
             }
-
+            
             damage = value;
         }
     }
 
-    Animator anim;
-    //GameObject tearExplosion;
-    SpriteRenderer tear;
-
-    private float dropStartHeight = 0.0f;
-
-
     protected virtual void Awake()
     {
-        //tearExplosion = transform.GetChild(0).gameObject;
-        anim = GetComponent<Animator>();
-        tear = GetComponent<SpriteRenderer>();
-        player = GetComponent<Player>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
-private void OnEnable()
+    private void OnEnable()
     {
         player = GameManager.Inst.Player;
         
-        Init();
-        StartCoroutine(LifeOver(lifeTime));
-        //Init() 함수로 초기화 적용 시키기.. 
-    }
-    private void Start()
-    {
-        //tearExplosion.SetActive(false);
-        initialPosition = this.transform.position;
-
+        Init();                                     // 눈물 세부사항 초기화
+        StartCoroutine(Gravity_Life(lifeTime));     // 눈물 중력, 발사시간 코루틴
     }
 
-
-    void Update()
-    {
-        //AddGravity();
-    }
     private void FixedUpdate()
     {
-        transform.Translate(Time.fixedDeltaTime * speed * dir);
-        Rigidbody2D bullertRB = this.GetComponent<Rigidbody2D>();
-        bullertRB.MovePosition(bullertRB.position + dir * speed * Time.fixedDeltaTime);
-        bullertRB.velocity = new Vector3(dir.x * speed, dir.y * speed);
+        Rigidbody2D bullertRB = this.GetComponent<Rigidbody2D>();                       // 눈물 rigidbody
+        bullertRB.MovePosition(bullertRB.position + dir * speed * Time.fixedDeltaTime); // 눈물 날아가는 속도 및 방향
+        bullertRB.velocity = new Vector3(dir.x * speed, dir.y * speed);                 // 눈물 velocity 적용
     }
 
+    /// <summary>
+    /// 눈물 충돌 처리
+    /// </summary>
+    /// <param name="collision"></param>
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -92,95 +76,52 @@ private void OnEnable()
         }
     }
 
-  
-
+    /// <summary>
+    /// 눈물 삭제 처리 함수
+    /// </summary>
+    /// <param name="collision"></param>
     protected virtual void TearDie(Collision2D collision)
     {
         if (lifeTime < 0)
         {
-            //tearExplosion.transform.SetParent(null);
-            //tear.sprite = null;
-            //tearExplosion.SetActive(true);
             Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
             gameObject.SetActive(false);
-
         }
         else
         {
-            //tearExplosion.transform.SetParent(null);
-            //tearExplosion.transform.position = collision.contacts[0].point;
-            //tear.sprite = null;
-            //tearExplosion.SetActive(true);
             Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
             gameObject.SetActive(false);
         }
     }
 
-    protected virtual void AddGravity()
+    /// <summary>
+    /// 눈물 중력과 발사 적용 코루틴
+    /// </summary>
+    /// <param name="delay">발사 인터벌</param>
+    /// <returns></returns>
+    protected override IEnumerator Gravity_Life(float delay = 0.0f)
     {
-        elapsedTime += Time.deltaTime;
+        dropDuration = lifeTime * startGravity;                 // 눈물 중력 적용 되는 시간 (길이)
+        yield return new WaitForSeconds(dropDuration);          
         
-        
-        isDropping = true;
-        if (!isDropping)
-        {
-
-            if (elapsedTime >= dropDuration)
-            {
-                StartDrop();
-            }
-        }
-        else if (isDropping && elapsedTime > 0)
-        {
-
-            //float dropHeight = Mathf.Lerp(0, -dropDistance, (elapsedTime / dropDuration) * 0.05f);
-            if (dir.x == 1 || dir.x == -1)
-            {
-                float normalizedTime = elapsedTime * 0.05f / dropDuration;
-                //float dropHeight = Mathf.Lerp(dropStartHeight, -dropDistance, normalizedTime * normalizedTime);
-
-                float dropHeight = Mathf.SmoothStep(dropStartHeight, -dropDistance, normalizedTime);
-
-                transform.Translate(Vector2.down * -dropHeight);
-            }
-
-
-
-
-            // transform.Translate(Vector2.down * -dropHeight);
-            // this.transform.position = Vector2.down * dropHeight;
-        }
-
-    }
-
-    protected override IEnumerator LifeOver(float delay = 0.0f)
-    {
-        yield return new WaitForSeconds(dropDuration);
-        //StartDrop();
+        rigidBody.gravityScale = 3.0f;                          // 눈물에 적용될 중력 수치
         yield return new WaitForSeconds(delay - dropDuration);
+        
         Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
-        //tearExplosion.transform.SetParent(null);
-        //tear.sprite = null;
-        //tearExplosion.SetActive(true);
         gameObject.SetActive(false);
     }
 
-    private void StartDrop()
-    {
-        elapsedTime = 0.0f;
-        isDropping = true;        
-    }
-
     /// <summary>
-    /// 총알 능력치 초기화
+    /// 총알 세부정보 초기화
     /// </summary>
     private void Init()
     {
         this.Damage = player.Damage;
-        lifeTime =  player.range;
-
-        isDropping = false;
-        elapsedTime = 0.0f;
+        lifeTime =  (player.range/rangeToLife);
+        moveDir = player.MoveDir;
+        dir = player.AttackDir;
+        rigidBody.gravityScale = 0.0f; 
     }
 }
 
+// + 속력이 빠를수록 gravity 추가 되는 함수 추가
