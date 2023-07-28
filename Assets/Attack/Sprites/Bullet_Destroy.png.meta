@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -443,6 +443,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Bullet_Destroy_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e58cdad3c1c6d74fa08f332faea94a7
+      internalID: 1693711591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -461,6 +482,7 @@ TextureImporter:
       Bullet_Destroy_12: -400492945
       Bullet_Destroy_13: 1476161847
       Bullet_Destroy_14: -1677352877
+      Bullet_Destroy_15: 1693711591
       Bullet_Destroy_2: -514880957
       Bullet_Destroy_3: -1208536912
       Bullet_Destroy_4: -1269037627

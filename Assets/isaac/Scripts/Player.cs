@@ -91,6 +91,20 @@ public class Player : MonoBehaviour
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
 
+    /// <summary>
+    /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
+    /// </summary>
+    public Vector2 AttackDir {
+        get => headDir;
+    }
+
+    /// <summary>
+    /// 총알 능력치 초기화때 쓸 프로퍼티, 플레이어 이동 방향
+    /// </summary>
+    public Vector2 MoveDir {
+        get => bodyDir;
+    }
+
     CircleCollider2D collider;
     #endregion
     #region 체력
@@ -342,17 +356,17 @@ public class Player : MonoBehaviour
     }
     IEnumerator TearDelay()
     {
-        GameObject tear = Factory.Inst.GetObject(PoolObjectType.Tear);
-
         Transform tearSpawn = transform.GetChild(0);
 
-        tear.transform.position = tearSpawn.position;
+        GameObject tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
 
-        AttackBase tearComp = tear.GetComponent<AttackBase>();
+        //tear.transform.position = tearSpawn.position;
 
-        tearComp.damage = Damage;
+        //AttackBase tearComp = tear.GetComponent<AttackBase>();
 
-        tearComp.dir = headDir;
+        //tearComp.damage = Damage;
+
+        //tearComp.dir = headDir;
 
         currentTearDelay = tearFire; // 딜레이 시간 초기화
 

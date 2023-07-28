@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bloodhelth : MonoBehaviour
+public class Bloodhelth : PooledObject
 {
     GameManager manager;
     public Color clo;

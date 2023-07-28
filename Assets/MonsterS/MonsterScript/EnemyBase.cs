@@ -53,8 +53,6 @@ public class EnemyBase : MonoBehaviour
             Debug.LogWarning("플레이어를 찾을수가 없습니다.");
         }
         spawneffect = transform.GetChild(2).gameObject;
-        meat = Manager.meatObject;
-        blood = Manager.bloodObject;//bloodpack에 비어있는 gameobject를 할당해 놓았다. 그걸 blood에 넣어 초기화시킨다.
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -97,22 +95,25 @@ public class EnemyBase : MonoBehaviour
             float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
-            GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
-        }
+            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyBlood);
+            bloodshit.transform.position = bloodpos;
+			//GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
+		}
     }
     void meatshatter()//고기를 흩뿌리는 함수
     {
         int meatCount = UnityEngine.Random.Range(3, 6);
         for (int i = 0; i < meatCount; i++)
         {
-            GameObject meatshit = Instantiate(meat, transform.position, Quaternion.identity);
-        }
-
+            GameObject meatshit = Factory.Inst.GetObject(PoolObjectType.EnemyMeat);
+            meatshit.transform.position = this.transform.position;
+			//GameObject meatshit = Instantiate(meat, transform.position, Quaternion.identity);
+		}
     }
     protected virtual void Hitten()
     {
         HP -= damage;
-        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
+        //Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
     }
 
     protected IEnumerator damaged(SpriteRenderer sprite, SpriteRenderer sprite1)
