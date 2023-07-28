@@ -7,6 +7,7 @@ public class Fly : EnemyBase
     Vector3 headto;
     float invincivalTime = 2f;
     bool invincival=true;
+    Animator animator;
 
     float InvincivalTime
     { 
@@ -29,6 +30,7 @@ public class Fly : EnemyBase
 
     private void Start()
     {
+        animator = GetComponent<Animator>();    
         speed = Random.Range(0.5f, 2.5f);
     }
     private void Update()
@@ -47,5 +49,10 @@ public class Fly : EnemyBase
             Hitten();
         }
         }
+    }
+    protected override void Die()
+    {
+        animator.SetInteger("Dead", 1);
+        Destroy(this.gameObject,0.917f);
     }
 }

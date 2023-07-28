@@ -11,19 +11,28 @@ public class shit : EnemyBase
     Vector3 Headto;
     public Color bloodColor = Color.white;
     public float power = 1f;
-    public float coolTime;
+    public float coolTime=5;
     float coolTimeCopy;
     public GameObject flyer;
+    bool Attacking = false;
+    WaitForSeconds waiting;
+    float NextStateTime = 1;
 
+
+    GameObject shitiything;
+    Shitblood shitman;
     protected override void Awake()
     {
+
         base.Awake();
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        waiting = new WaitForSeconds(NextStateTime);
     }
     private void Start()
     {
+        shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
         StartCoroutine(attackcool());
     }
     private void Update()
@@ -40,21 +49,24 @@ public class shit : EnemyBase
     protected override void OnEnable()
     {
         base.OnEnable();
-        coolTime = Random.Range(1,3);
         coolTimeCopy = coolTime;
     }
 
 
     void Attack()
     {
-        rig.AddForce(Headto*power);
-
-        animator.SetTrigger("Attack");
+        Attacking = true;
+        rig.AddForce(Headto*power,ForceMode2D.Impulse);
+    }
+    private void Stopping()
+    {
+        Attacking = false;
+        rig.velocity = Vector2.zero;
     }
     IEnumerator attackcool()
     {
         while (true)
-        {
+        {          
             if (coolTime > 0)
             {
                 coolTime -= Time.deltaTime;
@@ -62,10 +74,28 @@ public class shit : EnemyBase
             }
             else
             {
+                animator.SetTrigger("Attack");
+                yield return null;
                 Attack();
+                StartCoroutine(runningShit());
                 coolTime = coolTimeCopy;
-                yield return new WaitForSeconds(coolTime); // 5초 기다림
+                NextStateTime = 0.917f;
+                yield return waiting;
+                Stopping();
+                NextStateTime = coolTime;
+                yield return waiting;
+                coolTime = Random.Range(3, 5);
             }
+        }
+    }
+    IEnumerator runningShit()
+    {
+        while(Attacking)
+        {
+            shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
+
+            yield return new WaitForSeconds(0.02f);
+
         }
     }
 
@@ -93,9 +123,7 @@ public class shit : EnemyBase
             float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
-            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyBlood);
-            bloodshit.transform.position = bloodpos;
-            bloodshit.GetComponent<Bloodhelth>().clo = bloodColor;
+            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyShit, bloodpos);
         }
     }
 

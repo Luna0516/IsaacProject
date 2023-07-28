@@ -10,6 +10,7 @@ public enum PoolObjectType
     EnemyBullet,
     EnemyBlood,
     EnemyMeat,
+    EnemyShit
 }
 
 public class Factory : Singleton<Factory>
@@ -18,6 +19,7 @@ public class Factory : Singleton<Factory>
     TearExplosionPool tearExplosionPool;
     BloodPool bloodPool;
     MeatPool meatPool;
+    ShitPool shitPool;
 
     protected override void OnInitialize()
     {
@@ -27,11 +29,13 @@ public class Factory : Singleton<Factory>
         tearExplosionPool = GetComponentInChildren<TearExplosionPool>();
 		bloodPool = GetComponentInChildren<BloodPool>();
         meatPool = GetComponentInChildren<MeatPool>();
+        shitPool = GetComponentInChildren<ShitPool>();
 
 		tearPool?.Initialize();
         tearExplosionPool?.Initialize();
         bloodPool?.Initialize();
         meatPool?.Initialize();
+        shitPool?.Initialize();
     }
 
     /// <summary>
@@ -50,16 +54,17 @@ public class Factory : Singleton<Factory>
                 result = tearExplosionPool?.GetObject(spawn)?.gameObject;
                 break;
             case PoolObjectType.EnemyBullet:
-
                 break;
             case PoolObjectType.EnemyBlood:
 				result = bloodPool?.GetObject(spawn)?.gameObject;
-
 				break;
             case PoolObjectType.EnemyMeat:
 				result = meatPool?.GetObject(spawn)?.gameObject;
-
 				break;
+
+            case PoolObjectType.EnemyShit:
+                result = shitPool?.GetObject()?.gameObject;
+                break;
             default:
                 break;
         }

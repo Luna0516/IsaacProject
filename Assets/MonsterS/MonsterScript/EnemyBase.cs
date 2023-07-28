@@ -81,7 +81,7 @@ public class EnemyBase : MonoBehaviour
     {
         bloodshatter();
         meatshatter();
-        gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
+        Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
 
     protected virtual void bloodshatter()//피를 흩뿌리는 함수
@@ -93,8 +93,7 @@ public class EnemyBase : MonoBehaviour
             float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
-            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyBlood);
-            bloodshit.transform.position = bloodpos;
+            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyBlood, bloodpos);
 			//GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
 		}
     }
