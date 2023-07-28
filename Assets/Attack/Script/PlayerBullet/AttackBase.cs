@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class AttackBase : PooledObject
 {
+    
     public float speed = 1.0f;
     public float lifeTime = 5.0f;
 
@@ -13,10 +14,13 @@ public class AttackBase : PooledObject
 
     private float elapsedTime = 0.0f;
     private bool isDropping = false;
+    
     private Vector2 initialPosition;
 
+    public Vector2 moveDir = Vector2.zero;
     public Vector2 dir = Vector2.right;
 
+    Player player;
 
 
     public float damage;
@@ -25,6 +29,11 @@ public class AttackBase : PooledObject
         get => damage;
         set
         {
+            if(value < 0)
+            {
+                damage = 0;
+            }
+
             damage = value;
         }
     }
@@ -41,6 +50,15 @@ public class AttackBase : PooledObject
         //tearExplosion = transform.GetChild(0).gameObject;
         anim = GetComponent<Animator>();
         tear = GetComponent<SpriteRenderer>();
+        player = GetComponent<Player>();
+    }
+private void OnEnable()
+    {
+        player = GameManager.Inst.Player;
+        
+        Init();
+        StartCoroutine(LifeOver(lifeTime));
+        //Init() 함수로 초기화 적용 시키기.. 
     }
     private void Start()
     {
@@ -48,12 +66,19 @@ public class AttackBase : PooledObject
         initialPosition = this.transform.position;
 
     }
+
+
     void Update()
     {
-        AddGravity();
-
+        //AddGravity();
     }
-
+    private void FixedUpdate()
+    {
+        transform.Translate(Time.fixedDeltaTime * speed * dir);
+        Rigidbody2D bullertRB = this.GetComponent<Rigidbody2D>();
+        bullertRB.MovePosition(bullertRB.position + dir * speed * Time.fixedDeltaTime);
+        bullertRB.velocity = new Vector3(dir.x * speed, dir.y * speed);
+    }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -67,14 +92,7 @@ public class AttackBase : PooledObject
         }
     }
 
-
-    private void OnEnable()
-    {
-        elapsedTime = 0.0f;
-        isDropping = false;
-        StartCoroutine(LifeOver(lifeTime));
-        //Init() 함수로 초기화 적용 시키기.. 
-    }
+  
 
     protected virtual void TearDie(Collision2D collision)
     {
@@ -101,7 +119,8 @@ public class AttackBase : PooledObject
     protected virtual void AddGravity()
     {
         elapsedTime += Time.deltaTime;
-        transform.Translate(Time.deltaTime * speed * dir);
+        
+        
         isDropping = true;
         if (!isDropping)
         {
@@ -148,10 +167,20 @@ public class AttackBase : PooledObject
 
     private void StartDrop()
     {
-
         elapsedTime = 0.0f;
-        isDropping = true;
+        isDropping = true;        
+    }
 
+    /// <summary>
+    /// 총알 능력치 초기화
+    /// </summary>
+    private void Init()
+    {
+        this.Damage = player.Damage;
+        lifeTime =  player.range;
+
+        isDropping = false;
+        elapsedTime = 0.0f;
     }
 }
 
