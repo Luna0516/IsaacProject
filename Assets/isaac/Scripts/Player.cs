@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면 공속
     /// </summary>
+    [SerializeField]
     float tearSpeed = 0.0f;
     /// <summary>
     /// 눈물 딜레이
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 실제 공격속도
     /// </summary>
+    [SerializeField]
     float tearFire;
     /// <summary>
     /// 연사맥스
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 사거리
     /// </summary>
+    [SerializeField]
     float range = 6.5f;
     /// <summary>
     /// 눈물이 날아가는 속도
@@ -57,6 +60,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 이동속도
     /// </summary>
+    [SerializeField]
     float speed = 2.5f;
     /// <summary>
     /// 최대이동속도
@@ -90,14 +94,16 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
     /// </summary>
-    public Vector2 AttackDir {
+    public Vector2 AttackDir 
+    {
         get => headDir;
     }
 
     /// <summary>
     /// 총알 능력치 초기화때 쓸 프로퍼티, 플레이어 이동 방향
     /// </summary>
-    public Vector2 MoveDir {
+    public Vector2 MoveDir
+    {
         get => bodyDir;
     }
 
@@ -117,6 +123,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 눈물에 넣어줄 데미지
     /// </summary>
+    [SerializeField]
     float damage;
     /// <summary>
     /// 기본 데미지
@@ -213,7 +220,6 @@ public class Player : MonoBehaviour
         headAni = head.GetComponent<Animator>();
         health = maxHealth;
         Speed = 2.5f;
-        TearSpeed = 2.73f;
         TearSpeedCaculate();
     }
     private void Update()
@@ -406,14 +412,14 @@ public class Player : MonoBehaviour
     }
     void TearSpeedCaculate()
     {
+        tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
+        tearDelay = (float)Math.Round(tearDelay, 1);
         TearSpeed = 30 / (tearDelay + 1);
         TearSpeed = (float)Math.Round(tearSpeed, 2);
         if (TearSpeed >= fireRate)
         {
             TearSpeed = fireRate;
         }
-        tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
-        tearDelay = (float)Math.Round(tearDelay, 1);
         tearFire = 1 / TearSpeed;
         tearFire = (float)Math.Round(tearFire, 2);
         
