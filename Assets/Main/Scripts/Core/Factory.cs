@@ -69,6 +69,7 @@ public class Factory : Singleton<Factory>
 				break;
             case PoolObjectType.EnemyShit:
                 result = shitPool?.GetObject()?.gameObject;
+                break;
             case PoolObjectType.PenetrationTear:
                 result = penetrationTearPool?.GetObject(spawn)?.gameObject;
                 break;
