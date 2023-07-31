@@ -10,8 +10,8 @@ public class AttackBase : PooledObject
     public float lifeTime = 5.0f;       // 총알 사거리 (지속시간)
     public float rangeToLife = 2.5f;    // 플레이어 눈물 사거리 lifeTime(초)으로 나눌 수치 
     public float dropDuration = 10.0f;  // 밑으로 떨어지는 시간
-    public float dropDistance = 1.0f;   // 밑으로 떨어지는 거리
     public float startGravity = 0.8f;   // 중력적용 시점
+    public float gravityScale = 3.0f;   // 중력 정도
 
     public Vector2 moveDir = Vector2.zero;  // 이동 방향
     public Vector2 dir = Vector2.right;     // 발사 방향
@@ -54,10 +54,9 @@ public class AttackBase : PooledObject
     }
 
     private void FixedUpdate()
-    {
-        Rigidbody2D bullertRB = this.GetComponent<Rigidbody2D>();                       // 눈물 rigidbody
-        bullertRB.MovePosition(bullertRB.position + dir * speed * Time.fixedDeltaTime); // 눈물 날아가는 속도 및 방향
-        bullertRB.velocity = new Vector3(dir.x * speed, dir.y * speed);                 // 눈물 velocity 적용
+    {                      
+        rigidBody.MovePosition(rigidBody.position + dir * speed * Time.fixedDeltaTime); // 눈물 날아가는 속도 및 방향
+        rigidBody.velocity = new Vector3(dir.x * speed, dir.y * speed);                 // 눈물 velocity 적용
     }
 
     /// <summary>
@@ -66,12 +65,9 @@ public class AttackBase : PooledObject
     /// <param name="collision"></param>
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {
-            TearDie(collision);
-        }
-        else if (collision.gameObject.CompareTag("Wall"))
-        {
+            StopAllCoroutines();
             TearDie(collision);
         }
     }
@@ -82,16 +78,8 @@ public class AttackBase : PooledObject
     /// <param name="collision"></param>
     protected virtual void TearDie(Collision2D collision)
     {
-        if (lifeTime < 0)
-        {
             Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
             gameObject.SetActive(false);
-        }
-        else
-        {
-            Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
-            gameObject.SetActive(false);
-        }
     }
 
     /// <summary>
@@ -104,7 +92,7 @@ public class AttackBase : PooledObject
         dropDuration = lifeTime * startGravity;                 // 눈물 중력 적용 되는 시간 (길이)
         yield return new WaitForSeconds(dropDuration);          
         
-        rigidBody.gravityScale = 3.0f;                          // 눈물에 적용될 중력 수치
+        rigidBody.gravityScale = gravityScale;                          // 눈물에 적용될 중력 수치
         yield return new WaitForSeconds(delay - dropDuration);
         
         Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
@@ -116,11 +104,13 @@ public class AttackBase : PooledObject
     /// </summary>
     private void Init()
     {
+        speed = player.TearSpeed * 0.5f;
         this.Damage = player.Damage;
-        lifeTime =  (player.range/rangeToLife);
+        lifeTime =  (player.Range/rangeToLife);
         moveDir = player.MoveDir;
         dir = player.AttackDir;
-        rigidBody.gravityScale = 0.0f; 
+        rigidBody.gravityScale = 0.0f;
+        dir += moveDir * 0.1f;
     }
 }
 

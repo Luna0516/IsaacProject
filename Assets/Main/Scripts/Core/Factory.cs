@@ -6,6 +6,7 @@ using UnityEngine;
 public enum PoolObjectType
 {
     Tear,
+    PenetrationTear,
     TearExplosion,
     EnemyBullet,
     EnemyBlood,
@@ -15,6 +16,7 @@ public enum PoolObjectType
 public class Factory : Singleton<Factory>
 {
     TearPool tearPool;
+    PenetrationTearPool penetrationTearPool;
     TearExplosionPool tearExplosionPool;
     BloodPool bloodPool;
     MeatPool meatPool;
@@ -27,11 +29,13 @@ public class Factory : Singleton<Factory>
         tearExplosionPool = GetComponentInChildren<TearExplosionPool>();
 		bloodPool = GetComponentInChildren<BloodPool>();
         meatPool = GetComponentInChildren<MeatPool>();
+        penetrationTearPool = GetComponentInChildren<PenetrationTearPool>();
 
 		tearPool?.Initialize();
         tearExplosionPool?.Initialize();
         bloodPool?.Initialize();
         meatPool?.Initialize();
+        penetrationTearPool?.Initialize();
     }
 
     /// <summary>
@@ -60,6 +64,11 @@ public class Factory : Singleton<Factory>
 				result = meatPool?.GetObject(spawn)?.gameObject;
 
 				break;
+
+            case PoolObjectType.PenetrationTear:
+                result = penetrationTearPool?.GetObject(spawn)?.gameObject;
+
+                break;
             default:
                 break;
         }

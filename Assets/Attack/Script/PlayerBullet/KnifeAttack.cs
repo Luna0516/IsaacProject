@@ -7,7 +7,7 @@ public class KnifeAttack : AttackBase
 
     
     
-    Vector2 startPoint = Vector2.zero;
+    /*Vector2 startPoint = Vector2.zero;
     Player player;
 
     bool isReturning = false;
@@ -38,7 +38,7 @@ public class KnifeAttack : AttackBase
     {
         base.OnCollisionEnter2D(collision);
     }
-    /*protected override void AddGravity()
+    *//*protected override void AddGravity()
     {
         startPoint = player.transform.position;
         player.range = 3.0f;
@@ -58,7 +58,7 @@ public class KnifeAttack : AttackBase
         }
 
 
-    }*/
+    }*//*
     protected override void TearDie(Collision2D collision)
     {
         //base.TearDie(collision);
@@ -73,6 +73,6 @@ public class KnifeAttack : AttackBase
 
         
     }
-
+*/
 
 }
