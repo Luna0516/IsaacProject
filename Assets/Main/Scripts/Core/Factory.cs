@@ -36,6 +36,8 @@ public class Factory : Singleton<Factory>
         bloodPool?.Initialize();
         meatPool?.Initialize();
         shitPool?.Initialize();
+
+
     }
 
     /// <summary>

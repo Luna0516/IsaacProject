@@ -8,34 +8,72 @@ public class Shitblood : PooledObject
     GameManager manager;
     public Color clo;
     SpriteRenderer spriteRneder;
-    public float lifeTime=4;
+    public float lifeTime;
+    float lifeCopy;
     int randomindex = 0;
+
+    public bool shitDead = false;
 
     private void Awake()
     {
         manager = GameManager.Inst;
         spriteRneder = GetComponent<SpriteRenderer>();
+        spriteRneder.color = clo;
     }
 
     private void OnEnable()
     {
+        ShitDie += shitDie;
+        lifeTime = 4f;
+        lifeCopy = lifeTime;
         randomindex = Random.Range(0, manager.BloodSprite.Length);
         spriteRneder.sprite = manager.BloodSprite[randomindex];
-        float guage = Random.Range(0.2f,1);
-        clo.a = guage;
-        spriteRneder.color = clo;
+
+        EnamvleChoosAction(shitDead);
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        ShitDie -= shitDie;
+        shitDead = false;
     }
 
-    public void disapear()
+    void EnamvleChoosAction(bool DeadAction)
     {
+        if(DeadAction)
+        {
+            DieShitBlood();
+        }
+        else
+        {
+            StartCoroutine(disapear());
+        }
+    }
+
+    public IEnumerator disapear()
+    {
+        while (true)
+        {
             lifeTime -= Time.deltaTime;
-            float guage = Mathf.Lerp(0f, 1f, lifeTime / 4);
+            yield return null;
+            float guage = Mathf.Lerp(0f, 1.1f, lifeTime / lifeCopy);
             clo.a = guage;
             spriteRneder.color = clo;
             if (lifeTime < 0)
             {
                 this.gameObject.SetActive(false);
             }
-        
+        }
+    }
+
+    public void DieShitBlood()
+    {
+        float guage = Random.Range(0.2f, 1);
+        clo.a = guage;
+        spriteRneder.color = clo;
+    }
+    void shitDie()
+    {
+        shitDead = true;
     }
 }
