@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 6587678324038758110}
   m_Layer: 0
   m_Name: shit
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   speed: 5
   MaxHP: 5
   bloodColor: {r: 0.33333334, g: 1, b: 0, a: 1}
-  power: 1
+  power: 3
   coolTime: 5
   flyer: {fileID: 2813975671658389336, guid: 82b7673510b17b047a6a76a874272f54, type: 3}
 --- !u!212 &6587678324038758107

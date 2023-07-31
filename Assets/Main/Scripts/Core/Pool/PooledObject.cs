@@ -12,7 +12,7 @@ public class PooledObject : MonoBehaviour
     /// 이 게임 오브젝트가 비활성화 될 때 실행되는 델리게이트
     /// </summary>
     public Action onDisable;
-    public Action ShitDie;
+
 
     protected virtual void OnDisable()
     {
