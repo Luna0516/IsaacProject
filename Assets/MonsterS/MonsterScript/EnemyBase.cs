@@ -110,7 +110,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Hitten()
     {
         HP -= damage;
-        //Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
+        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
     }
 
     protected IEnumerator damaged(SpriteRenderer sprite, SpriteRenderer sprite1)

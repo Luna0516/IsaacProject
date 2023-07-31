@@ -13,9 +13,11 @@ public class Shitblood : PooledObject
     int randomindex = 0;
 
     public bool shitDead = false;
+    shit? shitobj;
 
     private void Awake()
     {
+
         manager = GameManager.Inst;
         spriteRneder = GetComponent<SpriteRenderer>();
         spriteRneder.color = clo;
@@ -23,7 +25,8 @@ public class Shitblood : PooledObject
 
     private void OnEnable()
     {
-        ShitDie += shitDie;
+		shitobj = FindObjectOfType<shit>();
+		shitobj.shitDead += shitDie;
         lifeTime = 4f;
         lifeCopy = lifeTime;
         randomindex = Random.Range(0, manager.BloodSprite.Length);
@@ -34,7 +37,7 @@ public class Shitblood : PooledObject
     protected override void OnDisable()
     {
         base.OnDisable();
-        ShitDie -= shitDie;
+		shitobj.shitDead -= shitDie;
         shitDead = false;
     }
 

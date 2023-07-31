@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 using static PlayerAction;
 
 public class shit : EnemyBase
@@ -19,7 +20,8 @@ public class shit : EnemyBase
     WaitForSeconds waiting;
     float NextStateTime = 1;
 
-    PooledObject shitAction;
+    public Action shitDead;
+
 
     protected override void Awake()
     {
@@ -83,7 +85,7 @@ public class shit : EnemyBase
                 Stopping();
                 NextStateTime = coolTime;
                 yield return waiting;
-                coolTime = Random.Range(3, 5);
+                coolTime = UnityEngine.Random.Range(3, 5);
             }
         }
     }
@@ -99,11 +101,11 @@ public class shit : EnemyBase
 
     protected override void Die()
     {
-        shitAction.ShitDie?.Invoke();
+		shitDead?.Invoke();
         bloodshatter();
-        int rand = Random.Range(2, 5);
-        float ranX = Random.Range(-1, 1.1f);
-        float ranY = Random.Range(-1, 1.1f);
+        int rand = UnityEngine.Random.Range(2, 5);
+        float ranX = UnityEngine.Random.Range(-1, 1.1f);
+        float ranY = UnityEngine.Random.Range(-1, 1.1f);
 
         Vector2 pos = new Vector2(ranX, ranY);
         for (int i = 0; i < rand; i++)
@@ -125,5 +127,10 @@ public class shit : EnemyBase
             GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyShit, bloodpos);
         }
     }
+	protected override void Hitten()
+	{
+		base.Hitten();
+        StartCoroutine(damaged(spriteRenderer));
+	}
 
 }
