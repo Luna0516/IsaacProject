@@ -11,13 +11,9 @@ public class Player : MonoBehaviour
 {
     #region 눈물관련
     /// <summary>
-    /// 눈물 오브젝트
-    /// </summary>
-    // public GameObject Tear;
-    /// <summary>
     /// 화면 공속
     /// </summary>
-    public float tearSpeed = 0.0f;
+    float tearSpeed = 0.0f;
     /// <summary>
     /// 눈물 딜레이
     /// </summary>
@@ -33,7 +29,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 실제 공격속도
     /// </summary>
-    public float tearFire;
+    float tearFire;
     /// <summary>
     /// 연사맥스
     /// </summary>
@@ -45,11 +41,11 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 사거리
     /// </summary>
-    public float range;
+    float range = 6.5f;
     /// <summary>
     /// 눈물이 날아가는 속도
     /// </summary>
-    public float shotSpeed = 1.0f;
+    float shotSpeed = 1.0f;
     /// <summary>
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
@@ -61,7 +57,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 이동속도
     /// </summary>
-    public float speed = 2.5f;
+    float speed = 2.5f;
     /// <summary>
     /// 최대이동속도
     /// </summary>
@@ -121,7 +117,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 눈물에 넣어줄 데미지
     /// </summary>
-    public float damage;
+    float damage;
     /// <summary>
     /// 기본 데미지
     /// </summary>
@@ -217,6 +213,7 @@ public class Player : MonoBehaviour
         headAni = head.GetComponent<Animator>();
         health = maxHealth;
         Speed = 2.5f;
+        TearSpeed = 2.73f;
         TearSpeedCaculate();
     }
     private void Update()
@@ -303,9 +300,7 @@ public class Player : MonoBehaviour
                 {
                     speed = maximumSpeed;
                 }
-                
                 TearSpeedCaculate();
-                
             }
         }
     }
@@ -315,7 +310,9 @@ public class Player : MonoBehaviour
         head.gameObject.SetActive(false);
         getItemSR.sprite = sprite;
         inputAction.Player.Shot.Disable();
+
         yield return new WaitForSeconds(0.9f);
+
         inputAction.Player.Shot.Enable();
         getItemSR.sprite = null;
         head.gameObject.SetActive(true);
@@ -360,14 +357,6 @@ public class Player : MonoBehaviour
 
         GameObject tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
 
-        //tear.transform.position = tearSpawn.position;
-
-        //AttackBase tearComp = tear.GetComponent<AttackBase>();
-
-        //tearComp.damage = Damage;
-
-        //tearComp.dir = headDir;
-
         currentTearDelay = tearFire; // 딜레이 시간 초기화
 
         yield return new WaitForSeconds(tearFire);
@@ -395,11 +384,13 @@ public class Player : MonoBehaviour
     }
     IEnumerator InvisibleTime()
     {
+        inputAction.Player.Shot.Disable();
         collider.enabled = false;
         currentInvisible = invisibleTime;
 
         yield return new WaitForSeconds(currentInvisible);
 
+        inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
         collider.enabled = true;
     }
@@ -415,7 +406,6 @@ public class Player : MonoBehaviour
     }
     void TearSpeedCaculate()
     {
-        
         TearSpeed = 30 / (tearDelay + 1);
         TearSpeed = (float)Math.Round(tearSpeed, 2);
         if (TearSpeed >= fireRate)
@@ -435,7 +425,6 @@ public class Player : MonoBehaviour
         inputAction.Player.Disable();
         collider.enabled = false;
         head.gameObject.SetActive(false);
-        GameManager.Inst.PauseGame();
     }
 }
 

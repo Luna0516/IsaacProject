@@ -117,7 +117,7 @@ public class AttackBase : PooledObject
     private void Init()
     {
         this.Damage = player.Damage;
-        lifeTime =  (player.range/rangeToLife);
+        lifeTime =  (player.Range/rangeToLife);
         moveDir = player.MoveDir;
         dir = player.AttackDir;
         rigidBody.gravityScale = 0.0f; 
