@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static PlayerAction;
 
 public class shit : EnemyBase
 {
@@ -11,19 +12,17 @@ public class shit : EnemyBase
     Vector3 Headto;
     public Color bloodColor = Color.white;
     public float power = 1f;
-    public float coolTime=5;
+    public float coolTime = 5;
     float coolTimeCopy;
     public GameObject flyer;
     bool Attacking = false;
     WaitForSeconds waiting;
     float NextStateTime = 1;
 
+    PooledObject shitAction;
 
-    GameObject shitiything;
-    Shitblood shitman;
     protected override void Awake()
     {
-
         base.Awake();
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -32,18 +31,18 @@ public class shit : EnemyBase
     }
     private void Start()
     {
-        shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
+
         StartCoroutine(attackcool());
     }
     private void Update()
     {
-        Headto = (target.position-transform.position).normalized;
-        if(Headto.x<0)
+        Headto = (target.position - transform.position).normalized;
+        if (Headto.x < 0)
         {
             spriteRenderer.flipX = true;
         }
-        else 
-        { spriteRenderer.flipX = false; }     
+        else
+        { spriteRenderer.flipX = false; }
     }
 
     protected override void OnEnable()
@@ -56,7 +55,7 @@ public class shit : EnemyBase
     void Attack()
     {
         Attacking = true;
-        rig.AddForce(Headto*power,ForceMode2D.Impulse);
+        rig.AddForce(Headto * power, ForceMode2D.Impulse);
     }
     private void Stopping()
     {
@@ -66,7 +65,7 @@ public class shit : EnemyBase
     IEnumerator attackcool()
     {
         while (true)
-        {          
+        {
             if (coolTime > 0)
             {
                 coolTime -= Time.deltaTime;
@@ -90,10 +89,9 @@ public class shit : EnemyBase
     }
     IEnumerator runningShit()
     {
-        while(Attacking)
+        while (Attacking)
         {
-            shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
-
+            GameObject shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
             yield return new WaitForSeconds(0.02f);
 
         }
@@ -101,15 +99,16 @@ public class shit : EnemyBase
 
     protected override void Die()
     {
+        shitAction.ShitDie?.Invoke();
         bloodshatter();
         int rand = Random.Range(2, 5);
         float ranX = Random.Range(-1, 1.1f);
         float ranY = Random.Range(-1, 1.1f);
 
-        Vector2 pos = new Vector2(ranX,ranY);
-        for(int i = 0; i<rand; i++)
+        Vector2 pos = new Vector2(ranX, ranY);
+        for (int i = 0; i < rand; i++)
         {
-        GameObject fly = Instantiate(flyer,(Vector2)this.transform.position + pos, this.transform.rotation);
+            GameObject fly = Instantiate(flyer, (Vector2)this.transform.position + pos, this.transform.rotation);
         }
         Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
