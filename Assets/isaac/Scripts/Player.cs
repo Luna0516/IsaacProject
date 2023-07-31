@@ -112,12 +112,13 @@ public class Player : MonoBehaviour
     /// 현재 체력
     /// </summary>
     public float health = 1;
-    #endregion
-    #region 데미지
-    /// <summary>
-    /// 눈물에 넣어줄 데미지
-    /// </summary>
-    float damage;
+	#endregion
+	#region 데미지
+	/// <summary>
+	/// 눈물에 넣어줄 데미지
+	/// </summary>
+	[SerializeField]
+	float damage;
     /// <summary>
     /// 기본 데미지
     /// </summary>
