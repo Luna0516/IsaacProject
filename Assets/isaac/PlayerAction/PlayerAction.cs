@@ -24,185 +24,40 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     ""name"": ""PlayerAction"",
     ""maps"": [
         {
-            ""name"": ""Move"",
-            ""id"": ""bb6621d9-7e0a-4b5d-af78-df2582bc5d48"",
+            ""name"": ""Player"",
+            ""id"": ""9a0f0b33-7a59-4717-96ca-69d8835616f4"",
             ""actions"": [
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""Move"",
                     ""type"": ""Value"",
-                    ""id"": ""e614f958-5f09-416d-8515-e7dc5344d0d4"",
+                    ""id"": ""f40084ff-515d-44b6-ac31-45a4928958df"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""f366558c-20e3-4597-8f23-109a546f73ef"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASD"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""93f2a104-accc-4748-a04a-a6dff92f2d51"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""80a7afd8-9466-422f-908e-fd03b9c1565b"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""350c23b8-6c69-451c-8652-95ba9831b24c"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""69ca12e2-f87f-4fdb-bcea-5db9eed4b70e"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASD"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""Shot"",
-            ""id"": ""052902ad-be52-4496-b129-03d0ec6c0231"",
-            ""actions"": [
-                {
-                    ""name"": ""Cross"",
+                    ""name"": ""Shot"",
                     ""type"": ""Value"",
-                    ""id"": ""88bd4ef8-97ec-41eb-be2b-9f92c6c4273e"",
+                    ""id"": ""e7263374-c613-450f-b7e8-9015068581ce"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""dc02a209-de39-459e-bb4b-45e4d1292be3"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cross"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
                 },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""572f7d10-d0ec-4478-a52b-e0a493cbc392"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cross"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""54a89890-66c5-4068-b2ce-7a96472279e9"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cross"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""2aa15237-ff8b-4260-81b9-ed04279d2d92"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cross"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""1de57a72-744e-499a-8023-73119be075e1"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cross"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""Bomb"",
-            ""id"": ""02ba8c7e-2e1f-4997-9fbf-c0631fac5df4"",
-            ""actions"": [
                 {
                     ""name"": ""Bomb"",
                     ""type"": ""Button"",
-                    ""id"": ""d1a08402-9e93-4ec5-862b-aaa87c15390b"",
+                    ""id"": ""980701c1-6f02-4c4d-af39-ad224da59cac"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""9b4cf0ec-98e5-4261-bb60-2ac007600be0"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Bomb"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Active"",
-            ""id"": ""cc1f08c8-5131-4729-b9c1-2c45ae941cb7"",
-            ""actions"": [
+                },
                 {
                     ""name"": ""Active"",
                     ""type"": ""Button"",
-                    ""id"": ""f1d1d195-35ff-4faf-8ac9-a98aa5bcda1a"",
+                    ""id"": ""1159a11b-1760-4ec4-835c-f445d216dcc5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -212,32 +67,153 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""c991d9ef-da30-404b-97ba-cf41bde009f6"",
+                    ""id"": ""d4030489-bf8b-4d7b-9bd5-e0fca0d249b3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Bomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2e359d9-1b03-4664-92c7-035656677858"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KM"",
                     ""action"": ""Active"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""c60bfed9-4072-4c3a-875c-52b6e2ee0d10"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c566f200-64f5-4269-b41c-8ebaec3875de"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4c5c0e96-6418-4983-9169-86aca4acbccb"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""92b49b41-4cbd-40cc-9a90-2b4d8a51b325"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e38b85e2-bf3c-49d4-b507-7569514fff29"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrow"",
+                    ""id"": ""421e859d-ed53-4f8d-96a8-6c288eafdebe"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shot"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2db9734d-1d6c-4057-a787-7c315bdf4824"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Shot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""bf491995-43f2-455c-bc96-a9da0d86990f"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Shot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b0bdf2ae-d89e-47ee-b732-2f7f104cc467"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Shot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1c91751c-712a-40fb-b1c2-eea2bc14147f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KM"",
+                    ""action"": ""Shot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""KM"",
+            ""bindingGroup"": ""KM"",
+            ""devices"": []
+        }
+    ]
 }");
-        // Move
-        m_Move = asset.FindActionMap("Move", throwIfNotFound: true);
-        m_Move_WASD = m_Move.FindAction("WASD", throwIfNotFound: true);
-        // Shot
-        m_Shot = asset.FindActionMap("Shot", throwIfNotFound: true);
-        m_Shot_Cross = m_Shot.FindAction("Cross", throwIfNotFound: true);
-        // Bomb
-        m_Bomb = asset.FindActionMap("Bomb", throwIfNotFound: true);
-        m_Bomb_Bomb = m_Bomb.FindAction("Bomb", throwIfNotFound: true);
-        // Active
-        m_Active = asset.FindActionMap("Active", throwIfNotFound: true);
-        m_Active_Active = m_Active.FindAction("Active", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
+        m_Player_Bomb = m_Player.FindAction("Bomb", throwIfNotFound: true);
+        m_Player_Active = m_Player.FindAction("Active", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -296,203 +272,89 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Move
-    private readonly InputActionMap m_Move;
-    private List<IMoveActions> m_MoveActionsCallbackInterfaces = new List<IMoveActions>();
-    private readonly InputAction m_Move_WASD;
-    public struct MoveActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Shot;
+    private readonly InputAction m_Player_Bomb;
+    private readonly InputAction m_Player_Active;
+    public struct PlayerActions
     {
         private @PlayerAction m_Wrapper;
-        public MoveActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @WASD => m_Wrapper.m_Move_WASD;
-        public InputActionMap Get() { return m_Wrapper.m_Move; }
+        public PlayerActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Shot => m_Wrapper.m_Player_Shot;
+        public InputAction @Bomb => m_Wrapper.m_Player_Bomb;
+        public InputAction @Active => m_Wrapper.m_Player_Active;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MoveActions set) { return set.Get(); }
-        public void AddCallbacks(IMoveActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_MoveActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_MoveActionsCallbackInterfaces.Add(instance);
-            @WASD.started += instance.OnWASD;
-            @WASD.performed += instance.OnWASD;
-            @WASD.canceled += instance.OnWASD;
-        }
-
-        private void UnregisterCallbacks(IMoveActions instance)
-        {
-            @WASD.started -= instance.OnWASD;
-            @WASD.performed -= instance.OnWASD;
-            @WASD.canceled -= instance.OnWASD;
-        }
-
-        public void RemoveCallbacks(IMoveActions instance)
-        {
-            if (m_Wrapper.m_MoveActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IMoveActions instance)
-        {
-            foreach (var item in m_Wrapper.m_MoveActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_MoveActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public MoveActions @Move => new MoveActions(this);
-
-    // Shot
-    private readonly InputActionMap m_Shot;
-    private List<IShotActions> m_ShotActionsCallbackInterfaces = new List<IShotActions>();
-    private readonly InputAction m_Shot_Cross;
-    public struct ShotActions
-    {
-        private @PlayerAction m_Wrapper;
-        public ShotActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Cross => m_Wrapper.m_Shot_Cross;
-        public InputActionMap Get() { return m_Wrapper.m_Shot; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ShotActions set) { return set.Get(); }
-        public void AddCallbacks(IShotActions instance)
-        {
-            if (instance == null || m_Wrapper.m_ShotActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_ShotActionsCallbackInterfaces.Add(instance);
-            @Cross.started += instance.OnCross;
-            @Cross.performed += instance.OnCross;
-            @Cross.canceled += instance.OnCross;
-        }
-
-        private void UnregisterCallbacks(IShotActions instance)
-        {
-            @Cross.started -= instance.OnCross;
-            @Cross.performed -= instance.OnCross;
-            @Cross.canceled -= instance.OnCross;
-        }
-
-        public void RemoveCallbacks(IShotActions instance)
-        {
-            if (m_Wrapper.m_ShotActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IShotActions instance)
-        {
-            foreach (var item in m_Wrapper.m_ShotActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_ShotActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public ShotActions @Shot => new ShotActions(this);
-
-    // Bomb
-    private readonly InputActionMap m_Bomb;
-    private List<IBombActions> m_BombActionsCallbackInterfaces = new List<IBombActions>();
-    private readonly InputAction m_Bomb_Bomb;
-    public struct BombActions
-    {
-        private @PlayerAction m_Wrapper;
-        public BombActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Bomb => m_Wrapper.m_Bomb_Bomb;
-        public InputActionMap Get() { return m_Wrapper.m_Bomb; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(BombActions set) { return set.Get(); }
-        public void AddCallbacks(IBombActions instance)
-        {
-            if (instance == null || m_Wrapper.m_BombActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_BombActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Shot.started += instance.OnShot;
+            @Shot.performed += instance.OnShot;
+            @Shot.canceled += instance.OnShot;
             @Bomb.started += instance.OnBomb;
             @Bomb.performed += instance.OnBomb;
             @Bomb.canceled += instance.OnBomb;
-        }
-
-        private void UnregisterCallbacks(IBombActions instance)
-        {
-            @Bomb.started -= instance.OnBomb;
-            @Bomb.performed -= instance.OnBomb;
-            @Bomb.canceled -= instance.OnBomb;
-        }
-
-        public void RemoveCallbacks(IBombActions instance)
-        {
-            if (m_Wrapper.m_BombActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IBombActions instance)
-        {
-            foreach (var item in m_Wrapper.m_BombActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_BombActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public BombActions @Bomb => new BombActions(this);
-
-    // Active
-    private readonly InputActionMap m_Active;
-    private List<IActiveActions> m_ActiveActionsCallbackInterfaces = new List<IActiveActions>();
-    private readonly InputAction m_Active_Active;
-    public struct ActiveActions
-    {
-        private @PlayerAction m_Wrapper;
-        public ActiveActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Active => m_Wrapper.m_Active_Active;
-        public InputActionMap Get() { return m_Wrapper.m_Active; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ActiveActions set) { return set.Get(); }
-        public void AddCallbacks(IActiveActions instance)
-        {
-            if (instance == null || m_Wrapper.m_ActiveActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_ActiveActionsCallbackInterfaces.Add(instance);
             @Active.started += instance.OnActive;
             @Active.performed += instance.OnActive;
             @Active.canceled += instance.OnActive;
         }
 
-        private void UnregisterCallbacks(IActiveActions instance)
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Shot.started -= instance.OnShot;
+            @Shot.performed -= instance.OnShot;
+            @Shot.canceled -= instance.OnShot;
+            @Bomb.started -= instance.OnBomb;
+            @Bomb.performed -= instance.OnBomb;
+            @Bomb.canceled -= instance.OnBomb;
             @Active.started -= instance.OnActive;
             @Active.performed -= instance.OnActive;
             @Active.canceled -= instance.OnActive;
         }
 
-        public void RemoveCallbacks(IActiveActions instance)
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_ActiveActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IActiveActions instance)
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_ActiveActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_ActiveActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public ActiveActions @Active => new ActiveActions(this);
-    public interface IMoveActions
+    public PlayerActions @Player => new PlayerActions(this);
+    private int m_KMSchemeIndex = -1;
+    public InputControlScheme KMScheme
     {
-        void OnWASD(InputAction.CallbackContext context);
+        get
+        {
+            if (m_KMSchemeIndex == -1) m_KMSchemeIndex = asset.FindControlSchemeIndex("KM");
+            return asset.controlSchemes[m_KMSchemeIndex];
+        }
     }
-    public interface IShotActions
+    public interface IPlayerActions
     {
-        void OnCross(InputAction.CallbackContext context);
-    }
-    public interface IBombActions
-    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnShot(InputAction.CallbackContext context);
         void OnBomb(InputAction.CallbackContext context);
-    }
-    public interface IActiveActions
-    {
         void OnActive(InputAction.CallbackContext context);
     }
 }

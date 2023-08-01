@@ -104,13 +104,13 @@ public class AttackBase : PooledObject
     /// </summary>
     private void Init()
     {
-        speed = player.TearSpeed * 0.5f;
+        speed = player.TearSpeed;
         this.Damage = player.Damage;
         lifeTime =  (player.Range/rangeToLife);
         moveDir = player.MoveDir;
         dir = player.AttackDir;
         rigidBody.gravityScale = 0.0f;
-        dir += moveDir * 0.1f;
+        dir += moveDir * 0.3f;
     }
 }
 

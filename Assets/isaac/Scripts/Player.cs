@@ -53,8 +53,6 @@ public class Player : MonoBehaviour
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
-
-    bool delayLimit = false;
     #endregion
     #region 이속
     /// <summary>
@@ -82,15 +80,13 @@ public class Player : MonoBehaviour
     SpriteRenderer getItemSR;
     // 몸 애니
     Animator bodyAni;
-    // 이동시 좌우 변경
-    SpriteRenderer bodySR;
     // 플레이어 액션
-    Test_InputAction inputAction;
+    PlayerAction inputAction;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
-
+    Rigidbody2D rigid;
     /// <summary>
     /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
     /// </summary>
@@ -107,7 +103,7 @@ public class Player : MonoBehaviour
         get => bodyDir;
     }
 
-    CircleCollider2D collider;
+    new CircleCollider2D collider;
     #endregion
     #region 체력
     /// <summary>
@@ -207,19 +203,20 @@ public class Player : MonoBehaviour
     #endregion
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
-        inputAction = new Test_InputAction();
+        inputAction = new PlayerAction();
         getItem = transform.GetChild(1);
         getItemSR = getItem.GetComponent<SpriteRenderer>();
         // 몸통 관련 항목
         body = transform.GetChild(2);
         bodyAni = body.GetComponent<Animator>();
-        bodySR = body.GetComponent<SpriteRenderer>();
         // 머리 관련 항목
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
         health = maxHealth;
         Speed = 2.5f;
+        Damage = 3.5f;
         TearSpeedCaculate();
     }
     private void Update()
@@ -241,9 +238,8 @@ public class Player : MonoBehaviour
         inputAction.Player.Shot.performed += OnFire;
         inputAction.Player.Shot.canceled += OnFire;
         inputAction.Player.Bomb.performed += SetBomb;
+        inputAction.Player.Active.performed += OnActive;
     }
-
-
     private void OnDisable()
     {
         inputAction.Player.Move.performed -= OnMove;
@@ -251,12 +247,17 @@ public class Player : MonoBehaviour
         inputAction.Player.Shot.performed -= OnFire;
         inputAction.Player.Shot.canceled -= OnFire;
         inputAction.Player.Bomb.performed -= SetBomb;
+        inputAction.Player.Active.performed -= OnActive;
         inputAction.Player.Disable();
     }
     private void SetBomb(InputAction.CallbackContext context)
     {
         bombObj = Instantiate(bombObj);
         bombObj.transform.position = transform.position;
+    }
+    private void OnActive(InputAction.CallbackContext context)
+    {
+        onUseActive?.Invoke();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -426,8 +427,8 @@ public class Player : MonoBehaviour
     }
     private void Die()
     {
-        bodyAni.SetTrigger("Die");
         StopAllCoroutines();
+        bodyAni.SetTrigger("Die");
         inputAction.Player.Disable();
         collider.enabled = false;
         head.gameObject.SetActive(false);
