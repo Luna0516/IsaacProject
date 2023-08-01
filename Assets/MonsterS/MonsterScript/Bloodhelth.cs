@@ -2,31 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bloodhelth : MonoBehaviour
+public class Bloodhelth : PooledObject
 {
-    Color clo;
-    SpriteRenderer spritealpha;
-    float lifeTime;
-    float thislifeTime;
+    GameManager manager;
+    public Color clo;
+    SpriteRenderer spriteRneder;
+    int randomindex=0;
 
     private void Awake()
     {
-        spritealpha = GetComponent<SpriteRenderer>();
+        manager = GameManager.Inst;
+        spriteRneder = GetComponent<SpriteRenderer>();   
+        clo=spriteRneder.color;
     }
-    private void Start()
+    private void OnEnable()
     {
-        lifeTime = Random.Range(8f, 15f);
-        clo = spritealpha.color;
-        thislifeTime = lifeTime;
+        randomindex = Random.Range(0, manager.BloodSprite.Length);
+        spriteRneder.sprite = manager.BloodSprite[randomindex];
+        float guage = Random.Range(0.2f, 1);
+        clo.a = guage;
+        spriteRneder.color = clo;
     }
-    private void Update()
-    {
-        clo.a = Mathf.Lerp(1f,0f, lifeTime/thislifeTime);
-        lifeTime -= Time.deltaTime;
-        if (lifeTime < 0 )
-        {
-            Destroy( this );
-        }
-    }
-
 }

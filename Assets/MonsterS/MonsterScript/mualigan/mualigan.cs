@@ -47,10 +47,7 @@ public class mualigan : EnemyBase
     protected override void Hitten()
     {
         base.Hitten();
-        StartCoroutine(damaged(headsprite,bodysprite));
+        if (this.gameObject.activeSelf)
+        { StartCoroutine(damaged(headsprite, bodysprite)); }
     }
-
-
-
-
 }

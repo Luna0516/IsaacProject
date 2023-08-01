@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class ItemBase : MonoBehaviour {
-    //Player player = null;
+    ActiveInventory activeInventory;
 
     protected Sprite sprite;
 
@@ -18,8 +18,16 @@ public class ItemBase : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>().sprite;
     }
 
+    void Die() {
+        DieEffect();
+    }
+    protected virtual void DieEffect() {
+
+    }
+
     private void OnEnable() {
         GameManager.Inst.LoadItem?.Invoke();
+        activeInventory = GameManager.Inst.ActiveInventory;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -30,10 +38,19 @@ public class ItemBase : MonoBehaviour {
                 Destroy(this.gameObject);
             }
             if (activeItem != null) {
+                
+                if(activeInventory.transform.childCount > 2) {
+                    GameObject active = activeInventory.transform.GetChild(2).gameObject;
+                    active.SetActive(true);
+                    active.transform.parent = null;
+                    active.transform.position = GameManager.Inst.Player.transform.position + Vector3.up * 1.5f;
+
+                }
+
                 setItem?.Invoke(activeItem);
-                GameObject obj = FindObjectOfType<ActiveInventory>().gameObject;
+
                 this.gameObject.SetActive(false);
-                this.transform.parent = obj.transform;
+                this.transform.parent = activeInventory.gameObject.transform;
             }
 
         }

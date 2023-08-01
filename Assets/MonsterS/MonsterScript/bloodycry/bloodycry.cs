@@ -12,10 +12,7 @@ public class bloodycry : EnemyBase
     Animator headanimator;
     Animator bodyanimator;
     IEnumerator startcor;
-
-
     bool moveactive=false;
-
     protected override void Awake()
     {
         base.Awake();
@@ -77,7 +74,10 @@ public class bloodycry : EnemyBase
     protected override void Hitten()
     {
         base.Hitten();
+        if(this.gameObject.activeSelf)
+        { 
         StartCoroutine(damaged(headsprite,bodysprite));
+        }
     }
     IEnumerator hittedanime()
     {

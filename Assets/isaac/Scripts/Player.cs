@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,13 +11,10 @@ public class Player : MonoBehaviour
 {
     #region 눈물관련
     /// <summary>
-    /// 눈물 오브젝트
-    /// </summary>
-    public GameObject Tear;
-    /// <summary>
     /// 화면 공속
     /// </summary>
-    public float tearSpeed = 2.73f;
+    [SerializeField]
+    float tearSpeed = 0.0f;
     /// <summary>
     /// 눈물 딜레이
     /// </summary>
@@ -30,33 +26,42 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 계산 공속
     /// </summary>
-    float attackSpeed;
+    float tearDelay;
+    /// <summary>
+    /// 실제 공격속도
+    /// </summary>
+    [SerializeField]
+    float tearFire;
     /// <summary>
     /// 연사맥스
     /// </summary>
-    float maxAttackSpeed = 1.0f;
+    float fireRate = 5.0f;
     /// <summary>
-    /// 최대연사수치 (연사맥스에 따라 수치 변함)
+    /// 아이템으로 인한 공속 증가치
     /// </summary>
-    float maximumTearSpeed = 5.0f;
+    float itemSpeed = 0.0f;
     /// <summary>
     /// 사거리
     /// </summary>
-    public float range;
+    [SerializeField]
+    float range = 6.5f;
     /// <summary>
     /// 눈물이 날아가는 속도
     /// </summary>
-    public float shotSpeed = 1.0f;
+    float shotSpeed = 1.0f;
     /// <summary>
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
+
+    bool delayLimit = false;
     #endregion
     #region 이속
     /// <summary>
     /// 이동속도
     /// </summary>
-    public float speed = 2.5f;
+    [SerializeField]
+    float speed = 2.5f;
     /// <summary>
     /// 최대이동속도
     /// </summary>
@@ -66,13 +71,15 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 폭탄 오브젝트
     /// </summary>
-    public GameObject BombObj;
+    public GameObject bombObj;
     // 머리
     Transform head;
     // 머리 애니
     Animator headAni;
     // 몸
     Transform body;
+    Transform getItem;
+    SpriteRenderer getItemSR;
     // 몸 애니
     Animator bodyAni;
     // 이동시 좌우 변경
@@ -83,6 +90,22 @@ public class Player : MonoBehaviour
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
+
+    /// <summary>
+    /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
+    /// </summary>
+    public Vector2 AttackDir 
+    {
+        get => headDir;
+    }
+
+    /// <summary>
+    /// 총알 능력치 초기화때 쓸 프로퍼티, 플레이어 이동 방향
+    /// </summary>
+    public Vector2 MoveDir
+    {
+        get => bodyDir;
+    }
 
     CircleCollider2D collider;
     #endregion
@@ -100,7 +123,8 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 눈물에 넣어줄 데미지
     /// </summary>
-    public float damage;
+    [SerializeField]
+    float damage;
     /// <summary>
     /// 기본 데미지
     /// </summary>
@@ -114,14 +138,14 @@ public class Player : MonoBehaviour
     /// </summary>
     float currentMultiDmg = 1.0f;
     // 데미지 적용시 예외 아이템
-    bool isGetItem169 = false;
-    bool isGetItem182 = false;
+    bool isGetPolyphemus = false;
+    bool isGetScaredHeart = false;
     #endregion
     #region 무적
     /// <summary>
     /// 무적시간
     /// </summary>
-    float invisibleTime = 0.9f;
+    float invisibleTime = 1.16f;
     /// <summary>
     /// 무적시간 초기화용
     /// </summary>
@@ -185,31 +209,29 @@ public class Player : MonoBehaviour
     {
         collider = GetComponent<CircleCollider2D>();
         inputAction = new Test_InputAction();
+        getItem = transform.GetChild(1);
+        getItemSR = getItem.GetComponent<SpriteRenderer>();
         // 몸통 관련 항목
-        body = transform.GetChild(1);
+        body = transform.GetChild(2);
         bodyAni = body.GetComponent<Animator>();
         bodySR = body.GetComponent<SpriteRenderer>();
         // 머리 관련 항목
-        head = transform.GetChild(2);
+        head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
         health = maxHealth;
+        Speed = 2.5f;
+        TearSpeedCaculate();
     }
     private void Update()
     {
-        Vector3 dir = new Vector3(bodyDir.x * speed * Time.deltaTime, bodyDir.y * speed * Time.deltaTime, 0f);
+        Vector3 dir = new Vector3(bodyDir.x * Speed * Time.deltaTime, bodyDir.y * Speed * Time.deltaTime, 0);
         transform.position += dir;
         currentTearDelay -= Time.deltaTime;
         currentInvisible -= Time.deltaTime;
-        
     }
     private void FixedUpdate()
     {
         ShootingTear();
-        attackSpeed = maxAttackSpeed / tearSpeed;
-        if (tearSpeed > maximumTearSpeed)
-        {
-            tearSpeed = maximumTearSpeed;
-        }
     }
     private void OnEnable()
     {
@@ -218,7 +240,9 @@ public class Player : MonoBehaviour
         inputAction.Player.Move.canceled += OnMove;
         inputAction.Player.Shot.performed += OnFire;
         inputAction.Player.Shot.canceled += OnFire;
+        inputAction.Player.Bomb.performed += SetBomb;
     }
+
 
     private void OnDisable()
     {
@@ -226,7 +250,13 @@ public class Player : MonoBehaviour
         inputAction.Player.Move.canceled -= OnMove;
         inputAction.Player.Shot.performed -= OnFire;
         inputAction.Player.Shot.canceled -= OnFire;
+        inputAction.Player.Bomb.performed -= SetBomb;
         inputAction.Player.Disable();
+    }
+    private void SetBomb(InputAction.CallbackContext context)
+    {
+        bombObj = Instantiate(bombObj);
+        bombObj.transform.position = transform.position;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -235,57 +265,62 @@ public class Player : MonoBehaviour
             Damaged();
             Debug.Log("적과 충돌/ 남은 체력 : " + health);
         }
+
         if (collision.gameObject.CompareTag("Item"))
         {
-            StartCoroutine(GetItem());
             Item passive = collision.gameObject.GetComponent<ItemBase>().passiveItem;
-            currentDmg += passive.Attack;
-            currentMultiDmg *= passive.MultiDmg;
-            // 데미지 적용시 예외 아이템 switch문
-            switch (passive.ItemNum)
+            StartCoroutine(GetItem(passive.Icon));
+            if (passive != null)
             {
-                case 169:
-                    isGetItem169 = true;
-                    break;
-                case 182:
-                    isGetItem182 = true;
-                    break;
-            }
-            if (passive.ItemNum == 169 || passive.ItemNum == 182)
-                currentDmg -= passive.Attack;
+                currentDmg += passive.Attack;
+                currentMultiDmg *= passive.MultiDmg;
+                Speed += passive.Speed;
+                Range += passive.Range;
+                ShotSpeed += passive.ShotSpeed;
+                itemSpeed += passive.TearSpeed;
+                // 데미지 적용시 예외 아이템 switch문
+                switch (passive.ItemNum)
+                {
+                    case 169:
+                        isGetPolyphemus = true;
+                        break;
+                    case 182:
+                        isGetScaredHeart = true;
+                        break;
+                }
+                if (passive.ItemNum == 169 || passive.ItemNum == 182)
+                    currentDmg -= passive.Attack;
 
-            Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
+                Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
 
-            if (isGetItem169)
-                Damage += 4f;
+                if (isGetPolyphemus)
+                    Damage += 4f;
 
-            Damage *= currentMultiDmg;
+                Damage *= currentMultiDmg;
 
-            if (isGetItem182)
-                Damage += 1f;
-
-            Damage = (float)Math.Round(Damage, 2);
-
-            Speed += passive.Speed;
-            Range += passive.Range;
-            ShotSpeed += passive.ShotSpeed;
-            TearSpeed += passive.TearSpeed;
-            Debug.Log("currentDmg : " + currentDmg);
-            Debug.Log("currentmulti : " + currentMultiDmg);
-            Debug.Log("total damage : " + damage);
-            if (speed > maximumSpeed)
-            {
-                speed = maximumSpeed;
+                if (isGetScaredHeart)
+                    Damage += 1f;
+                
+                Damage = (float)Math.Round(Damage, 2);
+                if (speed > maximumSpeed)
+                {
+                    speed = maximumSpeed;
+                }
+                TearSpeedCaculate();
             }
         }
     }
-    IEnumerator GetItem()
+    IEnumerator GetItem(Sprite sprite)
     {
         bodyAni.SetTrigger("GetItem");
         head.gameObject.SetActive(false);
+        getItemSR.sprite = sprite;
+        inputAction.Player.Shot.Disable();
 
         yield return new WaitForSeconds(0.9f);
 
+        inputAction.Player.Shot.Enable();
+        getItemSR.sprite = null;
         head.gameObject.SetActive(true);
     }
     private void OnMove(InputAction.CallbackContext context)
@@ -324,21 +359,13 @@ public class Player : MonoBehaviour
     }
     IEnumerator TearDelay()
     {
-        GameObject tear = Instantiate(Tear);
-
         Transform tearSpawn = transform.GetChild(0);
 
-        tear.transform.position = tearSpawn.position;
+        GameObject tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
 
-        AttackBase tearComp = tear.GetComponent<AttackBase>();
+        currentTearDelay = tearFire; // 딜레이 시간 초기화
 
-        tearComp.damage = Damage;
-
-        tearComp.dir = headDir;
-
-        currentTearDelay = attackSpeed; // 딜레이 시간 초기화
-
-        yield return new WaitForSeconds(attackSpeed);
+        yield return new WaitForSeconds(tearFire);
     }
     private void Damaged()
     {
@@ -346,8 +373,15 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(InvisibleTime());
             health--;
-            head.gameObject.SetActive(false);
-            bodyAni.SetTrigger("Damage");
+            if(Health == 0)
+            {
+                Die();
+            }
+            else
+            {
+                bodyAni.SetTrigger("Damage");
+                head.gameObject.SetActive(false);
+            }
         }
         else if (Health <= 0)
         {
@@ -356,15 +390,17 @@ public class Player : MonoBehaviour
     }
     IEnumerator InvisibleTime()
     {
+        inputAction.Player.Shot.Disable();
         collider.enabled = false;
         currentInvisible = invisibleTime;
 
         yield return new WaitForSeconds(currentInvisible);
 
+        inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
         collider.enabled = true;
     }
-    void ShootingTear()
+    private void ShootingTear()
     {
         if (isShoot == true)
         {
@@ -374,6 +410,20 @@ public class Player : MonoBehaviour
             }
         }
     }
+    void TearSpeedCaculate()
+    {
+        tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
+        tearDelay = (float)Math.Round(tearDelay, 1);
+        TearSpeed = 30 / (tearDelay + 1);
+        TearSpeed = (float)Math.Round(tearSpeed, 2);
+        if (TearSpeed >= fireRate)
+        {
+            TearSpeed = fireRate;
+        }
+        tearFire = 1 / TearSpeed;
+        tearFire = (float)Math.Round(tearFire, 2);
+        
+    }
     private void Die()
     {
         bodyAni.SetTrigger("Die");
@@ -382,12 +432,7 @@ public class Player : MonoBehaviour
         collider.enabled = false;
         head.gameObject.SetActive(false);
     }
-    
-    // 내가 눈물 관련 할것
-    // 사거리, 공격속도, 방향, 샷스피드
-
-    // 리펙토링중 기본형태 유지
-    // 구조유지, 변수
 }
+
 
 

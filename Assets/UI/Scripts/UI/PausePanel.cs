@@ -41,7 +41,6 @@ public class PausePanel : MonoBehaviour {
         } else {
             GameManager.Inst.QuitPauseGame();
         }
-        isActivation = active;
         isControllable = active;
         backPack.SetActivation(active);
         pauseMenu.SetActivation(active);
@@ -51,5 +50,6 @@ public class PausePanel : MonoBehaviour {
         } else {
             //player.PlayerQuitPause();
         }
+        isActivation = active;
     }
 }

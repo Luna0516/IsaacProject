@@ -169,9 +169,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   lifeTime: 1.5
-  damage: 0
-  tearExplosion: {fileID: 0}
+  dropDuration: 2
+  dropDistance: 1
   dir: {x: 1, y: 0}
+  damage: 0
 --- !u!50 &2054492497
 Rigidbody2D:
   serializedVersion: 4
