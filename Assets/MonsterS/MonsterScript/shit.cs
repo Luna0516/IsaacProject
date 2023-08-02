@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using System;
 using static PlayerAction;
 
 public class shit : EnemyBase
@@ -19,8 +18,6 @@ public class shit : EnemyBase
     bool Attacking = false;
     WaitForSeconds waiting;
     float NextStateTime = 1;
-
-    Shitblood blood;
     bool shitDead=false;
     public bool ShitDead
     {
@@ -30,7 +27,7 @@ public class shit : EnemyBase
             shitDead = value;
         }
     }
-    public Action<bool> IsDead;
+    public System.Action<bool> IsDead;
     protected override void Awake()
     {
         base.Awake();
@@ -41,7 +38,6 @@ public class shit : EnemyBase
     }
     private void Start()
     {
-
         StartCoroutine(attackcool());
     }
     private void Update()
@@ -64,12 +60,14 @@ public class shit : EnemyBase
 
     void Attack()
     {
+        rig.isKinematic = false;
         Attacking = true;
         rig.AddForce(Headto * power, ForceMode2D.Impulse);
     }
     private void Stopping()
     {
         Attacking = false;
+        rig.isKinematic = true;
         rig.velocity = Vector2.zero;
     }
     IEnumerator attackcool()
@@ -93,7 +91,7 @@ public class shit : EnemyBase
                 Stopping();
                 NextStateTime = coolTime;
                 yield return waiting;
-                coolTime = UnityEngine.Random.Range(3, 5);
+                coolTime = Random.Range(3, 5);
             }
         }
     }
@@ -102,7 +100,11 @@ public class shit : EnemyBase
         while (Attacking)
         {
             GameObject shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
-            yield return new WaitForSeconds(0.02f);
+            Shitblood bloodobj = shitiything.GetComponent<Shitblood>();
+            IsDead += bloodobj.EnamvleChoosAction;
+            IsDead?.Invoke(false);
+            IsDead -= bloodobj.EnamvleChoosAction;
+            yield return new WaitForSeconds(0.05f);
 
         }
     }
@@ -129,8 +131,8 @@ public class shit : EnemyBase
             sellect = 5;
         }
 
-        float ranX = UnityEngine.Random.Range(-1, 1.1f);
-        float ranY = UnityEngine.Random.Range(-1, 1.1f);
+        float ranX = Random.Range(-1, 1.1f);
+        float ranY = Random.Range(-1, 1.1f);
 
         Vector2 pos = new Vector2(ranX, ranY);
         for (int i = 0; i < sellect; i++)
@@ -142,14 +144,11 @@ public class shit : EnemyBase
 
     protected override void bloodshatter()
     {
-        int bloodCount = UnityEngine.Random.Range(3, 6);//피의 갯수 1~3 사이 정수를 만든다.
-        for (int i = 0; i < bloodCount; i++)//피의 갯수만큼 반복작업
+        for (int i = 0; i < 2; i++)//피의 갯수만큼 반복작업
         {
-            float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
-            float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
-            Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
-
-            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyShit, bloodpos);
+            float X = Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
+            float Y = Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
+            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyShit, new Vector2(X, Y));
             Shitblood bloodobj = bloodshit.GetComponent<Shitblood>();
             IsDead += bloodobj.EnamvleChoosAction;
             IsDead?.Invoke(true);

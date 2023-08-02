@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Shitblood : PooledObject
@@ -9,11 +10,10 @@ public class Shitblood : PooledObject
     public Color clo;
     SpriteRenderer spriteRneder;
     public float lifeTime;
-    float lifeCopy;
+
     int randomindex = 0;
-    bool shitDead = false;
 
-
+    public float speed=1f;
 
     private void Awake()
     {
@@ -25,20 +25,13 @@ public class Shitblood : PooledObject
     private void OnEnable()
     {
         lifeTime = 4f;
-        lifeCopy = lifeTime;
         randomindex = Random.Range(0, manager.BloodSprite.Length);
         spriteRneder.sprite = manager.BloodSprite[randomindex];
-        EnamvleChoosAction(shitDead);
     }
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        shitDead = false;
-    }
+
 
     public void EnamvleChoosAction(bool DeadAction)
     {
-        shitDead = DeadAction;
         if (DeadAction)
         {
             DieShitBlood();
@@ -51,14 +44,15 @@ public class Shitblood : PooledObject
 
     public IEnumerator disapear()
     {
+        float guage = 1;
         while (true)
         {
-            lifeTime -= Time.deltaTime;
             yield return null;
-            float guage = Mathf.Lerp(0f, 1.1f, lifeTime / lifeCopy);
+            guage -= Time.deltaTime * speed;
+            //float guage = Mathf.Lerp(0f, 1.1f, lifeTime / lifeCopy);
             clo.a = guage;
             spriteRneder.color = clo;
-            if (lifeTime < 0)
+            if (guage < 0)
             {
                 this.gameObject.SetActive(false);
             }
