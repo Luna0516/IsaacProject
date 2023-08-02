@@ -31,7 +31,7 @@ public class Fly : EnemyBase
     private void Start()
     {
         animator = GetComponent<Animator>();    
-        speed = Random.Range(0.5f, 2.5f);
+        speed = Random.Range(0.5f, 1.5f);
     }
     private void Update()
     {
