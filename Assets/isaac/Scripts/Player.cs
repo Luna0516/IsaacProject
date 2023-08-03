@@ -264,6 +264,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Damaged();
+            KnockBack(collision);
             Debug.Log("적과 충돌/ 남은 체력 : " + health);
         }
 
@@ -397,6 +398,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(currentInvisible);
 
+        rigid.velocity = Vector3.zero;
         inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
         collider.enabled = true;
@@ -432,6 +434,10 @@ public class Player : MonoBehaviour
         inputAction.Player.Disable();
         collider.enabled = false;
         head.gameObject.SetActive(false);
+    }
+    private void KnockBack(Collision2D collision)
+    {
+        rigid.AddForce((transform.position - collision.transform.position).normalized * 10.0f, ForceMode2D.Impulse);
     }
 }
 
