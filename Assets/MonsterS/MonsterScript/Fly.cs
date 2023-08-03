@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Fly : EnemyBase
 {
-	Vector3 headto;
 	Vector2 Rnad;
 	float invincivalTime = 1f;
 	bool invincival = true;
 	Animator animator;
 	SpriteRenderer rneder;
 	Collider2D coll;
+	public float noise = 5f;
+	float X;
+	float Y;
 
-	float InvincivalTime
+    float InvincivalTime
 	{
 		get
 		{
@@ -36,23 +39,25 @@ public class Fly : EnemyBase
 		coll = GetComponent<Collider2D>();
 		rneder = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
-		speed = Random.Range(0.5f, 2f);
+		speed = UnityEngine.Random.Range(0.5f, 2f);
 		StartCoroutine(IvincivalFly());
+		Rnad = Vector2.zero;
 	}
 	void noisyMove()
 	{
 		if (coll.isTrigger==false)
-		{
-			float X = Random.Range(-10, 10.1f);
-			float Y = Random.Range(-10, 10.1f);
-			Rnad = new Vector2(X, Y);
+        {
+			 X = UnityEngine.Random.Range(-noise, noise+0.1f);
+			 Y = UnityEngine.Random.Range(-noise, noise+0.1f);
+			Rnad.x = X;
+			Rnad.y = Y;	
 			this.gameObject.transform.Translate(Time.deltaTime * speed * Rnad);
 		}
 	}
-	private void Update()
+	protected override void Update()
 	{
-		headto = (target.position - transform.position).normalized;
-		if (headto.x > 0)
+		base.Update();
+		if (HeadTo.x > 0)
 		{
 			rneder.flipX = true;
 		}
@@ -60,7 +65,7 @@ public class Fly : EnemyBase
 		{
 			rneder.flipX = false;
 		}
-		this.gameObject.transform.Translate(Time.deltaTime * speed * headto);
+		this.gameObject.transform.Translate(Time.deltaTime * speed * HeadTo);
 		noisyMove();
 	}
 	protected override void OnCollisionEnter2D(Collision2D collision)

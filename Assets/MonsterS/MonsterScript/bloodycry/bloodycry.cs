@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class bloodycry : EnemyBase
 {
-    Vector3 Headto;
     GameObject head;
     GameObject body;
     SpriteRenderer headsprite;
@@ -24,8 +23,9 @@ public class bloodycry : EnemyBase
         headanimator = head.GetComponent<Animator>();
         bodyanimator = body.GetComponent<Animator>();
     }
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (moveactive)
         {
             Movement();
@@ -33,21 +33,21 @@ public class bloodycry : EnemyBase
     }
     protected override void Movement()
     {
-        Headto = target.position - transform.position;
+       
 
-        if (Headto.x > 1)
+        if (HeadTo.x > 1)
         {
             headsprite.flipX = false;
             bodysprite.flipX = false;
             bodyanimator.SetInteger("WalkSideway", 1);
-            transform.position += Headto.normalized * speed * Time.deltaTime;
+            transform.position += (Vector3)HeadTo * speed * Time.deltaTime;
         }
-        else if (Headto.x < 1)
+        else if (HeadTo.x < 1)
         {
             headsprite.flipX = true;
             bodysprite.flipX = true;
             bodyanimator.SetInteger("WalkSideway", 1);
-            transform.position += Headto.normalized * speed * Time.deltaTime;
+            transform.position += (Vector3)HeadTo * speed * Time.deltaTime;
 
         }
     }

@@ -25,9 +25,6 @@ public class MonstroBoss : EnemyBase
     /// </summary>
     int randomPatt=0;
 
-    //방향 선택 변수
-    Vector2 HeadTo;
-
     /// <summary>
     /// 스프라이트 렌더러
     /// </summary>

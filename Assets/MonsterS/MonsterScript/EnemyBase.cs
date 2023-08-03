@@ -9,12 +9,15 @@ public class EnemyBase : MonoBehaviour
     GameManager Manager;
     Player player=null;
     protected Transform target;
+    protected Vector2 HeadTo;
     public float speed = 5f;
-
+    public float NuckBackPower = 1f;
     public float MaxHP = 5;
     float hp;
     protected float damage;
     GameObject spawneffect;
+
+    protected Rigidbody2D rig;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -40,6 +43,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        rig = GetComponent<Rigidbody2D>();
         Manager = GameManager.Inst;
         if (player == null)
         {
@@ -59,6 +63,7 @@ public class EnemyBase : MonoBehaviour
         {
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             Hitten();
+            NuckBack(collision.contacts[0].normal);
         }
     }
 
@@ -110,9 +115,16 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Hitten()
     {
         HP -= damage;
-        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
+        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");      
     }
-
+    protected virtual void Update()
+    {
+        HeadTo = (this.gameObject.transform.position - target.transform.position).normalized;
+    }
+    protected void NuckBack(Vector2 HittenHeadTo)
+    {
+        rig.AddForce(HittenHeadTo* NuckBackPower, ForceMode2D.Impulse);
+    }
     protected IEnumerator damaged(SpriteRenderer sprite, SpriteRenderer sprite1)
     {
         sprite.color = Color.red;

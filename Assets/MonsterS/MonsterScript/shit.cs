@@ -6,11 +6,19 @@ using static PlayerAction;
 
 public class shit : EnemyBase
 {
-	Rigidbody2D rig;
+	/// <summary>
+	/// 애니메이터 변수
+	/// </summary>
 	Animator animator;
+
+	/// <summary>
+	/// 스프라이트 렌더러 변수
+	/// </summary>
 	SpriteRenderer spriteRenderer;
-	Vector3 Headto;
-	public Color bloodColor = Color.white;
+
+	/// <summary>
+	/// 
+	/// </summary>
 	public float power = 1f;
 	public float coolTime = 5;
 	public GameObject flyer;
@@ -53,10 +61,10 @@ public class shit : EnemyBase
 		coolTime = Random.Range(3, 5);
 		StartCoroutine(CoolTiming());
 	}
-	private void Update()
+	protected override void Update()
 	{
-		Headto = (target.position - transform.position).normalized;
-		if (Headto.x < 0)
+		base.Update();
+		if (HeadTo.x < 0)
 		{
 			spriteRenderer.flipX = true;
 		}
@@ -79,7 +87,7 @@ public class shit : EnemyBase
 	{
 		coolTime = Random.Range(3, 5);
 		rig.isKinematic = false;
-		rig.AddForce(Headto * power, ForceMode2D.Impulse);
+		rig.AddForce(HeadTo * power, ForceMode2D.Impulse);
 		if (Attackchack)
 		{
 			StartCoroutine(attackAction());
