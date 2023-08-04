@@ -64,7 +64,9 @@ public class shit : EnemyBase
 	protected override void Update()
 	{
 		base.Update();
-		if (HeadTo.x < 0)
+		orderInGame(spriteRenderer);
+
+        if (HeadTo.x < 0)
 		{
 			spriteRenderer.flipX = true;
 		}

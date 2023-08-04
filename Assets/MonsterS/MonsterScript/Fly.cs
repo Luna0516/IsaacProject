@@ -70,12 +70,14 @@ public class Fly : EnemyBase
 	}
 	protected override void OnCollisionEnter2D(Collision2D collision)
 	{
+		
 		if (!invincival)
 		{
 			if (collision.gameObject.CompareTag("PlayerBullet"))
 			{
 				damage = collision.gameObject.GetComponent<AttackBase>().Damage;
 				Hitten();
+				NuckBack(-HeadTo);
 			}
 		}
 	}

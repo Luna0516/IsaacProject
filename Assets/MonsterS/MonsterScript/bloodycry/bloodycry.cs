@@ -11,7 +11,7 @@ public class bloodycry : EnemyBase
     Animator headanimator;
     Animator bodyanimator;
     IEnumerator startcor;
-    bool moveactive=false;
+    bool moveactive = false;
     protected override void Awake()
     {
         base.Awake();
@@ -33,34 +33,32 @@ public class bloodycry : EnemyBase
     }
     protected override void Movement()
     {
-       
-
+        transform.Translate(speed * Time.deltaTime * HeadTo);
         if (HeadTo.x > 1)
         {
             headsprite.flipX = false;
             bodysprite.flipX = false;
             bodyanimator.SetInteger("WalkSideway", 1);
-            transform.position += (Vector3)HeadTo * speed * Time.deltaTime;
+
         }
         else if (HeadTo.x < 1)
         {
             headsprite.flipX = true;
             bodysprite.flipX = true;
             bodyanimator.SetInteger("WalkSideway", 1);
-            transform.position += (Vector3)HeadTo * speed * Time.deltaTime;
 
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            moveactive=true;
+            moveactive = true;
         }
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D (collision);
+        base.OnCollisionEnter2D(collision);
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             if (gameObject.activeSelf == true)
@@ -74,13 +72,14 @@ public class bloodycry : EnemyBase
     protected override void Hitten()
     {
         base.Hitten();
-        if(this.gameObject.activeSelf)
-        { 
-        StartCoroutine(damaged(headsprite,bodysprite));
+        if (this.gameObject.activeSelf)
+        {
+            StartCoroutine(damaged(headsprite, bodysprite));
         }
     }
     IEnumerator hittedanime()
     {
+        moveactive = true;
         headanimator.SetInteger("state", 1);
         yield return new WaitForSeconds(0.2f);
         headanimator.SetInteger("state", 2);

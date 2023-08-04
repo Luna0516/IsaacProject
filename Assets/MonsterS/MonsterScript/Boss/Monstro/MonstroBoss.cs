@@ -53,6 +53,7 @@ public class MonstroBoss : EnemyBase
     }
     protected override void Update()
     { 
+        base.Update();
         //이동 함수 실행
         Movement();
     }
@@ -159,16 +160,15 @@ public class MonstroBoss : EnemyBase
     IEnumerator Attack()
     {
         //공격 애니메이션 실행
-        animator.SetInteger("Attack", 1);
+        animator.SetInteger("Attack",1);
 
         //공격을 위해 이동을 멈춘다.
         speed = 0;
         //공격 하는동안 대기
         yield return new WaitForSeconds(0.5f);
         ShatteredBullet();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
 
-        //애니메이션 종료
         animator.SetInteger("Attack", 0);
         //speed값 복원
         speed = sppeed;

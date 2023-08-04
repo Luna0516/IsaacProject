@@ -59,7 +59,6 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
@@ -126,7 +125,6 @@ public class EnemyBase : MonoBehaviour
     {
         rig.isKinematic = false;
         rig.AddForce(HittenHeadTo* NuckBackPower, ForceMode2D.Impulse);
-
     }
 
 
@@ -150,4 +148,24 @@ public class EnemyBase : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         sprite.color = Color.white;
     }
+    protected void orderInGame(SpriteRenderer render)
+    {
+        float Yhi = this.transform.position.y;
+        uint total;
+        if (Yhi < 0)
+        {
+            Yhi *= -1;
+            total = (uint)Mathf.Clamp(Mathf.Floor(Yhi + 20), 20, 30);
+        }
+        else
+        {
+            total = (uint)Mathf.Clamp(Mathf.Floor(-Yhi + 20), 10, 20);
+        }
+        
+        
+        render.sortingOrder = (int)total;
+    }
 }
+
+
+

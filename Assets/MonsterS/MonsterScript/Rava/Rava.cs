@@ -9,7 +9,7 @@ public class Rava : EnemyBase
     Vector2 targetPosition;
     GameObject Ravanian;
     SpriteRenderer sprite;
-    public float jumpingTerm = 1.25f;
+    float jumpingTerm = 1.25f;
     public float MinX;
     public float MaxX;
     public float MinY;

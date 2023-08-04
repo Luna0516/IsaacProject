@@ -25,21 +25,20 @@ public class mualigan : EnemyBase
     {
         base.Update();
         Movement();
-        Debug.Log($"{HeadTo}");
     }
     protected override void Movement()
     {
         transform.Translate(HeadTo * speed * Time.deltaTime);
         if (HeadTo.x > 1)
             {
-                headsprite.flipX = false;
-                bodysprite.flipX = false;
+                headsprite.flipX = true;
+                bodysprite.flipX = true;
                 animator.SetInteger("WalkSideway", 1);
             }
             else if (HeadTo.x < 1)
             {
-                headsprite.flipX = true;
-                bodysprite.flipX = true;
+                headsprite.flipX = false;
+                bodysprite.flipX = false;
                 animator.SetInteger("WalkSideway", 1);
             }
     }
