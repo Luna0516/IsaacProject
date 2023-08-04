@@ -23,7 +23,9 @@ public class mualigan : EnemyBase
 
     protected override void Update()
     {
+        base.Update();
         Movement();
+        Debug.Log($"{HeadTo}");
     }
     protected override void Movement()
     {

@@ -51,7 +51,7 @@ public class MonstroBoss : EnemyBase
         //패턴 선택 함수 실행
         selectpattern();
     }
-    private void Update()
+    protected override void Update()
     { 
         //이동 함수 실행
         Movement();
@@ -182,14 +182,9 @@ public class MonstroBoss : EnemyBase
     /// </summary>
     protected override void Movement()
     {
-        //방향값 구하기
-        HeadTo = target.position - transform.position;
-
-        //정규화
-        HeadTo = HeadTo.normalized;
 
         //플레이어를 향해 이동하는 식
-        transform.position += Time.deltaTime * speed * new Vector3(HeadTo.x,HeadTo.y,0);
+        transform.Translate(Time.deltaTime*speed*HeadTo);
 
         //방향에 따라 스프라이트 렌더러의 Flip값을 수정하는 조건문
         if (HeadTo.x < 0)

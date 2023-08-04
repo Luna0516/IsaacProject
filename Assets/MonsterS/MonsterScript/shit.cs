@@ -27,7 +27,7 @@ public class shit : EnemyBase
 	float NextStateTime = 1;
 	bool shitDead = false;
 	bool Attacking = false;
-
+	float draglinear = 15f;
 
 	public bool ShitDead
 	{
@@ -50,15 +50,15 @@ public class shit : EnemyBase
 	System.Action<bool> IsAttack;
 	protected override void Awake()
 	{
-		base.Awake();
-		rig = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
+        base.Awake();
+        draglinear = rig.drag;
+        animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		waiting = new WaitForSeconds(NextStateTime);
 	}
 	private void Start()
 	{
-		coolTime = Random.Range(3, 5);
+        coolTime = Random.Range(3, 5);
 		StartCoroutine(CoolTiming());
 	}
 	protected override void Update()
@@ -85,7 +85,8 @@ public class shit : EnemyBase
 
 	void Attack(bool Attackchack)
 	{
-		coolTime = Random.Range(3, 5);
+		rig.drag = 1;
+        coolTime = Random.Range(3, 5);
 		rig.isKinematic = false;
 		rig.AddForce(HeadTo * power, ForceMode2D.Impulse);
 		if (Attackchack)
@@ -97,7 +98,8 @@ public class shit : EnemyBase
 	private void Stopping()
 	{
 		AttacActive = false;
-		rig.isKinematic = true;
+		rig.drag = draglinear;
+        rig.isKinematic = true;
 		rig.velocity = Vector2.zero;
 		StartCoroutine(CoolTiming());
 	}

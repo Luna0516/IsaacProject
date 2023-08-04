@@ -59,6 +59,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
@@ -119,25 +120,34 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Update()
     {
-        HeadTo = (this.gameObject.transform.position - target.transform.position).normalized;
+        HeadTo = (target.transform.position- this.gameObject.transform.position).normalized;
     }
     protected void NuckBack(Vector2 HittenHeadTo)
     {
+        rig.isKinematic = false;
         rig.AddForce(HittenHeadTo* NuckBackPower, ForceMode2D.Impulse);
+
     }
+
+
+    /// <summary>
+    /// 몬스터가 데미지를 받았을때 빨간색으로 변했다가 돌아오기
+    /// </summary>
+    /// <param name="sprite">몬스터의 스프라이트렌더러</param>
+    /// <param name="sprite1"></param>
+    /// <returns></returns>
     protected IEnumerator damaged(SpriteRenderer sprite, SpriteRenderer sprite1)
     {
         sprite.color = Color.red;
         sprite1.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         sprite.color = Color.white;
         sprite1.color = Color.white;
     }
-
     protected IEnumerator damaged(SpriteRenderer sprite)
     {
         sprite.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         sprite.color = Color.white;
     }
 }
