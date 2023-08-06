@@ -11,6 +11,11 @@ public class PassiveItemData : ItemData
     public int itemNum;
 
     /// <summary>
+    /// UI에서 사용할 아이템 아이콘
+    /// </summary>
+    public Sprite icon;
+
+    /// <summary>
     /// 아이템 획득 대사
     /// </summary>
     public string explain;

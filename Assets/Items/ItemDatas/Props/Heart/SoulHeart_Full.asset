@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b956f0331d247340aeae90df9d76d47, type: 3}
+  m_Name: SoulHeart_Full
+  m_EditorClassIdentifier: 
+  itemType: 3
+  itemName: RedHeart_Half
+  itemPrefab: {fileID: 2817328941778398312, guid: 9e2b894cc54607749ab8a5c575153a8d, type: 3}
+  redHeart: 0
+  soulHeart: 2
+  blackHeart: 0

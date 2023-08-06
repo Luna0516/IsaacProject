@@ -35,11 +35,6 @@ public class ItemData : ScriptableObject {
     public string itemName;
 
     /// <summary>
-    /// UI에서 사용할 아이템 아이콘
-    /// </summary>
-    public Sprite icon;
-
-    /// <summary>
     /// 씬에서 사용할 아이템 프리펩
     /// </summary>
     public GameObject itemPrefab;

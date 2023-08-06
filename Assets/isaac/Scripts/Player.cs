@@ -195,10 +195,12 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 띄울 health 프로퍼티
     /// </summary>
-    public float Health
-    {
+    public float Health {
         get => health;
-        private set => health = value;
+        set {
+            health = value;
+            health = Mathf.Clamp(health, 0, maxHealth);
+        }
     }
     #endregion
 
@@ -274,9 +276,18 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Props")) {
             ItemDataObject props = collision.gameObject.GetComponent<ItemDataObject>();
-            IConsumable consum = props.ItemData as IConsumable;
-            if (consum != null) {
-                consum.Consume(this.gameObject);
+            if (props != null) {
+                IConsumable consum = props.ItemData as IConsumable;
+                if (consum != null) {
+                    consum.Consume(this.gameObject);
+                }
+
+                IHealth heart = props.ItemData as IHealth;
+                if (heart != null) {
+                    if (heart.Heal(this.gameObject)) {
+                        Destroy(collision.gameObject);
+                    }
+                }
             }
         }
 
@@ -284,16 +295,16 @@ public class Player : MonoBehaviour
             ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
             ItemData itemData = item.ItemData;
             if (itemData != null) {
-                StartCoroutine(GetItem(itemData.icon));
-
                 ActiveItemData active = itemData as ActiveItemData;
                 if (active != null) {
                     getActiveItem?.Invoke(active);
+                    StartCoroutine(GetItem(active.icon));
                 }
 
                 PassiveItemData passive = itemData as PassiveItemData;
                 if (passive != null) {
                     getPassiveItem?.Invoke(passive);
+                    StartCoroutine(GetItem(passive.icon));
 
                     currentDmg += passive.damage;
                     currentMultiDmg *= passive.multiDamage;
