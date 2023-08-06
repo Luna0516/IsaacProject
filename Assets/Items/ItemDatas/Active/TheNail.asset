@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005a287e8fc07544cb09b247ae568606, type: 3}
+  m_Name: TheNail
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: The Nail
+  explain: Temporary demon form
+  itemNum: 83
+  icon: {fileID: 21300000, guid: 1d9f0f0269430eb4684581b6c3af3486, type: 3}
+  itemPrefab: {fileID: 7490964534661180644, guid: 472ce9864e161e045ac4fb6aa52aac25, type: 3}
+  grade: 2
+  damage: 0
+  speed: 0
+  tearSpeed: 0
+  shotSpeed: 0
+  range: 0
+  multiDamage: 1
+  multiTearSpeed: 1
+  coolTime: 6

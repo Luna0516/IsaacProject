@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4553d2d27e8a040b52f4289742548e, type: 3}
+  m_Name: Penny
+  m_EditorClassIdentifier: 
+  itemType: 3
+  itemName: Penny
+  icon: {fileID: 21300000, guid: 3301d6996be297741bfb342929e823c8, type: 3}
+  itemPrefab: {fileID: 2817328941778398312, guid: 742fc45faf6114d4a82f741cb28e52c2, type: 3}
+  coinValue: 1

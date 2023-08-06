@@ -201,6 +201,10 @@ public class Player : MonoBehaviour
         private set => health = value;
     }
     #endregion
+
+    public Action<PassiveItemData> getPassiveItem;
+    public Action<ActiveItemData> getActiveItem;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -268,48 +272,68 @@ public class Player : MonoBehaviour
             Debug.Log("적과 충돌/ 남은 체력 : " + health);
         }
 
-        if (collision.gameObject.CompareTag("Item"))
-        {
-            Item passive = collision.gameObject.GetComponent<ItemBase>().passiveItem;
-            StartCoroutine(GetItem(passive.Icon));
-            if (passive != null)
-            {
-                currentDmg += passive.Attack;
-                currentMultiDmg *= passive.MultiDmg;
-                Speed += passive.Speed;
-                Range += passive.Range;
-                ShotSpeed += passive.ShotSpeed;
-                itemSpeed += passive.TearSpeed;
-                // 데미지 적용시 예외 아이템 switch문
-                switch (passive.ItemNum)
-                {
-                    case 169:
-                        isGetPolyphemus = true;
-                        break;
-                    case 182:
-                        isGetScaredHeart = true;
-                        break;
-                }
-                if (passive.ItemNum == 169 || passive.ItemNum == 182)
-                    currentDmg -= passive.Attack;
-
-                Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
-
-                if (isGetPolyphemus)
-                    Damage += 4f;
-
-                Damage *= currentMultiDmg;
-
-                if (isGetScaredHeart)
-                    Damage += 1f;
-                
-                Damage = (float)Math.Round(Damage, 2);
-                if (speed > maximumSpeed)
-                {
-                    speed = maximumSpeed;
-                }
-                TearSpeedCaculate();
+        if (collision.gameObject.CompareTag("Props")) {
+            ItemDataObject props = collision.gameObject.GetComponent<ItemDataObject>();
+            IConsumable consum = props.ItemData as IConsumable;
+            if (consum != null) {
+                consum.Consume(this.gameObject);
             }
+        }
+
+        if (collision.gameObject.CompareTag("Item")) {
+            ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
+            ItemData itemData = item.ItemData;
+            if (itemData != null) {
+                StartCoroutine(GetItem(itemData.icon));
+
+                ActiveItemData active = itemData as ActiveItemData;
+                if (active != null) {
+                    getActiveItem?.Invoke(active);
+                }
+
+                PassiveItemData passive = itemData as PassiveItemData;
+                if (passive != null) {
+                    getPassiveItem?.Invoke(passive);
+
+                    currentDmg += passive.damage;
+                    currentMultiDmg *= passive.multiDamage;
+                    Speed += passive.speed;
+                    Range += passive.range;
+                    ShotSpeed += passive.shotSpeed;
+                    itemSpeed += passive.tearSpeed;
+
+                    // 데미지 적용시 예외 아이템 switch문
+                    switch (passive.itemNum) {
+                        case 169:
+                            isGetPolyphemus = true;
+                            break;
+                        case 182:
+                            isGetScaredHeart = true;
+                            break;
+                    }
+
+                    if (passive.itemNum == 169 || passive.itemNum == 182)
+                        currentDmg -= passive.damage;
+
+                    Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
+
+                    if (isGetPolyphemus)
+                        Damage += 4f;
+
+                    Damage *= currentMultiDmg;
+
+                    if (isGetScaredHeart)
+                        Damage += 1f;
+
+                    Damage = (float)Math.Round(Damage, 2);
+                    if (speed > maximumSpeed) {
+                        speed = maximumSpeed;
+                    }
+                    TearSpeedCaculate();
+                }
+            }
+
+            Destroy(collision.gameObject);
         }
     }
     IEnumerator GetItem(Sprite sprite)
