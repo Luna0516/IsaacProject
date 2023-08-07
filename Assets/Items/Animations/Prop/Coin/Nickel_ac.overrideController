@@ -7,11 +7,11 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Nickel_ac
-  m_Controller: {fileID: 9100000, guid: cf05b763888c7094797ee91d1c0a693e, type: 2}
+  m_Controller: {fileID: 9100000, guid: a3beb38e1a80cc24aa72afb1957a79e3, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 946481009ad0c054aa6b5c379c3a0016, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 8aa34887e93791e4fac0b1b3d1f97e08, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 1f6e15706565e2a45ab8bfd328bda0cb, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: ec801d5206db0a5438f3c025949f81b3, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: ec3f2b61485adfc489fbcc2149f0f07b, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: f54d0ce0b5ea4bb4c94beb90d91cd29d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 28fec4da82c28b84da97ef2ccc8ad6cc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 92937286ad186a84191581115d28fd0a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 020ab79c8aee9ba43a6d8652589fd598, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3f5a582386ea16f40abeef362ed0cf81, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 645c785f724ba0c44a2d87bb96488a81, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 971d3a2c55ef5da4aab5411f0053d017, type: 2}
