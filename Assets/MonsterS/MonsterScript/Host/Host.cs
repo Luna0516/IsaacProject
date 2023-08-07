@@ -60,6 +60,12 @@ public class Host : EnemyBase
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        orderInGame(spriteRenderer);
+    }
+
     /// <summary>
     /// 몬스터 개체가 공격받는 콜리젼
     /// </summary>
@@ -129,7 +135,7 @@ public class Host : EnemyBase
         if(shotcool)
         { 
             //터렛의 각도 지정 : 터렛은 플레이어를 겨냥합니다.
-        turret.transform.rotation = Quaternion.LookRotation(Vector3.forward,target.position-transform.position);
+        turret.transform.rotation = Quaternion.LookRotation(Vector3.forward,HeadTo);
             //총알 프리펩으로부터 게임 오브젝트를 생성하여 터렛의 위치와 각도에서 총알을 만들어냅니다.
         GameObject bullet = Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
         }

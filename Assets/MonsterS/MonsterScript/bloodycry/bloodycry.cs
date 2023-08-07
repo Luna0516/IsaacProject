@@ -26,6 +26,7 @@ public class bloodycry : EnemyBase
     protected override void Update()
     {
         base.Update();
+        orderInGame(headsprite, bodysprite);
         if (moveactive)
         {
             Movement();
@@ -34,14 +35,14 @@ public class bloodycry : EnemyBase
     protected override void Movement()
     {
         transform.Translate(speed * Time.deltaTime * HeadTo);
-        if (HeadTo.x > 1)
+        if (HeadTo.x > 0)
         {
             headsprite.flipX = false;
             bodysprite.flipX = false;
             bodyanimator.SetInteger("WalkSideway", 1);
 
         }
-        else if (HeadTo.x < 1)
+        else
         {
             headsprite.flipX = true;
             bodysprite.flipX = true;
