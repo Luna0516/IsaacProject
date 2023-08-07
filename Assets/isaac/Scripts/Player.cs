@@ -361,7 +361,7 @@ public class Player : MonoBehaviour
     {
         Transform tearSpawn = transform.GetChild(0);
 
-        GameObject tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
+        GameObject tear = Factory.Inst.GetObject(PoolObjectType.GuidedMissleTear, tearSpawn.position); // 추적 눈물로 실험 중
 
         currentTearDelay = tearFire; // 딜레이 시간 초기화
 
