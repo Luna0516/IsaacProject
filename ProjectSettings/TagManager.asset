@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Item
   - Floor
+  - Props
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - UI
   - Tear
   - Item
-  - 
-  - 
+  - Props
+  - Chest
   - 
   - 
   - 
