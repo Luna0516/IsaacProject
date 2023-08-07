@@ -15,7 +15,7 @@ public class EnemyBase : MonoBehaviour
     public float MaxHP = 5;
     float hp;
     protected float damage;
-    GameObject spawneffect;
+    protected GameObject spawneffect;
 
     protected Rigidbody2D rig;
     /// <summary>
@@ -151,19 +151,37 @@ public class EnemyBase : MonoBehaviour
     protected void orderInGame(SpriteRenderer render)
     {
         float Yhi = this.transform.position.y;
-        uint total;
+        int total;
         if (Yhi < 0)
         {
             Yhi *= -1;
-            total = (uint)Mathf.Clamp(Mathf.Floor(Yhi + 20), 20, 30);
+            total = (int)Mathf.Clamp(Mathf.Floor(Yhi + 20), 20, 30);
         }
         else
         {
-            total = (uint)Mathf.Clamp(Mathf.Floor(-Yhi + 20), 10, 20);
+            total = (int)Mathf.Clamp(Mathf.Floor(-Yhi + 20), 10, 20);
         }
         
         
-        render.sortingOrder = (int)total;
+        render.sortingOrder = total;
+    }
+    protected void orderInGame(SpriteRenderer head, SpriteRenderer body)
+    {
+        float Yhi = this.transform.position.y;
+        int total;
+        if (Yhi < 0)
+        {
+            Yhi *= -1;
+            total = (int)Mathf.Clamp(Mathf.Floor(Yhi + 20), 20, 30);
+        }
+        else
+        {
+            total = (int)Mathf.Clamp(Mathf.Floor(-Yhi + 20), 10, 20);
+        }
+
+
+        head.sortingOrder = total+1;
+        body.sortingOrder = total; 
     }
 }
 

@@ -57,7 +57,9 @@ public class Fly : EnemyBase
 	protected override void Update()
 	{
 		base.Update();
-		if (HeadTo.x > 0)
+		orderInGame(rneder);
+
+        if (HeadTo.x > 0)
 		{
 			rneder.flipX = true;
 		}

@@ -6,10 +6,11 @@ using UnityEngine.EventSystems;
 
 public class Rava : EnemyBase
 {
+    Animator animator;
     Vector2 targetPosition;
     GameObject Ravanian;
     SpriteRenderer sprite;
-    float jumpingTerm = 1.25f;
+    public float jumpingTerm = 1.25f;
     public float MinX;
     public float MaxX;
     public float MinY;
@@ -20,11 +21,20 @@ public class Rava : EnemyBase
     {
         transform.Translate(Time.deltaTime * speed * targetPosition);
     }
-void Start()
+
+    protected override void Awake()
     {
+        rig = GetComponentInParent<Rigidbody2D>();
+        spawneffect = transform.GetChild(2).gameObject;
+        animator = GetComponentInChildren<Animator>();
         Ravanian = transform.GetChild(0).gameObject;
         sprite = Ravanian.GetComponent<SpriteRenderer>();
         transform.position = transform.position;
+        jumpingTerm = Random.Range(1f, 2f);
+    }
+    void Start()
+    {
+        animator.SetFloat("speed", jumpingTerm);
         StopAllCoroutines();
         StartCoroutine(moveingRava());
         targetPosition = Vector2.zero;
@@ -41,6 +51,7 @@ void Start()
     protected override void Update()
     {
         Movement();
+        orderInGame(sprite);
     }
     private void SetNextTargetPosition()
     {
