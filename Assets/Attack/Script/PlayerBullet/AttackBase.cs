@@ -20,7 +20,7 @@ public class AttackBase : PooledObject
     /// 컴포넌트들
     /// </summary>
     Player player;
-    Rigidbody2D rigidBody;
+    protected Rigidbody2D rigidBody;
 
     public float damage;    // 눈물 데미지
 
@@ -68,7 +68,7 @@ public class AttackBase : PooledObject
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {
             StopAllCoroutines();
-            TearDie(collision);
+            TearDie();
         }
     }
 
@@ -76,10 +76,10 @@ public class AttackBase : PooledObject
     /// 눈물 삭제 처리 함수
     /// </summary>
     /// <param name="collision"></param>
-    protected virtual void TearDie(Collision2D collision)
+    protected virtual void TearDie()
     {
-            Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
-            gameObject.SetActive(false);
+        this.TearExplosion();
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -94,15 +94,15 @@ public class AttackBase : PooledObject
         
         rigidBody.gravityScale = gravityScale;                          // 눈물에 적용될 중력 수치
         yield return new WaitForSeconds(delay - dropDuration);
-        
-        Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
+
+        TearExplosion();
         gameObject.SetActive(false);
     }
 
     /// <summary>
     /// 총알 세부정보 초기화
     /// </summary>
-    private void Init()
+    protected virtual void Init()
     {
         speed = player.TearSpeed;
         this.Damage = player.Damage;
@@ -112,6 +112,12 @@ public class AttackBase : PooledObject
         rigidBody.gravityScale = 0.0f;
         dir += moveDir * 0.3f;
     }
+
+    protected virtual void TearExplosion()
+    {
+        Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
+    }
+
 }
 
 // + 속력이 빠를수록 gravity 추가 되는 함수 추가

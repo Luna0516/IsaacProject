@@ -104,4 +104,21 @@ public class Factory : Singleton<Factory>
         
         return obj;
     }
+    public GameObject GetObject(PoolObjectType type, Vector3 position, Vector3 scale)
+    {
+        GameObject obj = GetObject(type);
+        obj.transform.position = position;
+        obj.transform.localScale = scale;
+
+        switch (type)
+        {
+            case PoolObjectType.Tear:
+                //
+                break;
+            default:
+                break;
+        }
+
+        return obj;
+    }
 }
