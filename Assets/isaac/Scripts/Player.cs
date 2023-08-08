@@ -266,8 +266,12 @@ public class Player : MonoBehaviour
     }
     private void SetBomb(InputAction.CallbackContext context)
     {
-        bombObj = Instantiate(bombObj);
-        bombObj.transform.position = transform.position;
+        // 폭탄의 개수가 0보다 크면 개수를 1개 줄이고 폭탄 생성
+        if (Bomb > 0) {
+            Bomb--;
+            GameObject bomb = Instantiate(bombObj);
+            bomb.transform.position = transform.position;
+        }
     }
     private void OnActive(InputAction.CallbackContext context)
     {
@@ -282,29 +286,33 @@ public class Player : MonoBehaviour
             Debug.Log("적과 충돌/ 남은 체력 : " + health);
         }
 
+        // 프롭스 태그를 가진 오브젝트와 충돌 했을 때
         if (collision.gameObject.CompareTag("Props")) 
         {
+            // 아이템 데이터 확인
             ItemDataObject props = collision.gameObject.GetComponent<ItemDataObject>();
             if (props != null) 
             {
+                // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
                 IConsumable consum = props.ItemData as IConsumable;
                 if (consum != null) 
                 {
-                    consum.Consume(this.gameObject);
+                    // 아이템 삭제 여부 확인후 아이템 삭제 ( 코인은 삭제 애니메이션 때문에 삭제 하면 안됨)
+                    if (consum.Consume(this.gameObject)) {  
+                        Destroy(collision.gameObject);
+                    }
+                    return;
                 }
 
-                IKey ikey = props.ItemData as IKey;
-                if (ikey != null) {
-                    ikey.GetKey(this.gameObject);
-                    Destroy(collision.gameObject);
-                }
-
+                // 아이템 데이터 안에 IHealth 인터페이스가 있는지 확인
                 IHealth heart = props.ItemData as IHealth;
                 if (heart != null) 
                 {
+                    // 아이템으로 힐이 성공 했을 때 그 아이템을 삭제
                     if (heart.Heal(this.gameObject))
                     {
                         Destroy(collision.gameObject);
+                        return;
                     }
                 }
             }
