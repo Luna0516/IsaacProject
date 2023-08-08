@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Item
   - Floor
+  - Props
   layers:
   - Default
   - TransparentFX

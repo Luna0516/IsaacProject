@@ -86,6 +86,8 @@ public class Player : MonoBehaviour
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
+    float minHeadAni = 1.37f;
+    float maxHeadAni = 2.27f;
     Rigidbody2D rigid;
     /// <summary>
     /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
@@ -274,35 +276,44 @@ public class Player : MonoBehaviour
             Debug.Log("적과 충돌/ 남은 체력 : " + health);
         }
 
-        if (collision.gameObject.CompareTag("Props")) {
+        if (collision.gameObject.CompareTag("Props")) 
+        {
             ItemDataObject props = collision.gameObject.GetComponent<ItemDataObject>();
-            if (props != null) {
+            if (props != null) 
+            {
                 IConsumable consum = props.ItemData as IConsumable;
-                if (consum != null) {
+                if (consum != null) 
+                {
                     consum.Consume(this.gameObject);
                 }
 
                 IHealth heart = props.ItemData as IHealth;
-                if (heart != null) {
-                    if (heart.Heal(this.gameObject)) {
+                if (heart != null) 
+                {
+                    if (heart.Heal(this.gameObject))
+                    {
                         Destroy(collision.gameObject);
                     }
                 }
             }
         }
 
-        if (collision.gameObject.CompareTag("Item")) {
+        if (collision.gameObject.CompareTag("Item"))
+        {
             ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
             ItemData itemData = item.ItemData;
-            if (itemData != null) {
+            if (itemData != null)
+            {
                 ActiveItemData active = itemData as ActiveItemData;
-                if (active != null) {
+                if (active != null) 
+                {
                     getActiveItem?.Invoke(active);
                     StartCoroutine(GetItem(active.icon));
                 }
 
                 PassiveItemData passive = itemData as PassiveItemData;
-                if (passive != null) {
+                if (passive != null)
+                {
                     getPassiveItem?.Invoke(passive);
                     StartCoroutine(GetItem(passive.icon));
 
@@ -314,7 +325,8 @@ public class Player : MonoBehaviour
                     itemSpeed += passive.tearSpeed;
 
                     // 데미지 적용시 예외 아이템 switch문
-                    switch (passive.itemNum) {
+                    switch (passive.itemNum)
+                    {
                         case 169:
                             isGetPolyphemus = true;
                             break;
@@ -337,7 +349,8 @@ public class Player : MonoBehaviour
                         Damage += 1f;
 
                     Damage = (float)Math.Round(Damage, 2);
-                    if (speed > maximumSpeed) {
+                    if (speed > maximumSpeed) 
+                    {
                         speed = maximumSpeed;
                     }
                     TearSpeedCaculate();
@@ -404,6 +417,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(tearFire);
     }
+    public Action isFire;
     private void Damaged()
     {
         if (Health > 0)
@@ -444,12 +458,18 @@ public class Player : MonoBehaviour
         {
             if (IsAttackReady)
             {
+                new WaitForSeconds(0.258f);
+                headAni.speed = Mathf.Lerp(minHeadAni, maxHeadAni, itemSpeed);
                 StartCoroutine(TearDelay());
             }
         }
     }
     void TearSpeedCaculate()
     {
+        if(itemSpeed >= 3.5f)
+        {
+            itemSpeed = 3.5f;
+        }
         tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
         tearDelay = (float)Math.Round(tearDelay, 1);
         TearSpeed = 30 / (tearDelay + 1);
@@ -460,7 +480,6 @@ public class Player : MonoBehaviour
         }
         tearFire = 1 / TearSpeed;
         tearFire = (float)Math.Round(tearFire, 2);
-        
     }
     private void Die()
     {
