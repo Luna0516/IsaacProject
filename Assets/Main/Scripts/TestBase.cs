@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TestBase : MonoBehaviour {
+    /// <summary>
+    /// 인풋메니저 테스트용
+    /// </summary>
     TestInputActions inputActions;
 
     protected virtual void Awake() {
@@ -32,24 +35,45 @@ public class TestBase : MonoBehaviour {
         inputActions.Test.Disable();
     }
 
+    /// <summary>
+    /// 1번 누르면 실행
+    /// </summary>
     protected virtual void Test1(InputAction.CallbackContext context) {
 
     }
+    /// <summary>
+    /// 2번 누르면 실행
+    /// </summary>
     protected virtual void Test2(InputAction.CallbackContext context) {
 
     }
+    /// <summary>
+    /// 3번 누르면 실행
+    /// </summary>
     protected virtual void Test3(InputAction.CallbackContext context) {
 
     }
+    /// <summary>
+    /// 4번 누르면 실행
+    /// </summary>
     protected virtual void Test4(InputAction.CallbackContext context) {
 
     }
+    /// <summary>
+    /// 5번 누르면 실행
+    /// </summary>
     protected virtual void Test5(InputAction.CallbackContext context) {
  
     }
+    /// <summary>
+    /// 6번 누르면 실행
+    /// </summary>
     protected virtual void Test6(InputAction.CallbackContext context) {
 
     }
+    /// <summary>
+    /// 7번 누르면 실행
+    /// </summary>
     protected virtual void Test7(InputAction.CallbackContext context) {
 
     }

@@ -19,6 +19,9 @@ public class Coin : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 애니메이션에서 사용할 이벤트 함수
+    /// </summary>
     public void Die() {
         Destroy(this.gameObject);
     }

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -285,6 +284,14 @@ public class Player : MonoBehaviour
                 if (consum != null) 
                 {
                     consum.Consume(this.gameObject);
+                    return;
+                }
+
+                IKey key = props.ItemData as IKey;
+                if (key != null) {
+                    key.GetKey(this.gameObject);
+                    Destroy(collision.gameObject);
+                    return;
                 }
 
                 IHealth heart = props.ItemData as IHealth;
@@ -293,6 +300,7 @@ public class Player : MonoBehaviour
                     if (heart.Heal(this.gameObject))
                     {
                         Destroy(collision.gameObject);
+                        return;
                     }
                 }
             }

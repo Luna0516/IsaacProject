@@ -54,6 +54,7 @@ public class MonstroBoss : EnemyBase
     protected override void Update()
     { 
         base.Update();
+        orderInGame(spriteRenderer);
         //이동 함수 실행
         Movement();
     }
