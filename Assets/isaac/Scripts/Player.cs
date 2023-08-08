@@ -150,7 +150,14 @@ public class Player : MonoBehaviour
     public Action onUseActive;
     public int Coin { get; set; }
     public int Bomb { get; set; }
-    public int Key { get; set; }
+
+    int key = 0;
+    public int Key {
+        get => key;
+        set {
+            key = value;
+        }
+    }
     /// <summary>
     /// 화면에 띄울 damage 프로퍼티
     /// </summary>
@@ -279,21 +286,18 @@ public class Player : MonoBehaviour
                 IConsumable consum = props.ItemData as IConsumable;
                 if (consum != null) {
                     consum.Consume(this.gameObject);
-                    return;
                 }
 
-                IKey key = props.ItemData as IKey;
-                if (key != null) {
-                    key.GetKey(this.gameObject);
+                IKey ikey = props.ItemData as IKey;
+                if (ikey != null) {
+                    ikey.GetKey(this.gameObject);
                     Destroy(collision.gameObject);
-                    return;
                 }
 
                 IHealth heart = props.ItemData as IHealth;
                 if (heart != null) {
                     if (heart.Heal(this.gameObject)) {
                         Destroy(collision.gameObject);
-                        return;
                     }
                 }
             }

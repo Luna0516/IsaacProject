@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1421279137304812508}
   - component: {fileID: 1672132898}
   - component: {fileID: 893110237}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Isaac
   m_TagString: Player
   m_Icon: {fileID: 0}

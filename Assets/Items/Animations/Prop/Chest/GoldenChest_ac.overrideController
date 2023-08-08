@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GoldenChest_ac
+  m_Controller: {fileID: 9100000, guid: dcbc04baf091d3d4cb8708f65f964561, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: fe13362e4fc31114bb522a7744c8e413, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4849ff5fcdadbce4091bf5a6b0b745a0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5a1f5a6e62941154da1f50209c02cc55, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9c970d007e0c50540847a99730bdb2aa, type: 2}

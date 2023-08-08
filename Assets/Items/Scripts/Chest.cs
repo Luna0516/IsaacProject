@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    Animator anim;
+    protected Animator anim;
 
-    bool IsOpen = false;
+    /// <summary>
+    /// 상자가 열려 있는지 확인용
+    /// </summary>
+    protected bool IsOpen = false;
 
     protected Player player = null;
 
@@ -37,7 +40,10 @@ public class Chest : MonoBehaviour
         }
     }
 
-    protected virtual void ChestOpen() {
+    /// <summary>
+    /// 상자가 열렸을 때 아이템 생성 함수
+    /// </summary>
+    void ChestOpen() {
         foreach (var item in dropItems) {
             if (Random.value < item.dropPercentage) {
                 ItemManager.CreateItem(item.data, transform.position);
