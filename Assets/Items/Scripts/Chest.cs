@@ -11,8 +11,6 @@ public class Chest : MonoBehaviour
     /// </summary>
     protected bool IsOpen = false;
 
-    protected Player player = null;
-
     [System.Serializable]
     public struct DropItem {
         public ItemData data;
@@ -24,10 +22,6 @@ public class Chest : MonoBehaviour
 
     private void Awake() {
         anim = GetComponent<Animator>();
-    }
-
-    protected virtual void Start() {
-        player = GameManager.Inst.Player;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision) {
