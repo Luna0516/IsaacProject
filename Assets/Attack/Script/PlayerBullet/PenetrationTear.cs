@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PenetrationTear : AttackBase
 {
-    //is trigger ´«¹° 
-    // ÀüÃ¼ °üÅë (Àû¸¸) 
+    //is trigger ëˆˆë¬¼ 
+    // ì „ì²´ ê´€í†µ (ì ë§Œ) 
 
     protected override void Awake()
     {
@@ -47,7 +47,7 @@ public class PenetrationTear : AttackBase
 
                 if(Penetration <= 0)
                 {
-                    TearDie(collision);
+                    TearDie();
                     base.OnCollisionEnter2D(collision);
                 }
             }
