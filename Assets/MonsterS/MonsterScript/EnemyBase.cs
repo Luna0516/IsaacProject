@@ -9,12 +9,15 @@ public class EnemyBase : MonoBehaviour
     GameManager Manager;
     Player player=null;
     protected Transform target;
+    protected Vector2 HeadTo;
     public float speed = 5f;
-
+    public float NuckBackPower = 1f;
     public float MaxHP = 5;
     float hp;
     protected float damage;
-    GameObject spawneffect;
+    protected GameObject spawneffect;
+
+    protected Rigidbody2D rig;
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -40,6 +43,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        rig = GetComponent<Rigidbody2D>();
         Manager = GameManager.Inst;
         if (player == null)
         {
@@ -59,6 +63,7 @@ public class EnemyBase : MonoBehaviour
         {
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             Hitten();
+            NuckBack(collision.contacts[0].normal);
         }
     }
 
@@ -110,22 +115,75 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Hitten()
     {
         HP -= damage;
-        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
+        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");      
+    }
+    protected virtual void Update()
+    {
+        HeadTo = (target.transform.position- this.gameObject.transform.position).normalized;
+    }
+    protected void NuckBack(Vector2 HittenHeadTo)
+    {
+        rig.isKinematic = false;
+        rig.AddForce(HittenHeadTo* NuckBackPower, ForceMode2D.Impulse);
     }
 
+
+    /// <summary>
+    /// 몬스터가 데미지를 받았을때 빨간색으로 변했다가 돌아오기
+    /// </summary>
+    /// <param name="sprite">몬스터의 스프라이트렌더러</param>
+    /// <param name="sprite1"></param>
+    /// <returns></returns>
     protected IEnumerator damaged(SpriteRenderer sprite, SpriteRenderer sprite1)
     {
         sprite.color = Color.red;
         sprite1.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         sprite.color = Color.white;
         sprite1.color = Color.white;
     }
-
     protected IEnumerator damaged(SpriteRenderer sprite)
     {
         sprite.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         sprite.color = Color.white;
     }
+    protected void orderInGame(SpriteRenderer render)
+    {
+        float Yhi = this.transform.position.y;
+        int total;
+        if (Yhi < 0)
+        {
+            Yhi *= -1;
+            total = (int)Mathf.Clamp(Mathf.Floor(Yhi + 20), 20, 30);
+        }
+        else
+        {
+            total = (int)Mathf.Clamp(Mathf.Floor(-Yhi + 20), 10, 20);
+        }
+        
+        
+        render.sortingOrder = total;
+    }
+    protected void orderInGame(SpriteRenderer head, SpriteRenderer body)
+    {
+        float Yhi = this.transform.position.y;
+        int total;
+        if (Yhi < 0)
+        {
+            Yhi *= -1;
+            total = (int)Mathf.Clamp(Mathf.Floor(Yhi + 20), 20, 30);
+        }
+        else
+        {
+            total = (int)Mathf.Clamp(Mathf.Floor(-Yhi + 20), 10, 20);
+        }
+
+
+        head.sortingOrder = total+1;
+        body.sortingOrder = total; 
+    }
 }
+
+
+

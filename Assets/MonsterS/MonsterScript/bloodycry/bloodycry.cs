@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class bloodycry : EnemyBase
 {
-    Vector3 Headto;
     GameObject head;
     GameObject body;
     SpriteRenderer headsprite;
@@ -12,7 +11,7 @@ public class bloodycry : EnemyBase
     Animator headanimator;
     Animator bodyanimator;
     IEnumerator startcor;
-    bool moveactive=false;
+    bool moveactive = false;
     protected override void Awake()
     {
         base.Awake();
@@ -24,8 +23,10 @@ public class bloodycry : EnemyBase
         headanimator = head.GetComponent<Animator>();
         bodyanimator = body.GetComponent<Animator>();
     }
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        orderInGame(headsprite, bodysprite);
         if (moveactive)
         {
             Movement();
@@ -33,34 +34,32 @@ public class bloodycry : EnemyBase
     }
     protected override void Movement()
     {
-        Headto = target.position - transform.position;
-
-        if (Headto.x > 1)
+        transform.Translate(speed * Time.deltaTime * HeadTo);
+        if (HeadTo.x > 0)
         {
             headsprite.flipX = false;
             bodysprite.flipX = false;
             bodyanimator.SetInteger("WalkSideway", 1);
-            transform.position += Headto.normalized * speed * Time.deltaTime;
+
         }
-        else if (Headto.x < 1)
+        else
         {
             headsprite.flipX = true;
             bodysprite.flipX = true;
             bodyanimator.SetInteger("WalkSideway", 1);
-            transform.position += Headto.normalized * speed * Time.deltaTime;
 
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            moveactive=true;
+            moveactive = true;
         }
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D (collision);
+        base.OnCollisionEnter2D(collision);
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             if (gameObject.activeSelf == true)
@@ -74,13 +73,14 @@ public class bloodycry : EnemyBase
     protected override void Hitten()
     {
         base.Hitten();
-        if(this.gameObject.activeSelf)
-        { 
-        StartCoroutine(damaged(headsprite,bodysprite));
+        if (this.gameObject.activeSelf)
+        {
+            StartCoroutine(damaged(headsprite, bodysprite));
         }
     }
     IEnumerator hittedanime()
     {
+        moveactive = true;
         headanimator.SetInteger("state", 1);
         yield return new WaitForSeconds(0.2f);
         headanimator.SetInteger("state", 2);

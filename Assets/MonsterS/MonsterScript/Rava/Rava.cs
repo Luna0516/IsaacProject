@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 
 public class Rava : EnemyBase
 {
-    Vector3 targetPosition;
+    Animator animator;
+    Vector2 targetPosition;
     GameObject Ravanian;
     SpriteRenderer sprite;
     public float jumpingTerm = 1.25f;
@@ -20,13 +21,23 @@ public class Rava : EnemyBase
     {
         transform.Translate(Time.deltaTime * speed * targetPosition);
     }
-void Start()
+
+    protected override void Awake()
     {
+        rig = GetComponentInParent<Rigidbody2D>();
+        spawneffect = transform.GetChild(2).gameObject;
+        animator = GetComponentInChildren<Animator>();
         Ravanian = transform.GetChild(0).gameObject;
         sprite = Ravanian.GetComponent<SpriteRenderer>();
         transform.position = transform.position;
+        jumpingTerm = Random.Range(1f, 2f);
+    }
+    void Start()
+    {
+        animator.SetFloat("speed", jumpingTerm);
         StopAllCoroutines();
         StartCoroutine(moveingRava());
+        targetPosition = Vector2.zero;
     }
 
     IEnumerator moveingRava()
@@ -37,9 +48,10 @@ void Start()
             SetNextTargetPosition();
         }
     }
-    private void Update()
+    protected override void Update()
     {
         Movement();
+        orderInGame(sprite);
     }
     private void SetNextTargetPosition()
     {
@@ -47,7 +59,9 @@ void Start()
         float y;
         x= Random.Range(MinX,MaxX);
         y = Random.Range(MinY, MaxY);
-        if(x>0)
+        targetPosition.x = x;
+        targetPosition.y = y;
+        if (x>0)
         {
             sprite.flipX = false;
         }
@@ -55,7 +69,6 @@ void Start()
         {
             sprite.flipX = true;
         }
-        targetPosition = new Vector3(x, y, 0);
         targetPosition.Normalize();
     }
     protected override void Hitten()

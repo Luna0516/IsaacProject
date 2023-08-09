@@ -15,12 +15,16 @@ public class AttackBase : PooledObject
 
     public Vector2 moveDir = Vector2.zero;  // 이동 방향
     public Vector2 dir = Vector2.right;     // 발사 방향
-    
+    protected Vector3 scale; //P.s총알의 크기를 저장할 Vector3 변수
+
+
     /// <summary>
     /// 컴포넌트들
     /// </summary>
     Player player;
-    public Rigidbody2D rigidBody;
+
+    protected Rigidbody2D rigidBody;
+
 
     public float damage;    // 눈물 데미지
 
@@ -44,11 +48,12 @@ public class AttackBase : PooledObject
     protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        scale = Vector3.one;// P.S생성시 눈물 폭발의 sclae값을 1,1,1로 담는 변수입니다.
     }
     private void OnEnable()
     {
         player = GameManager.Inst.Player;
-        
+        scale = Vector3.one;//P.s눈물 폭발 오브젝트의 sclae값을 1,1,1로 초기화를 해줍니다.
         Init();                                     // 눈물 세부사항 초기화
         StartCoroutine(Gravity_Life(lifeTime));     // 눈물 중력, 발사시간 코루틴
     }
@@ -68,7 +73,7 @@ public class AttackBase : PooledObject
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {
             StopAllCoroutines();
-            TearDie(collision);
+            TearDie();
         }
     }
 
@@ -76,10 +81,10 @@ public class AttackBase : PooledObject
     /// 눈물 삭제 처리 함수
     /// </summary>
     /// <param name="collision"></param>
-    protected virtual void TearDie(Collision2D collision)
+    protected virtual void TearDie()
     {
-            Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
-            gameObject.SetActive(false);
+        this.TearExplosion();
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -94,24 +99,32 @@ public class AttackBase : PooledObject
         
         rigidBody.gravityScale = gravityScale;                          // 눈물에 적용될 중력 수치
         yield return new WaitForSeconds(delay - dropDuration);
-        
-        Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position);
+
+        TearExplosion();
         gameObject.SetActive(false);
     }
 
     /// <summary>
     /// 총알 세부정보 초기화
     /// </summary>
-    private void Init()
+    protected virtual void Init()
     {
-        speed = player.TearSpeed * 0.5f;
+        speed = player.TearSpeed;
         this.Damage = player.Damage;
         lifeTime =  (player.Range/rangeToLife);
         moveDir = player.MoveDir;
         dir = player.AttackDir;
         rigidBody.gravityScale = 0.0f;
-        dir += moveDir * 0.1f;
+        dir += moveDir * 0.3f;
     }
+
+    protected void TearExplosion()
+    {      
+        //P.s
+        Factory.Inst.GetObject(PoolObjectType.TearExplosion, transform.position, scale);
+        //펙토리에서 크기값도 수정해서 뽑아줍니다. 그래서 폭발 오브젝트는 눈물의 크기와 동일하게 나와요.
+    }
+
 }
 
 // + 속력이 빠를수록 gravity 추가 되는 함수 추가

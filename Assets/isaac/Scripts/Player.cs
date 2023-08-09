@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -53,8 +52,6 @@ public class Player : MonoBehaviour
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
-
-    bool delayLimit = false;
     #endregion
     #region 이속
     /// <summary>
@@ -82,15 +79,15 @@ public class Player : MonoBehaviour
     SpriteRenderer getItemSR;
     // 몸 애니
     Animator bodyAni;
-    // 이동시 좌우 변경
-    SpriteRenderer bodySR;
     // 플레이어 액션
-    Test_InputAction inputAction;
+    PlayerAction inputAction;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
     Vector2 bodyDir = Vector2.zero;
-
+    float minHeadAni = 1.37f;
+    float maxHeadAni = 2.27f;
+    Rigidbody2D rigid;
     /// <summary>
     /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
     /// </summary>
@@ -107,7 +104,7 @@ public class Player : MonoBehaviour
         get => bodyDir;
     }
 
-    CircleCollider2D collider;
+    new CircleCollider2D collider;
     #endregion
     #region 체력
     /// <summary>
@@ -155,7 +152,14 @@ public class Player : MonoBehaviour
     public Action onUseActive;
     public int Coin { get; set; }
     public int Bomb { get; set; }
-    public int Key { get; set; }
+
+    int key = 0;
+    public int Key {
+        get => key;
+        set {
+            key = value;
+        }
+    }
     /// <summary>
     /// 화면에 띄울 damage 프로퍼티
     /// </summary>
@@ -199,27 +203,34 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 띄울 health 프로퍼티
     /// </summary>
-    public float Health
-    {
+    public float Health {
         get => health;
-        private set => health = value;
+        set {
+            health = value;
+            health = Mathf.Clamp(health, 0, maxHealth);
+        }
     }
     #endregion
+
+    public Action<PassiveItemData> getPassiveItem;
+    public Action<ActiveItemData> getActiveItem;
+
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
-        inputAction = new Test_InputAction();
+        inputAction = new PlayerAction();
         getItem = transform.GetChild(1);
         getItemSR = getItem.GetComponent<SpriteRenderer>();
         // 몸통 관련 항목
         body = transform.GetChild(2);
         bodyAni = body.GetComponent<Animator>();
-        bodySR = body.GetComponent<SpriteRenderer>();
         // 머리 관련 항목
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
         health = maxHealth;
         Speed = 2.5f;
+        Damage = 3.5f;
         TearSpeedCaculate();
     }
     private void Update()
@@ -241,9 +252,8 @@ public class Player : MonoBehaviour
         inputAction.Player.Shot.performed += OnFire;
         inputAction.Player.Shot.canceled += OnFire;
         inputAction.Player.Bomb.performed += SetBomb;
+        inputAction.Player.Active.performed += OnActive;
     }
-
-
     private void OnDisable()
     {
         inputAction.Player.Move.performed -= OnMove;
@@ -251,63 +261,123 @@ public class Player : MonoBehaviour
         inputAction.Player.Shot.performed -= OnFire;
         inputAction.Player.Shot.canceled -= OnFire;
         inputAction.Player.Bomb.performed -= SetBomb;
+        inputAction.Player.Active.performed -= OnActive;
         inputAction.Player.Disable();
     }
     private void SetBomb(InputAction.CallbackContext context)
     {
-        bombObj = Instantiate(bombObj);
-        bombObj.transform.position = transform.position;
+        // 폭탄의 개수가 0보다 크면 개수를 1개 줄이고 폭탄 생성
+        if (Bomb > 0) {
+            Bomb--;
+            GameObject bomb = Instantiate(bombObj);
+            bomb.transform.position = transform.position;
+        }
+    }
+    private void OnActive(InputAction.CallbackContext context)
+    {
+        onUseActive?.Invoke();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Damaged();
+            KnockBack(collision);
             Debug.Log("적과 충돌/ 남은 체력 : " + health);
+        }
+
+        // 프롭스 태그를 가진 오브젝트와 충돌 했을 때
+        if (collision.gameObject.CompareTag("Props")) 
+        {
+            // 아이템 데이터 확인
+            ItemDataObject props = collision.gameObject.GetComponent<ItemDataObject>();
+            if (props != null) 
+            {
+                // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
+                IConsumable consum = props.ItemData as IConsumable;
+                if (consum != null) 
+                {
+                    // 아이템 삭제 여부 확인후 아이템 삭제 ( 코인은 삭제 애니메이션 때문에 삭제 하면 안됨)
+                    if (consum.Consume(this.gameObject)) {  
+                        Destroy(collision.gameObject);
+                    }
+                    return;
+                }
+
+                // 아이템 데이터 안에 IHealth 인터페이스가 있는지 확인
+                IHealth heart = props.ItemData as IHealth;
+                if (heart != null) 
+                {
+                    // 아이템으로 힐이 성공 했을 때 그 아이템을 삭제
+                    if (heart.Heal(this.gameObject))
+                    {
+                        Destroy(collision.gameObject);
+                        return;
+                    }
+                }
+            }
         }
 
         if (collision.gameObject.CompareTag("Item"))
         {
-            Item passive = collision.gameObject.GetComponent<ItemBase>().passiveItem;
-            StartCoroutine(GetItem(passive.Icon));
-            if (passive != null)
+            ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
+            ItemData itemData = item.ItemData;
+            if (itemData != null)
             {
-                currentDmg += passive.Attack;
-                currentMultiDmg *= passive.MultiDmg;
-                Speed += passive.Speed;
-                Range += passive.Range;
-                ShotSpeed += passive.ShotSpeed;
-                itemSpeed += passive.TearSpeed;
-                // 데미지 적용시 예외 아이템 switch문
-                switch (passive.ItemNum)
+                ActiveItemData active = itemData as ActiveItemData;
+                if (active != null) 
                 {
-                    case 169:
-                        isGetPolyphemus = true;
-                        break;
-                    case 182:
-                        isGetScaredHeart = true;
-                        break;
+                    getActiveItem?.Invoke(active);
+                    StartCoroutine(GetItem(active.icon));
                 }
-                if (passive.ItemNum == 169 || passive.ItemNum == 182)
-                    currentDmg -= passive.Attack;
 
-                Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
-
-                if (isGetPolyphemus)
-                    Damage += 4f;
-
-                Damage *= currentMultiDmg;
-
-                if (isGetScaredHeart)
-                    Damage += 1f;
-                
-                Damage = (float)Math.Round(Damage, 2);
-                if (speed > maximumSpeed)
+                PassiveItemData passive = itemData as PassiveItemData;
+                if (passive != null)
                 {
-                    speed = maximumSpeed;
+                    getPassiveItem?.Invoke(passive);
+                    StartCoroutine(GetItem(passive.icon));
+
+                    currentDmg += passive.damage;
+                    currentMultiDmg *= passive.multiDamage;
+                    Speed += passive.speed;
+                    Range += passive.range;
+                    ShotSpeed += passive.shotSpeed;
+                    itemSpeed += passive.tearSpeed;
+
+                    // 데미지 적용시 예외 아이템 switch문
+                    switch (passive.itemNum)
+                    {
+                        case 169:
+                            isGetPolyphemus = true;
+                            break;
+                        case 182:
+                            isGetScaredHeart = true;
+                            break;
+                    }
+
+                    if (passive.itemNum == 169 || passive.itemNum == 182)
+                        currentDmg -= passive.damage;
+
+                    Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
+
+                    if (isGetPolyphemus)
+                        Damage += 4f;
+
+                    Damage *= currentMultiDmg;
+
+                    if (isGetScaredHeart)
+                        Damage += 1f;
+
+                    Damage = (float)Math.Round(Damage, 2);
+                    if (speed > maximumSpeed) 
+                    {
+                        speed = maximumSpeed;
+                    }
+                    TearSpeedCaculate();
                 }
-                TearSpeedCaculate();
             }
+
+            Destroy(collision.gameObject);
         }
     }
     IEnumerator GetItem(Sprite sprite)
@@ -367,6 +437,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(tearFire);
     }
+    public Action isFire;
     private void Damaged()
     {
         if (Health > 0)
@@ -396,6 +467,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(currentInvisible);
 
+        rigid.velocity = Vector3.zero;
         inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
         collider.enabled = true;
@@ -406,12 +478,18 @@ public class Player : MonoBehaviour
         {
             if (IsAttackReady)
             {
+                new WaitForSeconds(0.258f);
+                headAni.speed = Mathf.Lerp(minHeadAni, maxHeadAni, itemSpeed);
                 StartCoroutine(TearDelay());
             }
         }
     }
     void TearSpeedCaculate()
     {
+        if(itemSpeed >= 3.5f)
+        {
+            itemSpeed = 3.5f;
+        }
         tearDelay = 16.0f - 6.0f * Mathf.Sqrt(itemSpeed * 1.3f + 1.0f);
         tearDelay = (float)Math.Round(tearDelay, 1);
         TearSpeed = 30 / (tearDelay + 1);
@@ -422,15 +500,18 @@ public class Player : MonoBehaviour
         }
         tearFire = 1 / TearSpeed;
         tearFire = (float)Math.Round(tearFire, 2);
-        
     }
     private void Die()
     {
-        bodyAni.SetTrigger("Die");
         StopAllCoroutines();
+        bodyAni.SetTrigger("Die");
         inputAction.Player.Disable();
         collider.enabled = false;
         head.gameObject.SetActive(false);
+    }
+    private void KnockBack(Collision2D collision)
+    {
+        rigid.AddForce((transform.position - collision.transform.position).normalized * 10.0f, ForceMode2D.Impulse);
     }
 }
 

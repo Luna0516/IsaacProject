@@ -60,6 +60,12 @@ public class Host : EnemyBase
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        orderInGame(spriteRenderer);
+    }
+
     /// <summary>
     /// 몬스터 개체가 공격받는 콜리젼
     /// </summary>
@@ -67,12 +73,17 @@ public class Host : EnemyBase
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         ///조건문 : 부딫힌 개체의 태그가 "PlayerBullet"일 경우, 그.리.고. 무적 판정이 True일 경우 작동합니다.
-        if (collision.gameObject.CompareTag("PlayerBullet")&&invincivle)
+        if (collision.gameObject.CompareTag("PlayerBullet") && invincivle)
         {
             ///collision의 Damage프로퍼티를 불러와서 damage 변수에 넣고 Enemy Base 클래스 변수에 적용합니다.
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             ///공격 받는 함수 호출
             Hitten();
+            NuckBack(-HeadTo);
+        }
+        else if (collision.gameObject.CompareTag("PlayerBullet"))
+        {
+            NuckBack(-HeadTo);
         }
     }
 
@@ -124,7 +135,7 @@ public class Host : EnemyBase
         if(shotcool)
         { 
             //터렛의 각도 지정 : 터렛은 플레이어를 겨냥합니다.
-        turret.transform.rotation = Quaternion.LookRotation(Vector3.forward,target.position-transform.position);
+        turret.transform.rotation = Quaternion.LookRotation(Vector3.forward,HeadTo);
             //총알 프리펩으로부터 게임 오브젝트를 생성하여 터렛의 위치와 각도에서 총알을 만들어냅니다.
         GameObject bullet = Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
         }

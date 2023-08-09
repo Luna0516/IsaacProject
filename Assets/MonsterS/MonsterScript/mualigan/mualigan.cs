@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class mualigan : EnemyBase
 {
-    Vector3 Headto;
     GameObject head;
     GameObject body;
     SpriteRenderer headsprite;
@@ -22,22 +21,22 @@ public class mualigan : EnemyBase
     }
 
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         Movement();
+        orderInGame(headsprite,bodysprite);
     }
     protected override void Movement()
     {
-        Headto = target.position - transform.position;
-        transform.position += Headto.normalized * speed * Time.deltaTime;
-
-        if (Headto.x > 1)
+        transform.Translate(HeadTo * speed * Time.deltaTime);
+        if (HeadTo.x > 0)
             {
                 headsprite.flipX = false;
                 bodysprite.flipX = false;
                 animator.SetInteger("WalkSideway", 1);
             }
-            else if (Headto.x < 1)
+            else
             {
                 headsprite.flipX = true;
                 bodysprite.flipX = true;

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee22ce7f2061c94eaf2932f5b1c2bab, type: 3}
+  m_Name: MutantSpider
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Mutant Spider
+  explain: Quad shot
+  itemNum: 153
+  icon: {fileID: 21300000, guid: 2508fcf22f522724d928684e890a1e78, type: 3}
+  itemPrefab: {fileID: 7490964534661180644, guid: 7dc9d2974eff4ba48a6b014f1f0792df, type: 3}
+  grade: 3
+  damage: 0
+  speed: 0
+  tearSpeed: 0
+  shotSpeed: 0
+  range: 0
+  multiDamage: 1
+  multiTearSpeed: 0.42
+  heal: 0
+  maxHP: 0
+  redFullHeal: 0

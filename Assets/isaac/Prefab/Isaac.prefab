@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2617567171133729389}
   - component: {fileID: 2096898559}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: TearSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421217325000936444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742968306606728096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1421279137304812508}
   - component: {fileID: 1672132898}
   - component: {fileID: 893110237}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Isaac
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -271,16 +271,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d81c3a3db15fe40a982796696e9f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tear: {fileID: 4867646549252388119, guid: bb396976bf00d21499ff8f03bf7c1ff9, type: 3}
   tearSpeed: 2.73
   tearFire: 0
-  range: 0
-  shotSpeed: 1
-  speed: 0
-  BombObj: {fileID: 0}
+  range: 5
+  speed: 1
+  bombObj: {fileID: 4702667416383564111, guid: df80f88c337ffb444ad4490bf263d646, type: 3}
   maxHealth: 6
   health: 0
-  damage: 0
+  damage: 5
 --- !u!50 &1672132898
 Rigidbody2D:
   serializedVersion: 4
@@ -294,7 +292,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -331,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4813107340413329769, guid: 91b2968480277fa4f8c86a1d0b0eb3f3, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4813107340413329772, guid: 91b2968480277fa4f8c86a1d0b0eb3f3, type: 3}
       propertyPath: m_RootOrder
@@ -453,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7495291121206736738, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea09eb4c7dfefbd4dad0ac8efd1c23bb, type: 3}
