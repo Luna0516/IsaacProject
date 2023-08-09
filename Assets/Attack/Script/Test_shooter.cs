@@ -26,7 +26,7 @@ public class Test_shooter : MonoBehaviour
         {
             GameObject bull = Instantiate(Bullet.gameObject,this.transform.position,Quaternion.identity);
             instingbullet = bull.GetComponent<AttackBase>();
-            instingbullet.dir = this.transform.position.normalized;
+            instingbullet.dir = Vector2.left;
             yield return new WaitForSeconds(fireRate);
         }
     }
