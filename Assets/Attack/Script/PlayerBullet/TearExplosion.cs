@@ -11,10 +11,11 @@ public class TearExplosion : PooledObject
         anim = GetComponent<Animator>();
     }
 
-    private void OnEnable() 
+    private void OnEnable()
     {
-            float animTime = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        StopAllCoroutines();
+        float animTime = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
 
-            StartCoroutine(Gravity_Life(animTime));
+        StartCoroutine(Gravity_Life(animTime));
     }
 }
