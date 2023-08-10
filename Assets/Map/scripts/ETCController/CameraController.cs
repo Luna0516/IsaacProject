@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 
     public static CameraController instance;
 
-    public Room currroom;
+    public Room currRoom;
 
     public float moveSpeedWhenRoomChange;
 
@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
 
     void UpdatePosition()
     {
-        if(currroom == null)
+        if(currRoom == null)
         {
             return;
         }
@@ -38,12 +38,12 @@ public class CameraController : MonoBehaviour
 
     Vector3 GetCameraTargetPosition()
     {
-        if (currroom == null)
+        if (currRoom == null)
         {
             return Vector3.zero;
         }
 
-        Vector3 targetPos = currroom.GetRoomCentre();
+        Vector3 targetPos = currRoom.GetRoomCentre();
         targetPos.z = transform.position.z;
 
         return targetPos;

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6259d761ad8514c448d7bb76dff9260c, type: 3}
-  m_Name: DungeonGenerationData
+  m_Script: {fileID: 11500000, guid: 1e449e0e31ccd754c83e13a866f16f34, type: 3}
+  m_Name: ChaseEnemy
   m_EditorClassIdentifier: 
-  numberOfCrawlers: 2
-  iterationMin: 5
-  iterationMax: 10
+  itemToSpawn: {fileID: 2813975671658389336, guid: 82b7673510b17b047a6a76a874272f54, type: 3}
+  minSpawn: 1
+  maxSpawn: 6

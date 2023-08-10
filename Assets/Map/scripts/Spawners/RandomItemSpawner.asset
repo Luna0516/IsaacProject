@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6259d761ad8514c448d7bb76dff9260c, type: 3}
-  m_Name: DungeonGenerationData
+  m_Script: {fileID: 11500000, guid: 1e449e0e31ccd754c83e13a866f16f34, type: 3}
+  m_Name: RandomItemSpawner
   m_EditorClassIdentifier: 
-  numberOfCrawlers: 2
-  iterationMin: 5
-  iterationMax: 10
+  itemToSpawn: {fileID: 3532457589820681912, guid: 6ed1ff174b8fd7744b6a230bccf76cf4, type: 3}
+  minSpawn: 0
+  maxSpawn: 1
