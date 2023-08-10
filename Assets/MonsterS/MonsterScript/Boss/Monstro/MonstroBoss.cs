@@ -30,6 +30,11 @@ public class MonstroBoss : EnemyBase
     /// </summary>
     SpriteRenderer spriteRenderer;
 
+    int anicode_Attack = Animator.StringToHash("Attack");
+    int anicode_Jump = Animator.StringToHash("Jump");
+    int anicode_SuperJump = Animator.StringToHash("SuperJump");
+
+
     public Transform turret;
 
     protected override void Awake()
@@ -37,11 +42,12 @@ public class MonstroBoss : EnemyBase
         base.Awake();
         //애니메이터 불러오기
         animator = transform.GetComponentInChildren<Animator>();
-
+        
         //스프라이트 렌더러 불러오기
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
 
         turret = transform.GetChild(1);
+        
     }
      void Start()
     {
@@ -97,7 +103,7 @@ public class MonstroBoss : EnemyBase
             speed = 0; 
 
             //애니메이터 jump 실행
-            animator.SetInteger("Jump", 1);
+            animator.SetInteger(anicode_Jump, 1);
 
             //점프 대기 시간(0.5초)후 점프 실행
             yield return new WaitForSeconds(0.5f);
@@ -114,7 +120,7 @@ public class MonstroBoss : EnemyBase
             speed = 0;
 
             //점프 종료
-            animator.SetInteger("Jump", 0);
+            animator.SetInteger(anicode_Jump, 0);
 
             //Idel 실행으로 점프 쿨타임
             yield return new WaitForSeconds(0.5f);
@@ -135,19 +141,17 @@ public class MonstroBoss : EnemyBase
     {
         //기본적인 매커니즘은 점프 패턴과 동일하나 반복은 하지 않는다.
             speed = 0;
-            animator.SetInteger("SuperJump", 1);
+            animator.SetInteger(anicode_SuperJump, 1);
             //점프 대기
             yield return new WaitForSeconds(0.5f);
-            speed = sppeed;
+            speed = sppeed*5;
             //점프
-            yield return new WaitForSeconds(0.8f);
-        //활공 도중에 플레이어 머리 위로 떨어질수 있도록 위치값을 타깃값으로 수정
-            transform.position = target.position;
-            yield return new WaitForSeconds(0.950f);
-            speed = 0;
+            yield return new WaitForSeconds(1.0f);
+             speed = 0;  
+            yield return new WaitForSeconds(0.750f);
         //점프 종료
             Splashbullet();
-			animator.SetInteger("SuperJump", 0);
+			animator.SetInteger(anicode_SuperJump, 0);
             //Idel 실행으로 점프 쿨타임
             yield return new WaitForSeconds(1.167f);
             speed = sppeed;       
@@ -161,16 +165,16 @@ public class MonstroBoss : EnemyBase
     IEnumerator Attack()
     {
         //공격 애니메이션 실행
-        animator.SetInteger("Attack",1);
+        animator.SetInteger(anicode_Attack,1);
 
         //공격을 위해 이동을 멈춘다.
         speed = 0;
         //공격 하는동안 대기
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         ShatteredBullet();
-        yield return new WaitForSeconds(1.0f);
-
-        animator.SetInteger("Attack", 0);
+        yield return new WaitForSeconds(0.2f);
+        animator.SetInteger(anicode_Attack, 0);
+        yield return new WaitForSeconds(0.3f);
         //speed값 복원
         speed = sppeed;
 
@@ -280,15 +284,5 @@ public class MonstroBoss : EnemyBase
     {
         base.Hitten();
         StartCoroutine(damaged(spriteRenderer));
-    }
-
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y - 0.5f, 0), new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y - 0.5f, 0));
-        Gizmos.DrawLine(new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y - 0.5f, 0), new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y + 0.5f, 0));
-        Gizmos.DrawLine(new Vector3(turret.transform.position.x + 0.5f, turret.transform.position.y + 0.5f, 0), new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y + 0.5f, 0));
-        Gizmos.DrawLine(new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y + 0.5f, 0), new Vector3(turret.transform.position.x - 0.5f, turret.transform.position.y - 0.5f, 0));
     }
 }
