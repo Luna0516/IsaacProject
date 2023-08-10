@@ -22,7 +22,9 @@ public class AttackBase : PooledObject
     /// 컴포넌트들
     /// </summary>
     Player player;
+
     protected Rigidbody2D rigidBody;
+
 
     public float damage;    // 눈물 데미지
 
@@ -56,7 +58,7 @@ public class AttackBase : PooledObject
         StartCoroutine(Gravity_Life(lifeTime));     // 눈물 중력, 발사시간 코루틴
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {                      
         rigidBody.MovePosition(rigidBody.position + dir * speed * Time.fixedDeltaTime); // 눈물 날아가는 속도 및 방향
         rigidBody.velocity = new Vector3(dir.x * speed, dir.y * speed);                 // 눈물 velocity 적용
