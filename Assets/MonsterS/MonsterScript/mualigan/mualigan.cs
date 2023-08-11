@@ -29,8 +29,8 @@ public class mualigan : EnemyBase
     }
     protected override void Movement()
     {
-        transform.Translate(HeadTo * speed * Time.deltaTime);
-        if (HeadTo.x > 0)
+        transform.Translate(-HeadTo * speed * Time.deltaTime);
+        if (HeadTo.x < 0)
             {
                 headsprite.flipX = false;
                 bodysprite.flipX = false;
