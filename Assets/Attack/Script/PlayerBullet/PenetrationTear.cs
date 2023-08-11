@@ -6,6 +6,8 @@ public class PenetrationTear : AttackBase
 {
     //is trigger 눈물 
     // 전체 관통 (적만) 
+    // 트리거 
+
 
     protected override void Awake()
     {
