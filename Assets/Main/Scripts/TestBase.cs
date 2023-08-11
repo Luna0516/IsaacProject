@@ -21,11 +21,11 @@ public class TestBase : MonoBehaviour {
         inputActions.Test.Test4.performed += Test4;
         inputActions.Test.Test5.performed += Test5;
         inputActions.Test.Test6.performed += Test6;
-        inputActions.Test.Test6.performed += Test7;
+        inputActions.Test.Test7.performed += Test7;
     }
 
     protected virtual void OnDisable() {
-        inputActions.Test.Test6.performed -= Test7;
+        inputActions.Test.Test7.performed -= Test7;
         inputActions.Test.Test6.performed -= Test6;
         inputActions.Test.Test5.performed -= Test5;
         inputActions.Test.Test4.performed -= Test4;
