@@ -50,7 +50,7 @@ public class AttackBase : PooledObject
         rigidBody = GetComponent<Rigidbody2D>();
         scale = Vector3.one;// P.S생성시 눈물 폭발의 sclae값을 1,1,1로 담는 변수입니다.
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         player = GameManager.Inst.Player;
         scale = Vector3.one;//P.s눈물 폭발 오브젝트의 sclae값을 1,1,1로 초기화를 해줍니다.
