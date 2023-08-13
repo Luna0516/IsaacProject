@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2617567171133729389}
   - component: {fileID: 2096898559}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TearSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5725675683704670755}
   - component: {fileID: 1569729170}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GetItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1421279137304812508}
   - component: {fileID: 1672132898}
   - component: {fileID: 893110237}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Isaac
   m_TagString: Player
   m_Icon: {fileID: 0}
