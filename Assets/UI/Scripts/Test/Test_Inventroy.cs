@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Test_Passive : TestBase {
-    public Player player;
-    
-    public ItemData itemData;
+public class Test_Inventroy : TestBase
+{
+    public ItemManager itemManager;
 
     protected override void Test1(InputAction.CallbackContext context) {
-        ItemFactory.CreateItem(itemData, Vector2.one * 2.0f);
+        ItemFactory.CreateItem(itemManager.propsItemDatas[10]);
     }
 }

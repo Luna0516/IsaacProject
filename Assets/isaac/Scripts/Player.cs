@@ -210,6 +210,15 @@ public class Player : MonoBehaviour
             health = Mathf.Clamp(health, 0, maxHealth);
         }
     }
+    int soulHealth = 0;
+    public int SoulHealth {
+        get => soulHealth;
+        set {
+            if(soulHealth != value) {
+                soulHealth = Math.Max(0, value);
+            }
+        }
+    }
     #endregion
 
     public Action<PassiveItemData> getPassiveItem;
@@ -318,6 +327,7 @@ public class Player : MonoBehaviour
             }
         }
 
+        // Item 태그를 가진 오브젝트와 충돌 했을 때
         if (collision.gameObject.CompareTag("Item"))
         {
             ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
@@ -440,23 +450,33 @@ public class Player : MonoBehaviour
     public Action isFire;
     private void Damaged()
     {
-        if (Health > 0)
+        if (SoulHealth <= 0)
         {
-            StartCoroutine(InvisibleTime());
-            health--;
-            if(Health == 0)
+            if (Health > 0)
+            {
+                StartCoroutine(InvisibleTime());
+                health--;
+                if (Health == 0)
+                {
+                    Die();
+                }
+                else
+                {
+                    bodyAni.SetTrigger("Damage");
+                    head.gameObject.SetActive(false);
+                }
+            }
+            else if (Health <= 0)
             {
                 Die();
             }
-            else
-            {
-                bodyAni.SetTrigger("Damage");
-                head.gameObject.SetActive(false);
-            }
         }
-        else if (Health <= 0)
+        else
         {
-            Die();
+            StartCoroutine(InvisibleTime());
+            SoulHealth--;
+            bodyAni.SetTrigger("Damage");
+            head.gameObject.SetActive(false);
         }
     }
     IEnumerator InvisibleTime()
