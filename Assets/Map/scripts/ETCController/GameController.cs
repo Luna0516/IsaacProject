@@ -39,7 +39,6 @@ public class GameController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(healthText != null)
@@ -50,6 +49,18 @@ public class GameController : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// 참조는 되고있지만 사용되고있지는 않다.
+    /// </summary>
+    private static void KillPlayer()
+    {
+        
+    }
+    /// <summary>
+    /// 사용되고 있지 않은 함수입니다.
+    /// </summary>
+    /// <param name="damage"></param>
     public static void DamagePlayer(int damage)
     {
         health -= damage;
@@ -58,7 +69,6 @@ public class GameController : MonoBehaviour
             KillPlayer();
         }
     }
-
     public static void HealPlayer(float healAmount)
     {
         health = Mathf.Min(maxHealth, health + healAmount);
@@ -79,9 +89,4 @@ public class GameController : MonoBehaviour
         bulletSize += size;
     }
 
-
-    private static void KillPlayer()
-    {
-        
-    }
 }

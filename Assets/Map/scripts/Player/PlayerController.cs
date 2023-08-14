@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //이 클래스는 테스트용 플레이어 클래스인듯 합니다.(삭제해도 무관할듯?)
+
     public float speed;
     Rigidbody2D rigid;
 

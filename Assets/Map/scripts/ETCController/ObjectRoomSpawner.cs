@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectRoomSpawner : MonoBehaviour
 {
+    // 총평 : 오브젝트를 렌덤 포인트에서 소환할수 있게 포인트를 렌덤으로 지정해두는 클래스로 보입니다.
+
     [System.Serializable]
     public struct RandomSpawner
     {
@@ -23,7 +25,7 @@ public class ObjectRoomSpawner : MonoBehaviour
 
     public void InitialiseObjectSpawning()
     {
-        foreach(RandomSpawner rs in spawnerData)
+        foreach (RandomSpawner rs in spawnerData)
         {
             SpawnObjects(rs);
         }
@@ -33,11 +35,11 @@ public class ObjectRoomSpawner : MonoBehaviour
     {
         int randomIteration = Random.Range(data.spawnerData.minSpawn, data.spawnerData.maxSpawn + 1);
 
-        for(int i = 0; i < randomIteration; i++)
+        for (int i = 0; i < randomIteration; i++)
         {
             int randomPos = Random.Range(0, grid.availablePoints.Count - 1);
-            GameObject go = Instantiate(data.spawnerData.itemToSpawn, grid.availablePoints[randomPos], 
-                Quaternion.identity, transform)as GameObject;
+            GameObject go = Instantiate(data.spawnerData.itemToSpawn, grid.availablePoints[randomPos],
+                Quaternion.identity, transform) as GameObject;
             grid.availablePoints.RemoveAt(randomPos);
             Debug.Log("Spawned Object!");
         }

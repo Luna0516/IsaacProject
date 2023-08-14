@@ -16,7 +16,9 @@ public class RoomInfo
 }
 public class RoomController : MonoBehaviour
 {
-
+    /// <summary>
+    /// 정적 변수 instance
+    /// </summary>
     public static RoomController instance;
 
     string currentWorldName = "Basement";
@@ -35,7 +37,7 @@ public class RoomController : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        instance = this; //instance에 이 개체의 RoomController 대입
     }
 
     void Start()

@@ -6,47 +6,83 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-
+    /// <summary>
+    /// 방의 가로값
+    /// </summary>
     public int Width;
 
+    /// <summary>
+    /// 방의 세로값
+    /// </summary>
     public int Height;
 
+
+    /// <summary>
+    /// X
+    /// </summary>
     public int X;
 
+    /// <summary>
+    /// Y
+    /// </summary>
     public int Y;
 
+
+    /// <summary>
+    /// 방 문의 참값
+    /// </summary>
     private bool updatedDoors = false;
 
+    /// <summary>
+    /// 생성자
+    /// </summary>
+    /// <param name="x"> X 변수에 int x 대입</param>
+    /// <param name="y"> Y 변수에 int y 대입</param>
     public Room(int x, int y)
     {
         X = x;
         Y = y;
     }
 
+    /// <summary>
+    /// 왼쪽 문 Door 클래스
+    /// </summary>
     public Door leftDoor;
 
+    /// <summary>
+    /// 오른쪽 문 Door 클래스
+    /// </summary>
     public Door rightDoor;
 
+    /// <summary>
+    /// 윗쪽 문 Door 클래스
+    /// </summary>
     public Door topDoor;
 
+    /// <summary>
+    /// 아랫쪽 문 Door 클래스
+    /// </summary>
     public Door bottomDoor;
 
+    /// <summary>
+    /// Door 클래스 List doors
+    /// </summary>
     public List<Door>doors = new List<Door>();
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        if (RoomController.instance == null)
+        if (RoomController.instance == null)//룸 컨트롤러가 없으면 
         {
             Debug.Log("You preesed play in the  wrong scene!");
-            return;
+            return; //if문 정지
         }
 
-        Door[] ds = GetComponentsInChildren<Door>();
-        foreach(Door d in ds) 
+        Door[] ds = GetComponentsInChildren<Door>();//자식 개체의 Door 컴포넌트들을 모아서 ds 배열에 저장
+        foreach(Door d in ds) //ds만큼 Door 클래스의 d를 반복
         {
-            doors.Add(d);
-            switch (d.doorType)
+            doors.Add(d);//리스트에 d 입력
+            switch (d.doorType)//d 
             {
                 case Door.DoorType.right:
                     rightDoor = d;
