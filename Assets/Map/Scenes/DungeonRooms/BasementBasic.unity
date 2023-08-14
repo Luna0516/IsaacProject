@@ -465,6 +465,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 0}
+  grid:
+    columns: 0
+    rows: 0
+    verticalOffset: 4.5
+    horizontalOffset: 8.5
+  gridTile: {fileID: 0}
   availablePoints: []
 --- !u!1 &1785098783
 GameObject:
@@ -571,11 +577,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1785098783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6de9cb3810fd8a4994919a0a70526d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 16207e506095f244d8a4071bc3cb6bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 0}
-  spawnerData: []
+  grid: {fileID: 1563394843}
+  spawnerData:
+  - name: ChaseEnemy
+    spawnerData: {fileID: 11400000, guid: 57f297bad45fb7f4a9aa798681b3d15a, type: 2}
+  - name: RandomItemSpawner
+    spawnerData: {fileID: 0}
 --- !u!1 &1929312072
 GameObject:
   m_ObjectHideFlags: 0

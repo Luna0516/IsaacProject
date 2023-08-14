@@ -419,6 +419,7 @@ MonoBehaviour:
     rows: 0
     verticalOffset: 4.5
     horizontalOffset: 8.5
+  gridTile: {fileID: 0}
   availablePoints: []
 --- !u!1 &1192096677
 GameObject:
@@ -699,7 +700,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785098783}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef16329cf76dc664eb4b11161b360e64, type: 3}
   m_Name: 
