@@ -15,9 +15,9 @@ public class GridController : MonoBehaviour
     /// </summary>
     public Room room;
 
-    
 
-    
+
+    [System.Serializable]
    public struct Grid //Grid 구조체
     {
         public int columns, rows; //columns, rows int 변수 생성
@@ -33,7 +33,7 @@ public class GridController : MonoBehaviour
 
     void Awake()
     {
-        grid=GetComponentInParent<Grid>();//P.S
+        //grid=GetComponentInParent<Grid>();//P.S
         room = GetComponentInParent<Room>(); //부모 개체에서 Room 클래스 가져오기
         grid.columns = room.Width - 2; //방의 가로 길이 -2
         grid.rows = room.Height - 2; //방의 세로 길이 -2

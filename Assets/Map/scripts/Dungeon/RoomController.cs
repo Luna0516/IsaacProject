@@ -6,6 +6,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 방 정보를 모아둔 클래스
+/// </summary>
 public class RoomInfo
 {
     public string name;
@@ -21,11 +24,22 @@ public class RoomController : MonoBehaviour
     /// </summary>
     public static RoomController instance;
 
+    /// <summary>
+    /// 총 이름
+    /// </summary>
     string currentWorldName = "Basement";
 
+
+    /// <summary>
+    /// 방 정보 클래스
+    /// </summary>
     RoomInfo currentLoadRoomData;
 
+    /// <summary>
+    /// 방 클래스 변수
+    /// </summary>
     Room currRoom;
+
 
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
 
@@ -102,6 +116,12 @@ public class RoomController : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     public void LoadRoom(string name, int x, int y)
     {
         if (DoesRoomExist(x, y))
