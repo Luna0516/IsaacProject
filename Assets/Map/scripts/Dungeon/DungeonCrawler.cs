@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DungeonCrawler : MonoBehaviour
+public class DungeonCrawler 
 {
     public Vector2Int Position { get; set; }
     public DungeonCrawler(Vector2Int startPos)

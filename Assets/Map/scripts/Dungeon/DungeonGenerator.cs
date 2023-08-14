@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
+    //던전 생성 클래스
 
     public DungeonGenerationData dungeonGenerationData;
 

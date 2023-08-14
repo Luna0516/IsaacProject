@@ -69,6 +69,10 @@ public class Room : MonoBehaviour
     /// </summary>
     public List<Door>doors = new List<Door>();
 
+    private void Awake()
+    {
+        
+    }
 
     void Start()
     {
