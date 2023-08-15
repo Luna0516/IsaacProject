@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class Attribute : MonoBehaviour
+public class Ability : MonoBehaviour
 {
-    Player player;
+    Player player = null;
+
     TextMeshProUGUI damageValue = null;
     TextMeshProUGUI speedValue = null;
     TextMeshProUGUI shotSpeedValue = null;
@@ -12,12 +13,22 @@ public class Attribute : MonoBehaviour
     TextMeshProUGUI rangeValue = null;
 
     void Start() {
+        Transform child = transform.GetChild(0);
+        damageValue = child.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        child = transform.GetChild(1);
+        speedValue = child.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        child = transform.GetChild(2);
+        shotSpeedValue = child.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        child = transform.GetChild(3);
+        tearSpeedValue = child.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        child = transform.GetChild(4);
+        rangeValue = child.GetChild(1).GetComponent<TextMeshProUGUI>();
+
         player = GameManager.Inst.Player;
-        damageValue = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
-        speedValue = transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
-        shotSpeedValue = transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
-        tearSpeedValue = transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>();
-        rangeValue = transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
     void LateUpdate() {

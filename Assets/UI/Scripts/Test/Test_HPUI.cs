@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Test_HPUI : TestBase
 {
-    public Vector2 spownPos;
+    public Vector2 spawnPos;
 
     public ItemData R_H_Heart;
     public ItemData R_F_Heart;
@@ -14,21 +14,21 @@ public class Test_HPUI : TestBase
 
     protected override void Test1(InputAction.CallbackContext context)
     {
-        ItemFactory.Inst.CreateItem(R_H_Heart, spownPos);
+        ItemFactory.Inst.CreateItem(R_H_Heart, spawnPos);
     }
 
     protected override void Test2(InputAction.CallbackContext context)
     {
-        ItemFactory.Inst.CreateItem(R_F_Heart, spownPos);
+        ItemFactory.Inst.CreateItem(R_F_Heart, spawnPos);
     }
 
     protected override void Test3(InputAction.CallbackContext context)
     {
-        ItemFactory.Inst.CreateItem(S_H_Heart, spownPos);
+        ItemFactory.Inst.CreateItem(S_H_Heart, spawnPos);
     }
 
     protected override void Test4(InputAction.CallbackContext context)
     {
-        ItemFactory.Inst.CreateItem(S_F_Heart, spownPos);
+        ItemFactory.Inst.CreateItem(S_F_Heart, spawnPos);
     }
 }

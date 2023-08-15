@@ -150,16 +150,46 @@ public class Player : MonoBehaviour
     #endregion
     #region 프로퍼티들
     public Action onUseActive;
-    public int Coin { get; set; }
-    public int Bomb { get; set; }
-
+    int coin = 0;
+    public int Coin
+    {
+        get => coin;
+        set
+        {
+            coin = value;
+            onCoinChange?.Invoke(coin);
+        }
+    }
+    /// <summary>
+    /// 코인 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onCoinChange;
+    int bomb = 0;
+    public int Bomb
+    {
+        get => bomb;
+        set
+        {
+            bomb = value;
+            onBombChange?.Invoke(bomb);
+        }
+    }
+    /// <summary>
+    /// 폭탄 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onBombChange;
     int key = 0;
     public int Key {
         get => key;
         set {
             key = value;
+            onKeyChange?.Invoke(key);
         }
     }
+    /// <summary>
+    /// 열쇠 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onKeyChange;
     /// <summary>
     /// 화면에 띄울 damage 프로퍼티
     /// </summary>
