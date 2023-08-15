@@ -22,7 +22,13 @@ public class GoldenChest : Chest
     void ChestOpen() {
         foreach (var item in dropItems) {
             if (Random.value < item.dropPercentage) {
-                ItemFactory.CreateItem(item.data, transform.position);
+                GameObject itemObj = ItemFactory.Inst.CreateItem(item.data, new Vector2(transform.position.x + Random.Range(-1.0f, 1.0f), transform.position.y + Random.Range(-1.0f, 1.0f)));
+                Rigidbody2D itemRigid = itemObj.GetComponent<Rigidbody2D>();
+                if (itemRigid != null)
+                {
+                    Vector2 dir = (itemObj.transform.position - transform.position).normalized;
+                    itemRigid.AddForce(dir * 25.0f, ForceMode2D.Impulse);
+                }
             }
         }
     }

@@ -110,11 +110,11 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 최대체력
     /// </summary>
-    public float maxHealth = 6.0f;
+    public int maxHealth = 6;
     /// <summary>
     /// 현재 체력
     /// </summary>
-    public float health = 1;
+    public int health = 1;
     #endregion
     #region 데미지
     /// <summary>
@@ -203,11 +203,12 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 띄울 health 프로퍼티
     /// </summary>
-    public float Health {
+    public int Health {
         get => health;
         set {
             health = value;
             health = Mathf.Clamp(health, 0, maxHealth);
+            onHealthChange?.Invoke();
         }
     }
     int soulHealth = 0;
@@ -216,6 +217,7 @@ public class Player : MonoBehaviour
         set {
             if(soulHealth != value) {
                 soulHealth = Math.Max(0, value);
+                onHealthChange?.Invoke();
             }
         }
     }
@@ -223,6 +225,11 @@ public class Player : MonoBehaviour
 
     public Action<PassiveItemData> getPassiveItem;
     public Action<ActiveItemData> getActiveItem;
+
+    /// <summary>
+    /// 플레이어의 HP가 변경되었음을 알리는 델리게이트
+    /// </summary>
+    public Action onHealthChange;
 
     private void Awake()
     {
@@ -237,10 +244,14 @@ public class Player : MonoBehaviour
         // 머리 관련 항목
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
-        health = maxHealth;
+        
+        TearSpeedCaculate();
+    }
+    private void Start()
+    {
+        Health = maxHealth;
         Speed = 2.5f;
         Damage = 3.5f;
-        TearSpeedCaculate();
     }
     private void Update()
     {
@@ -455,7 +466,7 @@ public class Player : MonoBehaviour
             if (Health > 0)
             {
                 StartCoroutine(InvisibleTime());
-                health--;
+                Health--;
                 if (Health == 0)
                 {
                     Die();
