@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -73,14 +74,16 @@ public class Player : MonoBehaviour
     Transform head;
     // 머리 애니
     Animator headAni;
+    SpriteRenderer headSR;
     // 몸
     Transform body;
-    Transform getItem;
-    SpriteRenderer getItemSR;
     // 몸 애니
     Animator bodyAni;
+    SpriteRenderer bodySR;
     // 플레이어 액션
     PlayerAction inputAction;
+    Transform getItem;
+    SpriteRenderer getItemSR;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -105,6 +108,12 @@ public class Player : MonoBehaviour
     }
 
     new CircleCollider2D collider;
+
+    /// <summary>
+    /// 스프라이트 변경 아이템을 먹지 않았을때
+    /// </summary>
+    bool isEmpty = true;
+
     #endregion
     #region 체력
     /// <summary>
@@ -140,13 +149,15 @@ public class Player : MonoBehaviour
     #endregion
     #region 무적
     /// <summary>
-    /// 무적시간
-    /// </summary>
-    float invisibleTime = 1.16f;
-    /// <summary>
     /// 무적시간 초기화용
     /// </summary>
+    float invisibleTime = 0.9f;
+    /// <summary>
+    /// 무적시간
+    /// </summary>
     float currentInvisible = 0.0f;
+
+    bool isDamaged = false;
     #endregion
     #region 프로퍼티들
     public Action onUseActive;
@@ -208,15 +219,6 @@ public class Player : MonoBehaviour
         set {
             health = value;
             health = Mathf.Clamp(health, 0, maxHealth);
-        }
-    }
-    int soulHealth = 0;
-    public int SoulHealth {
-        get => soulHealth;
-        set {
-            if(soulHealth != value) {
-                soulHealth = Math.Max(0, value);
-            }
         }
     }
     #endregion
@@ -327,7 +329,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Item 태그를 가진 오브젝트와 충돌 했을 때
         if (collision.gameObject.CompareTag("Item"))
         {
             ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
@@ -357,11 +358,19 @@ public class Player : MonoBehaviour
                     // 데미지 적용시 예외 아이템 switch문
                     switch (passive.itemNum)
                     {
+                        // 왕눈이눈물
                         case 169:
                             isGetPolyphemus = true;
                             break;
+                        // 유도눈물
                         case 182:
                             isGetScaredHeart = true;
+                            break;
+                        // 칼
+                        case 114:
+                            break;
+                        // 거미눈물 4발
+                        case 153:
                             break;
                     }
 
@@ -386,7 +395,6 @@ public class Player : MonoBehaviour
                     TearSpeedCaculate();
                 }
             }
-
             Destroy(collision.gameObject);
         }
     }
@@ -440,8 +448,21 @@ public class Player : MonoBehaviour
     IEnumerator TearDelay()
     {
         Transform tearSpawn = transform.GetChild(0);
-
-        GameObject tear = Factory.Inst.GetObject(PoolObjectType.PenetrationTear, tearSpawn.position); // 추적 눈물로 실험 중
+        GameObject tear;
+        if (isEmpty)
+        {
+            tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
+        }
+        if (isGetPolyphemus)
+        {
+            tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
+            isEmpty = false;
+        }
+        if (isGetScaredHeart)
+        {
+            tear = Factory.Inst.GetObject(PoolObjectType.GuidedTear, tearSpawn.position);
+            isEmpty = false;
+        }
 
         currentTearDelay = tearFire; // 딜레이 시간 초기화
 
@@ -450,47 +471,53 @@ public class Player : MonoBehaviour
     public Action isFire;
     private void Damaged()
     {
-        if (SoulHealth <= 0)
+        if (Health > 0)
         {
-            if (Health > 0)
-            {
-                StartCoroutine(InvisibleTime());
-                health--;
-                if (Health == 0)
-                {
-                    Die();
-                }
-                else
-                {
-                    bodyAni.SetTrigger("Damage");
-                    head.gameObject.SetActive(false);
-                }
-            }
-            else if (Health <= 0)
+            isDamaged = true;
+            health--;
+            if(Health == 0)
             {
                 Die();
             }
+            else
+            {
+                currentInvisible = invisibleTime;
+                StartCoroutine(InvisibleTime());
+            }
         }
-        else
+        else if (Health <= 0)
         {
-            StartCoroutine(InvisibleTime());
-            SoulHealth--;
-            bodyAni.SetTrigger("Damage");
-            head.gameObject.SetActive(false);
+            Die();
         }
     }
+    // 코루틴이나 Damaged에서 while문으로 color.alpha 값 조정해서 깜빡임 추가할것.
+    // bool값으로 isDameged 넣어둠
+    // invisible은 없어도 될거같음.
+    // 본작에서는 눈물 공격이 잠깐 안나가므로 값 조정 불가피
+    // 깜빡이는 동안에는 데미지 X
+    
     IEnumerator InvisibleTime()
     {
-        inputAction.Player.Shot.Disable();
-        collider.enabled = false;
-        currentInvisible = invisibleTime;
-
+        StartCoroutine(Invisible());
+        head.gameObject.SetActive(false);
+        bodyAni.SetTrigger("Damage");
+        collider.enabled = !isDamaged;
         yield return new WaitForSeconds(currentInvisible);
-
-        rigid.velocity = Vector3.zero;
-        inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
-        collider.enabled = true;
+        isDamaged = false;
+        collider.enabled = !isDamaged;
+    }
+    IEnumerator Invisible()
+    {
+        while (isDamaged)
+        {
+            headSR.color = new Color(0, 0, 0, 1);
+            bodySR.color = new Color(0, 0, 0, 1);
+            yield return new WaitForSeconds(0.5f);
+            headSR.color = new Color(0, 0, 0, 0);
+            bodySR.color = new Color(0, 0, 0, 0);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
     private void ShootingTear()
     {
