@@ -27,5 +27,5 @@ public class ActiveItemData : ItemData {
     /// <summary>
     /// 아이템 쿨타임
     /// </summary>
-    public float coolTime;
+    public int coolTime;
 }
