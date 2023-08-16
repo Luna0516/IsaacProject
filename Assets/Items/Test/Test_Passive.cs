@@ -9,6 +9,6 @@ public class Test_Passive : TestBase {
     public ItemData itemData;
 
     protected override void Test1(InputAction.CallbackContext context) {
-        ItemFactory.CreateItem(itemData, Vector2.one * 2.0f);
+        ItemFactory.Inst.CreateItem(itemData, Vector2.one * 2.0f);
     }
 }

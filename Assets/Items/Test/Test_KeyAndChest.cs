@@ -17,7 +17,7 @@ public class Test_KeyAndChest : TestBase {
     }
 
     protected override void Test1(InputAction.CallbackContext context) {
-        ItemFactory.CreateItem(Key, Vector2.one * 2.0f);
+        ItemFactory.Inst.CreateItem(Key, Vector2.one * 2.0f);
     }
 
     protected override void Test2(InputAction.CallbackContext context) {

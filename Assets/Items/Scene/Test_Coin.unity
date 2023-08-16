@@ -4620,7 +4620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 308455261}
-  coin: {fileID: 11400000, guid: 5b53992287d5c134186fdfb6e10d2f9d, type: 2}
+  Dime: {fileID: 11400000, guid: fda7a8d8cd8e2f84197947298daa2bcc, type: 2}
+  Nickel: {fileID: 11400000, guid: 326fcc9b8a6904c4e83af1e566123839, type: 2}
+  Penny: {fileID: 11400000, guid: 5b53992287d5c134186fdfb6e10d2f9d, type: 2}
 --- !u!4 &1425454915
 Transform:
   m_ObjectHideFlags: 0

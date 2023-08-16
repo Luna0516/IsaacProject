@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -119,11 +117,11 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 최대체력
     /// </summary>
-    public float maxHealth = 6.0f;
+    public int maxHealth = 6;
     /// <summary>
     /// 현재 체력
     /// </summary>
-    public float health = 1;
+    public int health = 1;
     #endregion
     #region 데미지
     /// <summary>
@@ -161,16 +159,46 @@ public class Player : MonoBehaviour
     #endregion
     #region 프로퍼티들
     public Action onUseActive;
-    public int Coin { get; set; }
-    public int Bomb { get; set; }
-
+    int coin = 0;
+    public int Coin
+    {
+        get => coin;
+        set
+        {
+            coin = value;
+            onCoinChange?.Invoke(coin);
+        }
+    }
+    /// <summary>
+    /// 코인 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onCoinChange;
+    int bomb = 0;
+    public int Bomb
+    {
+        get => bomb;
+        set
+        {
+            bomb = value;
+            onBombChange?.Invoke(bomb);
+        }
+    }
+    /// <summary>
+    /// 폭탄 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onBombChange;
     int key = 0;
     public int Key {
         get => key;
         set {
             key = value;
+            onKeyChange?.Invoke(key);
         }
     }
+    /// <summary>
+    /// 열쇠 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onKeyChange;
     /// <summary>
     /// 화면에 띄울 damage 프로퍼티
     /// </summary>
@@ -214,17 +242,33 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 띄울 health 프로퍼티
     /// </summary>
-    public float Health {
+    public int Health {
         get => health;
         set {
             health = value;
             health = Mathf.Clamp(health, 0, maxHealth);
+            onHealthChange?.Invoke();
+        }
+    }
+    int soulHealth = 0;
+    public int SoulHealth {
+        get => soulHealth;
+        set {
+            if(soulHealth != value) {
+                soulHealth = Math.Max(0, value);
+                onHealthChange?.Invoke();
+            }
         }
     }
     #endregion
 
     public Action<PassiveItemData> getPassiveItem;
     public Action<ActiveItemData> getActiveItem;
+
+    /// <summary>
+    /// 플레이어의 HP가 변경되었음을 알리는 델리게이트
+    /// </summary>
+    public Action onHealthChange;
 
     private void Awake()
     {
@@ -239,10 +283,14 @@ public class Player : MonoBehaviour
         // 머리 관련 항목
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
-        health = maxHealth;
+        
+        TearSpeedCaculate();
+    }
+    private void Start()
+    {
+        Health = maxHealth;
         Speed = 2.5f;
         Damage = 3.5f;
-        TearSpeedCaculate();
     }
     private void Update()
     {
@@ -471,31 +519,35 @@ public class Player : MonoBehaviour
     public Action isFire;
     private void Damaged()
     {
-        if (Health > 0)
+        if (SoulHealth <= 0)
         {
-            isDamaged = true;
-            health--;
-            if(Health == 0)
+            if (Health > 0)
+            {
+                isDamaged = true;
+                health--;
+                if (Health == 0)
+                {
+                    Die();
+                }
+                else
+                {
+                    currentInvisible = invisibleTime;
+                    StartCoroutine(InvisibleTime());
+                }
+            }
+            else if (Health <= 0)
             {
                 Die();
             }
-            else
-            {
-                currentInvisible = invisibleTime;
-                StartCoroutine(InvisibleTime());
-            }
         }
-        else if (Health <= 0)
+        else
         {
-            Die();
+            StartCoroutine(InvisibleTime());
+            SoulHealth--;
+            bodyAni.SetTrigger("Damage");
+            head.gameObject.SetActive(false);
         }
     }
-    // 코루틴이나 Damaged에서 while문으로 color.alpha 값 조정해서 깜빡임 추가할것.
-    // bool값으로 isDameged 넣어둠
-    // invisible은 없어도 될거같음.
-    // 본작에서는 눈물 공격이 잠깐 안나가므로 값 조정 불가피
-    // 깜빡이는 동안에는 데미지 X
-    
     IEnumerator InvisibleTime()
     {
         StartCoroutine(Invisible());
