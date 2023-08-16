@@ -25,31 +25,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /// <summary>
-    /// 액티브인벤토리
-    /// </summary>
-    ActiveInventory activeInventory;
-
-    /// <summary>
-    /// 액티브인벤토리 프로퍼티
-    /// </summary>
-    public ActiveInventory ActiveInventory
-    {
-        get 
-        {
-            if (activeInventory == null) 
-            {
-                activeInventory = FindObjectOfType<ActiveInventory>();
-            }
-            return activeInventory;
-        }
-    }
-
-    /// <summary>
-    /// 아이템로드 액션 델리게이트
-    /// </summary>
-    public Action LoadItem;
-
     protected override void OnInitialize()
     {
         base.OnInitialize();   
@@ -72,14 +47,6 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f;
     }
-
-
-
-
-
-
-
-
 
     public Sprite[] BloodSprite;
     public Sprite[] MeatSprite;
