@@ -7,6 +7,8 @@ public enum PoolObjectType
 {
     Tear,
     PenetrationTear,
+    BigTear,
+    GuidedTear,
     TearExplosion,
     EnemyBullet,
     EnemyBlood,
@@ -18,6 +20,8 @@ public class Factory : Singleton<Factory>
 {
     TearPool tearPool;
     PenetrationTearPool penetrationTearPool;
+    BigTearPool bigTearPool;
+    GuidedTearPool guidedTearPool;
     TearExplosionPool tearExplosionPool;
     BloodPool bloodPool;
     MeatPool meatPool;
@@ -29,6 +33,8 @@ public class Factory : Singleton<Factory>
 
         tearPool = GetComponentInChildren<TearPool>();
         tearExplosionPool = GetComponentInChildren<TearExplosionPool>();
+        bigTearPool = GetComponentInChildren<BigTearPool>();
+        guidedTearPool = GetComponentInChildren<GuidedTearPool>();
 		bloodPool = GetComponentInChildren<BloodPool>();
         meatPool = GetComponentInChildren<MeatPool>();
         shitPool = GetComponentInChildren<ShitPool>();
@@ -37,6 +43,8 @@ public class Factory : Singleton<Factory>
 
 		tearPool?.Initialize();
         tearExplosionPool?.Initialize();
+        bigTearPool?.Initialize();
+        guidedTearPool?.Initialize();
         bloodPool?.Initialize();
         meatPool?.Initialize();
         shitPool?.Initialize();
@@ -58,6 +66,12 @@ public class Factory : Singleton<Factory>
                 break;
             case PoolObjectType.TearExplosion:
                 result = tearExplosionPool?.GetObject(spawn)?.gameObject;
+                break;
+            case PoolObjectType.BigTear:
+                result = bigTearPool?.GetObject(spawn)?.gameObject;
+                break;
+            case PoolObjectType.GuidedTear:
+                result = guidedTearPool?.GetObject(spawn)?.gameObject;
                 break;
             case PoolObjectType.EnemyBullet:
                 break;
