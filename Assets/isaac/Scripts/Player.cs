@@ -542,6 +542,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            // 여긴 소울 하트 있을때 발생하는 부분인데 뭔가 이상한 부분 있으면 고쳐주세요 ㅜㅜ <====> 신우철
             StartCoroutine(InvisibleTime());
             SoulHealth--;
             bodyAni.SetTrigger("Damage");
