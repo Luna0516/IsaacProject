@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Brimstone
-  explain: Blood laser barrage
+  itemPrefab: {fileID: 7490964534661180644, guid: 769c8a284b6e6ba43b523979b7c2dc8e, type: 3}
   itemNum: 118
   icon: {fileID: 21300000, guid: 85a86ae67742d2641ae2826374e90ba2, type: 3}
-  itemPrefab: {fileID: 7490964534661180644, guid: 769c8a284b6e6ba43b523979b7c2dc8e, type: 3}
+  explain: Blood laser barrage
   grade: 4
   damage: 0
   speed: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   shotSpeed: 0
   range: 0
   multiDamage: 1
-  multiTearSpeed: 0.33
+  multiTearSpeed: 1
   heal: 0
   maxHP: 0
   redFullHeal: 0

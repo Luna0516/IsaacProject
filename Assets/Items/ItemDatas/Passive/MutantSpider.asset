@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Mutant Spider
-  explain: Quad shot
+  itemPrefab: {fileID: 7490964534661180644, guid: 7dc9d2974eff4ba48a6b014f1f0792df, type: 3}
   itemNum: 153
   icon: {fileID: 21300000, guid: 2508fcf22f522724d928684e890a1e78, type: 3}
-  itemPrefab: {fileID: 7490964534661180644, guid: 7dc9d2974eff4ba48a6b014f1f0792df, type: 3}
+  explain: Quad shot
   grade: 3
   damage: 0
   speed: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   shotSpeed: 0
   range: 0
   multiDamage: 1
-  multiTearSpeed: 0.42
+  multiTearSpeed: 1
   heal: 0
   maxHP: 0
   redFullHeal: 0
