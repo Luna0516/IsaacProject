@@ -66,14 +66,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemStacks:
   - coolTime: 0
+    coolTimes:
+    - {fileID: 21300000, guid: 36f1227bb354d104c8c5eccb94bba0fa, type: 3}
+  - coolTime: 1
     coolTimes: []
   - coolTime: 2
-    coolTimes: []
+    coolTimes:
+    - {fileID: 21300000, guid: dd8434a8f853ecf4dbf50b74c83c5ad1, type: 3}
+    - {fileID: 21300000, guid: 092c946d4c73d8e4ea43ba6d892bf583, type: 3}
+    - {fileID: 21300000, guid: ccbfeeeb666d70643b4be80224fb6968, type: 3}
   - coolTime: 3
-    coolTimes: []
+    coolTimes:
+    - {fileID: 21300000, guid: 1b1df5ed3d4d1db40aa239a59ba34039, type: 3}
+    - {fileID: 21300000, guid: 9bcdf6e05575e0f478adce34b78890cc, type: 3}
+    - {fileID: 21300000, guid: 087f40098c7779149a5dbc6ed7257117, type: 3}
+    - {fileID: 21300000, guid: 6888ba090eed3904e982d2be3bc90e1f, type: 3}
   - coolTime: 4
+    coolTimes:
+    - {fileID: 21300000, guid: cb6604e158fec0b4582b6bea3018deb5, type: 3}
+    - {fileID: 21300000, guid: 705825e0f63e7ec449da3e7e05914838, type: 3}
+    - {fileID: 21300000, guid: fa6643d963a649e48b33cd35d04b38de, type: 3}
+    - {fileID: 21300000, guid: e88a51942dc74ca4d824114885f78bc4, type: 3}
+    - {fileID: 21300000, guid: 50378a5e1173ce549b3fb6abf0bf3299, type: 3}
+  - coolTime: 5
     coolTimes: []
   - coolTime: 6
+    coolTimes:
+    - {fileID: 21300000, guid: cc672231f06af2b47bd4bf4df6f637d7, type: 3}
+    - {fileID: 21300000, guid: 399fa3116a6b82e4d9e9cafff2a17287, type: 3}
+    - {fileID: 21300000, guid: 53c18263cb56a02498bee427673f148c, type: 3}
+    - {fileID: 21300000, guid: 1b59cda36e146cc4480ffc0aebe84863, type: 3}
+    - {fileID: 21300000, guid: 6e8943e0c96841a469906b5456420e4f, type: 3}
+    - {fileID: 21300000, guid: 207095d6d59dfa54094e4ea0f01aeeb3, type: 3}
+    - {fileID: 21300000, guid: 5a28be6292fe80d4cb720ce3289532e1, type: 3}
+  - coolTime: 7
+    coolTimes: []
+  - coolTime: 8
     coolTimes: []
 --- !u!1 &4022382155431258227
 GameObject:
