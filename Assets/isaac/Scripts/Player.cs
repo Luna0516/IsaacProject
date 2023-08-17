@@ -554,23 +554,23 @@ public class Player : MonoBehaviour
         StartCoroutine(Invisible());
         head.gameObject.SetActive(false);
         bodyAni.SetTrigger("Damage");
-        collider.enabled = !isDamaged;
+        collider.enabled = false;
         yield return new WaitForSeconds(currentInvisible);
         head.gameObject.SetActive(true);
         isDamaged = false;
-        collider.enabled = !isDamaged;
+        collider.enabled = true;
     }
+    
     IEnumerator Invisible()
     {
-        while (isDamaged)
-        {
-            headSR.color = new Color(0, 0, 0, 1);
-            bodySR.color = new Color(0, 0, 0, 1);
-            yield return new WaitForSeconds(0.5f);
-            headSR.color = new Color(0, 0, 0, 0);
-            bodySR.color = new Color(0, 0, 0, 0);
-            yield return new WaitForSeconds(0.5f);
-        }
+        Color bodyColor = bodySR.color;
+        Color headColor = headSR.color;
+        headColor.a = 0.5f;
+        bodyColor.a = 0.5f;
+        yield return new WaitForSeconds(0.5f);
+        headColor.a = 1;
+        bodyColor.a = 1;
+        yield return null;
     }
     private void ShootingTear()
     {
