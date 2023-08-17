@@ -25,7 +25,7 @@ MonoBehaviour:
   shotSpeed: 0
   range: 0
   multiDamage: 2
-  multiTearSpeed: 0.42
+  multiTearSpeed: 1
   heal: 0
   maxHP: 0
   redFullHeal: 0

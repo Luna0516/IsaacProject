@@ -21,7 +21,7 @@ public class Factory : Singleton<Factory>
     TearPool tearPool;
     PenetrationTearPool penetrationTearPool;
     BigTearPool bigTearPool;
-    GuidedTearPool guidedTearPool;
+    GuidedMissileTearPool guidedMissileTearPool;
     TearExplosionPool tearExplosionPool;
     BloodPool bloodPool;
     MeatPool meatPool;
@@ -34,7 +34,7 @@ public class Factory : Singleton<Factory>
         tearPool = GetComponentInChildren<TearPool>();
         tearExplosionPool = GetComponentInChildren<TearExplosionPool>();
         bigTearPool = GetComponentInChildren<BigTearPool>();
-        guidedTearPool = GetComponentInChildren<GuidedTearPool>();
+        guidedMissileTearPool = GetComponentInChildren<GuidedMissileTearPool>();
 		bloodPool = GetComponentInChildren<BloodPool>();
         meatPool = GetComponentInChildren<MeatPool>();
         shitPool = GetComponentInChildren<ShitPool>();
@@ -44,7 +44,7 @@ public class Factory : Singleton<Factory>
 		tearPool?.Initialize();
         tearExplosionPool?.Initialize();
         bigTearPool?.Initialize();
-        guidedTearPool?.Initialize();
+        guidedMissileTearPool?.Initialize();
         bloodPool?.Initialize();
         meatPool?.Initialize();
         shitPool?.Initialize();
@@ -71,7 +71,7 @@ public class Factory : Singleton<Factory>
                 result = bigTearPool?.GetObject(spawn)?.gameObject;
                 break;
             case PoolObjectType.GuidedTear:
-                result = guidedTearPool?.GetObject(spawn)?.gameObject;
+                result = guidedMissileTearPool?.GetObject(spawn)?.gameObject;
                 break;
             case PoolObjectType.EnemyBullet:
                 break;

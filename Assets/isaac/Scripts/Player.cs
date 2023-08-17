@@ -506,7 +506,7 @@ public class Player : MonoBehaviour
             tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
             isEmpty = false;
         }
-        if (isGetScaredHeart)
+        else if (isGetScaredHeart)
         {
             tear = Factory.Inst.GetObject(PoolObjectType.GuidedTear, tearSpawn.position);
             isEmpty = false;
