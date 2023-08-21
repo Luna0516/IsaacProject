@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Test_Active : TestBase {
+public class Test_Active : TestBase 
+{
     public ItemData itemData;
 
     protected override void Test1(InputAction.CallbackContext context) {

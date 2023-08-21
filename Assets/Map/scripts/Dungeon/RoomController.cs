@@ -95,11 +95,11 @@ public class RoomController : MonoBehaviour
             Room bossRoom = loadedRooms[loadedRooms.Count - 1];
             Room tempRoom = new Room(bossRoom.X, bossRoom.Y);
             Destroy(bossRoom.gameObject);
-            var roomToRemove = loadedRooms.Single(r=>r.X == tempRoom.X && r.Y == tempRoom.Y);
+            var roomToRemove = loadedRooms.Single(r => r.X == tempRoom.X && r.Y == tempRoom.Y);
             loadedRooms.Remove(roomToRemove);
             LoadRoom("End", tempRoom.X, tempRoom.Y);
         }
-        
+
     }
 
     public void LoadRoom(string name, int x, int y)
@@ -192,6 +192,7 @@ public class RoomController : MonoBehaviour
 
         //UpdateRooms();
     }
+
 
    /* private void UpdateRooms()
     {
