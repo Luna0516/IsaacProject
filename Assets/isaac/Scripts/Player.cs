@@ -112,6 +112,8 @@ public class Player : MonoBehaviour
     /// </summary>
     bool isEmpty = true;
 
+    bool isGetitem;
+
     #endregion
     #region 체력
     /// <summary>
@@ -280,14 +282,17 @@ public class Player : MonoBehaviour
         // 몸통 관련 항목
         body = transform.GetChild(2);
         bodyAni = body.GetComponent<Animator>();
+        bodySR = body.GetComponent<SpriteRenderer>();
         // 머리 관련 항목
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
+        headSR = head.GetComponent<SpriteRenderer>();
         
         TearSpeedCaculate();
     }
     private void Start()
     {
+        isGetitem = true;
         Health = maxHealth;
         Speed = 2.5f;
         Damage = 3.5f;
@@ -379,71 +384,74 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Item"))
         {
-            ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
-            ItemData itemData = item.ItemData;
-            if (itemData != null)
+            if (isGetitem)
             {
-                ActiveItemData active = itemData as ActiveItemData;
-                if (active != null) 
+                ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
+                ItemData itemData = item.ItemData;
+                if (itemData != null)
                 {
-                    getActiveItem?.Invoke(active);
-                    StartCoroutine(GetItem(active.icon));
-                }
-
-                PassiveItemData passive = itemData as PassiveItemData;
-                if (passive != null)
-                {
-                    getPassiveItem?.Invoke(passive);
-                    StartCoroutine(GetItem(passive.icon));
-
-                    currentDmg += passive.damage;
-                    currentMultiDmg *= passive.multiDamage;
-                    Speed += passive.speed;
-                    Range += passive.range;
-                    ShotSpeed += passive.shotSpeed;
-                    itemSpeed += passive.tearSpeed;
-
-                    // 데미지 적용시 예외 아이템 switch문
-                    switch (passive.itemNum)
+                    ActiveItemData active = itemData as ActiveItemData;
+                    if (active != null)
                     {
-                        // 왕눈이눈물
-                        case 169:
-                            isGetPolyphemus = true;
-                            break;
-                        // 유도눈물
-                        case 182:
-                            isGetScaredHeart = true;
-                            break;
-                        // 칼
-                        case 114:
-                            break;
-                        // 거미눈물 4발
-                        case 153:
-                            break;
+                        getActiveItem?.Invoke(active);
+                        StartCoroutine(GetItem(active.icon));
                     }
 
-                    if (passive.itemNum == 169 || passive.itemNum == 182)
-                        currentDmg -= passive.damage;
-
-                    Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
-
-                    if (isGetPolyphemus)
-                        Damage += 4f;
-
-                    Damage *= currentMultiDmg;
-
-                    if (isGetScaredHeart)
-                        Damage += 1f;
-
-                    Damage = (float)Math.Round(Damage, 2);
-                    if (speed > maximumSpeed) 
+                    PassiveItemData passive = itemData as PassiveItemData;
+                    if (passive != null)
                     {
-                        speed = maximumSpeed;
+                        getPassiveItem?.Invoke(passive);
+                        StartCoroutine(GetItem(passive.icon));
+
+                        currentDmg += passive.damage;
+                        currentMultiDmg *= passive.multiDamage;
+                        Speed += passive.speed;
+                        Range += passive.range;
+                        ShotSpeed += passive.shotSpeed;
+                        itemSpeed += passive.tearSpeed;
+
+                        // 데미지 적용시 예외 아이템 switch문
+                        switch (passive.itemNum)
+                        {
+                            // 왕눈이눈물
+                            case 169:
+                                isGetPolyphemus = true;
+                                break;
+                            // 유도눈물
+                            case 182:
+                                isGetScaredHeart = true;
+                                break;
+                            // 칼
+                            case 114:
+                                break;
+                            // 거미눈물 4발
+                            case 153:
+                                break;
+                        }
+
+                        if (passive.itemNum == 169 || passive.itemNum == 182)
+                            currentDmg -= passive.damage;
+
+                        Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
+
+                        if (isGetPolyphemus)
+                            Damage += 4f;
+
+                        Damage *= currentMultiDmg;
+
+                        if (isGetScaredHeart)
+                            Damage += 1f;
+
+                        Damage = (float)Math.Round(Damage, 2);
+                        if (speed > maximumSpeed)
+                        {
+                            speed = maximumSpeed;
+                        }
+                        TearSpeedCaculate();
                     }
-                    TearSpeedCaculate();
                 }
+                Destroy(collision.gameObject);
             }
-            Destroy(collision.gameObject);
         }
     }
     IEnumerator GetItem(Sprite sprite)
@@ -452,12 +460,13 @@ public class Player : MonoBehaviour
         head.gameObject.SetActive(false);
         getItemSR.sprite = sprite;
         inputAction.Player.Shot.Disable();
-
+        isGetitem = false;
         yield return new WaitForSeconds(0.9f);
 
         inputAction.Player.Shot.Enable();
         getItemSR.sprite = null;
         head.gameObject.SetActive(true);
+        isGetitem = true;
     }
     private void OnMove(InputAction.CallbackContext context)
     {
@@ -517,7 +526,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(tearFire);
     }
     public Action isFire;
-    private void Damaged()
+    public void Damaged()
     {
         if (SoulHealth <= 0)
         {
@@ -555,22 +564,27 @@ public class Player : MonoBehaviour
         head.gameObject.SetActive(false);
         bodyAni.SetTrigger("Damage");
         collider.enabled = false;
-        yield return new WaitForSeconds(currentInvisible);
+        inputAction.Player.Shot.Disable();
+        isDamaged = true;
+        yield return new WaitForSeconds(0.3f);
+        inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
-        isDamaged = false;
+        yield return new WaitForSeconds(currentInvisible);
         collider.enabled = true;
+        isDamaged = false;
     }
-    
     IEnumerator Invisible()
     {
-        Color bodyColor = bodySR.color;
-        Color headColor = headSR.color;
-        headColor.a = 0.5f;
-        bodyColor.a = 0.5f;
-        yield return new WaitForSeconds(0.5f);
-        headColor.a = 1;
-        bodyColor.a = 1;
-        yield return null;
+        while(isDamaged)
+        {
+            headSR.color = new(1, 1, 1, 0);
+            bodySR.color = new(1, 1, 1, 0);
+            yield return new WaitForSeconds(0.05f);
+            headSR.color = new(1, 1, 1, 1);
+            bodySR.color = new(1, 1, 1, 1);
+            yield return new WaitForSeconds(0.05f);
+        }
+        
     }
     private void ShootingTear()
     {
