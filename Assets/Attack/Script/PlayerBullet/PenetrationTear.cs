@@ -40,11 +40,11 @@ public class PenetrationTear : AttackBase
     public bool isPenetrate = true;
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-
+        
         if (collision.gameObject.CompareTag("Enemy"))
         {
             if(isPenetrate)
-            {
+            {  
                 Penetration--;
 
                 if(Penetration <= 0)
@@ -57,5 +57,6 @@ public class PenetrationTear : AttackBase
 
 
     }
+    
 
 }

@@ -21,7 +21,7 @@ public class AttackBase : PooledObject
     /// <summary>
     /// 컴포넌트들
     /// </summary>
-    Player player;
+    protected Player player;
 
     protected Rigidbody2D rigidBody;
 
