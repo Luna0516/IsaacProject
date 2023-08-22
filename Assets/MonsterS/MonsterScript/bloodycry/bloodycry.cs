@@ -78,6 +78,9 @@ public class bloodycry : EnemyBase
             StartCoroutine(damaged(headsprite, bodysprite));
         }
     }
+
+
+
     IEnumerator hittedanime()
     {
         moveactive = true;
@@ -85,5 +88,4 @@ public class bloodycry : EnemyBase
         yield return new WaitForSeconds(0.2f);
         headanimator.SetInteger("state", 2);
     }
-
 }
