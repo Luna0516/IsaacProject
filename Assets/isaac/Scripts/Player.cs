@@ -144,8 +144,18 @@ public class Player : MonoBehaviour
     /// </summary>
     float currentMultiDmg = 1.0f;
     // 데미지 적용시 예외 아이템
-    bool isGetPolyphemus = false;
-    bool isGetScaredHeart = false;
+    bool isGetPolyphemus;
+    public bool IsGetPolyphemus
+    {
+        get => isGetPolyphemus;
+        set => isGetPolyphemus = value;
+    }
+    bool isGetSacredHeart = false;
+    public bool IsGetSacredHeart
+    {
+        get => isGetSacredHeart;
+        set => IsGetSacredHeart = value;
+    }
     #endregion
     #region 무적
     /// <summary>
@@ -263,7 +273,65 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
-
+    #region 스프라이트관련
+    PlayerGetItem spriteChange;
+    public enum ItemSpriteState
+    {
+        None = 0,
+        CricketHead,
+        Halo,
+        SadOnion,
+        SacredHeart,
+        Polyphemus,
+        MutantSpider,
+        Brimstone,
+        BloodOfMartyr
+    }
+    ItemSpriteState state = ItemSpriteState.None;
+    public ItemSpriteState State
+    {
+        get => state;
+        set
+        {
+            state = value;
+            switch (state)
+            {
+                case ItemSpriteState.None:
+                    break;
+                case ItemSpriteState.CricketHead:
+                    getCricket?.Invoke();
+                    break;
+                case ItemSpriteState.Halo:
+                    getHalo?.Invoke();
+                    break;
+                case ItemSpriteState.SadOnion:
+                    break;
+                case ItemSpriteState.SacredHeart:
+                    getSacredHeart?.Invoke();
+                    break;
+                case ItemSpriteState.Polyphemus:
+                    getPolyphemus?.Invoke();
+                    break;
+                case ItemSpriteState.MutantSpider:
+                    break;
+                case ItemSpriteState.Brimstone:
+                    break;
+                case ItemSpriteState.BloodOfMartyr:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    // 크리켓을 먹으면 실행되는 델리게이트
+    public Action getCricket;
+    // 헤일로를 먹으면 실행되는 델리게이트
+    public Action getHalo;
+    // 심장을 먹으면 실행되는 델리게이트
+    public Action getSacredHeart;
+    // 외눈이 먹으면 실행되는 델리게이트
+    public Action getPolyphemus;
+    #endregion
     public Action<PassiveItemData> getPassiveItem;
     public Action<ActiveItemData> getActiveItem;
 
@@ -410,16 +478,19 @@ public class Player : MonoBehaviour
                         ShotSpeed += passive.shotSpeed;
                         itemSpeed += passive.tearSpeed;
 
-                        // 데미지 적용시 예외 아이템 switch문
                         switch (passive.itemNum)
                         {
+                            // 크리켓
+                            case 4:
+                                getCricket += spriteChange.GetCricket;
+                                break;
                             // 왕눈이눈물
                             case 169:
-                                isGetPolyphemus = true;
+                                getPolyphemus += spriteChange.GetPolyphemus;
                                 break;
                             // 유도눈물
                             case 182:
-                                isGetScaredHeart = true;
+                                getSacredHeart += spriteChange.GetSacredHeart;
                                 break;
                             // 칼
                             case 114:
@@ -439,7 +510,7 @@ public class Player : MonoBehaviour
 
                         Damage *= currentMultiDmg;
 
-                        if (isGetScaredHeart)
+                        if (isGetSacredHeart)
                             Damage += 1f;
 
                         Damage = (float)Math.Round(Damage, 2);
@@ -515,7 +586,7 @@ public class Player : MonoBehaviour
             tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
             isEmpty = false;
         }
-        else if (isGetScaredHeart)
+        else if (isGetSacredHeart)
         {
             tear = Factory.Inst.GetObject(PoolObjectType.GuidedTear, tearSpawn.position);
             isEmpty = false;
@@ -566,9 +637,11 @@ public class Player : MonoBehaviour
         collider.enabled = false;
         inputAction.Player.Shot.Disable();
         isDamaged = true;
+
         yield return new WaitForSeconds(0.3f);
         inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(currentInvisible);
         collider.enabled = true;
         isDamaged = false;
