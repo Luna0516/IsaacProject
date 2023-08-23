@@ -1,0 +1,130 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+
+
+
+public class shop : MonoBehaviour
+{
+    int childCount;
+
+    struct PriseList
+    {
+        public ItemData itemdata;
+        public Sprite Prise_Sprite;
+        public int intiprise;
+    }
+
+
+    PriseList[] itemPrices;
+
+    Transform[] childeList;
+
+    Player player;
+
+    public GameObject[] itemsOBJ;
+
+    CircleCollider2D[] col;
+
+    int prise1 = 3;
+
+    int prise2 = 5;
+
+    int prise3 = 15;
+
+    public Sprite[] priceSprites;
+
+    public ItemManager items;
+
+    SpriteRenderer[] spriterenter;
+
+
+    private void Awake()
+    {
+
+        childCount = transform.childCount;
+        childeList = new Transform[childCount];
+        itemsOBJ = new GameObject[childCount];
+        col = new CircleCollider2D[childCount];
+        spriterenter = new SpriteRenderer[childCount];
+
+        for (int i = 0; i < childeList.Length; i++)
+        {
+            childeList[i] = this.transform.GetChild(i);
+            spriterenter[i] = childeList[i].GetComponent<SpriteRenderer>(); 
+        }
+
+        itemPrices = new PriseList[childCount];
+        for (int i = 0; i < itemPrices.Length; i++)
+        {
+            int path = Random.Range(0, 3);
+            if (path == 0)
+            {
+                itemPrices[i].itemdata = items.activeItemDatas[Random.Range(0, items.activeItemDatas.Length)];
+                itemPrices[i].Prise_Sprite = priceSprites[2];
+                itemPrices[i].intiprise = prise3;
+                spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
+            }
+            else if (path == 1)
+            {
+                itemPrices[i].itemdata = items.passiveItemDatas[Random.Range(0, items.passiveItemDatas.Length)];
+                itemPrices[i].Prise_Sprite = priceSprites[2];
+                itemPrices[i].intiprise = prise3;
+                spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
+            }
+            else
+            {
+                itemPrices[i].itemdata = items.propsItemDatas[Random.Range(0, items.propsItemDatas.Length)];
+                itemPrices[i].Prise_Sprite = priceSprites[0];
+                itemPrices[i].intiprise = prise2;
+                spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
+            }
+        }
+    }
+
+    private void Start()
+    {
+
+        for (int i = 0; i < childeList.Length; i++)
+        {
+            
+            itemsOBJ[i] = ItemFactory.Inst.CreateItem(itemPrices[i].itemdata, childeList[i].position + Vector3.up);
+            col[i] = itemsOBJ[i].GetComponent<CircleCollider2D>();
+            if (player.Coin > itemPrices[i].intiprise)
+            {
+                col[i].enabled = true;
+            }
+            else
+            {
+                col[i].enabled = false;
+            }
+            itemsOBJ[i].transform.parent = childeList[i].transform;
+        }
+    }
+    private void OnEnable()
+    {
+        player = GameManager.Inst.Player;
+        player.onCoinChange += checkPrise;
+    }
+    private void OnDisable()
+    {
+
+    }
+
+    private void checkPrise(int obj)
+    {
+        for (int i = 0; i < childeList.Length; i++)
+        {
+            if (player.Coin > itemPrices[i].intiprise)
+            {
+                col[i].enabled = true;
+            }
+            else
+            {
+                col[i].enabled = false;
+            }
+        }
+    }
+}
