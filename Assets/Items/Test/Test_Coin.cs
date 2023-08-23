@@ -11,9 +11,7 @@ public class Test_Coin : TestBase {
     public ItemData Penny;
 
     private void Start() {
-        player.Coin++;
-        player.Bomb++;
-        player.Key++;
+
     }
 
     protected override void Test1(InputAction.CallbackContext context) {
