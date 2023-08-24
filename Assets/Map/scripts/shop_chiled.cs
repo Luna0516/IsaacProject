@@ -6,10 +6,19 @@ public class shop_chiled : MonoBehaviour
 {
 	public int prises = 0;
 	Player player;
+	SpriteRenderer spriteRenderer;
+	Color alpha = Color.white;
+	shop mainshop;
 
-	private void Start()
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+		mainshop = GetComponentInParent	<shop>();
+    }
+    private void Start()
 	{
 		player = GameManager.Inst.Player;
+		alpha.a = 0;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -17,8 +26,10 @@ public class shop_chiled : MonoBehaviour
 		if (collision.CompareTag("Player")&&player.Coin>=prises)
 		{
 			player.Coin = player.Coin-prises;
-			Destroy(this.gameObject,0.5f);
-		}
+			spriteRenderer.color = alpha;
+            mainshop.Purchased = true;
+            prises = 99999;
+        }
 	}
 
 

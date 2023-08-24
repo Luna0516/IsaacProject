@@ -42,6 +42,31 @@ public class shop : MonoBehaviour
 
     shop_chiled[] shopchi;
 
+    public float elapse = 10f;
+
+    bool purchased = false;
+    public bool Purchased
+    {
+        get => purchased;
+        set
+        {
+            if (purchased != value)
+            {
+                purchased = value;
+                if (purchased)
+                {
+                    elapse = 0f;
+                    Activate();
+                }
+                else
+                {
+                    DeActivate();
+                }
+
+            }
+        }
+    }
+
     private void Awake()
     {
         childCount = transform.childCount;
@@ -92,7 +117,6 @@ public class shop : MonoBehaviour
 
     private void Start()
     {
-
         for (int i = 0; i < childeList.Length; i++)
         {
 
@@ -111,24 +135,44 @@ public class shop : MonoBehaviour
     private void OnEnable()
     {
         player = GameManager.Inst.Player;
-        player.onCoinChange += checkPrise;
     }
 
-    private void checkPrise(int obj)
+    private void Activate()
     {
         for (int i = 0; i < childeList.Length; i++)
         {
             if (col[i] != null)
             {
-                if (player.Coin >= itemPrices[i].intiprise)
+                if (Purchased)
                 {
                     col[i].enabled = true;
                 }
-                else
-                {
-                    col[i].enabled = false;
-                }
             }
+        }
+    }
+    private void DeActivate()
+    {
+        for (int i = 0; i < childeList.Length; i++)
+        {
+            if (col[i] != null)
+            {
+                col[i].enabled = false;
+            }
+        }
+    }
+
+
+    void timecounter()
+    {
+        elapse += Time.deltaTime;
+    }
+
+    private void Update()
+    {
+        timecounter();
+        if(elapse > 0.5f)
+        {
+            Purchased = false;
         }
     }
 }

@@ -25,4 +25,8 @@ public class Test_Coin : TestBase {
     {
         ItemFactory.Inst.CreateItem(Penny, Vector2.left * 2.0f);
     }
+    protected override void Test4(InputAction.CallbackContext context)
+    {
+        player.Health -= 1;
+    }
 }
