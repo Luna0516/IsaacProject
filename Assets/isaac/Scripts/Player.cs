@@ -82,6 +82,11 @@ public class Player : MonoBehaviour
     PlayerAction inputAction;
     Transform getItem;
     SpriteRenderer getItemSR;
+    Transform sadOnionSprite;
+    Animator sadOnionAni;
+    SpriteRenderer sadOnionSR;
+    Transform MartyrSprite;
+    Transform allGetItem;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -144,18 +149,9 @@ public class Player : MonoBehaviour
     /// </summary>
     float currentMultiDmg = 1.0f;
     // 데미지 적용시 예외 아이템
-    bool isGetPolyphemus;
-    public bool IsGetPolyphemus
-    {
-        get => isGetPolyphemus;
-        set => isGetPolyphemus = value;
-    }
+    bool isGetPolyphemus = false;
     bool isGetSacredHeart = false;
-    public bool IsGetSacredHeart
-    {
-        get => isGetSacredHeart;
-        set => IsGetSacredHeart = value;
-    }
+    bool isGetSadOnion = false;
     #endregion
     #region 무적
     /// <summary>
@@ -274,8 +270,7 @@ public class Player : MonoBehaviour
     }
     #endregion
     #region 스프라이트관련
-    PlayerGetItem spriteChange;
-    public enum ItemSpriteState
+    public enum PassiveSpriteState
     {
         None = 0,
         CricketHead,
@@ -287,8 +282,8 @@ public class Player : MonoBehaviour
         Brimstone,
         BloodOfMartyr
     }
-    ItemSpriteState state = ItemSpriteState.None;
-    public ItemSpriteState State
+    PassiveSpriteState state = PassiveSpriteState.None;
+    public PassiveSpriteState State
     {
         get => state;
         set
@@ -296,41 +291,33 @@ public class Player : MonoBehaviour
             state = value;
             switch (state)
             {
-                case ItemSpriteState.None:
+                case PassiveSpriteState.None:
                     break;
-                case ItemSpriteState.CricketHead:
-                    getCricket?.Invoke();
+                case PassiveSpriteState.CricketHead:
+                    var resourceName = "AC/Cricket_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(resourceName);
                     break;
-                case ItemSpriteState.Halo:
-                    getHalo?.Invoke();
+                case PassiveSpriteState.Halo:
                     break;
-                case ItemSpriteState.SadOnion:
+                case PassiveSpriteState.SadOnion:
                     break;
-                case ItemSpriteState.SacredHeart:
-                    getSacredHeart?.Invoke();
+                case PassiveSpriteState.SacredHeart:
+                    isGetSacredHeart = true;
                     break;
-                case ItemSpriteState.Polyphemus:
-                    getPolyphemus?.Invoke();
+                case PassiveSpriteState.Polyphemus:
+                    isGetPolyphemus = true;
                     break;
-                case ItemSpriteState.MutantSpider:
+                case PassiveSpriteState.MutantSpider:
                     break;
-                case ItemSpriteState.Brimstone:
+                case PassiveSpriteState.Brimstone:
                     break;
-                case ItemSpriteState.BloodOfMartyr:
+                case PassiveSpriteState.BloodOfMartyr:
                     break;
                 default:
                     break;
             }
         }
     }
-    // 크리켓을 먹으면 실행되는 델리게이트
-    public Action getCricket;
-    // 헤일로를 먹으면 실행되는 델리게이트
-    public Action getHalo;
-    // 심장을 먹으면 실행되는 델리게이트
-    public Action getSacredHeart;
-    // 외눈이 먹으면 실행되는 델리게이트
-    public Action getPolyphemus;
     #endregion
     public Action<PassiveItemData> getPassiveItem;
     public Action<ActiveItemData> getActiveItem;
@@ -360,6 +347,13 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        // 아이템관련
+        allGetItem = transform.GetChild(4);
+        sadOnionSprite = allGetItem.transform.GetChild(0);
+        sadOnionAni = sadOnionSprite.GetComponent<Animator>();
+        sadOnionSR = sadOnionSprite.GetComponent<SpriteRenderer>();
+        MartyrSprite = allGetItem.transform.GetChild(1);
+
         isGetitem = true;
         Health = maxHealth;
         Speed = 2.5f;
@@ -480,17 +474,24 @@ public class Player : MonoBehaviour
 
                         switch (passive.itemNum)
                         {
+                            case 1:
+                                State = PassiveSpriteState.SadOnion;
+                                break;
                             // 크리켓
                             case 4:
-                                getCricket += spriteChange.GetCricket;
+                                State = PassiveSpriteState.CricketHead;
+                                break;
+                            // 가시관
+                            case 7:
+                                State = PassiveSpriteState.BloodOfMartyr;
                                 break;
                             // 왕눈이눈물
                             case 169:
-                                getPolyphemus += spriteChange.GetPolyphemus;
+                                State = PassiveSpriteState.Polyphemus;
                                 break;
                             // 유도눈물
                             case 182:
-                                getSacredHeart += spriteChange.GetSacredHeart;
+                                State = PassiveSpriteState.SacredHeart;
                                 break;
                             // 칼
                             case 114:
@@ -538,6 +539,15 @@ public class Player : MonoBehaviour
         getItemSR.sprite = null;
         head.gameObject.SetActive(true);
         isGetitem = true;
+        if(State == PassiveSpriteState.SadOnion)
+        {
+            sadOnionSprite.gameObject.SetActive(true);
+            isGetSadOnion = true;
+        }
+        if (State == PassiveSpriteState.BloodOfMartyr)
+        {
+            MartyrSprite.gameObject.SetActive(true);
+        }
     }
     private void OnMove(InputAction.CallbackContext context)
     {
@@ -549,6 +559,19 @@ public class Player : MonoBehaviour
         bodyAni.SetFloat("MoveDir_Y", bodyDir.y);
         headAni.SetFloat("MoveDir_X", bodyDir.x);
         headAni.SetFloat("MoveDir_Y", bodyDir.y);
+        if (isGetSadOnion)
+        {
+            sadOnionAni.SetFloat("MoveDir_X", bodyDir.x);
+            sadOnionAni.SetFloat("MoveDir_Y", bodyDir.y);
+            if (bodyDir.y > 0.001f)
+            {
+                sadOnionSR.sortingOrder = 0;
+            }
+            else
+            {
+                sadOnionSR.sortingOrder = 2;
+            }
+        }
     }
     private void OnFire(InputAction.CallbackContext context)
     {
@@ -557,14 +580,36 @@ public class Player : MonoBehaviour
 
         headAni.SetFloat("ShootDir_X", headDir.x);
         headAni.SetFloat("ShootDir_Y", headDir.y);
+        if (isGetSadOnion)
+        {
+            sadOnionAni.SetFloat("ShotDir_Y", headDir.y);
+            sadOnionAni.SetFloat("ShotDir_X", headDir.x);
+            if (headDir.y > 0.001f)
+            {
+                sadOnionSR.sortingOrder = 0;
+            }
+            else
+            {
+                sadOnionSR.sortingOrder = 2;
+            }
+        }
+
         if (context.performed)
         {
             headAni.SetBool("isShoot", true);
+            if (isGetSadOnion)
+            {
+                sadOnionAni.SetBool("isShot", true);
+            }
             isShoot = true;
         }
         else if (context.canceled)
         {
             headAni.SetBool("isShoot", false);
+            if (isGetSadOnion)
+            {
+                sadOnionAni.SetBool("isShot", false);
+            }
             isShoot = false;
         }
         if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
