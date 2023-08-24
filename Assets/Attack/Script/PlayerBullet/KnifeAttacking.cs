@@ -3,41 +3,62 @@ using UnityEngine;
 
 public class KnifeAttacking : AttackBase
 {
-    private Vector3 originalPosition; // 투사체 발사 시 초기 위치
-    private Vector3 targetPosition;   // 투사체 목표 위치
+    private Vector2 startPos;    // 투사체 발사 시 초기 위치
+    private Vector2 targetPos;   // 투사체 목표 위치
 
+    bool isMoving = true;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
+    private void Start()
+    {
+        
+    }
     protected override void Init()
     {
         base.Init();
 
-        originalPosition = transform.position;
-        targetPosition = player.transform.position;
-        dir = (targetPosition - originalPosition).normalized;
+        startPos = transform.position;
+        targetPos = startPos * dir * player.Range;
+        
+        dir = (targetPos - startPos).normalized;
     }
 
     protected override void OnEnable()
     {
-        base.OnEnable();
-        StartCoroutine(MoveAndReturn());
+        //base.OnEnable();       
     }
 
-    private IEnumerator MoveAndReturn()
+    protected override void FixedUpdate()
     {
-        // 투사체 이동
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-        {
-            transform.position = dir * speed * Time.deltaTime;
-            yield return null;
-        }
+        Vector2 targetEnd = isMoving ? targetPos : startPos;
 
-        // 플레이어 위치로 회귀
-        while (Vector3.Distance(transform.position, originalPosition) > 0.1f)
-        {
-            transform.position = dir * speed * Time.deltaTime;
-            yield return null;
-        }
+        float distanceToTarget = Vector3.Distance(transform.position, targetEnd);
 
-        TearExplosion();
-        gameObject.SetActive(false);
+        if (distanceToTarget > 0.1f) // 움직일 거리가 남았을 때만 이동
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetEnd, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = -dir * Time.deltaTime; // 이동할 거리가 없으면 방향을 바꾸어 줍니다.
+        }
     }
+
+
+    protected override IEnumerator Gravity_Life(float delay = 0)
+    {
+        return null;
+    }
+
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        //base.OnCollisionEnter2D(collision);
+    }
+
+    
 }
