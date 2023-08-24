@@ -49,14 +49,14 @@ public class shop : MonoBehaviour
         itemsOBJ = new GameObject[childCount];
         col = new CircleCollider2D[childCount];
         spriterenter = new SpriteRenderer[childCount];
-		shopchi = new shop_chiled[childCount];
+        shopchi = new shop_chiled[childCount];
 
-		for (int i = 0; i < childeList.Length; i++)
+        for (int i = 0; i < childeList.Length; i++)
         {
             childeList[i] = this.transform.GetChild(i);
             spriterenter[i] = childeList[i].GetComponent<SpriteRenderer>();
             shopchi[i] = childeList[i].GetComponent<shop_chiled>();
-		}
+        }
 
         itemPrices = new PriseList[childCount];
         for (int i = 0; i < childeList.Length; i++)
@@ -68,7 +68,7 @@ public class shop : MonoBehaviour
                 itemPrices[i].Prise_Sprite = priceSprites[2];
                 itemPrices[i].intiprise = prise3;
                 spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
-                
+
             }
             else if (path == 1)
             {
@@ -87,7 +87,7 @@ public class shop : MonoBehaviour
 
             shopchi[i].prises = itemPrices[i].intiprise;
 
-		}
+        }
     }
 
     private void Start()
@@ -95,7 +95,7 @@ public class shop : MonoBehaviour
 
         for (int i = 0; i < childeList.Length; i++)
         {
-            
+
             itemsOBJ[i] = ItemFactory.Inst.CreateItem(itemPrices[i].itemdata, childeList[i].position + Vector3.up);
             col[i] = itemsOBJ[i].GetComponent<CircleCollider2D>();
             if (player.Coin > itemPrices[i].intiprise)
@@ -118,13 +118,16 @@ public class shop : MonoBehaviour
     {
         for (int i = 0; i < childeList.Length; i++)
         {
-            if (player.Coin > itemPrices[i].intiprise)
+            if (col[i] != null)
             {
-                col[i].enabled = true;
-            }
-            else
-            {
-                col[i].enabled = false;
+                if (player.Coin >= itemPrices[i].intiprise)
+                {
+                    col[i].enabled = true;
+                }
+                else
+                {
+                    col[i].enabled = false;
+                }
             }
         }
     }
