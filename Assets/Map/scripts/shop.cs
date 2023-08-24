@@ -40,24 +40,26 @@ public class shop : MonoBehaviour
 
     SpriteRenderer[] spriterenter;
 
+    shop_chiled[] shopchi;
 
     private void Awake()
     {
-
         childCount = transform.childCount;
         childeList = new Transform[childCount];
         itemsOBJ = new GameObject[childCount];
         col = new CircleCollider2D[childCount];
         spriterenter = new SpriteRenderer[childCount];
+        shopchi = new shop_chiled[childCount];
 
         for (int i = 0; i < childeList.Length; i++)
         {
             childeList[i] = this.transform.GetChild(i);
-            spriterenter[i] = childeList[i].GetComponent<SpriteRenderer>(); 
+            spriterenter[i] = childeList[i].GetComponent<SpriteRenderer>();
+            shopchi[i] = childeList[i].GetComponent<shop_chiled>();
         }
 
         itemPrices = new PriseList[childCount];
-        for (int i = 0; i < itemPrices.Length; i++)
+        for (int i = 0; i < childeList.Length; i++)
         {
             int path = Random.Range(0, 3);
             if (path == 0)
@@ -66,6 +68,7 @@ public class shop : MonoBehaviour
                 itemPrices[i].Prise_Sprite = priceSprites[2];
                 itemPrices[i].intiprise = prise3;
                 spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
+
             }
             else if (path == 1)
             {
@@ -77,10 +80,13 @@ public class shop : MonoBehaviour
             else
             {
                 itemPrices[i].itemdata = items.propsItemDatas[Random.Range(0, items.propsItemDatas.Length)];
-                itemPrices[i].Prise_Sprite = priceSprites[0];
+                itemPrices[i].Prise_Sprite = priceSprites[1];
                 itemPrices[i].intiprise = prise2;
                 spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
             }
+
+            shopchi[i].prises = itemPrices[i].intiprise;
+
         }
     }
 
@@ -89,7 +95,7 @@ public class shop : MonoBehaviour
 
         for (int i = 0; i < childeList.Length; i++)
         {
-            
+
             itemsOBJ[i] = ItemFactory.Inst.CreateItem(itemPrices[i].itemdata, childeList[i].position + Vector3.up);
             col[i] = itemsOBJ[i].GetComponent<CircleCollider2D>();
             if (player.Coin > itemPrices[i].intiprise)
@@ -100,7 +106,6 @@ public class shop : MonoBehaviour
             {
                 col[i].enabled = false;
             }
-            itemsOBJ[i].transform.parent = childeList[i].transform;
         }
     }
     private void OnEnable()
@@ -108,22 +113,21 @@ public class shop : MonoBehaviour
         player = GameManager.Inst.Player;
         player.onCoinChange += checkPrise;
     }
-    private void OnDisable()
-    {
-
-    }
 
     private void checkPrise(int obj)
     {
         for (int i = 0; i < childeList.Length; i++)
         {
-            if (player.Coin > itemPrices[i].intiprise)
+            if (col[i] != null)
             {
-                col[i].enabled = true;
-            }
-            else
-            {
-                col[i].enabled = false;
+                if (player.Coin >= itemPrices[i].intiprise)
+                {
+                    col[i].enabled = true;
+                }
+                else
+                {
+                    col[i].enabled = false;
+                }
             }
         }
     }
