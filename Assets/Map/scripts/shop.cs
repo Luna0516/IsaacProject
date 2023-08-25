@@ -24,6 +24,8 @@ public class shop : MonoBehaviour
 
     Player player;
 
+
+    [Header("생성된 아이템")]
     public GameObject[] itemsOBJ;
 
     CircleCollider2D[] col;
@@ -34,15 +36,23 @@ public class shop : MonoBehaviour
 
     int prise3 = 15;
 
+    [Header("가격표 스프라이트 배열")]
     public Sprite[] priceSprites;
 
+    [Header("★아이템 매니저")]
+    [Tooltip("이거 없으면 안돌아가요! 꼭 넣어주세요!")]
     public ItemManager items;
+    [Space(10)]
+
+    [Header("시간 중첩 확인용 패러미터")]
+    [Tooltip("아이템을 먹으면 이게 0으로 초기화됩니다.")]
+    public float elapse = 10f;
 
     SpriteRenderer[] spriterenter;
 
     shop_chiled[] shopchi;
 
-    public float elapse = 10f;
+
 
     bool purchased = false;
     public bool Purchased

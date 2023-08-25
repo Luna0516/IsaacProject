@@ -11,7 +11,15 @@ public class Fly : EnemyBase
 	Animator animator;
 	SpriteRenderer rneder;
 	Collider2D coll;
-	public float noise = 5f;
+
+
+	/// <summary>
+	/// 노이즈 무브 정도
+	/// </summary>
+    [Header("노이즈 무브")]
+    public float noise = 5f;
+
+
 	float X;
 	float Y;
 
@@ -89,6 +97,11 @@ public class Fly : EnemyBase
 		animator.SetInteger("Dead", 1);
 		Destroy(this.gameObject, 0.917f);
 	}
+
+
+
+
+
 	IEnumerator IvincivalFly()
 	{
 		while (invincival)
