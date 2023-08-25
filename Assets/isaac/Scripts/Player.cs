@@ -294,8 +294,8 @@ public class Player : MonoBehaviour
                 case PassiveSpriteState.None:
                     break;
                 case PassiveSpriteState.CricketHead:
-                    var resourceName = "AC/Cricket_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(resourceName);
+                    var headResourceName = "HeadAC/Head_Cricket_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     break;
                 case PassiveSpriteState.Halo:
                     break;
@@ -310,6 +310,10 @@ public class Player : MonoBehaviour
                 case PassiveSpriteState.MutantSpider:
                     break;
                 case PassiveSpriteState.Brimstone:
+                    headResourceName = "HeadAC/Head_Brimstone_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    var bodyResourceName = "BodyAC/Body_Brimstone_AC";
+                    bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
                     break;
@@ -484,6 +488,9 @@ public class Player : MonoBehaviour
                             // 가시관
                             case 7:
                                 State = PassiveSpriteState.BloodOfMartyr;
+                                break;
+                            case 118:
+                                State = PassiveSpriteState.Brimstone;
                                 break;
                             // 왕눈이눈물
                             case 169:
