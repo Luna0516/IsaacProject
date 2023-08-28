@@ -10,12 +10,11 @@ public class bloodycry : EnemyBase
     SpriteRenderer bodysprite;
     Animator headanimator;
     Animator bodyanimator;
-    IEnumerator startcor;
     bool moveactive = false;
+    bool buserkurcheck = false;
     protected override void Awake()
     {
         base.Awake();
-        startcor = hittedanime();
         head = transform.GetChild(1).gameObject;
         body = transform.GetChild(0).gameObject;
         headsprite = head.GetComponent<SpriteRenderer>();
@@ -64,7 +63,7 @@ public class bloodycry : EnemyBase
         {
             if (gameObject.activeSelf == true)
             {
-                StartCoroutine(startcor);
+                hittedanime();
             }
             else
             { }
@@ -73,19 +72,29 @@ public class bloodycry : EnemyBase
     protected override void Hitten()
     {
         base.Hitten();
+        buserkurcheck = true;
         if (this.gameObject.activeSelf)
         {
-            StartCoroutine(damaged(headsprite, bodysprite));
+            dmaged(headsprite, bodysprite);
         }
     }
 
 
-
-    IEnumerator hittedanime()
+    void hittedanime()
     {
         moveactive = true;
         headanimator.SetInteger("state", 1);
-        yield return new WaitForSeconds(0.2f);
-        headanimator.SetInteger("state", 2);
+        if(!buserkurcheck)
+        {
+            buserkurcheck = true;
+            cooltimeStart(1);
+            if (cooltimer1 > 0.2f)
+            {
+                headanimator.SetInteger("state", 2);
+                cooltimeStop(1);
+            }
+
+        }
+
     }
 }
