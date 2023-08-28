@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Brimstone_Shot_Left
+  m_Name: Brimstone_Charge_Left
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,15 +22,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -57,17 +48,19 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 502905645, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
-    - time: 0.25
-      value: {fileID: 502905645, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+      value: {fileID: 123560890, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - time: 0.16666667
+      value: {fileID: -446869697, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
     - time: 0.33333334
-      value: {fileID: 443092138, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+      value: {fileID: -2142171421, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - time: 0.5
+      value: {fileID: -1445673280, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
     - time: 0.6666667
-      value: {fileID: 443092138, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
-    - time: 0.75
-      value: {fileID: -399281859, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+      value: {fileID: -616156903, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - time: 0.8333333
+      value: {fileID: 621971390, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
     - time: 1
-      value: {fileID: -399281859, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+      value: {fileID: 2044963000, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -94,12 +87,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 502905645, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
-    - {fileID: 502905645, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
-    - {fileID: 443092138, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
-    - {fileID: 443092138, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
-    - {fileID: -399281859, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
-    - {fileID: -399281859, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - {fileID: 123560890, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - {fileID: -446869697, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - {fileID: -2142171421, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - {fileID: -1445673280, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - {fileID: -616156903, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - {fileID: 621971390, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
+    - {fileID: 2044963000, guid: bf24d8536072adb4cb92a721cd853c35, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -126,15 +120,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
         value: 1
         inSlope: Infinity
         outSlope: Infinity
