@@ -2824,7 +2824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220849974397819675, guid: ef98b0707d040f645b955e4369f4628a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 220849974397819675, guid: ef98b0707d040f645b955e4369f4628a, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 220849974397819676, guid: ef98b0707d040f645b955e4369f4628a, type: 3}
       propertyPath: Bullet
@@ -4641,11 +4645,11 @@ GameObject:
   - component: {fileID: 1375457652}
   m_Layer: 0
   m_Name: Test_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1375457651
 Transform:
   m_ObjectHideFlags: 0
@@ -4715,7 +4719,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4747,7 +4751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1405221105
 MonoBehaviour:
   m_ObjectHideFlags: 0
