@@ -63,6 +63,7 @@ public class MonstroBoss : EnemyBase
         orderInGame(spriteRenderer);
         //이동 함수 실행
         Movement();
+        damageoff(spriteRenderer);
     }
 
     //공격 받을경우 체력 깎임(EnemyBase 오버라이드)
@@ -283,6 +284,6 @@ public class MonstroBoss : EnemyBase
 	protected override void Hitten()
     {
         base.Hitten();
-        StartCoroutine(damaged(spriteRenderer));
+        damaged(spriteRenderer);
     }
 }
