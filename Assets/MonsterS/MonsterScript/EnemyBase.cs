@@ -90,21 +90,22 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-
+    public float hiittenEfeect = 0.3f;
 
     
 
 
 
-    [Header("쿨타임 타이머")]
+    [Header("쿨타임 타이머 관련")]
     public float cooltimer1 = 0.0f;
     public float cooltimer2 = 0.0f;
     public float cooltimer3 = 0.0f;
     public float damagetimer = 0.0f;
-    bool coolActive1 = false;
-    bool coolActive2 = false;
-    bool coolActive3 = false;
-    bool damageActive = false;
+    public bool coolActive1 = false;
+    public bool coolActive2 = false;
+    public bool coolActive3 = false;
+    public bool damageActive = false;
+
 
     //에너미 베이스 Awake : 리지디 바디, 게임매니저 , 플레이어 , 타깃 위치 , 스폰 이펙트를 찾음
     protected virtual void Awake()
@@ -197,47 +198,45 @@ public class EnemyBase : MonoBehaviour
 
 
     /// <summary>
-    /// 몬스터가 데미지를 받았을때 빨간색으로 변했다가 돌아오기
+    /// 피격 이펙트 시작 함수
     /// </summary>
     /// <param name="sprite">몬스터의 스프라이트렌더러</param>
     /// <param name="sprite1"></param>
     /// <returns></returns>
     /// 
-
-
-
-
-    protected void dmaged(SpriteRenderer sprite, SpriteRenderer sprite1)
+    protected void damaged(SpriteRenderer sprite, SpriteRenderer sprite1)
     {
-        cooltimeStart(4);
+        cooltimeStart(4, hiittenEfeect);
         sprite.color = Color.red;
         sprite1.color = Color.red;
-        if(damagetimer>0.1f)
+    }
+    protected void damaged(SpriteRenderer sprite)
+    {
+        cooltimeStart(4, hiittenEfeect);
+        sprite.color = Color.red;
+    }
+
+    /// <summary>
+    /// 피격 이펙트 종료 함수 (업데이트에서 실행)
+    /// </summary>
+    /// <param name="sprite"></param>
+    /// <param name="sprite1"></param>
+    protected void damageoff(SpriteRenderer sprite, SpriteRenderer sprite1)
+    {
+        if(!damageActive)
         {
-            cooltimeStop(4);
+        sprite.color = Color.white;
+        sprite1.color = Color.white;
+        }
+    }
+    protected void damageoff(SpriteRenderer sprite)
+    {
+        if (!damageActive)
+        {
             sprite.color = Color.white;
-            sprite1.color = Color.white;
         }
     }
 
-
-
-
-
-    protected IEnumerator damaged(SpriteRenderer sprite, SpriteRenderer sprite1)
-    {
-        sprite.color = Color.red;
-        sprite1.color = Color.red;
-        yield return new WaitForSeconds(0.05f);
-        sprite.color = Color.white;
-        sprite1.color = Color.white;
-    }
-    protected IEnumerator damaged(SpriteRenderer sprite)
-    {
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.05f);
-        sprite.color = Color.white;
-    }
     protected void orderInGame(SpriteRenderer render)
     {
         float Yhi = this.transform.position.y;
@@ -276,79 +275,76 @@ public class EnemyBase : MonoBehaviour
 
 
 
-    void coolTimeSystem(bool time1, bool time2, bool time3 , bool damagecheck )
+    protected void coolTimeSystem(bool time1, bool time2, bool time3 , bool damagecheck )
     {
         if (time1)
         {
+            Debug.Log("1번 쿨타임 가동중");
             cooltimer1 -= Time.deltaTime;
-            
+            if(cooltimer1<=0)
+            {
+                coolActive1 = false;
+                Debug.Log("1번 쿨타임 종료");
+            }
         }
-        if (time2)
+         if (time2)
         {
+            Debug.Log("2번 쿨타임 가동중");
             cooltimer2 -= Time.deltaTime;
+            if (cooltimer2 <= 0)
+            {
+                coolActive2 = false;
+                Debug.Log("2번 쿨타임 종료");
+            }
         }
-        if (time3)
+         if(time3)
         {
+            Debug.Log("3번 쿨타임 가동중");
             cooltimer3 -= Time.deltaTime;
+            if (cooltimer3 <= 0)
+            {
+                coolActive3 = false;
+                Debug.Log("3번 쿨타임 종료");
+            }
         }
         if (damagecheck)
         {
             damagetimer -= Time.deltaTime;
+            if (damagetimer <= 0)
+            {
+                damageActive = false;
+            }
         }
     }
 
-    /*    protected void cooltimeStart(int cas)
-        {
-            switch (cas)
-            {
-                case 1:
-                    coolActive1 = true;
-                    cooltimer1 = 0f;
-                    Debug.Log("1번 쿨타임 시작");
-                    break;
-                case 2:
-                    coolActive2 = true;
-                    cooltimer2 = 0f;
-                    Debug.Log("2번 쿨타임 시작");
-                    break;
-                case 3:
-                    coolActive3 = true;
-                    cooltimer3 = 0f;
-                    Debug.Log("3번 쿨타임 시작");
-                    break;
-                case 4:
-                    damageActive =true;
-                    damagetimer = 0f;
-                    Debug.Log("데미지 쿨타임 시작");
-                    break; 
-                default:
-                    Debug.LogWarning("쿨타임 시작 실패");
-                    break;
-            }
-        }*/
+    /// <summary>
+    /// 몬스터 쿨타임 시작 시스템
+    /// </summary>
+    /// <param name="cas">1번에서 3번까지 쿨타임 카운터가 있습니다.</param>
+    /// <param name="time">쿨타임 시간을 지정할수 있습니다.</param>
     protected void cooltimeStart(int cas,float time)
     {
         switch (cas)
         {
             case 1:
                 coolActive1 = true;
-                cooltimer1 = 0f;
+                cooltimer1 = time;
                 Debug.Log("1번 쿨타임 시작");
                 break;
             case 2:
                 coolActive2 = true;
-                cooltimer2 = 0f;
+                cooltimer2 = time;
                 Debug.Log("2번 쿨타임 시작");
                 break;
             case 3:
                 coolActive3 = true;
-                cooltimer3 = 0f;
+                cooltimer3 = time;
                 Debug.Log("3번 쿨타임 시작");
                 break;
             case 4:
                 damageActive = true;
-                damagetimer = 0f;
-                Debug.Log("데미지 쿨타임 시작");
+                damagetimer = time;
+                /*Debug.Log("데미지 쿨타임 시작");*/
                 break;
             default:
                 Debug.LogWarning("쿨타임 시작 실패");

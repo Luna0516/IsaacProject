@@ -15,7 +15,7 @@ public class Rava : EnemyBase
     public float MaxX;
     public float MinY;
     public float MaxY;
-
+    public bool movecheck = true;
 
     protected override void Movement()
     {
@@ -35,23 +35,29 @@ public class Rava : EnemyBase
     void Start()
     {
         animator.SetFloat("speed", jumpingTerm);
-        StopAllCoroutines();
-        StartCoroutine(moveingRava());
         targetPosition = Vector2.zero;
     }
 
-    IEnumerator moveingRava()
+    void moveingRava()
     {
-        while(true)
+        if(movecheck)
         {
-            yield return new WaitForSeconds(jumpingTerm);
+            movecheck = false;
+            cooltimeStart(2, jumpingTerm);
+        }
+        else if(!coolActive2)
+        {
             SetNextTargetPosition();
+            movecheck = true;
         }
     }
     protected override void Update()
     {
+        coolTimeSystem(coolActive1, coolActive2, coolActive3, damageActive);
         Movement();
         orderInGame(sprite);
+        damageoff(sprite);
+        moveingRava();
     }
     private void SetNextTargetPosition()
     {
@@ -70,12 +76,11 @@ public class Rava : EnemyBase
             sprite.flipX = true;
         }
         targetPosition.Normalize();
+
     }
     protected override void Hitten()
     {
         base.Hitten();
-        StartCoroutine(damaged(sprite));
+        damaged(sprite);
     }
-
-
 }

@@ -33,7 +33,9 @@ public class Host : EnemyBase
     /// <summary>
     /// 무적 상태 판정 (주의 : false일때 무적입니다.)
     /// </summary>
-    bool invincivle=false;
+    bool invincivle = false;
+
+    bool attackactiveate = false;
 
     /// <summary>
     /// Awake 각 변수에 값 넣어주는 작업
@@ -41,7 +43,7 @@ public class Host : EnemyBase
     protected override void Awake()
     {
         base.Awake();
-		turret=transform.GetChild(0).gameObject;
+        turret = transform.GetChild(0).gameObject;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animestate = Animator.StringToHash("Attack");
@@ -64,6 +66,8 @@ public class Host : EnemyBase
     {
         base.Update();
         orderInGame(spriteRenderer);
+        damageoff(spriteRenderer);
+        attackupdate();
     }
 
     /// <summary>
@@ -92,55 +96,57 @@ public class Host : EnemyBase
     /// </summary>
     void AttackMove()
     {
-        ///공격 코루틴 실행
-        StartCoroutine(attackCoroutine(invincivle));
+        attackCoroutine(invincivle);
     }
 
-
-/// <summary>
-/// 공격액션용 코루틴
-/// </summary>
-/// <param name="attackmode">이곳에 무적 상태 논리변수를 활용합니다.</param>
-/// <returns></returns>
-    IEnumerator attackCoroutine(bool attackmode)
+    /// <summary>
+    /// 공격 함수
+    /// </summary>
+    /// <param name="attackmode"></param>
+    void attackCoroutine(bool attackmode)
     {
-        //조건문 : attackmode 즉 invincivle값이 참이 아닐때(무적일때) 실행됩니다.
         if (attackmode != true)
         {
-        //무적 상태를 풀고 
-        invincivle = true;
-        //애니메이터를 공격 상태로 만들고
-        animator.SetInteger(animestate, 1);
-        //0.8초 대기합니다.
-        yield return new WaitForSeconds(0.8f);
-        //대기 후에 3발의 탄환을 발사하는 반복문입니다.
-        for (int i = 0; i < 3; i++)
+            invincivle = true;
+            animator.SetInteger(animestate, 1);
+            cooltimeStart(1, 0.8f);
+            cooltimeStart(3, 1.4f);
+            attackactiveate = true;
+        }
+    }
+
+    /// <summary>
+    /// 업데이트에서 실행되는 감시 함수
+    /// </summary>
+    void attackupdate()
+    {
+        if (attackactiveate)
         {
-            bulletshotting(invincivle);
-			yield return new WaitForSeconds(0.2f);
-		}
-        //발사 후에 공격 상태를 해제하고
-		animator.SetInteger(animestate, 0);
-        //무적상태로 돌입합니다.
-        invincivle = false;
+            if (!coolActive3)
+            {
+                attackactiveate = false;
+                animator.SetInteger(animestate, 0);
+                invincivle = false;
+            }
+            if (!coolActive1)
+            {
+                bulletshotting(invincivle);
+            }
         }
     }
     /// <summary>
     /// 총알 발사 함수
     /// </summary>
     /// <param name="shotcool">이곳에 invincivle 논리변수를 활용합니다.</param>
-    void bulletshotting(bool shotcool)
+    void bulletshotting(bool shotactive)
     {
-        //무적이 아닐경우 총알을 발사합니다.
-        if(shotcool)
-        { 
-            //터렛의 각도 지정 : 터렛은 플레이어를 겨냥합니다.
-        turret.transform.rotation = Quaternion.LookRotation(Vector3.forward,HeadTo);
-            //총알 프리펩으로부터 게임 오브젝트를 생성하여 터렛의 위치와 각도에서 총알을 만들어냅니다.
-        GameObject bullet = Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
+        if (!coolActive2 && shotactive)
+        {
+            turret.transform.rotation = Quaternion.LookRotation(Vector3.forward, HeadTo);
+            GameObject bullet = Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
+            cooltimeStart(2, 0.2f);
         }
     }
-
     /// <summary>
     /// 맞는 처리 함수
     /// </summary>
@@ -148,6 +154,6 @@ public class Host : EnemyBase
     {
         base.Hitten();
         //맞았을때 스프라이트 렌더러가 붉은색으로 변합니다.
-        StartCoroutine(damaged(spriteRenderer));
+        damaged(spriteRenderer);
     }
 }

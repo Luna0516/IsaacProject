@@ -12,6 +12,7 @@ public class bloodycry : EnemyBase
     Animator bodyanimator;
     bool moveactive = false;
     bool buserkurcheck = false;
+    bool coolbloodcheck = false;
     protected override void Awake()
     {
         base.Awake();
@@ -26,10 +27,24 @@ public class bloodycry : EnemyBase
     {
         base.Update();
         orderInGame(headsprite, bodysprite);
+        if (coolbloodcheck)
+        {
+            buserkurcheck = !coolActive1;
+        }
+
+        if (buserkurcheck)
+        {
+            hittedanimeoff();
+        }
+
         if (moveactive)
         {
             Movement();
         }
+
+
+        damageoff(headsprite, bodysprite);
+
     }
     protected override void Movement()
     {
@@ -46,7 +61,6 @@ public class bloodycry : EnemyBase
             headsprite.flipX = true;
             bodysprite.flipX = true;
             bodyanimator.SetInteger("WalkSideway", 1);
-
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,40 +75,33 @@ public class bloodycry : EnemyBase
         base.OnCollisionEnter2D(collision);
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            if (gameObject.activeSelf == true)
+            if (this.gameObject.activeSelf == true && !buserkurcheck)//이 개체의 활성화 확인과 버서커 체크가 거짓일때 실행
             {
                 hittedanime();
             }
-            else
-            { }
         }
     }
     protected override void Hitten()
     {
         base.Hitten();
-        buserkurcheck = true;
         if (this.gameObject.activeSelf)
         {
-            dmaged(headsprite, bodysprite);
+            damaged(headsprite, bodysprite);
         }
     }
 
 
     void hittedanime()
     {
+        Debug.Log("크와아아앙 . 블러디 크라이가 울부짖었따");
         moveactive = true;
         headanimator.SetInteger("state", 1);
-        if(!buserkurcheck)
-        {
-            buserkurcheck = true;
-            cooltimeStart(1);
-            if (cooltimer1 > 0.2f)
-            {
-                headanimator.SetInteger("state", 2);
-                cooltimeStop(1);
-            }
+        cooltimeStart(1, 0.2f);
+        coolbloodcheck = true;
+    }
 
-        }
-
+    void hittedanimeoff()
+    {
+        headanimator.SetInteger("state", 2);
     }
 }

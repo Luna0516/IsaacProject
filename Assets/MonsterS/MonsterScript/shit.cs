@@ -72,7 +72,9 @@ public class shit : EnemyBase
 		}
 		else
 		{ spriteRenderer.flipX = false; }
-	}
+		damageoff(spriteRenderer);
+
+    }
 
 	protected override void OnEnable()
 	{
@@ -193,7 +195,7 @@ public class shit : EnemyBase
 	protected override void Hitten()
 	{
 		base.Hitten();
-		StartCoroutine(damaged(spriteRenderer));
+		damaged(spriteRenderer);
 	}
 
 }
