@@ -1,0 +1,3369 @@
+fileFormatVersion: 2
+guid: 4f338f989fc5afd40b27c14143ca332a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 25
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 316
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85a05e68d582724abef195d8df169db
+      internalID: 646225795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 364
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b56383b7a25a84dabff056a33dd085
+      internalID: -860403827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 400
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a30f32a93acf0d42a1d3f7d3c9139a0
+      internalID: -1570957322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_3
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 400
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0723f7049eacc5e42ae7a62583708ac8
+      internalID: -590644029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 365
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f4fe96e6a4de9045aa3f125dce144f3
+      internalID: 1700040692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 365
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0576a21aa71c81b47b192f1e0c67981f
+      internalID: 463050641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_6
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 317
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb52ca1cc80bfa140b0e9a6cf5784980
+      internalID: 328996196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_7
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 365
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9620518b7e6f448a7f7a4daff22713
+      internalID: 1935957482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_8
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 385
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab8bbd6fa2fec44ba7213e834a8e695
+      internalID: 1281929927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 390
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3110f2b4d4093a3448fb3cb289c5465f
+      internalID: 366823014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_10
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 384
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbbf2a6b1004ce748b243a592ea432d3
+      internalID: 332837567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_11
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 385
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccbef1f68711ef4481bdef1a5abb551
+      internalID: 1014550142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_12
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 390
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4141c8cd3603b5b4b92f5624b4187f48
+      internalID: -1657322261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_13
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 384
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d74bfd9169a95c48b5ab2aecdff6de3
+      internalID: -740316131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_14
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 386
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc93b4c64a215d140908e9e125f9fc03
+      internalID: 1605215649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_15
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 386
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec2ffd3b19b91204dad2babbab94c9fb
+      internalID: 1696237604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_16
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 372
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06d9ad5d4fd6bf4c95057826040d862
+      internalID: -1377597941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_17
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 372
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6793440a302b1884f854a093415a3c55
+      internalID: 1231480522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_18
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 352
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 962df9309ff852d479646dfa641f9570
+      internalID: -1510644887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_19
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 352
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faea1c4ab6fd04545b8e9d9e8b6a0717
+      internalID: -966733311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_20
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 352
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636d6adeebe428343857b2ed5e845795
+      internalID: -1863396926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_21
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 352
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4e70ce6372d88646b84fff0f8a5494f
+      internalID: 435191006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_22
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 352
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fc532321ce1306429e4141906ab28ff
+      internalID: 1845242061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_23
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 352
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c17e2aa7a3db62f43a7eb499bbe529d9
+      internalID: 43430370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_24
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 358
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55189fe73833727459aceeeacd4443bc
+      internalID: -1866268433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_25
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 317
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c340e7daee7cd454aa1d89d34e78b703
+      internalID: 606260340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_26
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 344
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6041ed27308e987468e6cded1faaa007
+      internalID: 850352722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_27
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 344
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43590e5484c6f6948987ed414caf3869
+      internalID: 458968016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_28
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 317
+        width: 47
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36ceb3162b935ff41bb3f1bfec261212
+      internalID: -253782706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_29
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 320
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5768263122a3b543bce4f9646784f83
+      internalID: -72577482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_30
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 320
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29208579b47b19f4f91048d9e8f6d655
+      internalID: -1122282364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_31
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 320
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e0cf42b9fee3e41aea0ad0c09ef337
+      internalID: 2074273550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_32
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 320
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd053b932e7be44c82530bce60784bb
+      internalID: -1587563814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_33
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 329
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf5aef419773f4498f40b92a8ac969b
+      internalID: -1865372566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_34
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 329
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9e056e896ae4ae46bcf93ab6c2d6bde
+      internalID: 390527703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_35
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 314
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ccae08881c95f49ae8bcedfe2ccd09
+      internalID: -1332213429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_36
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 314
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0b03dbd9e574574c9898add415cf70c
+      internalID: -331117774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_37
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 259
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003ef8e6dd9721b49bddcf1dc9471907
+      internalID: 1455298972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_38
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 259
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d879c05fbe16d4c962e7f61c1bdbd2
+      internalID: -1228057052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_39
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 293
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4179e358f0f86a4f9cffdfc02603011
+      internalID: 1279272885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_40
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 293
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1fb7e6b40e0414aa89c6ecfe02bdf9
+      internalID: 179127540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_41
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 256
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80af1b52006219744b60e592bcb855e5
+      internalID: 451564039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_42
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 256
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e2c6d3e2cbaf524498efbfe69bb2d95
+      internalID: -1176192415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_43
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 256
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d431a03c3bb1fa0498dd3ada31489712
+      internalID: -325946804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_44
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 256
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d29d8a494a59943bc2c9236a377942
+      internalID: 1748325801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_45
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 284
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fd725cea9c3a464689e2f8c7150d390
+      internalID: -960458505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_46
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 289
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc539ac006a4374dafb199038badd2a
+      internalID: -914532303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_47
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 283
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f271d2639e5fce6469c42e9dead507b5
+      internalID: 1073291690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_48
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 284
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b149529d251a441b4c567d9d9cae37
+      internalID: -1871334985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_49
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 289
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295c3987c4bb6f0448a6ec06460784a4
+      internalID: 952986630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_50
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 283
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4be121d8fa716c468161793e446d546
+      internalID: 168185700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_51
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 279
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4498c2eb145124092a5d49d357bf3c
+      internalID: 1378793899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_52
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 279
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90212a4d69e716b47bea7de29121d69b
+      internalID: -727484311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_53
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 265
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0443f190db443384dac5e51084307828
+      internalID: 1851101740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_54
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 265
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f172f5e2616aac24c9a3d2d53dc4ff13
+      internalID: -1072210198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_55
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 251
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f3243e643d22e4281046eff30a18ad
+      internalID: 1884112179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_56
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 251
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cd5a52b2c33d3438a23de3fdc12a38
+      internalID: 1094063628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_57
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 251
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feffe05f019129847bbb5db0a4730220
+      internalID: -230296342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_58
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 251
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa90a9229cc5e1144a557b9f848cfba4
+      internalID: 1932518150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_59
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 251
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cac2727f95e6b74088663abbbe15f3d
+      internalID: 817573046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_60
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 251
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bfee55d9ec56d647bf32b94cc11d0f2
+      internalID: 1941324810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_61
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 211
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e0d56dfc4d1654d8fb651353934821
+      internalID: 2124313321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_62
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 251
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24847f049b6b56449bca08b2324aa202
+      internalID: 417238661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_63
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 251
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4a5942385f41148b9db7b861dba522
+      internalID: 161955693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_64
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 211
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b2aa3e2d044a0f4ba1254fd5d69c266
+      internalID: -325793049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_65
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 237
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7c5050f4b0f5044a56c916d523152d
+      internalID: -1555740940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_66
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 237
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08fa37b61784f6145a08bcf99afaae9d
+      internalID: -1260998511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_67
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 208
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed5dced5459abf49a538198594d2767
+      internalID: 240588610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_68
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 208
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c476e03dd13b4a84cbd3b8900c41b401
+      internalID: 1953336445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_69
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 195
+        width: 42
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c392d64aea4bf45a67c3c56e83e4d3
+      internalID: -2080603267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_70
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 219
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4158f9dde27943d4e853007aef7cc456
+      internalID: 1149265986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_71
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 219
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37553351ef3d7c1428b424260740486b
+      internalID: -637261989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_72
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 219
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fbcffd035fbb1849a414e165f19346c
+      internalID: 1307733269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_73
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 219
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37b3fdafe746d3a4cb17485584c6f244
+      internalID: -1705525027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_74
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 223
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96b40a813bd49d4a866b20aac7e155e
+      internalID: -877179078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_75
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 223
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2f9425a5367cd4fa50494dc205a74a
+      internalID: -1766319447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_76
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 195
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 586ee72755d99024eb1d411c6d2648a1
+      internalID: -1675969628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_77
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 209
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d7b822749aa7f1419896702a7f5a1bb
+      internalID: 382785536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_78
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 163
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d46ff914f27924cbebdcf575f315d7
+      internalID: -990963410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_79
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 163
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f325978f7b501e946b1124a6b817b3b3
+      internalID: -966597871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_80
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 160
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d5fd3526ff066489439fb432efdd43
+      internalID: 1680486479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_81
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 160
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4817930395dff5d44b5bd4fdfa6cfa93
+      internalID: -2132719050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_82
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 180
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e659845503f8a184c981ecb828625b72
+      internalID: -782780728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_83
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 166
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02e06f6bdc649fa4095ec49e990c83a7
+      internalID: -757185316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_84
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 167
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d93f1fd5f6a6648b37d8f5b3107075
+      internalID: -2014031090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_85
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 165
+        width: 9
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d98cd9268e4a9df4992a29626ec7e846
+      internalID: -1040147822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_86
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 174
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df496c4c8470be944a00d36f01527b98
+      internalID: 408171061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_87
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 182
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df679cdb5105a8c47ba8792b7f016562
+      internalID: -495502824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_88
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 141
+        width: 22
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd93921b972e7be44ade684f4f22044b
+      internalID: 138145210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_89
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 174
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbfdc6747901e0640865a7201006437b
+      internalID: -1643193047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_90
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 179
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dda04f8d3168964b816611471a8c686
+      internalID: 837389638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_91
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 173
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8d870df25cd1e429f2f25a80ee8bde
+      internalID: 302297136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_92
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 167
+        width: 29
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728ba14c43471ca4f8396a2d5b2993ec
+      internalID: 1017500969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_93
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 109
+        width: 22
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d616186672971d41adcd8a58891ce6e
+      internalID: 610102301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_94
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 109
+        width: 22
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 123fde678ece66a40b1e466fc80fa548
+      internalID: -1207729807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_95
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 106
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b30bf284d6197443ae20850d54074bf
+      internalID: -1347663461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_96
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 106
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67b8aafc7d69edb47bf286b2f6943339
+      internalID: -296587051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_97
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 141
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81880d86de5b59f489c7eb37f3536752
+      internalID: -429569910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_98
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 141
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879b95fbf2b9d0d4d82d93a8c2ec62cf
+      internalID: 468622370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_99
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 86
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d3670a49b37cd46934d1c043274cb1
+      internalID: 1068899022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_100
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 86
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3053cda48ddc3f40bfaccb3b860d8fc
+      internalID: -576770636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_101
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 86
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8b3fea28cdea84dabc5fa8bcba6fc9
+      internalID: -1380495700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_102
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 86
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a409da046f90724788ba5ed8ddbe9b7
+      internalID: -1306771175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_103
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 141
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ff0dd59d465c14ebda039a12599228
+      internalID: -1354756960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_104
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 141
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1e06b9a0192b284ea2e16192519a8c4
+      internalID: -541999193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_105
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 141
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcc8c54594c1e434a85c97d8be8f74a9
+      internalID: -536351927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_106
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 127
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a3026ec6eb978f46be43aed6f926c6b
+      internalID: -754279506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_107
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 127
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b76a769ec3d8dd748bdedce40a2a0c4b
+      internalID: -179067597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_108
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 109
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 942b2d446e3fe404ca2321e51681ca63
+      internalID: -236457666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_109
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 109
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435aea16a552f974894d8c31bc5adff9
+      internalID: 368995757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_110
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 113
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba926df2b603ae4c82284ebc72c4d06
+      internalID: 135782591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_111
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 113
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90dd209fd0d7afe478ce78d16962dc86
+      internalID: -674037371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_112
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 58
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8fa75b41fa47b449a4ae3fcd36531ec
+      internalID: 593451296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_113
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 99
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2bb39461d1ee2d49af83da1eef90739
+      internalID: 1083359652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_114
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 99
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbe4dd423a1e75a47ae4a93c0f39c078
+      internalID: -540496764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_115
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 80
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b55f44f270b42ab43b166837194f4db3
+      internalID: 299685406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_116
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 78
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5813255c07972044cade6463ba30d886
+      internalID: -984689098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_117
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 80
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd550105c5b5854e884aa862abed038
+      internalID: -740177685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_118
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 80
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e55d0874a1a0f546b9ee64e4b372c23
+      internalID: 1827333001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_119
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 78
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8343297e2d16c42a7fe80b617e2c0a
+      internalID: -262346068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_120
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 58
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9b795956467ad148a3bc940115d9a55
+      internalID: -1188017868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_121
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 85
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d44bafced375c64b96a882b5003c207
+      internalID: -79115252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_122
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 85
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020ca441a1bca9f46860838ff7eb51d2
+      internalID: -967458789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_123
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 77
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633ed21e510cbfb429f742f413c79ac6
+      internalID: 1219560744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_124
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 71
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 124ff72493b70e7428a608ec935dc338
+      internalID: 1827133943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_125
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 71
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f892c5eb9fa2240b31aaaf478e5399
+      internalID: -919047784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_126
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 15
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c065eb4e83f4734e81d3acf9ddaa60f
+      internalID: -1111711589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_127
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 15
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40494806e3553bd4db04aee6f1c28517
+      internalID: 1283504044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_128
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 57
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 881ae1f8a7ef53e43b2e9415a58de0de
+      internalID: 1133224415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_129
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 46
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a495cac5a951a449abd49cedb9078ad
+      internalID: 52478581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_130
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 46
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321e94e6f2cdf544e914584801401222
+      internalID: 630462670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_131
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 46
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39a2b7631d50ee4fa5959a367848619
+      internalID: 805511233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_132
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 46
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25711d2d56c381f468db9fb93931de86
+      internalID: 2089974610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_133
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 46
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 521f263f888bbc04a9ab191b10da0fc2
+      internalID: 1262997250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_134
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 46
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f225ca674bf0d42b4f270ac0e45874
+      internalID: -2127346079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_135
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 10
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbba7ce5e8ccfe4aadbd30fa6a882e0
+      internalID: -357205799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_136
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 10
+        width: 41
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afacede8d887174c8aa662fb0e21cf7
+      internalID: 2054274395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_137
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 15
+        width: 35
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df37120858c832a499ef6a9d46e9c949
+      internalID: -379061035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_138
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 15
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae514e489aedb584c8c2fb00ee5411b3
+      internalID: 748820105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_139
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 14
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf56552b71e6f424ea792130a068bb1a
+      internalID: 1997715556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_140
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 14
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3ba45e3a3b8fc48b0435faba812975
+      internalID: 437357798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_141
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 14
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f378ce50a900f841af91e026475b8b9
+      internalID: -2024782530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_142
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 14
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be0d75187c051e4eafd02608e7920c1
+      internalID: 1542183752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_143
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 27
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dd1b97729089124fa38af1315d26fb7
+      internalID: -659654279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_144
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 15
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0cb207fb8063c14c801e06004988481
+      internalID: -1803708719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_145
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 15
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4209291833e1044c81fe749feda741b
+      internalID: 266659529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_146
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 15
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d42084c8ad3ebe74daa91c30e223f6b1
+      internalID: -843814692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_0: 646225795
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_1: -860403827
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_10: 332837567
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_100: -576770636
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_101: -1380495700
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_102: -1306771175
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_103: -1354756960
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_104: -541999193
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_105: -536351927
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_106: -754279506
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_107: -179067597
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_108: -236457666
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_109: 368995757
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_11: 1014550142
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_110: 135782591
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_111: -674037371
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_112: 593451296
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_113: 1083359652
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_114: -540496764
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_115: 299685406
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_116: -984689098
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_117: -740177685
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_118: 1827333001
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_119: -262346068
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_12: -1657322261
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_120: -1188017868
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_121: -79115252
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_122: -967458789
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_123: 1219560744
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_124: 1827133943
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_125: -919047784
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_126: -1111711589
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_127: 1283504044
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_128: 1133224415
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_129: 52478581
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_13: -740316131
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_130: 630462670
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_131: 805511233
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_132: 2089974610
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_133: 1262997250
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_134: -2127346079
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_135: -357205799
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_136: 2054274395
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_137: -379061035
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_138: 748820105
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_139: 1997715556
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_14: 1605215649
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_140: 437357798
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_141: -2024782530
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_142: 1542183752
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_143: -659654279
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_144: -1803708719
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_145: 266659529
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_146: -843814692
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_15: 1696237604
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_16: -1377597941
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_17: 1231480522
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_18: -1510644887
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_19: -966733311
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_2: -1570957322
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_20: -1863396926
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_21: 435191006
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_22: 1845242061
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_23: 43430370
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_24: -1866268433
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_25: 606260340
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_26: 850352722
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_27: 458968016
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_28: -253782706
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_29: -72577482
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_3: -590644029
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_30: -1122282364
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_31: 2074273550
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_32: -1587563814
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_33: -1865372566
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_34: 390527703
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_35: -1332213429
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_36: -331117774
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_37: 1455298972
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_38: -1228057052
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_39: 1279272885
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_4: 1700040692
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_40: 179127540
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_41: 451564039
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_42: -1176192415
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_43: -325946804
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_44: 1748325801
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_45: -960458505
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_46: -914532303
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_47: 1073291690
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_48: -1871334985
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_49: 952986630
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_5: 463050641
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_50: 168185700
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_51: 1378793899
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_52: -727484311
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_53: 1851101740
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_54: -1072210198
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_55: 1884112179
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_56: 1094063628
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_57: -230296342
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_58: 1932518150
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_59: 817573046
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_6: 328996196
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_60: 1941324810
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_61: 2124313321
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_62: 417238661
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_63: 161955693
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_64: -325793049
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_65: -1555740940
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_66: -1260998511
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_67: 240588610
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_68: 1953336445
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_69: -2080603267
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_7: 1935957482
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_70: 1149265986
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_71: -637261989
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_72: 1307733269
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_73: -1705525027
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_74: -877179078
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_75: -1766319447
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_76: -1675969628
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_77: 382785536
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_78: -990963410
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_79: -966597871
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_8: 1281929927
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_80: 1680486479
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_81: -2132719050
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_82: -782780728
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_83: -757185316
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_84: -2014031090
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_85: -1040147822
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_86: 408171061
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_87: -495502824
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_88: 138145210
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_89: -1643193047
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_90: 837389638
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_91: 302297136
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_92: 1017500969
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_93: 610102301
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_94: -1207729807
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_95: -1347663461
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_96: -296587051
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_97: -429569910
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_98: 468622370
+      PC Computer - The Binding of Isaac Rebirth - Machines & Beggars Repentance_99: 1068899022
+      coin: 366823014
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

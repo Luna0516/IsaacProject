@@ -6,12 +6,20 @@ using UnityEngine;
 public class Fly : EnemyBase
 {
 	Vector2 Rnad;
-	float invincivalTime = 1f;
+	public float invincivalTime = 1f;
 	bool invincival = true;
 	Animator animator;
 	SpriteRenderer rneder;
 	Collider2D coll;
-	public float noise = 5f;
+
+
+	/// <summary>
+	/// 노이즈 무브 정도
+	/// </summary>
+    [Header("노이즈 무브")]
+    public float noise = 5f;
+
+
 	float X;
 	float Y;
 
@@ -36,11 +44,11 @@ public class Fly : EnemyBase
 
 	private void Start()
 	{
+		cooltimeStart(1 , invincivalTime);
 		coll = GetComponent<Collider2D>();
 		rneder = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
 		speed = UnityEngine.Random.Range(0.5f, 2f);
-		StartCoroutine(IvincivalFly());
 		Rnad = Vector2.zero;
 	}
 	void noisyMove()
@@ -56,6 +64,10 @@ public class Fly : EnemyBase
 	}
 	protected override void Update()
 	{
+		if (invincivalTime > 0)
+		{
+			InvincivalTime = cooltimer1;
+		}
 		base.Update();
 		orderInGame(rneder);
 
@@ -88,13 +100,5 @@ public class Fly : EnemyBase
 		coll.isTrigger = true;
 		animator.SetInteger("Dead", 1);
 		Destroy(this.gameObject, 0.917f);
-	}
-	IEnumerator IvincivalFly()
-	{
-		while (invincival)
-		{
-			InvincivalTime -= Time.deltaTime;
-			yield return null;
-		}
 	}
 }

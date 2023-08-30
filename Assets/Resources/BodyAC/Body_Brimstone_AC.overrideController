@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Body_Brimstone_AC
+  m_Controller: {fileID: 9100000, guid: cc451558989ebd446aef86c7baaa210b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 39ae2ae9092322e4daa82944d28ea0a7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 07b3b11e35382134ea4503341d55a940, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1d5993453eae5eb4cb147afb4bfa5718, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6aaad7344d260e545a5fe3a0db6e79f7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 753c08df9720f1b428dc199ae0bfb65d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7ca1dedbc9fba2f4291ce642da2918ff, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ff1555cd71b0c7540a9f822df8e767a9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c17ca246750a5f04fad028a3fee8b71e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4c2a202e7d89411409c96d2694c04b6a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1dac91ff89733b5449c727f6273bfe7b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d778ffbbcd2f041468d97f7ea504c92b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3f10cb92929ace945ab736b0f9878ce1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 19bf3031da2393e4190c50e9c75d4a9c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 502f94c71bab6bd41b7ec1f9712276d9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2330b667ce530974598c830b34d3504e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 25bb4088f8cb0c440893bb0122581ae5, type: 2}

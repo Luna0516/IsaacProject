@@ -13,6 +13,8 @@ public enum Direction
 
 public class DungeonCrawlerController : MonoBehaviour
 {
+    // 던전 생성 절차 클래스
+
     public static List<Vector2Int> positionsVisited = new List<Vector2Int>();
 
     private static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
@@ -26,9 +28,9 @@ public class DungeonCrawlerController : MonoBehaviour
     public static List<Vector2Int> GenerateDungeon(DungeonGenerationData dungeonData)
     {
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
-        for(int i = 0; i < dungeonData.numberOfCrawlers; i++)
+        for (int i = 0; i < dungeonData.numberOfCrawlers; i++)
         {
-            dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
+            dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero)); //위치 저장
         }
 
         int iterations = Random.Range(dungeonData.iterationMin, dungeonData.iterationMax);

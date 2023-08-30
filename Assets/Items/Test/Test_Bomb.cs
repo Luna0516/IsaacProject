@@ -15,7 +15,7 @@ public class Test_Bomb : TestBase {
     }
 
     protected override void Test1(InputAction.CallbackContext context) {
-        ItemManager.CreateItem(propsBomb, Vector2.one * 2.0f);
+        ItemFactory.Inst.CreateItem(propsBomb, Vector2.one * 2.0f);
     }
 
     protected override void Test2(InputAction.CallbackContext context) {

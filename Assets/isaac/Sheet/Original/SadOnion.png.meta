@@ -1,0 +1,1191 @@
+fileFormatVersion: 2
+guid: 80b99346c8ab4b646919830484f07a03
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SadOnion_FrontTear1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aac53847cc2120469ff29121d38110e
+      internalID: -631716407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontShotTear1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 239dad55a4643c042b618897e046f591
+      internalID: -1352741948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightTear1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f290a6297b051408dfe7f09588fbfa
+      internalID: 1015286699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightShotTear1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0610ff3ae01b04c4abf78e83a3ab4a55
+      internalID: 635964038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackTear1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c86380a4fc7a634f85681d4dac85a1d
+      internalID: 801861879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackShotTear1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b61c9217d37f3f24b92354b372d69eee
+      internalID: -283606310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftTear1
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 002c62475c00e0641ac961512a86a15b
+      internalID: 809331714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftShotTear1
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 244
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b73fe65661438e48ba5b17694bc63a9
+      internalID: -1948421699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontTear2
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35afbe1e7e3f3f54f997977382f23cd8
+      internalID: 1257825003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontShotTear2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc253c9e015424044b4c33075f281680
+      internalID: -332072408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightTear2
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d968765bba3de604484d787bedc214c0
+      internalID: -1490310520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightShotTear2
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7d33301ae28b3459b7158e1a8818c6
+      internalID: 934541334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackTear2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da1697a35d600d84cb9845b2285f0688
+      internalID: -1160089454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackShotTear2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6dcc4705963d7478969a8a7f9a33db
+      internalID: -452895476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftTear2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590756f63c8e0e04d91c838ed7993845
+      internalID: 1734140726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftShotTear2
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 202
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d2e03a2f1db3f247a0701e21d980379
+      internalID: 1955268659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontTear3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 160
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1803dc64bfe97f043b980ef0c45901ac
+      internalID: -2095144283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontShotTear3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c810c9953d01ee0418a834abb537b05a
+      internalID: -1621947967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightTear3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 160
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9269ac81868d6c8419bf38cbf28cc941
+      internalID: -394295289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightShotTear3
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 160
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa130e64cac3f84b824275a96a1927e
+      internalID: -321262507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackTear3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 160
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cc78b1f0af81984eb60e28fa08d666d
+      internalID: -1804649657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackShotTear3
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 45
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d571947f8f978d446a13c5ed971cabce
+      internalID: 1234850070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftTear3
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 160
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5ff521a2282f542b130d00c89614ff
+      internalID: -1278143408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftShotTear3
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 160
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fc659acef0795b4e878db82de004e75
+      internalID: 1693946317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Front1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 118
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdf346dd61a36d4d88adf12d5899ee0
+      internalID: 1998820101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontShot1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 118
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b2cc58ce75d3ab468abf693127706c1
+      internalID: -448514267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Right1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 118
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e61c151dcc3bb1540ba62853324fb283
+      internalID: -1249201767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightShot1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 118
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2be1a8c93a784e49975f461fa1ac1cc
+      internalID: 113170721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Back1
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 123
+        width: 43
+        height: 36
+      alignment: 9
+      pivot: {x: 0.485, y: 0.542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b18419a7c06f474d8ddddf1c8faa83f
+      internalID: -1920095848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackShot1
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 120
+        width: 40
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.57}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a2d520081699314b99e7649bd44a227
+      internalID: -1640981956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Left1
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 118
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce67cf7c83b23148995f0dbed8372f1
+      internalID: -1980060976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftShot1
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 118
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271086e85c2573e4e8f2e00adf89b3a3
+      internalID: -393521644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Front2
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 76
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2431a67debc7b704483994992c090e12
+      internalID: 935395602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontShor2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 76
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c10728e567c7bf4428f11481a8fad601
+      internalID: 2142888218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Right2
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 76
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae7f0ef37a92734ba64f573b15f2826
+      internalID: -543694172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightShot2
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 76
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f56c6a4e3af55b4d87a5ca31fb50d18
+      internalID: 988396627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Back2
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 83
+        width: 44
+        height: 34
+      alignment: 9
+      pivot: {x: 0.474, y: 0.545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 857784f64497b0e42a0fa796bb46f473
+      internalID: 1015608429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackShot2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 81
+        width: 44
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391f73bd08aa7b049a9a9503750b1b5e
+      internalID: 444505069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Left2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 76
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7b81f08d1df8294d9af1a9286141420
+      internalID: -2038787374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftShot2
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 76
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e52ab10edf01241489985d0462b08697
+      internalID: 1569830429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Front3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 34
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1a1a2783c0ae634f9104ca79d04a186
+      internalID: 432438037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_FrontShot3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 34
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aea3d2ef83fa85469cfa9c41ae7234d
+      internalID: 135679189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Right3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 34
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de7d19b62ff33624b87be4e86890c5dd
+      internalID: -989949662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_RightShot3
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 34
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8edb964313b023f4280db50416e7b293
+      internalID: -1839844966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Back3
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 39
+        width: 44
+        height: 34
+      alignment: 9
+      pivot: {x: 0.497, y: 0.634}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2554e32056caf24418f15badd41c639b
+      internalID: -1955604137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_BackShot3
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 38
+        width: 45
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b322fb3d2d6df9c43895762e4741fc1f
+      internalID: -793489610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_Left3
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 34
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 944b62fa42ad27f4296a7d05adeab34c
+      internalID: -818057511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SadOnion_LeftShot3
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 34
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030efa246d3d0ea418e56bcaac3ed61e
+      internalID: -1186207383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SadOnion_Back1: -1920095848
+      SadOnion_Back2: 1015608429
+      SadOnion_Back3: -1955604137
+      SadOnion_BackShot1: -1640981956
+      SadOnion_BackShot2: 444505069
+      SadOnion_BackShot3: -793489610
+      SadOnion_BackShotTear1: -283606310
+      SadOnion_BackShotTear2: -452895476
+      SadOnion_BackShotTear3: 1234850070
+      SadOnion_BackTear1: 801861879
+      SadOnion_BackTear2: -1160089454
+      SadOnion_BackTear3: -1804649657
+      SadOnion_Front1: 1998820101
+      SadOnion_Front2: 935395602
+      SadOnion_Front3: 432438037
+      SadOnion_FrontShor2: 2142888218
+      SadOnion_FrontShot1: -448514267
+      SadOnion_FrontShot3: 135679189
+      SadOnion_FrontShotTear1: -1352741948
+      SadOnion_FrontShotTear2: -332072408
+      SadOnion_FrontShotTear3: -1621947967
+      SadOnion_FrontTear1: -631716407
+      SadOnion_FrontTear2: 1257825003
+      SadOnion_FrontTear3: -2095144283
+      SadOnion_Left1: -1980060976
+      SadOnion_Left2: -2038787374
+      SadOnion_Left3: -818057511
+      SadOnion_LeftShot1: -393521644
+      SadOnion_LeftShot2: 1569830429
+      SadOnion_LeftShot3: -1186207383
+      SadOnion_LeftShotTear1: -1948421699
+      SadOnion_LeftShotTear2: 1955268659
+      SadOnion_LeftShotTear3: 1693946317
+      SadOnion_LeftTear1: 809331714
+      SadOnion_LeftTear2: 1734140726
+      SadOnion_LeftTear3: -1278143408
+      SadOnion_Right1: -1249201767
+      SadOnion_Right2: -543694172
+      SadOnion_Right3: -989949662
+      SadOnion_RightShot1: 113170721
+      SadOnion_RightShot2: 988396627
+      SadOnion_RightShot3: -1839844966
+      SadOnion_RightShotTear1: 635964038
+      SadOnion_RightShotTear2: 934541334
+      SadOnion_RightShotTear3: -321262507
+      SadOnion_RightTear1: 1015286699
+      SadOnion_RightTear2: -1490310520
+      SadOnion_RightTear3: -394295289
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

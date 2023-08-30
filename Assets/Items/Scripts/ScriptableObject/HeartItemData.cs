@@ -29,6 +29,11 @@ public class HeartItemData : ItemData, IHealth {
                     result = true;
                 }
             }
+
+            if(soulHeart > 0) {
+                player.SoulHealth += soulHeart;
+                result = true;
+            }
         }
 
         return result;

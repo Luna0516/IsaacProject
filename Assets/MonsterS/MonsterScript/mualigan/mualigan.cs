@@ -25,28 +25,31 @@ public class mualigan : EnemyBase
     {
         base.Update();
         Movement();
-        orderInGame(headsprite,bodysprite);
+        orderInGame(headsprite, bodysprite);
+        damageoff(headsprite, bodysprite);
     }
     protected override void Movement()
     {
-        transform.Translate(HeadTo * speed * Time.deltaTime);
-        if (HeadTo.x > 0)
-            {
-                headsprite.flipX = false;
-                bodysprite.flipX = false;
-                animator.SetInteger("WalkSideway", 1);
-            }
-            else
-            {
-                headsprite.flipX = true;
-                bodysprite.flipX = true;
-                animator.SetInteger("WalkSideway", 1);
-            }
+        transform.Translate(-HeadTo * speed * Time.deltaTime);
+        if (HeadTo.x < 0)
+        {
+            headsprite.flipX = false;
+            bodysprite.flipX = false;
+            animator.SetInteger("WalkSideway", 1);
+        }
+        else
+        {
+            headsprite.flipX = true;
+            bodysprite.flipX = true;
+            animator.SetInteger("WalkSideway", 1);
+        }
     }
     protected override void Hitten()
     {
         base.Hitten();
         if (this.gameObject.activeSelf)
-        { StartCoroutine(damaged(headsprite, bodysprite)); }
+        {
+            damaged(headsprite, bodysprite);
+        }
     }
 }

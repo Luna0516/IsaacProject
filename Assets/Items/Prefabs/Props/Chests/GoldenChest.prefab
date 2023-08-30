@@ -170,9 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropItems:
   - data: {fileID: 11400000, guid: 5b53992287d5c134186fdfb6e10d2f9d, type: 2}
-    dropPercentage: 0.7
+    dropPercentage: 1
   - data: {fileID: 11400000, guid: 326fcc9b8a6904c4e83af1e566123839, type: 2}
-    dropPercentage: 0.3
+    dropPercentage: 1
   - data: {fileID: 11400000, guid: c0aa77510fc766d4ba0c48bb390b52ee, type: 2}
     dropPercentage: 0.1
   - data: {fileID: 11400000, guid: 40509e2a52b04d24f886b3593919ee9b, type: 2}

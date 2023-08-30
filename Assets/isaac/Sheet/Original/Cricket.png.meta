@@ -1,0 +1,369 @@
+fileFormatVersion: 2
+guid: 5238ea7b25a3d95449cb1ca200230980
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cricket - Front1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 165
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33771e8614d6c354a958ec0905470b9f
+      internalID: -1356925788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cricket - Front2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 164
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25cce296fbdcdc541a7c3601e97d8ed6
+      internalID: 1834368366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cricket - Right1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 165
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7c8de90324726e4395e64dc17c68c80
+      internalID: 1256472961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cricket - Right2
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 164
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a154e3ea5571b84585a9e92f298977a
+      internalID: -736461426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cricket - Back1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 165
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deac09356bfc17d46b59a360540c0f1b
+      internalID: -324537980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cricket - Back2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 164
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4c3852c62595454a8b25f1141efd427
+      internalID: 928035398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cricket - Left1
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 165
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a58358a5c8f9141b077c647a3e09a4
+      internalID: 1887537525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cricket - Left2
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 164
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c19986bd3c82b34c9a110a675d21e91
+      internalID: 688144007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Cricket - Back1: -324537980
+      Cricket - Back2: 928035398
+      Cricket - Front1: -1356925788
+      Cricket - Front2: -1356925788
+      Cricket - Left1: 1887537525
+      Cricket - Left2: 688144007
+      Cricket - Right1: 1256472961
+      Cricket - Right2: -736461426
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_0: -2143945868
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_1: 90872095
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_10: -392397877
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_11: 416313561
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_12: 527910906
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_13: 1270369832
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_14: 1877140033
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_15: 2028564768
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_16: 472371426
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_17: -450636494
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_2: 199954680
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_26: -1169495502
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_27: 201158307
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_28: 1472334562
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_29: -1821937388
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_3: 376168888
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_30: 52137131
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_31: -725724769
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_32: 789902447
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_33: 1006426671
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_34: -958103267
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_35: -384626969
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_36: -1947732518
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_37: -2023527078
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_38: -319451947
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_39: 699368210
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_4: 624166999
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_40: -713055664
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_41: 765783622
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_42: -107537310
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_43: -680655745
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_44: 1914132485
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_45: 2065173611
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_46: -590106698
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_47: -1025494557
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_48: 1108397928
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_49: 1108664530
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_5: 420122133
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_50: -582111933
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_51: -1947779249
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_52: -408436088
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_53: 1337965777
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_54: 1391115146
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_55: -158234039
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_56: 362686781
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_57: 1785450098
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_58: 188868116
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_59: 2109703060
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_6: -2140684226
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_60: -1214450784
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_61: -693120437
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_62: 1444264279
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_63: 1945447223
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_64: 471519582
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_65: 2001727899
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_7: 157434330
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_8: 1208634471
+      PC Computer - The Binding of Isaac Rebirth - Crickets Head_9: 356407868
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

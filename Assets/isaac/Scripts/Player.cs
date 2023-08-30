@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -73,14 +72,21 @@ public class Player : MonoBehaviour
     Transform head;
     // 머리 애니
     Animator headAni;
+    SpriteRenderer headSR;
     // 몸
     Transform body;
-    Transform getItem;
-    SpriteRenderer getItemSR;
     // 몸 애니
     Animator bodyAni;
+    SpriteRenderer bodySR;
     // 플레이어 액션
     PlayerAction inputAction;
+    Transform getItem;
+    SpriteRenderer getItemSR;
+    Transform sadOnionSprite;
+    Animator sadOnionAni;
+    SpriteRenderer sadOnionSR;
+    Transform MartyrSprite;
+    Transform allGetItem;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -105,16 +111,24 @@ public class Player : MonoBehaviour
     }
 
     new CircleCollider2D collider;
+
+    /// <summary>
+    /// 스프라이트 변경 아이템을 먹지 않았을때
+    /// </summary>
+    bool isEmpty = true;
+
+    bool isGetitem;
+
     #endregion
     #region 체력
     /// <summary>
     /// 최대체력
     /// </summary>
-    public float maxHealth = 6.0f;
+    public int maxHealth = 6;
     /// <summary>
     /// 현재 체력
     /// </summary>
-    public float health = 1;
+    public int health = 1;
     #endregion
     #region 데미지
     /// <summary>
@@ -136,30 +150,64 @@ public class Player : MonoBehaviour
     float currentMultiDmg = 1.0f;
     // 데미지 적용시 예외 아이템
     bool isGetPolyphemus = false;
-    bool isGetScaredHeart = false;
+    bool isGetSacredHeart = false;
+    bool isGetSadOnion = false;
+    bool isGetBrimstone = false;
     #endregion
     #region 무적
     /// <summary>
-    /// 무적시간
-    /// </summary>
-    float invisibleTime = 1.16f;
-    /// <summary>
     /// 무적시간 초기화용
     /// </summary>
+    float invisibleTime = 0.9f;
+    /// <summary>
+    /// 무적시간
+    /// </summary>
     float currentInvisible = 0.0f;
+
+    bool isDamaged = false;
     #endregion
     #region 프로퍼티들
     public Action onUseActive;
-    public int Coin { get; set; }
-    public int Bomb { get; set; }
-
+    int coin = 0;
+    public int Coin
+    {
+        get => coin;
+        set
+        {
+            coin = value;
+            onCoinChange?.Invoke(coin);
+        }
+    }
+    /// <summary>
+    /// 코인 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onCoinChange;
+    int bomb = 0;
+    public int Bomb
+    {
+        get => bomb;
+        set
+        {
+            bomb = value;
+            onBombChange?.Invoke(bomb);
+        }
+    }
+    /// <summary>
+    /// 폭탄 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onBombChange;
     int key = 0;
     public int Key {
         get => key;
         set {
             key = value;
+            onKeyChange?.Invoke(key);
         }
     }
+    /// <summary>
+    /// 열쇠 개수 변경을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onKeyChange;
     /// <summary>
     /// 화면에 띄울 damage 프로퍼티
     /// </summary>
@@ -203,17 +251,87 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 띄울 health 프로퍼티
     /// </summary>
-    public float Health {
+    public int Health {
         get => health;
         set {
             health = value;
             health = Mathf.Clamp(health, 0, maxHealth);
+            onHealthChange?.Invoke();
+        }
+    }
+    int soulHealth = 0;
+    public int SoulHealth {
+        get => soulHealth;
+        set {
+            if(soulHealth != value) {
+                soulHealth = Math.Max(0, value);
+                onHealthChange?.Invoke();
+            }
         }
     }
     #endregion
-
+    #region 스프라이트관련
+    public enum PassiveSpriteState
+    {
+        None = 0,
+        CricketHead,
+        Halo,
+        SadOnion,
+        SacredHeart,
+        Polyphemus,
+        MutantSpider,
+        Brimstone,
+        BloodOfMartyr
+    }
+    PassiveSpriteState state = PassiveSpriteState.None;
+    public PassiveSpriteState State
+    {
+        get => state;
+        set
+        {
+            state = value;
+            switch (state)
+            {
+                case PassiveSpriteState.None:
+                    break;
+                case PassiveSpriteState.CricketHead:
+                    var headResourceName = "HeadAC/Head_Cricket_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    break;
+                case PassiveSpriteState.Halo:
+                    break;
+                case PassiveSpriteState.SadOnion:
+                    break;
+                case PassiveSpriteState.SacredHeart:
+                    isGetSacredHeart = true;
+                    break;
+                case PassiveSpriteState.Polyphemus:
+                    isGetPolyphemus = true;
+                    break;
+                case PassiveSpriteState.MutantSpider:
+                    break;
+                case PassiveSpriteState.Brimstone:
+                    headResourceName = "HeadAC/Head_Brimstone_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    var bodyResourceName = "BodyAC/Body_Brimstone_AC";
+                    bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
+                    isGetBrimstone = true;
+                    break;
+                case PassiveSpriteState.BloodOfMartyr:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    #endregion
     public Action<PassiveItemData> getPassiveItem;
     public Action<ActiveItemData> getActiveItem;
+
+    /// <summary>
+    /// 플레이어의 HP가 변경되었음을 알리는 델리게이트
+    /// </summary>
+    public Action onHealthChange;
 
     private void Awake()
     {
@@ -225,13 +343,27 @@ public class Player : MonoBehaviour
         // 몸통 관련 항목
         body = transform.GetChild(2);
         bodyAni = body.GetComponent<Animator>();
+        bodySR = body.GetComponent<SpriteRenderer>();
         // 머리 관련 항목
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
-        health = maxHealth;
+        headSR = head.GetComponent<SpriteRenderer>();
+        
+        TearSpeedCaculate();
+    }
+    private void Start()
+    {
+        // 아이템관련
+        allGetItem = transform.GetChild(4);
+        sadOnionSprite = allGetItem.transform.GetChild(0);
+        sadOnionAni = sadOnionSprite.GetComponent<Animator>();
+        sadOnionSR = sadOnionSprite.GetComponent<SpriteRenderer>();
+        MartyrSprite = allGetItem.transform.GetChild(1);
+
+        isGetitem = true;
+        Health = maxHealth;
         Speed = 2.5f;
         Damage = 3.5f;
-        TearSpeedCaculate();
     }
     private void Update()
     {
@@ -320,64 +452,87 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Item"))
         {
-            ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
-            ItemData itemData = item.ItemData;
-            if (itemData != null)
+            if (isGetitem)
             {
-                ActiveItemData active = itemData as ActiveItemData;
-                if (active != null) 
+                ItemDataObject item = collision.gameObject.GetComponent<ItemDataObject>();
+                ItemData itemData = item.ItemData;
+                if (itemData != null)
                 {
-                    getActiveItem?.Invoke(active);
-                    StartCoroutine(GetItem(active.icon));
-                }
-
-                PassiveItemData passive = itemData as PassiveItemData;
-                if (passive != null)
-                {
-                    getPassiveItem?.Invoke(passive);
-                    StartCoroutine(GetItem(passive.icon));
-
-                    currentDmg += passive.damage;
-                    currentMultiDmg *= passive.multiDamage;
-                    Speed += passive.speed;
-                    Range += passive.range;
-                    ShotSpeed += passive.shotSpeed;
-                    itemSpeed += passive.tearSpeed;
-
-                    // 데미지 적용시 예외 아이템 switch문
-                    switch (passive.itemNum)
+                    ActiveItemData active = itemData as ActiveItemData;
+                    if (active != null)
                     {
-                        case 169:
-                            isGetPolyphemus = true;
-                            break;
-                        case 182:
-                            isGetScaredHeart = true;
-                            break;
+                        getActiveItem?.Invoke(active);
+                        StartCoroutine(GetItem(active.icon));
                     }
 
-                    if (passive.itemNum == 169 || passive.itemNum == 182)
-                        currentDmg -= passive.damage;
-
-                    Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
-
-                    if (isGetPolyphemus)
-                        Damage += 4f;
-
-                    Damage *= currentMultiDmg;
-
-                    if (isGetScaredHeart)
-                        Damage += 1f;
-
-                    Damage = (float)Math.Round(Damage, 2);
-                    if (speed > maximumSpeed) 
+                    PassiveItemData passive = itemData as PassiveItemData;
+                    if (passive != null)
                     {
-                        speed = maximumSpeed;
+                        getPassiveItem?.Invoke(passive);
+                        StartCoroutine(GetItem(passive.icon));
+
+                        currentDmg += passive.damage;
+                        currentMultiDmg *= passive.multiDamage;
+                        Speed += passive.speed;
+                        Range += passive.range;
+                        ShotSpeed += passive.shotSpeed;
+                        itemSpeed += passive.tearSpeed;
+
+                        switch (passive.itemNum)
+                        {
+                            case 1:
+                                State = PassiveSpriteState.SadOnion;
+                                break;
+                            // 크리켓
+                            case 4:
+                                State = PassiveSpriteState.CricketHead;
+                                break;
+                            // 가시관
+                            case 7:
+                                State = PassiveSpriteState.BloodOfMartyr;
+                                break;
+                            case 118:
+                                State = PassiveSpriteState.Brimstone;
+                                break;
+                            // 왕눈이눈물
+                            case 169:
+                                State = PassiveSpriteState.Polyphemus;
+                                break;
+                            // 유도눈물
+                            case 182:
+                                State = PassiveSpriteState.SacredHeart;
+                                break;
+                            // 칼
+                            case 114:
+                                break;
+                            // 거미눈물 4발
+                            case 153:
+                                break;
+                        }
+
+                        if (passive.itemNum == 169 || passive.itemNum == 182)
+                            currentDmg -= passive.damage;
+
+                        Damage = baseDmg * Mathf.Sqrt(currentDmg * 1.2f + 1f);
+
+                        if (isGetPolyphemus)
+                            Damage += 4f;
+
+                        Damage *= currentMultiDmg;
+
+                        if (isGetSacredHeart)
+                            Damage += 1f;
+
+                        Damage = (float)Math.Round(Damage, 2);
+                        if (speed > maximumSpeed)
+                        {
+                            speed = maximumSpeed;
+                        }
+                        TearSpeedCaculate();
                     }
-                    TearSpeedCaculate();
                 }
+                Destroy(collision.gameObject);
             }
-
-            Destroy(collision.gameObject);
         }
     }
     IEnumerator GetItem(Sprite sprite)
@@ -386,12 +541,22 @@ public class Player : MonoBehaviour
         head.gameObject.SetActive(false);
         getItemSR.sprite = sprite;
         inputAction.Player.Shot.Disable();
-
+        isGetitem = false;
         yield return new WaitForSeconds(0.9f);
 
         inputAction.Player.Shot.Enable();
         getItemSR.sprite = null;
         head.gameObject.SetActive(true);
+        isGetitem = true;
+        if(State == PassiveSpriteState.SadOnion)
+        {
+            sadOnionSprite.gameObject.SetActive(true);
+            isGetSadOnion = true;
+        }
+        if (State == PassiveSpriteState.BloodOfMartyr)
+        {
+            MartyrSprite.gameObject.SetActive(true);
+        }
     }
     private void OnMove(InputAction.CallbackContext context)
     {
@@ -403,6 +568,19 @@ public class Player : MonoBehaviour
         bodyAni.SetFloat("MoveDir_Y", bodyDir.y);
         headAni.SetFloat("MoveDir_X", bodyDir.x);
         headAni.SetFloat("MoveDir_Y", bodyDir.y);
+        if (isGetSadOnion)
+        {
+            sadOnionAni.SetFloat("MoveDir_X", bodyDir.x);
+            sadOnionAni.SetFloat("MoveDir_Y", bodyDir.y);
+            if (bodyDir.y > 0.001f)
+            {
+                sadOnionSR.sortingOrder = 0;
+            }
+            else
+            {
+                sadOnionSR.sortingOrder = 2;
+            }
+        }
     }
     private void OnFire(InputAction.CallbackContext context)
     {
@@ -411,15 +589,51 @@ public class Player : MonoBehaviour
 
         headAni.SetFloat("ShootDir_X", headDir.x);
         headAni.SetFloat("ShootDir_Y", headDir.y);
+        if (isGetSadOnion)
+        {
+            sadOnionAni.SetFloat("ShotDir_X", headDir.x);
+            sadOnionAni.SetFloat("ShotDir_Y", headDir.y);
+            if (headDir.y > 0.001f)
+            {
+                sadOnionSR.sortingOrder = 0;
+            }
+            else
+            {
+                sadOnionSR.sortingOrder = 2;
+            }
+        }
+
         if (context.performed)
         {
-            headAni.SetBool("isShoot", true);
-            isShoot = true;
+            if (isGetBrimstone)
+            {
+                headAni.SetTrigger("Charge");
+            }
+            else
+            {
+                headAni.SetBool("isShoot", true);
+                if (isGetSadOnion)
+                {
+                    sadOnionAni.SetBool("isShot", true);
+                }
+                isShoot = true;
+            }
         }
         else if (context.canceled)
         {
-            headAni.SetBool("isShoot", false);
-            isShoot = false;
+            if (isGetBrimstone)
+            {
+                headAni.SetTrigger("Shot");
+            }
+            else
+            {
+                headAni.SetBool("isShoot", false);
+                if (isGetSadOnion)
+                {
+                    sadOnionAni.SetBool("isShot", false);
+                }
+                isShoot = false;
+            }
         }
         if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
         {
@@ -430,47 +644,88 @@ public class Player : MonoBehaviour
     IEnumerator TearDelay()
     {
         Transform tearSpawn = transform.GetChild(0);
-
-        GameObject tear = Factory.Inst.GetObject(PoolObjectType.PenetrationTear, tearSpawn.position); // 추적 눈물로 실험 중
+        GameObject tear;
+        if (isEmpty)
+        {
+            tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
+        }
+        if (isGetPolyphemus)
+        {
+            tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
+            isEmpty = false;
+        }
+        else if (isGetSacredHeart)
+        {
+            tear = Factory.Inst.GetObject(PoolObjectType.GuidedTear, tearSpawn.position);
+            isEmpty = false;
+        }
 
         currentTearDelay = tearFire; // 딜레이 시간 초기화
 
         yield return new WaitForSeconds(tearFire);
     }
     public Action isFire;
-    private void Damaged()
+    public void Damaged()
     {
-        if (Health > 0)
+        if (SoulHealth <= 0)
         {
-            StartCoroutine(InvisibleTime());
-            health--;
-            if(Health == 0)
+            if (Health > 0)
+            {
+                isDamaged = true;
+                health--;
+                if (Health == 0)
+                {
+                    Die();
+                }
+                else
+                {
+                    currentInvisible = invisibleTime;
+                    StartCoroutine(InvisibleTime());
+                }
+            }
+            else if (Health <= 0)
             {
                 Die();
             }
-            else
-            {
-                bodyAni.SetTrigger("Damage");
-                head.gameObject.SetActive(false);
-            }
         }
-        else if (Health <= 0)
+        else
         {
-            Die();
+            // 여긴 소울 하트 있을때 발생하는 부분인데 뭔가 이상한 부분 있으면 고쳐주세요 ㅜㅜ <====> 신우철
+            StartCoroutine(InvisibleTime());
+            SoulHealth--;
+            bodyAni.SetTrigger("Damage");
+            head.gameObject.SetActive(false);
         }
     }
     IEnumerator InvisibleTime()
     {
-        inputAction.Player.Shot.Disable();
+        StartCoroutine(Invisible());
+        head.gameObject.SetActive(false);
+        bodyAni.SetTrigger("Damage");
         collider.enabled = false;
-        currentInvisible = invisibleTime;
+        inputAction.Player.Shot.Disable();
+        isDamaged = true;
 
-        yield return new WaitForSeconds(currentInvisible);
-
-        rigid.velocity = Vector3.zero;
+        yield return new WaitForSeconds(0.3f);
         inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(currentInvisible);
         collider.enabled = true;
+        isDamaged = false;
+    }
+    IEnumerator Invisible()
+    {
+        while(isDamaged)
+        {
+            headSR.color = new(1, 1, 1, 0);
+            bodySR.color = new(1, 1, 1, 0);
+            yield return new WaitForSeconds(0.05f);
+            headSR.color = new(1, 1, 1, 1);
+            bodySR.color = new(1, 1, 1, 1);
+            yield return new WaitForSeconds(0.05f);
+        }
+        
     }
     private void ShootingTear()
     {

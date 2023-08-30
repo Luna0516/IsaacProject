@@ -1,0 +1,1195 @@
+fileFormatVersion: 2
+guid: eda7454c95b6cc6419bc61c5160bde60
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD:Assets/isaac/isaacSheet.png.meta
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+=======
+>>>>>>> main:Assets/isaac/Sheet/Original/isaacSheet.png.meta
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_4
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 341
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91229bc8aab8edd4385c3671d02c385a
+      internalID: -1395688403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_5
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 340
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa864d9138c1d94087fe1a8487f64e8
+      internalID: -2045926834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 341
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3574540ac00c8542a0fdbeaa7754f6a
+      internalID: -241349471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_7
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 340
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c25d66dc1136fbe489b18009ea59c54f
+      internalID: 709091379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 341
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496919f09bfae5f459d4f0e08b08805a
+      internalID: -1691550428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_9
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 340
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab3f02dca4a10ff4fa1f70037d76ef1e
+      internalID: 1783720284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_10
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 341
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3278eaea7c5937e4b8c9915fa88d207f
+      internalID: -1378359419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_11
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 340
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a54aabe50def57546b6a2211ef791a96
+      internalID: 898631938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_13
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 298
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020d36c3b0c82ea429fafc4cd41c9bc0
+      internalID: -1532616876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_14
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 298
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 427aa1cc366b7fe4499d865c29a4c64b
+      internalID: -701891647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 298
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd2146ef86745934da85cc58b3c676af
+      internalID: -1102297141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_16
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 296
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bcebd747ce651946a92ff2b8dc22bcc
+      internalID: -1938160460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_17
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 297
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b7341747e2be734c8be21a085619e26
+      internalID: -1102249560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_18
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 298
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b649340e8e0f4bf41a8e1d1c12de4a17
+      internalID: 1741722899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_19
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 298
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49291fc56153990498e311f139391bce
+      internalID: -981659244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_20
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 298
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e0302c77319834cace15c5f69410bd
+      internalID: 536383847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_21
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 296
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3572363d1406a144a472169455ffdfa
+      internalID: 1590662546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_22
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 297
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f50b22ddf6250144193aee7aaca9bcb9
+      internalID: 699523763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_24
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 255
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25bdc02d84ae82c46bd0185fecaf9c11
+      internalID: 60623122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_25
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 255
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ce0ba90848bbb94396b0d223ca82fe6
+      internalID: -357401623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_26
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 255
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb565f9db068bb44b763e22abd31d9e
+      internalID: 1691710504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_27
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 255
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b1ff8774f08b4845a04f65c500189d9
+      internalID: -1943974977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_28
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 255
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adcc9e04f0ad8814582c893017476430
+      internalID: 1443503677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_29
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 255
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a38495a7f658146bb4837ffff29212
+      internalID: -1623357252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_30
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 255
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40728acb064c64a48971850fdfb01843
+      internalID: -107031855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_31
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 255
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302957ff1daed11438d0243f8933b689
+      internalID: -892973247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_32
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 255
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d521d698f39a85e43b8e1040e7241ef2
+      internalID: -1328393689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_33
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 255
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f10175c12820b47b1f2d21d771611f
+      internalID: -1943540513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_36
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 192
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f23369b040f588459df10556a997231
+      internalID: -502948945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_37
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 195
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb9ffe688b3a58c49957b5e6c9a83e93
+      internalID: -1922946555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_38
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 193
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d993e86c7acf404f94af9a9555a5e71
+      internalID: -1748515118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_39
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 194
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36fa982683e83f743a20c589dd4ad3f0
+      internalID: -194466931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_56
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 129
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91db15a247313df4cb008ae39152a0e4
+      internalID: 2029388884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_57
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 129
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bae2c2935f118246bf8ada3b135d23d
+      internalID: -1137221645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_58
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 127
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f62ff65e4abc399448521e39914ae33d
+      internalID: 403863754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_59
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 129
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03fd6e678cc6dfe49b5bf41dea9ff942
+      internalID: -787085757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_61
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 68
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e521114ef58fa04b874f9216a4d7a3a
+      internalID: -567272974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_62
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 70
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cab7422698f025488c817aaac846f43
+      internalID: -302109298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_63
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 64
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed37375f662b6b141b84c91f214809d5
+      internalID: -1217818545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_67
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 11
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e12e3ee243b2cde438e3feea71f7a10c
+      internalID: -1277891998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_68
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 11
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e1aeab53a11abd4d930d4ea42c41825
+      internalID: -1046843189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_69
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 11
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43abd96ac1fa6df48b00b80ba31ad17d
+      internalID: -1296570278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_74
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 8
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c2865837cc41ec40bf68bb9f56b96da
+      internalID: -1616159147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_0
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 6
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2570c16abdf7d242877680d4fc9c23b
+      internalID: -1620978523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_1
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 6
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc4a7ccccb1d0c6438b9c6b84e7e426d
+      internalID: 1853819924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - The Binding of Isaac Rebirth - Isaac (1)_2
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 8
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b053e3ccb50bef458c3e6db684ff821
+      internalID: -81504481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_0: -1620978523
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_1: 1853819924
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_10: -1378359419
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_11: 898631938
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_12: 2078679873
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_13: -1532616876
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_14: -701891647
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_15: -1102297141
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_16: -1938160460
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_17: -1102249560
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_18: 1741722899
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_19: -981659244
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_2: -81504481
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_20: 536383847
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_21: 1590662546
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_22: 699523763
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_23: -1444042948
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_24: 60623122
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_25: -357401623
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_26: 1691710504
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_27: -1943974977
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_28: 1443503677
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_29: -1623357252
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_3: 842447669
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_30: -107031855
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_31: -892973247
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_32: -1328393689
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_33: -1943540513
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_34: 490025555
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_35: -1432577223
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_36: -502948945
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_37: -1922946555
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_38: -1748515118
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_39: -194466931
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_4: -1395688403
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_40: -1556648973
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_41: -10357420
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_42: -616042595
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_43: -990314554
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_44: 1092045809
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_45: -1809833767
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_46: 236925244
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_47: -102265284
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_48: 748724002
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_49: -1129087396
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_5: -2045926834
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_50: -1659991046
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_51: 821654721
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_52: -1235534208
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_53: -751564974
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_54: 569785485
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_55: -1501817410
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_56: 2029388884
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_57: -1137221645
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_58: 403863754
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_59: -787085757
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_6: -241349471
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_60: 1149729944
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_61: -567272974
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_62: -302109298
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_63: -1217818545
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_64: -2639513
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_65: -1689186465
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_66: -1289342768
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_67: -1277891998
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_68: -1046843189
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_69: -1296570278
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_7: 709091379
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_70: 1104379637
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_71: 2075383398
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_72: 1989723654
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_73: -928108438
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_74: -1616159147
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_75: -2130673338
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_76: -1248529659
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_77: 1436534104
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_78: -1837458616
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_8: -1691550428
+      PC Computer - The Binding of Isaac Rebirth - Isaac (1)_9: 1783720284
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

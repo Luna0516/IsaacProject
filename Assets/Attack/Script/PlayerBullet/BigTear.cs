@@ -50,7 +50,7 @@ public class BigTear : AttackBase
             damageCopy1 = damageCopy1 - enemy.HP;//데미지 복사 변수의 데미지에서 적의 체력을 뺀 값을 계산해 다시 대입
 
 //                                                          수정된 데미지 / 초기 데미지
-            scale = Vector3.one* Mathf.Clamp(pulsingSize * (damageCopy1 / damageCopy),1.5f,3f);//크기 계산.최소1.5,최대3의 값 사이의 숫자 도출
+            scale = Vector3.one* Mathf.Clamp(pulsingSize * (damageCopy1 / damageCopy),1.2f,3f);//크기 계산.최소1.5,최대3의 값 사이의 숫자 도출
 
 
             this.transform.localScale = scale;//이 개체의 크기에 sclae변수 대입
