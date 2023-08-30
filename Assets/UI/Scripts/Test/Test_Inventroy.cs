@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Test_Inventroy : TestBase
 {
-    public ItemManager itemManager;
+    public ItemDataManager itemManager;
 
     public ItemData itemData1;
     public ItemData itemData2;
 
     protected override void Test1(InputAction.CallbackContext context) {
-        ItemFactory.Inst.CreateItem(itemManager.propsItemDatas[10]);
+        //ItemFactory.Inst.CreateItem(itemManager.propsItemDatas[10]);
     }
 
     protected override void Test2(InputAction.CallbackContext context)

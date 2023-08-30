@@ -31,4 +31,40 @@ public class ItemFactory : Singleton<ItemFactory>
 
         return itemObj;
     }
+
+    public GameObject CreateActiveItem(ActiveItem activeItemCode)
+    {
+        ActiveItemData activeItem = GameManager.Inst.ItemData.GetActiveItemData(activeItemCode);
+
+        GameObject activeItemObj = GameObject.Instantiate(activeItem.itemPrefab);
+
+        ItemDataObject itemDataObject = activeItemObj.GetComponent<ItemDataObject>();
+        itemDataObject.ItemData = activeItem;
+
+        return activeItemObj;
+    }
+
+    public GameObject CreatePassiveItem(PassiveItem passiveItemCode)
+    {
+        PassiveItemData passiveItem = GameManager.Inst.ItemData.GetPassiveItemData(passiveItemCode);
+
+        GameObject activeItemObj = GameObject.Instantiate(passiveItem.itemPrefab);
+
+        ItemDataObject itemDataObject = activeItemObj.GetComponent<ItemDataObject>();
+        itemDataObject.ItemData = passiveItem;
+
+        return activeItemObj;
+    }
+
+    public GameObject CreateHeartItem(HeartItem heartItemCode)
+    {
+        HeartItemData heartItem = GameManager.Inst.ItemData.GetHeartItemData(heartItemCode);
+
+        GameObject activeItemObj = GameObject.Instantiate(heartItem.itemPrefab);
+
+        ItemDataObject itemDataObject = activeItemObj.GetComponent<ItemDataObject>();
+        itemDataObject.ItemData = heartItem;
+
+        return activeItemObj;
+    }
 }

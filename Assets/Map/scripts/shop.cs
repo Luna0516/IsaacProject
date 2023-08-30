@@ -36,7 +36,7 @@ public class shop : MonoBehaviour
 
     public Sprite[] priceSprites;
 
-    public ItemManager items;
+    public ItemDataManager items;
 
     SpriteRenderer[] spriterenter;
 
@@ -104,7 +104,7 @@ public class shop : MonoBehaviour
             }
             else
             {
-                itemPrices[i].itemdata = items.propsItemDatas[Random.Range(0, items.propsItemDatas.Length)];
+                //itemPrices[i].itemdata = items.propsItemDatas[Random.Range(0, items.propsItemDatas.Length)];
                 itemPrices[i].Prise_Sprite = priceSprites[1];
                 itemPrices[i].intiprise = prise2;
                 spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
