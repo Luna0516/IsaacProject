@@ -100,11 +100,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-<<<<<<< HEAD:Assets/UI/Sprite/Item/collectibles_008_brotherbobby.png.meta
     forceMaximumCompressionQuality_BC6H_BC7: 0
-=======
-    forceMaximumCompressionQuality_BC6H_BC7: 1
->>>>>>> main:Assets/Items/Sprites/Items/collectibles_008_brotherbobby.png.meta
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
@@ -116,8 +112,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-<<<<<<< HEAD:Assets/UI/Sprite/Item/collectibles_008_brotherbobby.png.meta
-    forceMaximumCompressionQuality_BC6H_BC7: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -129,17 +124,14 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-=======
     forceMaximumCompressionQuality_BC6H_BC7: 1
->>>>>>> main:Assets/Items/Sprites/Items/collectibles_008_brotherbobby.png.meta
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 651e266df7722794fbc6f55565fa17c8
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

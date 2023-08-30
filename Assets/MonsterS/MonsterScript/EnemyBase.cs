@@ -135,6 +135,19 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 관통 총알 (PenetrationTear)용 OnTrigger2D. (필요에 따라 유지 혹은 삭제 가능성 있습니다)
+    /// </summary>
+    /// <param name="collision"></param>
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerBullet"))
+        {
+            damage = collision.gameObject.GetComponent<AttackBase>().Damage;
+            Hitten();
+        }
+    }
+
     protected virtual void OnEnable()
     {
         HPInitial();
