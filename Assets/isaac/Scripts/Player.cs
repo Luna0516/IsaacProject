@@ -51,6 +51,10 @@ public class Player : MonoBehaviour
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
+    /// <summary>
+    /// Brimstone을 먹었을 때 키를 누르고 있는지 확인하는 변수
+    /// </summary>
+    bool isCharge = false;
     #endregion
     #region 이속
     /// <summary>
@@ -295,8 +299,11 @@ public class Player : MonoBehaviour
                 case PassiveSpriteState.None:
                     break;
                 case PassiveSpriteState.CricketHead:
-                    var headResourceName = "HeadAC/Head_Cricket_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    if (!isGetBrimstone)
+                    {
+                        var cricketResourceName = "HeadAC/Head_Cricket_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(cricketResourceName);
+                    }
                     break;
                 case PassiveSpriteState.Halo:
                     break;
@@ -311,10 +318,10 @@ public class Player : MonoBehaviour
                 case PassiveSpriteState.MutantSpider:
                     break;
                 case PassiveSpriteState.Brimstone:
-                    headResourceName = "HeadAC/Head_Brimstone_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
-                    var bodyResourceName = "BodyAC/Body_Brimstone_AC";
-                    bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
+                    var brimstoneHeadResourceName = "HeadAC/Head_Brimstone_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(brimstoneHeadResourceName);
+                    var brimstoneBodyResourceName = "BodyAC/Body_Brimstone_AC";
+                    bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(brimstoneBodyResourceName);
                     isGetBrimstone = true;
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
@@ -607,7 +614,14 @@ public class Player : MonoBehaviour
         {
             if (isGetBrimstone)
             {
-                headAni.SetTrigger("Charge");
+                isCharge = true;
+                if (isCharge == true)
+                {
+                    if (IsAttackReady)
+                    {
+                        StartCoroutine(ChargeBrimstone(context));
+                    }
+                }
             }
             else
             {
@@ -623,7 +637,16 @@ public class Player : MonoBehaviour
         {
             if (isGetBrimstone)
             {
-                headAni.SetTrigger("Shot");
+                if (endCharge)
+                {
+                    if(headDir.x == 0 && headDir.y == 0)
+                    {
+                        headAni.SetBool("Charge", false);
+                        headAni.SetTrigger("Shot");
+                        isCharge = false;
+                        endCharge = false;
+                    }
+                }
             }
             else
             {
@@ -649,7 +672,11 @@ public class Player : MonoBehaviour
         {
             tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
         }
-        if (isGetPolyphemus)
+        if (isGetBrimstone)
+        {
+            // 혈사포 넣기
+        }
+        else if (isGetPolyphemus)
         {
             tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
             isEmpty = false;
@@ -664,7 +691,6 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(tearFire);
     }
-    public Action isFire;
     public void Damaged()
     {
         if (SoulHealth <= 0)
@@ -767,6 +793,14 @@ public class Player : MonoBehaviour
     private void KnockBack(Collision2D collision)
     {
         rigid.AddForce((transform.position - collision.transform.position).normalized * 10.0f, ForceMode2D.Impulse);
+    }
+    bool endCharge;
+    IEnumerator ChargeBrimstone(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            headAni.SetBool("Charge", true);
+        yield return new WaitForSeconds(1.0f);
+        endCharge = true;
     }
 }
 
