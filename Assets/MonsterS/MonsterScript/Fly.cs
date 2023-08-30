@@ -44,8 +44,8 @@ public class Fly : EnemyBase
 
 	private void Start()
 	{
-		cooltimeStart(1 , invincivalTime);
-		coll = GetComponent<Collider2D>();
+        cooltimeStart(1, invincivalTime);
+        coll = GetComponent<Collider2D>();
 		rneder = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
 		speed = UnityEngine.Random.Range(0.5f, 2f);
@@ -64,11 +64,11 @@ public class Fly : EnemyBase
 	}
 	protected override void Update()
 	{
-		if (invincivalTime > 0)
+        base.Update();
+        if (invincivalTime > 0)
 		{
 			InvincivalTime = cooltimer1;
 		}
-		base.Update();
 		orderInGame(rneder);
 
         if (HeadTo.x > 0)

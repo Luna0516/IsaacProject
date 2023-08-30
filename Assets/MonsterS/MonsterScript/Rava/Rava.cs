@@ -15,7 +15,6 @@ public class Rava : EnemyBase
     public float MaxX;
     public float MinY;
     public float MaxY;
-    public bool movecheck = true;
 
     protected override void Movement()
     {
@@ -24,6 +23,7 @@ public class Rava : EnemyBase
 
     protected override void Awake()
     {
+        UpdateCooltimer += wewantnoNull;
         rig = GetComponentInParent<Rigidbody2D>();
         spawneffect = transform.GetChild(2).gameObject;
         animator = GetComponentInChildren<Animator>();
@@ -40,20 +40,15 @@ public class Rava : EnemyBase
 
     void moveingRava()
     {
-        if(movecheck)
+        if (!coolActive2)
         {
-            movecheck = false;
             cooltimeStart(2, jumpingTerm);
-        }
-        else if(!coolActive2)
-        {
             SetNextTargetPosition();
-            movecheck = true;
         }
     }
     protected override void Update()
     {
-        coolTimeSystem(coolActive1, coolActive2, coolActive3, damageActive);
+        UpdateCooltimer();
         Movement();
         orderInGame(sprite);
         damageoff(sprite);
@@ -63,15 +58,15 @@ public class Rava : EnemyBase
     {
         float x;
         float y;
-        x= Random.Range(MinX,MaxX);
+        x = Random.Range(MinX, MaxX);
         y = Random.Range(MinY, MaxY);
         targetPosition.x = x;
         targetPosition.y = y;
-        if (x>0)
+        if (x > 0)
         {
             sprite.flipX = false;
         }
-        else 
+        else
         {
             sprite.flipX = true;
         }
