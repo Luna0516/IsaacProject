@@ -141,6 +141,12 @@ public class EnemyBase : MonoBehaviour
         spawneffect.SetActive(true);
     }
 
+    protected virtual void Update()
+    {
+        UpdateCooltimer();
+        HeadTo = (target.transform.position - this.gameObject.transform.position).normalized;
+    }
+
     private void HPInitial()
     {
         hp = MaxHP;
@@ -189,11 +195,7 @@ public class EnemyBase : MonoBehaviour
         HP -= damage;
         Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
     }
-    protected virtual void Update()
-    {
-        UpdateCooltimer();
-        HeadTo = (target.transform.position - this.gameObject.transform.position).normalized;
-    }
+
     protected void NuckBack(Vector2 HittenHeadTo)
     {
         rig.isKinematic = false;
@@ -322,7 +324,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
     /// <summary>
-    /// 몬스터 쿨타임 시작 시스템
+    /// 몬스터 쿨타임 시작 시스템(시작하는 순간 타이머가 돌고 입력한 시간만큼 지나면 bool체크)
     /// </summary>
     /// <param name="cas">1번에서 3번까지 쿨타임 카운터가 있습니다.</param>
     /// <param name="time">쿨타임 시간을 지정할수 있습니다.</param>
@@ -364,6 +366,11 @@ public class EnemyBase : MonoBehaviour
                 break;
         }
     }
+
+    /// <summary>
+    /// 쿨타임을 선택해서 종료합니다.
+    /// </summary>
+    /// <param name="cas"></param>
     protected void cooltimeStop(int cas)
     {
         switch (cas)
@@ -392,7 +399,14 @@ public class EnemyBase : MonoBehaviour
                 Debug.LogWarning("쿨타임 초기화 실패");
                 break;
         }
+        if (!coolActive1 && !coolActive2 && !coolActive3)
+        {
+            UpdateCooltimer += timecouting;
+        }
     }
+    /// <summary>
+    /// 모든 쿨타임을 종료합니다.
+    /// </summary>
     protected void allcoolStop()
     {
         coolActive1 = false;
