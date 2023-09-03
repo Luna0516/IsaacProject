@@ -286,31 +286,34 @@ public class EnemyBase : MonoBehaviour
     }
     void coolTimerSys1()
     {
-        Debug.Log("1번 쿨타임 가동중");
+        /*Debug.Log("1번 쿨타임 가동중");*/
         if (cooltimer1 <= timecounter)
         {
             coolActive1 = false;
-            Debug.Log("1번 쿨타임 종료");
+            cooltimer1 = 0;
+            /*Debug.Log("1번 쿨타임 종료");*/
             UpdateCooltimer -= coolTimerSys1;
         }
     }
     void coolTimerSys2()
     {
-        Debug.Log("2번 쿨타임 가동중");
+        /*Debug.Log("2번 쿨타임 가동중");*/
         if (cooltimer2 <= timecounter)
         {
             coolActive2 = false;
-            Debug.Log("2번 쿨타임 종료");
+            cooltimer1 = 0;
+            /*Debug.Log("2번 쿨타임 종료");*/
             UpdateCooltimer -= coolTimerSys2;
         }
     }
     void coolTimerSys3()
     {
-        Debug.Log("3번 쿨타임 가동중");
+        /*Debug.Log("3번 쿨타임 가동중");*/
         if (cooltimer3 <= timecounter)
         {
             coolActive3 = false;
-            Debug.Log("3번 쿨타임 종료");
+            cooltimer1 = 0;
+            /*Debug.Log("3번 쿨타임 종료");*/
             UpdateCooltimer -= coolTimerSys3;
         }
     }

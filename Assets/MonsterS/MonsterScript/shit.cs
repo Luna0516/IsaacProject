@@ -23,8 +23,32 @@ public class shit : EnemyBase
     public float coolTime = 5;
     public GameObject flyer;
     bool shitDead = false;
-    bool Attacking = false;
     float draglinear = 15f;
+    static int flyCount = 0;
+
+    System.Action attackWatcher;
+    public bool attackmode = false;
+    bool Attackmode
+    {
+        get
+        {
+            return attackmode;
+        }
+        set
+        {
+            attackmode = value;
+            if (attackmode)
+            {                
+                Attack();
+            }
+            else
+            {               
+                coolTime = Random.Range(3, 5);               
+                cooltimeStart(1, coolTime);
+                cooltimeStart(3, coolTime + 1f);
+            }
+        }
+    }
 
     public bool ShitDead
     {
@@ -34,39 +58,25 @@ public class shit : EnemyBase
             shitDead = value;
         }
     }
-    bool AttacActive
-    {
-        get => Attacking;
-        set
-        {
-            if (Attacking != value)
-            {
-                Attacking = value;
-                if (Attacking)
-                {
-                    Attack();
-                }
-            }
-        }
-    }
-
     protected override void Awake()
     {
         base.Awake();
         draglinear = rig.drag;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        flyCounter();
+
     }
     private void Start()
     {
-        coolTime = Random.Range(3, 5);
-        cooltimeStart(1, coolTime);
+        Attackmode = false;
     }
     protected override void Update()
     {
         base.Update();
         orderInGame(spriteRenderer);
-        AttackActivate();
+
+        preapairAttack();
 
         if (HeadTo.x < 0)
         {
@@ -77,45 +87,35 @@ public class shit : EnemyBase
         damageoff(spriteRenderer);
 
     }
-
     void Attack()
     {
         rig.drag = 1;
-        coolTime = Random.Range(3, 5);
-        rig.isKinematic = false;
         rig.AddForce(HeadTo * power, ForceMode2D.Impulse);
         animator.SetTrigger("Attack");
-        cooltimeStart(3, 0.917f);
     }
     private void Stopping()
     {
-        AttacActive = false;
+        Debug.Log("멈춰!");
         rig.drag = draglinear;
-        rig.isKinematic = true;
         rig.velocity = Vector2.zero;
-        cooltimeStart(1, coolTime);
     }
 
 
-    void AttackActivate()
+    /// <summary>
+    /// 공격을 시작할때 까지의 1번 쿨타임 감시자
+    /// </summary>
+    void preapairAttack()
     {
         if (!coolActive1)
         {
-            AttacActive = true;
-            cooltimeStart(1, coolTime);
-        }
-        if (AttacActive)
-        {
+            Attackmode = true;
             runningShit();
-            attackAction();
-        }
-    }
-
-    void attackAction()
-    {
-        if (!coolActive3)
-        {
-            Stopping();
+            if (!coolActive3)
+            {
+                Stopping();
+                allcoolStop();
+                Attackmode = false;
+            }
         }
     }
 
@@ -128,37 +128,37 @@ public class shit : EnemyBase
             IsDead += bloodobj.EnamvleChoosAction;
             IsDead?.Invoke(false);
             IsDead -= bloodobj.EnamvleChoosAction;
-            cooltimeStart(2, 0.2f);
+            cooltimeStart(2, timecounter + 0.2f);
+        }
+    }
+    void flyCounter()
+    {
+        int rand = UnityEngine.Random.Range(0, 101);
+        if (rand < 40)
+        {
+            flyCount = 0;
+        }
+        else if (rand < 60)
+        {
+            flyCount = 3;
+        }
+        else if (rand < 80)
+        {
+            flyCount = 4;
+        }
+        else if (rand < 101)
+        {
+            flyCount = 5;
         }
     }
 
     protected override void Die()
     {
         bloodshatter();
-        int sellect = 0;
-        int rand = UnityEngine.Random.Range(0, 101);
-        if (rand < 40)
-        {
-            sellect = 0;
-        }
-        else if (rand < 60)
-        {
-            sellect = 3;
-        }
-        else if (rand < 80)
-        {
-            sellect = 4;
-        }
-        else if (rand < 101)
-        {
-            sellect = 5;
-        }
-
         float ranX = Random.Range(-1, 1.1f);
         float ranY = Random.Range(-1, 1.1f);
-
         Vector2 pos = new Vector2(ranX, ranY);
-        for (int i = 0; i < sellect; i++)
+        for (int i = 0; i < flyCount; i++)
         {
             GameObject fly = Instantiate(flyer, (Vector2)this.transform.position + pos, this.transform.rotation);
         }
