@@ -120,7 +120,7 @@ public class shop : MonoBehaviour
         for (int i = 0; i < childeList.Length; i++)
         {
 
-            itemsOBJ[i] = ItemFactory.Inst.CreateItem(itemPrices[i].itemdata, childeList[i].position + Vector3.up);
+            //itemsOBJ[i] = ItemFactory.Inst.CreateItem(itemPrices[i].itemdata, childeList[i].position + Vector3.up);
             col[i] = itemsOBJ[i].GetComponent<CircleCollider2D>();
             if (player.Coin > itemPrices[i].intiprise)
             {

@@ -40,7 +40,7 @@ public class Chest : MonoBehaviour
     void ChestOpen() {
         foreach (var item in dropItems) {
             if (Random.value < item.dropPercentage) {
-                ItemFactory.Inst.CreateItem(item.data, transform.position);
+                //ItemFactory.Inst.CreateItem(item.data, transform.position);
             }
         }
     }

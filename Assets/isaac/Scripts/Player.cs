@@ -424,13 +424,33 @@ public class Player : MonoBehaviour
             if (props != null) 
             {
                 // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
-                IConsumable consum = props.ItemData as IConsumable;
-                if (consum != null) 
+                PropsItemData propsItem = props.ItemData as PropsItemData;
+                if (propsItem != null) 
                 {
-                    // 아이템 삭제 여부 확인후 아이템 삭제 ( 코인은 삭제 애니메이션 때문에 삭제 하면 안됨)
-                    if (consum.Consume(this.gameObject)) {  
+                    switch (propsItem.propsType)
+                    {
+                        case PropsItem.Penny:
+                        case PropsItem.Nickel:
+                        case PropsItem.Dime:
+                            Coin += propsItem.itemValues;
+                            break;
+                        case PropsItem.Bomb:
+                        case PropsItem.DoubleBomb:
+                            Bomb += propsItem.itemValues;
+                            break;
+                        case PropsItem.Key:
+                        case PropsItem.KeyRing:
+                            Key += propsItem.itemValues;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (propsItem.Consume(gameObject))
+                    {
                         Destroy(collision.gameObject);
                     }
+
                     return;
                 }
 

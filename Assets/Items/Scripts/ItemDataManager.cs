@@ -51,22 +51,17 @@ public enum HeartItem
 }
 
 /// <summary>
-/// 폭탄 종류
+/// 기타 아이템 종류 ( 동전, 폭탄, 열쇠 등)
 /// </summary>
-public enum BombItem
-{
-    Bomb,
-    DoubleBomb
-}
-
-/// <summary>
-/// 코인 종류
-/// </summary>
-public enum CoinItem
+public enum PropsItem
 {
     Penny,
     Nickel,
-    Dime
+    Dime,
+    Bomb,
+    DoubleBomb,
+    Key,
+    KeyRing
 }
 
 public class ItemDataManager : MonoBehaviour
@@ -87,14 +82,9 @@ public class ItemDataManager : MonoBehaviour
     public HeartItemData[] heartItemDatas;
 
     /// <summary>
-    /// 폭탄 아이템 데이터 종류
+    /// 기타 아이템 데이터 종류 ( 동전, 폭탄, 열쇠 등)
     /// </summary>
-    public BombItemData[] bombItemDatas;
-
-    /// <summary>
-    /// 코인 아이템 데이터 종류
-    /// </summary>
-    public CoinItemData[] coinItemDatas;
+    public PropsItemData[] propsItemData;
 
     /// <summary>
     /// 액티브 아이템 데이터 받아오기
@@ -123,10 +113,9 @@ public class ItemDataManager : MonoBehaviour
     /// <summary>
     /// 아이템 데이터 받아오기
     /// </summary>
-    public BombItemData this[BombItem code] => bombItemDatas[(int)code];
+    public PropsItemData GetPropsItemData(PropsItem code)
+    {
+        return propsItemData[(int)code];
+    }
 
-    /// <summary>
-    /// 아이템 데이터 받아오기
-    /// </summary>
-    public CoinItemData this[CoinItem code] => coinItemDatas[(int)code];
 }
