@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ewgwegwegwgwgwe_0
+      name: 3$
       rect:
         serializedVersion: 2
         x: 162
@@ -113,7 +113,7 @@ TextureImporter:
         width: 173
         height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,7 +126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ewgwegwegwgwgwe_1
+      name: 5$
       rect:
         serializedVersion: 2
         x: 375
@@ -134,7 +134,7 @@ TextureImporter:
         width: 170
         height: 131
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ewgwegwegwgwgwe_2
+      name: 15$
       rect:
         serializedVersion: 2
         x: 571
@@ -155,7 +155,7 @@ TextureImporter:
         width: 184
         height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,9 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ewgwegwegwgwgwe_0: 1218959515
-      ewgwegwegwgwgwe_1: -652011411
-      ewgwegwegwgwgwe_2: -2081011778
+      15$: -2081011778
+      3$: 1218959515
+      5$: -652011411
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

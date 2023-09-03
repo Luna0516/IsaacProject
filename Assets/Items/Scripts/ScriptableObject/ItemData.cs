@@ -21,6 +21,7 @@ public enum ItemType {
     Passive,
     Accessories,
     Props,
+    Heart
 }
 
 public class ItemData : ScriptableObject {

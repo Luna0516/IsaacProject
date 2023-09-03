@@ -23,14 +23,11 @@ public class shop_chiled : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Player")&&player.Coin>=prises)
+		if (collision.CompareTag("Player") && player.Coin >= prises)
 		{
-			player.Coin = player.Coin-prises;
+			player.Coin = player.Coin - prises;
 			spriteRenderer.color = alpha;
-            mainshop.Purchased = true;
             prises = 99999;
         }
 	}
-
-
 }

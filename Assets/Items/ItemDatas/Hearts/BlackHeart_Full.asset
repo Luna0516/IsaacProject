@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b956f0331d247340aeae90df9d76d47, type: 3}
   m_Name: BlackHeart_Full
   m_EditorClassIdentifier: 
-  itemType: 3
+  itemType: 4
   itemName: BlackHeart_Full
   itemPrefab: {fileID: 2817328941778398312, guid: cf454532ce4caa946a10291350d75e93, type: 3}
   redHeart: 0

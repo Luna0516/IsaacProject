@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b956f0331d247340aeae90df9d76d47, type: 3}
   m_Name: SoulHeart_Half
   m_EditorClassIdentifier: 
-  itemType: 3
+  itemType: 4
   itemName: RedHeart_Half
   itemPrefab: {fileID: 2817328941778398312, guid: d1278002830683b4bad05c5a16fc9ff6, type: 3}
   redHeart: 0
