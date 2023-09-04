@@ -24,8 +24,6 @@ public class shop : MonoBehaviour
 
     Player player;
 
-
-    [Header("생성된 아이템")]
     public GameObject[] itemsOBJ;
 
     CircleCollider2D[] col;
@@ -36,23 +34,15 @@ public class shop : MonoBehaviour
 
     int prise3 = 15;
 
-    [Header("가격표 스프라이트 배열")]
     public Sprite[] priceSprites;
 
-    [Header("★아이템 매니저")]
-    [Tooltip("이거 없으면 안돌아가요! 꼭 넣어주세요!")]
-    public ItemManager items;
-    [Space(10)]
-
-    [Header("시간 중첩 확인용 패러미터")]
-    [Tooltip("아이템을 먹으면 이게 0으로 초기화됩니다.")]
-    public float elapse = 10f;
+    public ItemDataManager items;
 
     SpriteRenderer[] spriterenter;
 
     shop_chiled[] shopchi;
 
-
+    public float elapse = 10f;
 
     bool purchased = false;
     public bool Purchased
@@ -114,7 +104,7 @@ public class shop : MonoBehaviour
             }
             else
             {
-                itemPrices[i].itemdata = items.propsItemDatas[Random.Range(0, items.propsItemDatas.Length)];
+                //itemPrices[i].itemdata = items.propsItemDatas[Random.Range(0, items.propsItemDatas.Length)];
                 itemPrices[i].Prise_Sprite = priceSprites[1];
                 itemPrices[i].intiprise = prise2;
                 spriterenter[i].sprite = itemPrices[i].Prise_Sprite;
@@ -130,7 +120,7 @@ public class shop : MonoBehaviour
         for (int i = 0; i < childeList.Length; i++)
         {
 
-            itemsOBJ[i] = ItemFactory.Inst.CreateItem(itemPrices[i].itemdata, childeList[i].position + Vector3.up);
+            //itemsOBJ[i] = ItemFactory.Inst.CreateItem(itemPrices[i].itemdata, childeList[i].position + Vector3.up);
             col[i] = itemsOBJ[i].GetComponent<CircleCollider2D>();
             if (player.Coin > itemPrices[i].intiprise)
             {

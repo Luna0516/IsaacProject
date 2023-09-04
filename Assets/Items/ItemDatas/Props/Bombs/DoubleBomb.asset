@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c44c17cb044d9349bc40a76c3918f41, type: 3}
+  m_Script: {fileID: 11500000, guid: 8851992fe1ac48e45bf4ec631d80ccf5, type: 3}
   m_Name: DoubleBomb
   m_EditorClassIdentifier: 
   itemType: 3
   itemName: DoubleBomb
   itemPrefab: {fileID: 1989858247043531979, guid: 15a405edfde60c44f8a9a51e6d49e5fd, type: 3}
-  bombValue: 2
+  propsType: 4
+  itemValues: 2
