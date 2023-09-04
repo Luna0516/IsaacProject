@@ -121,8 +121,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
+  m_Mass: 0.1
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -168,48 +168,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ccb26f7f73fb24dba9e7d569658953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropPropsItems:
-  - propsItemCode: 0
-    dropPercentage: 0.9
-  - propsItemCode: 1
+  dropItems:
+  - data: {fileID: 11400000, guid: 5b53992287d5c134186fdfb6e10d2f9d, type: 2}
+    dropPercentage: 1
+  - data: {fileID: 11400000, guid: 326fcc9b8a6904c4e83af1e566123839, type: 2}
+    dropPercentage: 1
+  - data: {fileID: 11400000, guid: c0aa77510fc766d4ba0c48bb390b52ee, type: 2}
     dropPercentage: 0.1
-  - propsItemCode: 1
+  - data: {fileID: 11400000, guid: 40509e2a52b04d24f886b3593919ee9b, type: 2}
     dropPercentage: 0.01
-  - propsItemCode: 3
-    dropPercentage: 0.5
-  - propsItemCode: 4
+  - data: {fileID: 11400000, guid: 95e15e61e33d99b43a613f20fd5ebb9e, type: 2}
     dropPercentage: 0.01
-  - propsItemCode: 5
-    dropPercentage: 0.5
-  - propsItemCode: 6
-    dropPercentage: 0.01
-  dropHeartItem:
-  - heartItemCode: 0
-    dropPercentage: 0.8
-  - heartItemCode: 1
-    dropPercentage: 0.4
-  - heartItemCode: 2
-    dropPercentage: 0.01
-  - heartItemCode: 3
-    dropPercentage: 0.1
-  dropPassiveItem:
-  - passiveItemCode: 0
-    dropPercentage: 0.001
-  - passiveItemCode: 1
-    dropPercentage: 0.001
-  - passiveItemCode: 2
-    dropPercentage: 0.001
-  - passiveItemCode: 3
-    dropPercentage: 0.001
-  - passiveItemCode: 4
-    dropPercentage: 0.001
-  - passiveItemCode: 5
-    dropPercentage: 0.001
-  - passiveItemCode: 6
-    dropPercentage: 0.001
-  - passiveItemCode: 7
-    dropPercentage: 0.001
-  - passiveItemCode: 8
-    dropPercentage: 0.001
-  - passiveItemCode: 9
-    dropPercentage: 0.001

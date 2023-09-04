@@ -16,7 +16,6 @@ public class Rava : EnemyBase
     public float MinY;
     public float MaxY;
 
-
     protected override void Movement()
     {
         transform.Translate(Time.deltaTime * speed * targetPosition);
@@ -24,6 +23,7 @@ public class Rava : EnemyBase
 
     protected override void Awake()
     {
+        UpdateCooltimer += wewantnoNull;
         rig = GetComponentInParent<Rigidbody2D>();
         spawneffect = transform.GetChild(2).gameObject;
         animator = GetComponentInChildren<Animator>();
@@ -35,47 +35,47 @@ public class Rava : EnemyBase
     void Start()
     {
         animator.SetFloat("speed", jumpingTerm);
-        StopAllCoroutines();
-        StartCoroutine(moveingRava());
         targetPosition = Vector2.zero;
     }
 
-    IEnumerator moveingRava()
+    void moveingRava()
     {
-        while(true)
+        if (!coolActive2)
         {
-            yield return new WaitForSeconds(jumpingTerm);
+            cooltimeStart(2, jumpingTerm);
             SetNextTargetPosition();
         }
     }
     protected override void Update()
     {
+        UpdateCooltimer();
         Movement();
         orderInGame(sprite);
+        damageoff(sprite);
+        moveingRava();
     }
     private void SetNextTargetPosition()
     {
         float x;
         float y;
-        x= Random.Range(MinX,MaxX);
+        x = Random.Range(MinX, MaxX);
         y = Random.Range(MinY, MaxY);
         targetPosition.x = x;
         targetPosition.y = y;
-        if (x>0)
+        if (x > 0)
         {
             sprite.flipX = false;
         }
-        else 
+        else
         {
             sprite.flipX = true;
         }
         targetPosition.Normalize();
+
     }
     protected override void Hitten()
     {
         base.Hitten();
-        StartCoroutine(damaged(sprite));
+        damaged(sprite);
     }
-
-
 }

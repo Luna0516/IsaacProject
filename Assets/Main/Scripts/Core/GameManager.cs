@@ -13,17 +13,21 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// 플레이어 프로퍼티
     /// </summary>
-    public Player Player => player;
-
-
-    ItemDataManager itemDataManager;
-    public ItemDataManager ItemData => itemDataManager;
+    public Player Player
+    {
+        get 
+        { 
+            if (player == null)
+            {
+                player = FindObjectOfType<Player>();
+            }
+            return player; 
+        }
+    }
 
     protected override void OnInitialize()
     {
-        base.OnInitialize();
-        player = FindObjectOfType<Player>();
-        itemDataManager = FindObjectOfType<ItemDataManager>();
+        base.OnInitialize();   
     }
 
     /// <summary>

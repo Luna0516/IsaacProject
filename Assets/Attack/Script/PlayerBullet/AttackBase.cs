@@ -15,13 +15,13 @@ public class AttackBase : PooledObject
 
     public Vector2 moveDir = Vector2.zero;  // 이동 방향
     public Vector2 dir = Vector2.right;     // 발사 방향
-    protected Vector3 scale; //P.s총알의 크기를 저장할 Vector3 변수
+    protected Vector3 scale = Vector3.one; //P.s총알의 크기를 저장할 Vector3 변수
 
 
     /// <summary>
     /// 컴포넌트들
     /// </summary>
-    Player player;
+    protected Player player;
 
     protected Rigidbody2D rigidBody;
 
@@ -48,13 +48,17 @@ public class AttackBase : PooledObject
     protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        scale = Vector3.one;// P.S생성시 눈물 폭발의 sclae값을 1,1,1로 담는 변수입니다.
     }
+
     protected virtual void OnEnable()
     {
         player = GameManager.Inst.Player;
-        scale = Vector3.one;//P.s눈물 폭발 오브젝트의 sclae값을 1,1,1로 초기화를 해줍니다.
-        Init();                                     // 눈물 세부사항 초기화
+
+        if (player != null)
+        {
+            Init(); // 눈물 세부사항 초기화
+        }
+
         StartCoroutine(Gravity_Life(lifeTime));     // 눈물 중력, 발사시간 코루틴
     }
 
@@ -67,7 +71,6 @@ public class AttackBase : PooledObject
     /// <summary>
     /// 눈물 충돌 처리
     /// </summary>
-    /// <param name="collision"></param>
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
@@ -80,7 +83,6 @@ public class AttackBase : PooledObject
     /// <summary>
     /// 눈물 삭제 처리 함수
     /// </summary>
-    /// <param name="collision"></param>
     protected virtual void TearDie()
     {
         this.TearExplosion();
@@ -91,7 +93,6 @@ public class AttackBase : PooledObject
     /// 눈물 중력과 발사 적용 코루틴
     /// </summary>
     /// <param name="delay">발사 인터벌</param>
-    /// <returns></returns>
     protected override IEnumerator Gravity_Life(float delay = 0.0f)
     {
         dropDuration = lifeTime * startGravity;                 // 눈물 중력 적용 되는 시간 (길이)
@@ -109,6 +110,7 @@ public class AttackBase : PooledObject
     /// </summary>
     protected virtual void Init()
     {
+        scale = Vector3.one; //P.s눈물 폭발 오브젝트의 sclae값을 1,1,1로 초기화를 해줍니다.
         speed = player.TearSpeed;
         this.Damage = player.Damage;
         lifeTime =  (player.Range/rangeToLife);

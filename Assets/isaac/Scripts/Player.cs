@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
     bool isGetPolyphemus = false;
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
+    bool isGetBrimstone = false;
     #endregion
     #region 무적
     /// <summary>
@@ -314,6 +315,7 @@ public class Player : MonoBehaviour
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
                     bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
+                    isGetBrimstone = true;
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
                     break;
@@ -424,33 +426,13 @@ public class Player : MonoBehaviour
             if (props != null) 
             {
                 // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
-                PropsItemData propsItem = props.ItemData as PropsItemData;
-                if (propsItem != null) 
+                IConsumable consum = props.ItemData as IConsumable;
+                if (consum != null) 
                 {
-                    switch (propsItem.propsType)
-                    {
-                        case PropsItem.Penny:
-                        case PropsItem.Nickel:
-                        case PropsItem.Dime:
-                            Coin += propsItem.itemValues;
-                            break;
-                        case PropsItem.Bomb:
-                        case PropsItem.DoubleBomb:
-                            Bomb += propsItem.itemValues;
-                            break;
-                        case PropsItem.Key:
-                        case PropsItem.KeyRing:
-                            Key += propsItem.itemValues;
-                            break;
-                        default:
-                            break;
-                    }
-
-                    if (propsItem.Consume(gameObject))
-                    {
+                    // 아이템 삭제 여부 확인후 아이템 삭제 ( 코인은 삭제 애니메이션 때문에 삭제 하면 안됨)
+                    if (consum.Consume(this.gameObject)) {  
                         Destroy(collision.gameObject);
                     }
-
                     return;
                 }
 
@@ -609,8 +591,8 @@ public class Player : MonoBehaviour
         headAni.SetFloat("ShootDir_Y", headDir.y);
         if (isGetSadOnion)
         {
-            sadOnionAni.SetFloat("ShotDir_Y", headDir.y);
             sadOnionAni.SetFloat("ShotDir_X", headDir.x);
+            sadOnionAni.SetFloat("ShotDir_Y", headDir.y);
             if (headDir.y > 0.001f)
             {
                 sadOnionSR.sortingOrder = 0;
@@ -623,21 +605,35 @@ public class Player : MonoBehaviour
 
         if (context.performed)
         {
-            headAni.SetBool("isShoot", true);
-            if (isGetSadOnion)
+            if (isGetBrimstone)
             {
-                sadOnionAni.SetBool("isShot", true);
+                headAni.SetTrigger("Charge");
             }
-            isShoot = true;
+            else
+            {
+                headAni.SetBool("isShoot", true);
+                if (isGetSadOnion)
+                {
+                    sadOnionAni.SetBool("isShot", true);
+                }
+                isShoot = true;
+            }
         }
         else if (context.canceled)
         {
-            headAni.SetBool("isShoot", false);
-            if (isGetSadOnion)
+            if (isGetBrimstone)
             {
-                sadOnionAni.SetBool("isShot", false);
+                headAni.SetTrigger("Shot");
             }
-            isShoot = false;
+            else
+            {
+                headAni.SetBool("isShoot", false);
+                if (isGetSadOnion)
+                {
+                    sadOnionAni.SetBool("isShot", false);
+                }
+                isShoot = false;
+            }
         }
         if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
         {
