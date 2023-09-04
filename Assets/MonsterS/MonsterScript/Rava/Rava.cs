@@ -36,13 +36,13 @@ public class Rava : EnemyBase
     {
         animator.SetFloat("speed", jumpingTerm);
         targetPosition = Vector2.zero;
+        cooltimeStart(2, jumpingTerm);
     }
 
     void moveingRava()
     {
         if (!coolActive2)
         {
-            cooltimeStart(2, jumpingTerm);
             SetNextTargetPosition();
         }
     }
@@ -56,6 +56,7 @@ public class Rava : EnemyBase
     }
     private void SetNextTargetPosition()
     {
+        allcoolStop();
         float x;
         float y;
         x = Random.Range(MinX, MaxX);
@@ -71,7 +72,7 @@ public class Rava : EnemyBase
             sprite.flipX = true;
         }
         targetPosition.Normalize();
-
+        cooltimeStart(2, jumpingTerm);
     }
     protected override void Hitten()
     {
