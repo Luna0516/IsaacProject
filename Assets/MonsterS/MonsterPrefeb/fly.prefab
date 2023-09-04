@@ -170,16 +170,6 @@ MonoBehaviour:
   speed: 1
   NuckBackPower: 1
   MaxHP: 3
-  hiittenEfeect: 0.1
-  cooltimer1: 0
-  cooltimer2: 0
-  cooltimer3: 0
-  damagetimer: 0
-  coolActive1: 0
-  coolActive2: 0
-  coolActive3: 0
-  damageActive: 0
-  invincivalTime: 1
   noise: 3
 --- !u!95 &2813975671658389335
 Animator:

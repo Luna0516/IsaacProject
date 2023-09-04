@@ -55,15 +55,6 @@ MonoBehaviour:
   speed: 1
   NuckBackPower: 5
   MaxHP: 13
-  hiittenEfeect: 0.1
-  cooltimer1: 0
-  cooltimer2: 0
-  cooltimer3: 0
-  damagetimer: 0
-  coolActive1: 0
-  coolActive2: 0
-  coolActive3: 0
-  damageActive: 0
 --- !u!70 &4406687726551746752
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

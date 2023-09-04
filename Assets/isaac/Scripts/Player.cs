@@ -51,10 +51,6 @@ public class Player : MonoBehaviour
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
-    /// <summary>
-    /// Brimstone을 먹었을 때 키를 누르고 있는지 확인하는 변수
-    /// </summary>
-    bool isCharge = false;
     #endregion
     #region 이속
     /// <summary>
@@ -156,7 +152,6 @@ public class Player : MonoBehaviour
     bool isGetPolyphemus = false;
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
-    bool isGetBrimstone = false;
     #endregion
     #region 무적
     /// <summary>
@@ -299,11 +294,8 @@ public class Player : MonoBehaviour
                 case PassiveSpriteState.None:
                     break;
                 case PassiveSpriteState.CricketHead:
-                    if (!isGetBrimstone)
-                    {
-                        var cricketResourceName = "HeadAC/Head_Cricket_AC";
-                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(cricketResourceName);
-                    }
+                    var headResourceName = "HeadAC/Head_Cricket_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     break;
                 case PassiveSpriteState.Halo:
                     break;
@@ -318,11 +310,10 @@ public class Player : MonoBehaviour
                 case PassiveSpriteState.MutantSpider:
                     break;
                 case PassiveSpriteState.Brimstone:
-                    var brimstoneHeadResourceName = "HeadAC/Head_Brimstone_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(brimstoneHeadResourceName);
-                    var brimstoneBodyResourceName = "BodyAC/Body_Brimstone_AC";
-                    bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(brimstoneBodyResourceName);
-                    isGetBrimstone = true;
+                    headResourceName = "HeadAC/Head_Brimstone_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    var bodyResourceName = "BodyAC/Body_Brimstone_AC";
+                    bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
                     break;
@@ -433,13 +424,33 @@ public class Player : MonoBehaviour
             if (props != null) 
             {
                 // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
-                IConsumable consum = props.ItemData as IConsumable;
-                if (consum != null) 
+                PropsItemData propsItem = props.ItemData as PropsItemData;
+                if (propsItem != null) 
                 {
-                    // 아이템 삭제 여부 확인후 아이템 삭제 ( 코인은 삭제 애니메이션 때문에 삭제 하면 안됨)
-                    if (consum.Consume(this.gameObject)) {  
+                    switch (propsItem.propsType)
+                    {
+                        case PropsItem.Penny:
+                        case PropsItem.Nickel:
+                        case PropsItem.Dime:
+                            Coin += propsItem.itemValues;
+                            break;
+                        case PropsItem.Bomb:
+                        case PropsItem.DoubleBomb:
+                            Bomb += propsItem.itemValues;
+                            break;
+                        case PropsItem.Key:
+                        case PropsItem.KeyRing:
+                            Key += propsItem.itemValues;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (propsItem.Consume(gameObject))
+                    {
                         Destroy(collision.gameObject);
                     }
+
                     return;
                 }
 
@@ -598,8 +609,8 @@ public class Player : MonoBehaviour
         headAni.SetFloat("ShootDir_Y", headDir.y);
         if (isGetSadOnion)
         {
-            sadOnionAni.SetFloat("ShotDir_X", headDir.x);
             sadOnionAni.SetFloat("ShotDir_Y", headDir.y);
+            sadOnionAni.SetFloat("ShotDir_X", headDir.x);
             if (headDir.y > 0.001f)
             {
                 sadOnionSR.sortingOrder = 0;
@@ -612,51 +623,21 @@ public class Player : MonoBehaviour
 
         if (context.performed)
         {
-            if (isGetBrimstone)
+            headAni.SetBool("isShoot", true);
+            if (isGetSadOnion)
             {
-                isCharge = true;
-                if (isCharge == true)
-                {
-                    if (IsAttackReady)
-                    {
-                        StartCoroutine(ChargeBrimstone(context));
-                    }
-                }
+                sadOnionAni.SetBool("isShot", true);
             }
-            else
-            {
-                headAni.SetBool("isShoot", true);
-                if (isGetSadOnion)
-                {
-                    sadOnionAni.SetBool("isShot", true);
-                }
-                isShoot = true;
-            }
+            isShoot = true;
         }
         else if (context.canceled)
         {
-            if (isGetBrimstone)
+            headAni.SetBool("isShoot", false);
+            if (isGetSadOnion)
             {
-                if (endCharge)
-                {
-                    if(headDir.x == 0 && headDir.y == 0)
-                    {
-                        headAni.SetBool("Charge", false);
-                        headAni.SetTrigger("Shot");
-                        isCharge = false;
-                        endCharge = false;
-                    }
-                }
+                sadOnionAni.SetBool("isShot", false);
             }
-            else
-            {
-                headAni.SetBool("isShoot", false);
-                if (isGetSadOnion)
-                {
-                    sadOnionAni.SetBool("isShot", false);
-                }
-                isShoot = false;
-            }
+            isShoot = false;
         }
         if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
         {
@@ -672,11 +653,7 @@ public class Player : MonoBehaviour
         {
             tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
         }
-        if (isGetBrimstone)
-        {
-            // 혈사포 넣기
-        }
-        else if (isGetPolyphemus)
+        if (isGetPolyphemus)
         {
             tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
             isEmpty = false;
@@ -691,6 +668,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(tearFire);
     }
+    public Action isFire;
     public void Damaged()
     {
         if (SoulHealth <= 0)
@@ -793,14 +771,6 @@ public class Player : MonoBehaviour
     private void KnockBack(Collision2D collision)
     {
         rigid.AddForce((transform.position - collision.transform.position).normalized * 10.0f, ForceMode2D.Impulse);
-    }
-    bool endCharge;
-    IEnumerator ChargeBrimstone(InputAction.CallbackContext context)
-    {
-        if(context.performed)
-            headAni.SetBool("Charge", true);
-        yield return new WaitForSeconds(1.0f);
-        endCharge = true;
     }
 }
 

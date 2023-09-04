@@ -38,7 +38,9 @@ public class GuidedMissileTear : AttackBase
             { 
                 target = other.transform;
                 isChase = true;
-            }  
+            }
+            
+            
         }
     }
 }

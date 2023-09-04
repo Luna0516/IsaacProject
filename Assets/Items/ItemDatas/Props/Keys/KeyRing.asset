@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705747d7ac62ac245b80e8ed136a9369, type: 3}
+  m_Script: {fileID: 11500000, guid: 8851992fe1ac48e45bf4ec631d80ccf5, type: 3}
   m_Name: KeyRing
   m_EditorClassIdentifier: 
   itemType: 3
-  itemName: Key Ring
+  itemName: KeyRing
   itemPrefab: {fileID: 7435300926308894621, guid: 7abc3fd914e1f464d9afeb7442e56144, type: 3}
-  keyValue: 2
+  propsType: 6
+  itemValues: 2
