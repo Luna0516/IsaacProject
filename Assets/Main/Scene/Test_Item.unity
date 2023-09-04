@@ -357,9 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75327fb5cef3df34bbe56871ede7b011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 619120591}
-  backPack: {fileID: 643630622}
-  activeSceond: 0.5
 --- !u!1 &52068146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1264,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1102992689550564449, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1314,6 +1315,10 @@ PrefabInstance:
     - target: {fileID: 3792594240594029480, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
       propertyPath: m_Name
       value: Isaac
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532518086932596121, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
@@ -1503,10 +1508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc6201d368cd8d4c81bf8fd325e16db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 35820367}
-  newRun: {fileID: 2087330252}
-  resumeGame: {fileID: 207554974}
-  exitGame: {fileID: 1077920491}
 --- !u!95 &619120592
 Animator:
   serializedVersion: 5
@@ -1743,7 +1744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44575fb82a68484f8656005d6d9be88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 35820367}
 --- !u!95 &643630623
 Animator:
   serializedVersion: 5
@@ -2240,7 +2240,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1131286389}
-  coin: {fileID: 0}
+  Dime: {fileID: 0}
+  Nickel: {fileID: 0}
+  Penny: {fileID: 0}
 --- !u!4 &764729093
 Transform:
   m_ObjectHideFlags: 0

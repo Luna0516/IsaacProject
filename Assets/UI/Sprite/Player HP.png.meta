@@ -137,83 +137,68 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< HEAD:Assets/UI/Sprite/GameScene/Player HP.png.meta
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-=======
->>>>>>> main:Assets/UI/Sprite/Player HP.png.meta
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HeartFull
+      name: RedHeart_Full
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 16
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c4836078a38eea49b7012d754e6fa7f
-      internalID: 171518496
+      spriteID: 52cc56f595a03814b9d79251735a2aca
+      internalID: -1789636912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HeartHalf
+      name: RedHeart_Half
       rect:
         serializedVersion: 2
-        x: 17
+        x: 16
         y: 16
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb06cfd18e81c504493713d1cc1b48d2
-      internalID: 1698533571
+      spriteID: acf53e8e14355064bbc6607853c47d3b
+      internalID: 703620697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HeartVoid
+      name: Heart_Null
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 16
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b424e3225cad5f14aa10d7af824703f6
-      internalID: -1358309472
+      spriteID: c2204b6feb50c08468ad6a67fb35d771
+      internalID: -429725997
       vertices: []
       indices: 
       edges: []
@@ -222,19 +207,19 @@ TextureImporter:
       name: Player HP_3
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 16
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f0014c4267f0b14e904e5217bf6ae55
-      internalID: 729791074
+      spriteID: f7374bfde92f798448723bd1e893b80d
+      internalID: -2144836057
       vertices: []
       indices: 
       edges: []
@@ -243,103 +228,103 @@ TextureImporter:
       name: Player HP_4
       rect:
         serializedVersion: 2
-        x: 65
+        x: 64
         y: 16
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea688fe5bb58b7e48ba2f750064691b0
-      internalID: -562858211
+      spriteID: adfea617b2c45e7418deb6b1fb2deeb2
+      internalID: -2043075797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SoulHeartFull
+      name: SoulHeart_Full
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a821697691b1dce4e905293c409db35a
-      internalID: 653510089
+      spriteID: 5829ff8b49aab514daac1649a0cfe647
+      internalID: -677179194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SoulHeartHalf
+      name: SoulHeart_Half
       rect:
         serializedVersion: 2
-        x: 17
+        x: 16
         y: 0
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3dfaa118ba69b5f4689ce791903a1002
-      internalID: -1747129493
+      spriteID: 98e594a9a8ac9ba4d96dedbf22162616
+      internalID: 661895988
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player HP_7
+      name: BlackHeart_Full
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 0
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21eecf1df8404034d94bd22082b809c3
-      internalID: 522094884
+      spriteID: 4abf6977d9514054ea5636862fd84643
+      internalID: -311216595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player HP_8
+      name: BlackHeart_Hal
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 0
-        width: 15
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce85b2c8afc75444cbdfc9c6bb301211
-      internalID: 1686638065
+      spriteID: e2bffde5b63b32d4eb7048bb69b12b87
+      internalID: 525746157
       vertices: []
       indices: 
       edges: []
@@ -347,7 +332,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 930d9205983c45f4582f10fa968989f3
+    spriteID: 80e5442d66a8f6a4999cd597a4791699
     internalID: 0
     vertices: []
     indices: 
@@ -355,15 +340,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HeartFull: 171518496
-      HeartHalf: 1698533571
-      HeartVoid: -1358309472
-      Player HP_3: 729791074
-      Player HP_4: -562858211
-      Player HP_7: 522094884
-      Player HP_8: 1686638065
-      SoulHeartFull: 653510089
-      SoulHeartHalf: -1747129493
+      BlackHeart_Full: -311216595
+      BlackHeart_Hal: 525746157
+      Heart_Null: -429725997
+      Player HP_3: -2144836057
+      Player HP_4: -2043075797
+      RedHeart_Full: -1789636912
+      RedHeart_Half: 703620697
+      SoulHeart_Full: -677179194
+      SoulHeart_Half: 661895988
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
