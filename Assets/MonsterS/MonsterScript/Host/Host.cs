@@ -127,6 +127,7 @@ public class Host : EnemyBase
                 attackactiveate = false;
                 animator.SetInteger(animestate, 0);
                 invincivle = false;
+                allcoolStop();
             }
             if (!coolActive1)
             {

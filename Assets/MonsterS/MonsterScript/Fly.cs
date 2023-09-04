@@ -25,8 +25,9 @@ public class Fly : EnemyBase
     float Y;
     Action Invic;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Invic += wewantnoNull;
         cooltimeStart(1, invincivalTime);
         Invic += invancivalcheck;

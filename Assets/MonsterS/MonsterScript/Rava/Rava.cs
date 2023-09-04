@@ -32,8 +32,9 @@ public class Rava : EnemyBase
         transform.position = transform.position;
         jumpingTerm = Random.Range(1f, 2f);
     }
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         animator.SetFloat("speed", jumpingTerm);
         targetPosition = Vector2.zero;
         cooltimeStart(2, jumpingTerm);

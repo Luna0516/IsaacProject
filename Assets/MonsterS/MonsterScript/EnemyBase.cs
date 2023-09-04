@@ -68,6 +68,7 @@ public class EnemyBase : MonoBehaviour
     /// 리지디 바디
     /// </summary>
     protected Rigidbody2D rig;
+
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -90,39 +91,65 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+    [Header("피격시 빨간색 유지 시간")]
     public float hiittenEfeect = 0.1f;
+
+    /// <summary>
+    /// 몬스터 사망을 알리는 델리게이트
+    /// </summary>
     public System.Action<bool> IsDead;
 
 
-
+    /// <summary>
+    /// 쿨타임 작동 델리게이트
+    /// </summary>
     public Action UpdateCooltimer;
-    [Header("쿨타임 타이머 관련")]
-    public float timecounter = 0f;
-    public float cooltimer1 = 0.0f;
-    public float cooltimer2 = 0.0f;
-    public float cooltimer3 = 0.0f;
-    public float damagetimer = 0.0f;
-    public float solotimer = 0.0f;
-    public bool coolActive1 = false;
-    public bool coolActive2 = false;
-    public bool coolActive3 = false;
-    public bool damageActive = false;
-    public bool solorActive = false;
+
+    /// <summary>
+    /// 시간
+    /// </summary>
+    protected float timecounter = 0f;
+
+    /// <summary>
+    /// 쿨타임 설정 시간
+    /// </summary>
+    protected float cooltimer1 = 0.0f;
+    protected float cooltimer2 = 0.0f;
+    protected float cooltimer3 = 0.0f;
+
+    /// <summary>
+    /// 피격 이펙트용 쿨타임
+    /// </summary>
+    protected float damagetimer = 0.0f;
+
+    /// <summary>
+    /// 시간 차감형 쿨타임
+    /// </summary>
+    protected float solotimer = 0.0f;
+
+    /// <summary>
+    /// 쿨타임 체크용 bool값
+    /// </summary>
+    protected bool coolActive1 = false;
+    protected bool coolActive2 = false;
+    protected bool coolActive3 = false;
+
+    /// <summary>
+    /// 피격 확인용 bool 값
+    /// </summary>
+    protected bool damageActive = false;
+
+    /// <summary>
+    /// 시간 차감형 쿨타임 bool값
+    /// </summary>
+    protected bool solorActive = false;
+
+
     //에너미 베이스 Awake : 리지디 바디, 게임매니저 , 플레이어 , 타깃 위치 , 스폰 이펙트를 찾음
     protected virtual void Awake()
     {
         UpdateCooltimer += wewantnoNull;
         rig = GetComponent<Rigidbody2D>();
-        Manager = GameManager.Inst;
-        if (player == null)
-        {
-            player = Manager.Player; // 플레이어를 찾아서 할당
-            target = player.transform;
-        }
-        else
-        {
-            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
-        }
         spawneffect = transform.GetChild(2).gameObject;
     }
 
@@ -137,12 +164,29 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+    //몬스터들에게 플레이어를 찾아주는 start 함수
+    protected virtual void Start()
+    {
+        Manager = GameManager.Inst;
+        if (player == null)
+        {
+            player = Manager.Player; // 플레이어를 찾아서 할당
+            target = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
+        }
+    }
+
+    //HP 확인 / 스폰 이펙트 관련
     protected virtual void OnEnable()
     {
         HPInitial();
         spawneffect.SetActive(true);
     }
 
+    //쿨타임 델리게이트, 적을 향한 방향 계산하는 update
     protected virtual void Update()
     {
         UpdateCooltimer();
@@ -154,21 +198,35 @@ public class EnemyBase : MonoBehaviour
         hp = MaxHP;
     }
 
+    /// <summary>
+    /// 이동을 담당하는 가상함수 
+    /// </summary>
     protected virtual void Movement()
     {
 
     }
+
+    /// <summary>
+    /// 죽었을때 실행될 가상함수
+    /// </summary>
     protected virtual void Die()
     {
         bloodshatter();
         meatshatter();
         Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
+
+    /// <summary>
+    /// 델리게이트 null 방지용 함수
+    /// </summary>
     protected void wewantnoNull()
     {
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected virtual void bloodshatter()//피를 흩뿌리는 함수
     {
         int bloodCount = UnityEngine.Random.Range(3, 6);//피의 갯수 1~3 사이 정수를 만든다.
