@@ -118,16 +118,7 @@ MonoBehaviour:
   speed: 5
   NuckBackPower: 1
   MaxHP: 5
-  hiittenEfeect: 0.1
-  cooltimer1: 0
-  cooltimer2: 0
-  cooltimer3: 0
-  damagetimer: 0
-  coolActive1: 0
-  coolActive2: 0
-  coolActive3: 0
-  damageActive: 0
-  power: 5
+  power: 3
   coolTime: 5
   flyer: {fileID: 2813975671658389336, guid: 82b7673510b17b047a6a76a874272f54, type: 3}
 --- !u!212 &6587678324038758107

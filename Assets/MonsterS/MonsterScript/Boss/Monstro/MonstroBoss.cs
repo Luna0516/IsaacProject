@@ -5,95 +5,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements;
+using static MonstroBoss;
 
 public class MonstroBoss : EnemyBase
 {
-    public enum Monstate
-    {
-        Idel = 0, jump, superjump, attack
-    }
-
-    Monstate state = Monstate.jump;
-
-    System.Action stateWatcher;
-    bool attackgo = false;
-    public int jumpcount = 0;
-    protected Monstate Statecom
-    {
-        get
-        {
-            return state;
-        }
-        set
-        {
-            state = value;
-            allcoolStop();
-            stateWatcher = wewantnoNull;
-            switch (state)
-            {
-                case Monstate.Idel:
-                    if (jumpcount > 0)
-                    {
-                        Statecom = Monstate.jump;
-                    }
-                    else
-                    {
-                        StateDone = false;
-                        speed = 0;
-                        cooltimeStart(1, 1.167f);
-                        stateWatcher = Idelchecker;
-                    }
-
-                    break;
-                case Monstate.jump:
-
-                    StateDone = false;
-                    speed = 0;
-                    
-                    cooltimeStart(1, 0.5f);
-                    cooltimeStart(2, 2.25f);
-                    cooltimeStart(3, 2.4f);
-                    stateWatcher = jumpcheck;
-                    if (jumpcount < 3)
-                    {
-                        jumpcount++;
-                        animator.SetTrigger(anicode_Jump);
-                    }
-                    else
-                    {
-                        jumpcount = 0;
-                        StateDone = true;
-                    }
-                    break;
-                case Monstate.superjump:
-                    StateDone = false;
-                    speed = 0;
-                    animator.SetTrigger(anicode_SuperJump);
-                    cooltimeStart(1, 0.5f);
-                    cooltimeStart(2, 1.5f);
-                    cooltimeStart(3, 2.25f);
-                    stateWatcher = superjumpcheck;
-                    break;
-                case Monstate.attack:
-                    attackgo = true;
-                    StateDone = false;
-                    animator.SetTrigger(anicode_Attack);
-                    speed = 0;
-                    cooltimeStart(1, 0.7f);
-                    cooltimeStart(2, 0.9f);
-                    cooltimeStart(3, 2.3f);
-                    stateWatcher = attackchecker;
-                    break;
-            }
-
-        }
-    }
-
     public GameObject bulletPrefab;
-    /// <summary>
-    /// 애니메이터
-    /// </summary>
-    Animator animator;
+	/// <summary>
+	/// 애니메이터
+	/// </summary>
+	Animator animator;
 
     /// <summary>
     /// 속도 복사용 변수
@@ -103,52 +23,17 @@ public class MonstroBoss : EnemyBase
     /// <summary>
     /// 패턴 선택 변수
     /// </summary>
-    int randomPatt = 0;
+    int randomPatt=0;
 
     /// <summary>
     /// 스프라이트 렌더러
     /// </summary>
     SpriteRenderer spriteRenderer;
+
     int anicode_Attack = Animator.StringToHash("Attack");
     int anicode_Jump = Animator.StringToHash("Jump");
     int anicode_SuperJump = Animator.StringToHash("SuperJump");
 
-
-    bool stateDone = false;
-
-    bool StateDone
-    {
-        get => stateDone;
-        set
-        {
-            if (stateDone != value)
-            {
-                stateDone = value;
-                if (stateDone)
-                {
-                    //랜덤패턴 int 변수에 랜덤값 대입
-                    randomPatt = Random.Range(0, 101);
-
-                    if (randomPatt < 10)
-                    {
-                        Statecom = Monstate.Idel;
-                    }
-                    else if (randomPatt < 30)
-                    {
-                        Statecom = Monstate.jump;
-                    }
-                    else if (randomPatt < 70)
-                    {
-                        Statecom = Monstate.superjump;
-                    }
-                    else
-                    {
-                        Statecom = Monstate.attack;
-                    }
-                }
-            }
-        }
-    }
 
     public Transform turret;
 
@@ -157,23 +42,27 @@ public class MonstroBoss : EnemyBase
         base.Awake();
         //애니메이터 불러오기
         animator = transform.GetComponentInChildren<Animator>();
-
+        
         //스프라이트 렌더러 불러오기
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
 
         turret = transform.GetChild(1);
+        
+    }
+     void Start()
+    {
+        //속도 복사용 변수에 복사
         sppeed = speed;
-        speed = 0;
-        Statecom = Monstate.Idel;
+
+        //패턴 선택 함수 실행
+        selectpattern();
     }
     protected override void Update()
-    {
+    { 
         base.Update();
-        stateWatcher();
         orderInGame(spriteRenderer);
         //이동 함수 실행
         Movement();
-        damageoff(spriteRenderer);
     }
 
     //공격 받을경우 체력 깎임(EnemyBase 오버라이드)
@@ -182,61 +71,115 @@ public class MonstroBoss : EnemyBase
         base.OnCollisionEnter2D(collision);
     }
 
-    void Idelchecker()
-    {
-        if (!coolActive1)
-        {
-            StateDone = true;
-        }
+    /// <summary>
+    /// 대기상태 동작 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator IDel()
+    {       
+        //움직이지 않기 때문에 speed는 0
+        speed = 0;
+
+        //애니메이션 플레이 타임만큼 대기(1.167초)
+        yield return new WaitForSeconds(1.167f);
+
+        //speed값 sppeed값에 복사
+        speed = sppeed;
+
+        //패턴 지정 함수 실행
+        selectpattern();
     }
 
-    void jumpcheck()
+    /// <summary>
+    /// 점프패턴 동작 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator jumping()
     {
-        if (!coolActive1)
+        //3번 반복 반복문
+        for (int i = 0; i < 03; i++)
         {
+            //점프 준비 자세를 위한 speed값 0
+            speed = 0; 
+
+            //애니메이터 jump 실행
+            animator.SetInteger(anicode_Jump, 1);
+
+            //점프 대기 시간(0.5초)후 점프 실행
+            yield return new WaitForSeconds(0.5f);
+            //점프 실행 지금 하늘을 날고 있음
+
+            //플레이어쪽으로 이동하면서 날아야 하니 speed값에 복사해두었던 sppeed값 대입
             speed = sppeed;
-            if (!coolActive2)
-            {
-                speed = 0;
-                if (!coolActive3)
-                {
-                    Statecom = Monstate.Idel;
-                }
-            }
+
+            //점프 활공 시간 대기
+            yield return new WaitForSeconds(1.750f);
+            //바닥에 착지한 상태임
+
+            //바닥에 착지했음으로 speed값은 0
+            speed = 0;
+
+            //점프 종료
+            animator.SetInteger(anicode_Jump, 0);
+
+            //Idel 실행으로 점프 쿨타임
+            yield return new WaitForSeconds(0.5f);
+
+            //다음 상태를 위해 speed값에 다시 sppeed를 넣어서 speed 변수 원본으로 되돌린다.
+            speed = sppeed;
         }
+        //반복 종료 다음 패턴을 위해 패턴 지정 함수 실행
+        selectpattern();
+    }
+    //점프 패턴 코루틴 종료
+
+/// <summary>
+/// 슈퍼점프 패턴 동작 코루틴
+/// </summary>
+/// <returns></returns>
+    IEnumerator superJump()
+    {
+        //기본적인 매커니즘은 점프 패턴과 동일하나 반복은 하지 않는다.
+            speed = 0;
+            animator.SetInteger(anicode_SuperJump, 1);
+            //점프 대기
+            yield return new WaitForSeconds(0.5f);
+            speed = sppeed*5;
+            //점프
+            yield return new WaitForSeconds(1.0f);
+             speed = 0;  
+            yield return new WaitForSeconds(0.750f);
+        //점프 종료
+            Splashbullet();
+			animator.SetInteger(anicode_SuperJump, 0);
+            //Idel 실행으로 점프 쿨타임
+            yield return new WaitForSeconds(1.167f);
+            speed = sppeed;       
+        selectpattern();
     }
 
-    void superjumpcheck()
+    /// <summary>
+    /// 공격패턴 동작 실행 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator Attack()
     {
-        if (!coolActive1)
-        {
-            speed = sppeed * 5;
-            if (!coolActive2)
-            {
-                speed = 0;
-                if (!coolActive3)
-                {
-                    Splashbullet();
-                    Statecom = Monstate.Idel;
-                }
-            }
-        }
-    }
+        //공격 애니메이션 실행
+        animator.SetInteger(anicode_Attack,1);
 
-    void attackchecker()
-    {
-        if (!coolActive1)
-        {
-            ShatteredBullet(attackgo);
-            if (!coolActive2)
-            {
-                if (!coolActive3)
-                {
-                    speed = sppeed;
-                    StateDone = true;
-                }
-            }
-        }
+        //공격을 위해 이동을 멈춘다.
+        speed = 0;
+        //공격 하는동안 대기
+        yield return new WaitForSeconds(0.7f);
+        ShatteredBullet();
+        yield return new WaitForSeconds(0.2f);
+        animator.SetInteger(anicode_Attack, 0);
+        yield return new WaitForSeconds(0.3f);
+        //speed값 복원
+        speed = sppeed;
+
+        //다음 패턴 선택 함수 실행
+        selectpattern();
     }
 
     /// <summary>
@@ -244,8 +187,9 @@ public class MonstroBoss : EnemyBase
     /// </summary>
     protected override void Movement()
     {
+
         //플레이어를 향해 이동하는 식
-        transform.Translate(Time.deltaTime * speed * HeadTo);
+        transform.Translate(Time.deltaTime*speed*HeadTo);
 
         //방향에 따라 스프라이트 렌더러의 Flip값을 수정하는 조건문
         if (HeadTo.x < 0)
@@ -258,39 +202,87 @@ public class MonstroBoss : EnemyBase
         }
     }
 
-    private void Splashbullet()
-    {
-        for (int i = 0; i < 10; i++)
+
+    /// <summary>
+    /// 다음 패턴 선택 함수
+    /// </summary>
+    void selectpattern()
+    { 
+        //아직 끝나지 않은 모든 코루틴 정지
+        StopAllCoroutines();
+
+        //랜덤패턴 int 변수에 랜덤값 대입
+        randomPatt = Random.Range(0, 101);
+        //확률 조정용 변수
+        int pattern = 0;
+
+        if (randomPatt <10)
         {
-            float angle = i * 360f / 10;  // 각도 계산
-            Quaternion rotation = Quaternion.Euler(0f, 0f, angle);  // 회전값 계산
-            Vector3 spawnPosition = transform.position;  // 생성 위치 계산
-            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // 총알 생성
+            pattern = 0;
+        }
+        else if (randomPatt <30) 
+        {
+            pattern = 1;
+        }
+        else if(randomPatt<70)
+        {
+            pattern = 2;
+        }
+        else
+        {
+            pattern = 3;
+        }
+        //스위치에 랜덤값 넣고 각 패턴의 코루틴 실행
+        switch (pattern) 
+        {
+            case 0:
+                StartCoroutine(IDel());
+                break;
+            case 1:
+                StartCoroutine(jumping());
+                break;
+            case 2:
+                StartCoroutine(Attack());
+                break;
+            case 3:
+                StartCoroutine(superJump());
+                break;
+            default:
+                StartCoroutine(IDel());
+                break;
+        }
+       
+    }
+	private void Splashbullet()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			float angle = i * 360f / 10;  // 각도 계산
+			Quaternion rotation = Quaternion.Euler(0f, 0f, angle);  // 회전값 계산
+
+			Vector3 spawnPosition = transform.position;  // 생성 위치 계산
+			GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // 총알 생성
+		}
+	}
+    void ShatteredBullet()
+    {
+        if (HeadTo.x < 0)
+        { turret.rotation = Quaternion.Euler(0, 0, 90); }
+        else
+        { turret.rotation = Quaternion.Euler(0, 0, -90); }
+        int randomshot = Random.Range(7, 15);
+        for (int i = 0;  i < randomshot; i++)
+        {
+            float Shattering = Random.Range(-45, 46);
+            Quaternion shotgack = Quaternion.Euler(0,0, Shattering);
+            float randx = Random.Range(-0.5f, 0.6f);
+            float randy = Random.Range(-0.5f, 0.6f);
+            GameObject bullet = Instantiate(bulletPrefab,new Vector3(turret.transform.position.x+ randx, turret.transform.position.y+ randy,0), turret.rotation*shotgack);
         }
     }
-    void ShatteredBullet(bool attackclear)
-    {
-        if (attackclear)
-        {
-            if (HeadTo.x < 0)
-            { turret.rotation = Quaternion.Euler(0, 0, 90); }
-            else
-            { turret.rotation = Quaternion.Euler(0, 0, -90); }
-            int randomshot = Random.Range(7, 15);
-            for (int i = 0; i < randomshot; i++)
-            {
-                float Shattering = Random.Range(-45, 46);
-                Quaternion shotgack = Quaternion.Euler(0, 0, Shattering);
-                float randx = Random.Range(-0.5f, 0.6f);
-                float randy = Random.Range(-0.5f, 0.6f);
-                GameObject bullet = Instantiate(bulletPrefab, new Vector3(turret.transform.position.x + randx, turret.transform.position.y + randy, 0), turret.rotation * shotgack);
-            }
-            attackgo = false;
-        }
-    }
-    protected override void Hitten()
+	protected override void Hitten()
     {
         base.Hitten();
-        damaged(spriteRenderer);
+        StartCoroutine(damaged(spriteRenderer));
     }
 }
