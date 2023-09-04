@@ -140,11 +140,11 @@ public class Host : EnemyBase
     /// <param name="shotcool">이곳에 invincivle 논리변수를 활용합니다.</param>
     void bulletshotting(bool shotactive)
     {
-        if (!coolActive2 && shotactive)
+        if (!solorActive && shotactive)
         {
             turret.transform.rotation = Quaternion.LookRotation(Vector3.forward, HeadTo);
             GameObject bullet = Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
-            cooltimeStart(2, 0.2f);
+            cooltimeStart(5, 0.2f);
         }
     }
     /// <summary>
