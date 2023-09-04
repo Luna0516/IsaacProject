@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
     SpriteRenderer sadOnionSR;
     Transform MartyrSprite;
     Transform allGetItem;
+    Animator brimstoneAni;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -152,6 +153,7 @@ public class Player : MonoBehaviour
     bool isGetPolyphemus = false;
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
+    bool isGetBrimstone = false;
     #endregion
     #region 무적
     /// <summary>
@@ -314,6 +316,7 @@ public class Player : MonoBehaviour
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
                     bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
+                    isGetBrimstone = true;
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
                     break;
@@ -357,6 +360,7 @@ public class Player : MonoBehaviour
         sadOnionAni = sadOnionSprite.GetComponent<Animator>();
         sadOnionSR = sadOnionSprite.GetComponent<SpriteRenderer>();
         MartyrSprite = allGetItem.transform.GetChild(1);
+        brimstoneAni = FindObjectOfType<Animator>();
 
         isGetitem = true;
         Health = maxHealth;
@@ -365,13 +369,13 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 dir = new Vector3(bodyDir.x * Speed * Time.deltaTime, bodyDir.y * Speed * Time.deltaTime, 0);
-        transform.position += dir;
         currentTearDelay -= Time.deltaTime;
         currentInvisible -= Time.deltaTime;
     }
     private void FixedUpdate()
     {
+        Vector3 dir = new Vector3(bodyDir.x * Speed * Time.fixedDeltaTime, bodyDir.y * Speed * Time.fixedDeltaTime, 0);
+        transform.position += dir;
         ShootingTear();
     }
     private void OnEnable()
@@ -509,6 +513,7 @@ public class Player : MonoBehaviour
                             case 7:
                                 State = PassiveSpriteState.BloodOfMartyr;
                                 break;
+                            // 혈사포
                             case 118:
                                 State = PassiveSpriteState.Brimstone;
                                 break;
@@ -620,9 +625,12 @@ public class Player : MonoBehaviour
                 sadOnionSR.sortingOrder = 2;
             }
         }
-
         if (context.performed)
         {
+            if (isGetBrimstone)
+            {
+                headAni.SetTrigger("Charge");
+            }
             headAni.SetBool("isShoot", true);
             if (isGetSadOnion)
             {
