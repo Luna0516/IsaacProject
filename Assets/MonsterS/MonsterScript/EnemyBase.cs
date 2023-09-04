@@ -102,10 +102,12 @@ public class EnemyBase : MonoBehaviour
     public float cooltimer2 = 0.0f;
     public float cooltimer3 = 0.0f;
     public float damagetimer = 0.0f;
+    public float solotimer = 0.0f;
     public bool coolActive1 = false;
     public bool coolActive2 = false;
     public bool coolActive3 = false;
     public bool damageActive = false;
+    public bool solorActive = false;
     //에너미 베이스 Awake : 리지디 바디, 게임매니저 , 플레이어 , 타깃 위치 , 스폰 이펙트를 찾음
     protected virtual void Awake()
     {
@@ -326,6 +328,15 @@ public class EnemyBase : MonoBehaviour
             UpdateCooltimer -= damageTimerSys;
         }
     }
+    void soloTimerSys()
+    {
+        solotimer -= Time.deltaTime;
+        if (solotimer <= 0)
+        {
+            solorActive = false;
+            UpdateCooltimer -= soloTimerSys;
+        }
+    }
     /// <summary>
     /// 몬스터 쿨타임 시작 시스템(시작하는 순간 타이머가 돌고 입력한 시간만큼 지나면 bool체크)
     /// </summary>
@@ -362,6 +373,12 @@ public class EnemyBase : MonoBehaviour
                 damageActive = true;
                 UpdateCooltimer += damageTimerSys;
                 damagetimer = time;
+                /*Debug.Log("데미지 쿨타임 시작");*/
+                break;
+            case 5:
+                solorActive = true;
+                UpdateCooltimer += soloTimerSys;
+                solotimer = time;
                 /*Debug.Log("데미지 쿨타임 시작");*/
                 break;
             default:
@@ -420,7 +437,6 @@ public class EnemyBase : MonoBehaviour
         cooltimer3 = 0f;
         UpdateCooltimer -= timecouting;
         timecounter = 0;
-        Debug.Log("모든 쿨타임 초기화");
     }
 
 }

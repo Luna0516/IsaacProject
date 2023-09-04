@@ -26,8 +26,11 @@ public class shit : EnemyBase
     float draglinear = 15f;
     static int flyCount = 0;
 
-    System.Action attackWatcher;
-    public bool attackmode = false;
+    System.Action watcher;
+
+    public bool attackmode = true;
+    public bool att = false;
+
     bool Attackmode
     {
         get
@@ -36,17 +39,26 @@ public class shit : EnemyBase
         }
         set
         {
-            attackmode = value;
-            if (attackmode)
-            {                
-                Attack();
+            if (attackmode != value)
+            {
+                attackmode = value;
+                if (attackmode && !att)
+                {
+                    watcher = rest;
+                    Attack();
+                }
+                else
+                {
+                    att = false;
+                    Stopping();
+                    Debug.Log("쉬기");
+                    coolTime = Random.Range(3, 5);
+                    cooltimeStart(1, coolTime);
+                    cooltimeStart(3, coolTime + 1f);
+                    watcher = watchAttack;
+                }
             }
-            else
-            {               
-                coolTime = Random.Range(3, 5);               
-                cooltimeStart(1, coolTime);
-                cooltimeStart(3, coolTime + 1f);
-            }
+
         }
     }
 
@@ -65,18 +77,19 @@ public class shit : EnemyBase
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         flyCounter();
-
     }
     private void Start()
     {
+        Attackmode = true;
         Attackmode = false;
+        att = false;
     }
     protected override void Update()
     {
         base.Update();
         orderInGame(spriteRenderer);
 
-        preapairAttack();
+        watcher();
 
         if (HeadTo.x < 0)
         {
@@ -95,40 +108,43 @@ public class shit : EnemyBase
     }
     private void Stopping()
     {
-        Debug.Log("멈춰!");
+        allcoolStop();
         rig.drag = draglinear;
         rig.velocity = Vector2.zero;
     }
 
-
     /// <summary>
     /// 공격을 시작할때 까지의 1번 쿨타임 감시자
     /// </summary>
-    void preapairAttack()
+    void watchAttack()
     {
+        Debug.Log("1");
         if (!coolActive1)
         {
             Attackmode = true;
-            runningShit();
-            if (!coolActive3)
-            {
-                Stopping();
-                allcoolStop();
-                Attackmode = false;
-            }
+            att = true;
+        }
+    }
+    void rest()
+    {
+        runningShit();
+        Debug.Log("2");
+        if (!coolActive3)
+        {
+            Attackmode = false;
         }
     }
 
     void runningShit()
     {
-        if (!coolActive2)
+        if (!solorActive)
         {
             GameObject shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
             Shitblood bloodobj = shitiything.GetComponent<Shitblood>();
             IsDead += bloodobj.EnamvleChoosAction;
             IsDead?.Invoke(false);
             IsDead -= bloodobj.EnamvleChoosAction;
-            cooltimeStart(2, timecounter + 0.2f);
+            cooltimeStart(5, 0.2f);
         }
     }
     void flyCounter()
