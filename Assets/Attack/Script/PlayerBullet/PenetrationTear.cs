@@ -20,7 +20,7 @@ public class PenetrationTear : AttackBase
 
     private void Start()
     {
-        circleCollider.enabled = false;
+        //circleCollider.enabled = false;
     }
     public int penetration = 3;
     public int Penetration
@@ -38,29 +38,50 @@ public class PenetrationTear : AttackBase
                 if (penetration <= 0)
                 {
                     isPenetrate = false;
+                    TearDie();
                 }
             }
            
         }
     }
 
-/*    protected override void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if (collision.gameObject.CompareTag("Enemy"))
-        {           
+        {
+            penetration--;
 
-            if (isPenetrate)
+            if (!isPenetrate)
             {
-               
-                if(Penetration <= 0)
-                {
-                    base.OnCollisionEnter2D(collision);                   
-                    TearDie();
-                }
+                TearExplosion();               
             }
         }
-    }*/
+    }
+
+    /*    protected override void OnCollisionEnter2D(Collision2D collision)
+        {
+
+            if (collision.gameObject.CompareTag("Enemy"))
+            {           
+
+                if (isPenetrate)
+                {
+
+                    if(Penetration <= 0)
+                    {
+                        base.OnCollisionEnter2D(collision);                   
+                        TearDie();
+                    }
+                }
+            }
+        }*/
 
 
 }
+
+// OnCollision override? Trigger로 설정되어있어서 어차피 작동 안됨.
+
+// 수정할 것 
+// Trigger로만 만든다
+// Trigger 스크립트 재거
+// 원본 트리거 설정

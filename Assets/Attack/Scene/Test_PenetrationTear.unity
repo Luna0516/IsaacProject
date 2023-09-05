@@ -357,9 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75327fb5cef3df34bbe56871ede7b011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 619120591}
-  backPack: {fileID: 643630622}
-  activeSceond: 0.5
 --- !u!1 &52068146
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,11 +536,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.39
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21
+      value: -0.40999997
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1616,10 +1613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc6201d368cd8d4c81bf8fd325e16db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 35820367}
-  newRun: {fileID: 2087330252}
-  resumeGame: {fileID: 207554974}
-  exitGame: {fileID: 1077920491}
 --- !u!95 &619120592
 Animator:
   serializedVersion: 5
@@ -1827,11 +1820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.32
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21
+      value: -0.40999997
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1921,7 +1914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44575fb82a68484f8656005d6d9be88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 35820367}
 --- !u!95 &643630623
 Animator:
   serializedVersion: 5
@@ -3076,11 +3068,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.81
+      value: -0.34999996
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21
+      value: -0.40999997
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4314,11 +4306,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5158294029992232684, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5158294030143858479, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552352, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: speed
@@ -4338,11 +4330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.64
+      value: -3.81
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21
+      value: -0.38
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4378,7 +4370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5515125878728994526, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7141197123724355417, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_UsedByEffector
@@ -9053,11 +9045,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.04
+      value: -1.5799999
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552355, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_LocalPosition.z
