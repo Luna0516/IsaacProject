@@ -3,7 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : PooledObject
 {
     /// <summary>
     /// 몬스터 데미지
@@ -15,7 +15,7 @@ public class EnemyBase : MonoBehaviour
     /// 게임 매니저
     /// </summary>
     GameManager Manager;
-
+    Factory factory;
     /// <summary>
     /// 플레이어
     /// </summary>
@@ -168,6 +168,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Start()
     {
         Manager = GameManager.Inst;
+        factory = Factory.Inst;
         if (player == null)
         {
             player = Manager.Player; // 플레이어를 찾아서 할당

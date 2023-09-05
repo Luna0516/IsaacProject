@@ -82,7 +82,7 @@ public class Fly : EnemyBase
         animator.SetInteger("Dead", 1);
         Destroy(this.gameObject, 0.917f);
     }
-    private void OnDisable()
+    protected override void OnDisable()
     {
         Invic -= wewantnoNull;
     }
