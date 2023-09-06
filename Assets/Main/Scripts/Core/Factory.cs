@@ -15,13 +15,15 @@ public enum PoolObjectType
     EnemyBlood,
     EnemyMeat,
     EnemyShit,
+
     EnemyBloodMan,
     EnemyRava,
     EnemyMonstro,
     EnemyHost,
     EnemyMulligun,
     EnemyFly,
-    EnemyShiter
+    EnemyShiter,
+    EnnemyBullet
 }
 
 public class Factory : Singleton<Factory>
@@ -34,12 +36,15 @@ public class Factory : Singleton<Factory>
     BloodPool bloodPool;
     MeatPool meatPool;
     ShitPool shitPool;
+
     BloodManPool bloodManPool;
     EnemyShitPool enemyShitPool;
     RavaPool ravaPool;
     MuligunPool muligunPool;
     MonstroPool monstroPool;
     HostPool hostPool;
+    EnemyFlyer enemyFly;
+    EnemyBulletPool enemyBulletPool;
 
     protected override void OnInitialize()
     {
@@ -55,11 +60,12 @@ public class Factory : Singleton<Factory>
         penetrationTearPool = GetComponentInChildren<PenetrationTearPool>();
 
         bloodManPool = GetComponentInChildren<BloodManPool>();
-        ravaPool = GetComponentInChildren<RavaPool>();  
+        ravaPool = GetComponentInChildren<RavaPool>();
         enemyShitPool = GetComponent<EnemyShitPool>();
         muligunPool = GetComponentInChildren<MuligunPool>();
         hostPool = GetComponentInChildren<HostPool>();
-
+        enemyFly = GetComponentInChildren<EnemyFlyer>();
+        enemyBulletPool = GetComponentInChildren<EnemyBulletPool>();
 
 
         tearPool?.Initialize();
@@ -76,6 +82,8 @@ public class Factory : Singleton<Factory>
         enemyShitPool?.Initialize();
         muligunPool?.Initialize();
         hostPool?.Initialize();
+        enemyFly?.Initialize();
+        enemyBulletPool?.Initialize();
     }
 
     /// <summary>
@@ -100,8 +108,8 @@ public class Factory : Singleton<Factory>
             case PoolObjectType.GuidedTear:
                 result = guidedMissileTearPool?.GetObject(spawn)?.gameObject;
                 break;
-            case PoolObjectType.EnemyBullet:
-                break;
+
+
             case PoolObjectType.EnemyBlood:
                 result = bloodPool?.GetObject(spawn)?.gameObject;
                 break;
@@ -128,6 +136,15 @@ public class Factory : Singleton<Factory>
             case PoolObjectType.EnemyShiter:
                 result = enemyShitPool?.GetObject(spawn)?.gameObject;
                 break;
+            case PoolObjectType.EnemyFly:
+                result = enemyFly?.GetObject(spawn)?.gameObject;
+                break;
+            case PoolObjectType.EnemyBullet:
+                result = enemyBulletPool?.GetObject(spawn)?.gameObject;
+                break;
+
+
+
             default:
                 break;
         }

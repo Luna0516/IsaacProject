@@ -78,9 +78,9 @@ public class shit : EnemyBase
         spriteRenderer = GetComponent<SpriteRenderer>();
         flyCounter();
     }
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         Attackmode = true;
         Attackmode = false;
         att = false;

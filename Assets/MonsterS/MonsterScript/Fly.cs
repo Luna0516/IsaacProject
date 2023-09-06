@@ -24,18 +24,25 @@ public class Fly : EnemyBase
     float X;
     float Y;
     Action Invic;
-
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-        Invic += wewantnoNull;
-        cooltimeStart(1, invincivalTime);
-        Invic += invancivalcheck;
         coll = GetComponent<Collider2D>();
         rneder = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+    }
+    protected override void OnEnable()
+    {
+        Invic += invancivalcheck;
+        base.OnEnable();
         speed = UnityEngine.Random.Range(0.5f, 2f);
+        Invic += wewantnoNull;
+        cooltimeStart(1, invincivalTime);
         Rnad = Vector2.zero;
+    }
+    protected override void OnDisable()
+    {
+        base.onDisable();
+        Invic -= invancivalcheck;
     }
     void noisyMove()
     {
@@ -81,10 +88,6 @@ public class Fly : EnemyBase
         coll.isTrigger = true;
         animator.SetInteger("Dead", 1);
         Destroy(this.gameObject, 0.917f);
-    }
-    protected override void OnDisable()
-    {
-        Invic -= wewantnoNull;
     }
     void invancivalcheck()
     {

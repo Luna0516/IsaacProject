@@ -15,7 +15,7 @@ public class EnemyBase : PooledObject
     /// 게임 매니저
     /// </summary>
     GameManager Manager;
-    Factory factory;
+    public Factory factory;
     /// <summary>
     /// 플레이어
     /// </summary>
@@ -153,6 +153,21 @@ public class EnemyBase : PooledObject
         spawneffect = transform.GetChild(2).gameObject;
     }
 
+    // 플레이어 확인 / HP 확인 / 스폰 이펙트 관련
+    protected virtual void OnEnable()
+    {
+        EnemyInithialize();
+        HPInitial();
+        spawneffect.SetActive(true);
+    }
+
+    //쿨타임 델리게이트, 적을 향한 방향 계산하는 update
+    protected virtual void Update()
+    {
+        UpdateCooltimer();
+        HeadTo = (target.transform.position - this.gameObject.transform.position).normalized;
+    }
+
     //모든 적들은 콜리전이 부딫혔을때 그것이 총알이라면 데미지를 받고 넉백됨
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -164,35 +179,6 @@ public class EnemyBase : PooledObject
         }
     }
 
-    //몬스터들에게 플레이어를 찾아주는 start 함수
-    protected virtual void Start()
-    {
-        Manager = GameManager.Inst;
-        factory = Factory.Inst;
-        if (player == null)
-        {
-            player = Manager.Player; // 플레이어를 찾아서 할당
-            target = player.transform;
-        }
-        else
-        {
-            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
-        }
-    }
-
-    //HP 확인 / 스폰 이펙트 관련
-    protected virtual void OnEnable()
-    {
-        HPInitial();
-        spawneffect.SetActive(true);
-    }
-
-    //쿨타임 델리게이트, 적을 향한 방향 계산하는 update
-    protected virtual void Update()
-    {
-        UpdateCooltimer();
-        HeadTo = (target.transform.position - this.gameObject.transform.position).normalized;
-    }
 
     private void HPInitial()
     {
@@ -496,6 +482,21 @@ public class EnemyBase : PooledObject
         cooltimer3 = 0f;
         UpdateCooltimer -= timecouting;
         timecounter = 0;
+    }
+
+    void EnemyInithialize()
+    {
+        Manager = GameManager.Inst;
+        factory = Factory.Inst;
+        if (player == null)
+        {
+            player = Manager.Player; // 플레이어를 찾아서 할당
+            target = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
+        }
     }
 
 }

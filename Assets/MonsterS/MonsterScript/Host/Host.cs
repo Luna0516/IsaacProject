@@ -6,11 +6,6 @@ using UnityEngine;
 public class Host : EnemyBase
 {
     /// <summary>
-    /// 적이 사용할 총알 프리펩
-    /// </summary>
-    public GameObject bulletPrefab;
-
-    /// <summary>
     /// 터렛
     /// </summary>
     GameObject turret;
@@ -48,6 +43,7 @@ public class Host : EnemyBase
         spriteRenderer = GetComponent<SpriteRenderer>();
         animestate = Animator.StringToHash("Attack");
     }
+
     /// <summary>
     /// 플레이어가 공격범위 내로 들어왔다가 나갈때 트리거
     /// </summary>
@@ -144,7 +140,7 @@ public class Host : EnemyBase
         if (!solorActive && shotactive)
         {
             turret.transform.rotation = Quaternion.LookRotation(Vector3.forward, HeadTo);
-            GameObject bullet = Instantiate(bulletPrefab, turret.transform.position, turret.transform.rotation);
+            GameObject bullet = factory.GetObject(PoolObjectType.EnnemyBullet, turret.transform.position, turret.transform.rotation.z);
             cooltimeStart(5, 0.2f);
         }
     }
