@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     Transform sadOnionSprite;
     Animator sadOnionAni;
     SpriteRenderer sadOnionSR;
-    Transform MartyrSprite;
+    Transform martyrSprite;
     Transform allGetItem;
     Animator brimstoneAni;
     // 머리 움직일 때 쓸 벡터값
@@ -154,6 +154,7 @@ public class Player : MonoBehaviour
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
+    bool isGetMartyr = false;
     #endregion
     #region 무적
     /// <summary>
@@ -359,7 +360,7 @@ public class Player : MonoBehaviour
         sadOnionSprite = allGetItem.transform.GetChild(0);
         sadOnionAni = sadOnionSprite.GetComponent<Animator>();
         sadOnionSR = sadOnionSprite.GetComponent<SpriteRenderer>();
-        MartyrSprite = allGetItem.transform.GetChild(1);
+        martyrSprite = allGetItem.transform.GetChild(1);
         brimstoneAni = FindObjectOfType<Animator>();
 
         isGetitem = true;
@@ -578,7 +579,8 @@ public class Player : MonoBehaviour
         }
         if (State == PassiveSpriteState.BloodOfMartyr)
         {
-            MartyrSprite.gameObject.SetActive(true);
+            martyrSprite.gameObject.SetActive(true);
+            isGetMartyr = true;
         }
     }
     private void OnMove(InputAction.CallbackContext context)
