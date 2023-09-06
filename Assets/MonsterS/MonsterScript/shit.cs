@@ -177,7 +177,7 @@ public class shit : EnemyBase
         Vector2 pos = new Vector2(ranX, ranY);
         for (int i = 0; i < flyCount; i++)
         {
-            GameObject fly = Instantiate(flyer, (Vector2)this.transform.position + pos, this.transform.rotation);
+            GameObject fly = factory.GetObject(PoolObjectType.EnemyFly,pos);
         }
         Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }

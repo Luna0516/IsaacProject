@@ -153,10 +153,14 @@ public class EnemyBase : PooledObject
         spawneffect = transform.GetChild(2).gameObject;
     }
 
+    private void Start()
+    {
+        EnemyInithialize();
+    }
+
     // 플레이어 확인 / HP 확인 / 스폰 이펙트 관련
     protected virtual void OnEnable()
     {
-        EnemyInithialize();
         HPInitial();
         spawneffect.SetActive(true);
     }
@@ -165,7 +169,7 @@ public class EnemyBase : PooledObject
     protected virtual void Update()
     {
         UpdateCooltimer();
-        HeadTo = (target.transform.position - this.gameObject.transform.position).normalized;
+        HeadToCal();
     }
 
     //모든 적들은 콜리전이 부딫혔을때 그것이 총알이라면 데미지를 받고 넉백됨
@@ -497,6 +501,10 @@ public class EnemyBase : PooledObject
         {
             Debug.LogWarning("플레이어를 찾을수가 없습니다.");
         }
+    }
+    protected void HeadToCal()
+    {
+        HeadTo = (target.transform.position - this.gameObject.transform.position).normalized;
     }
 
 }

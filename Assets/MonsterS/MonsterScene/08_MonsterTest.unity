@@ -5188,11 +5188,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 941918051390493353, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: poolSize
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 941918051390493353, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: origianlPrefab
+      value: 
+      objectReference: {fileID: 1582209639462560527, guid: b1c9dce57787bd947bddc42182d0ae62, type: 3}
     - target: {fileID: 1191425008767912341, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328951543778093112, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: poolSize
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2461219587112762858, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: m_RootOrder
@@ -5241,6 +5249,30 @@ PrefabInstance:
     - target: {fileID: 2461219587112762859, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: m_Name
       value: Factory
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509279407834698905, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: poolSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559162605059166096, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: poolSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908678439785416114, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: poolSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432345276768648635, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: poolSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853428074578918727, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: poolSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672033513053430027, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: poolSize
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}

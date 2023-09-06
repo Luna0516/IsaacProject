@@ -32,6 +32,9 @@ public class Host : EnemyBase
 
     bool attackactiveate = false;
 
+
+    Action<SpriteRenderer> UpdateCheckerSP;
+
     /// <summary>
     /// Awake 각 변수에 값 넣어주는 작업
     /// </summary>
@@ -58,12 +61,25 @@ public class Host : EnemyBase
         }
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        UpdateCheckerSP += orderInGame;
+        UpdateCheckerSP += damageoff;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        UpdateCheckerSP -= orderInGame;
+        UpdateCheckerSP -= damageoff;
+        allcoolStop();
+    }
     protected override void Update()
     {
         base.Update();
-        orderInGame(spriteRenderer);
-        damageoff(spriteRenderer);
+
         attackupdate();
+        UpdateCheckerSP(spriteRenderer);
     }
 
     /// <summary>
