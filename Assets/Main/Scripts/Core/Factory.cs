@@ -61,11 +61,12 @@ public class Factory : Singleton<Factory>
 
         bloodManPool = GetComponentInChildren<BloodManPool>();
         ravaPool = GetComponentInChildren<RavaPool>();
-        enemyShitPool = GetComponent<EnemyShitPool>();
+        enemyShitPool = GetComponentInChildren<EnemyShitPool>();
         muligunPool = GetComponentInChildren<MuligunPool>();
         hostPool = GetComponentInChildren<HostPool>();
         enemyFly = GetComponentInChildren<EnemyFlyer>();
         enemyBulletPool = GetComponentInChildren<EnemyBulletPool>();
+        monstroPool = GetComponentInChildren<MonstroPool>();
 
 
         tearPool?.Initialize();
@@ -76,6 +77,7 @@ public class Factory : Singleton<Factory>
         meatPool?.Initialize();
         shitPool?.Initialize();
         penetrationTearPool?.Initialize();
+        monstroPool?.Initialize();
 
         bloodManPool?.Initialize();
         ravaPool?.Initialize();

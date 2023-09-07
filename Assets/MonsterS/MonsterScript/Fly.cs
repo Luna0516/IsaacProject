@@ -87,7 +87,15 @@ public class Fly : EnemyBase
     {
         coll.isTrigger = true;
         animator.SetInteger("Dead", 1);
-        Destroy(this.gameObject, 0.917f);
+        cooltimeStart(2, 0.917f);
+        Invic += Dieying;  
+    }
+    void Dieying()
+    {
+        if(!coolActive2)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
     void invancivalcheck()
     {

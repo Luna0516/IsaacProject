@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 5967919590582941009, guid: 26ea565c4d121f2449beab9ec293c31f, type: 3}
-  poolSize: 64
+  poolSize: 32
 --- !u!1 &1191425008767912341
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd85299097b59fd4895def216d3c6473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origianlPrefab: {fileID: 548254821885502025, guid: ad6402cdd97957248b75d036e19a4608, type: 3}
-  poolSize: 64
+  origianlPrefab: {fileID: 1582209639462560527, guid: b1c9dce57787bd947bddc42182d0ae62, type: 3}
+  poolSize: 4
 --- !u!1 &1425201107308971235
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 2813975671658389336, guid: 82b7673510b17b047a6a76a874272f54, type: 3}
-  poolSize: 64
+  poolSize: 4
 --- !u!1 &2220502799780176343
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 5158294031196552354, guid: 6642a72655b9eea42920484e95528b01, type: 3}
-  poolSize: 64
+  poolSize: 4
 --- !u!1 &2781650452519537739
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 4406687726551746755, guid: 219de21093c1e05459b0621a9a08abf1, type: 3}
-  poolSize: 64
+  poolSize: 4
 --- !u!1 &2845567826380518436
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 6587678324038758085, guid: 65ba4a29c45798b4fb988da4afcb2796, type: 3}
-  poolSize: 64
+  poolSize: 4
 --- !u!1 &2951054427947570309
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 8842577937410060259, guid: d1e8257aa956d7342848194eef4ea37d, type: 3}
-  poolSize: 64
+  poolSize: 4
 --- !u!1 &3832368244158460027
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 9133980385069193797, guid: cc182cb54469edc40b42f457e23e222f, type: 3}
-  poolSize: 64
+  poolSize: 4
 --- !u!1 &3952059101857688780
 GameObject:
   m_ObjectHideFlags: 0

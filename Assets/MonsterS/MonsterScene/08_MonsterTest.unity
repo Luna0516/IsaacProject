@@ -4932,6 +4932,50 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1882357033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1882357034}
+  - component: {fileID: 1882357035}
+  m_Layer: 0
+  m_Name: MonsterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1882357034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882357033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4209354, y: -0.4391774, z: 0.08237228}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1882357035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882357033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe00af09242dad48aac2d9e858cb79a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1991656560
 GameObject:
   m_ObjectHideFlags: 0
@@ -5186,22 +5230,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 941918051390493353, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 941918051390493353, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: origianlPrefab
-      value: 
-      objectReference: {fileID: 1582209639462560527, guid: b1c9dce57787bd947bddc42182d0ae62, type: 3}
-    - target: {fileID: 1191425008767912341, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328951543778093112, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2461219587112762858, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5249,30 +5277,6 @@ PrefabInstance:
     - target: {fileID: 2461219587112762859, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: m_Name
       value: Factory
-      objectReference: {fileID: 0}
-    - target: {fileID: 2509279407834698905, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559162605059166096, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6908678439785416114, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7432345276768648635, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7853428074578918727, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8672033513053430027, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
