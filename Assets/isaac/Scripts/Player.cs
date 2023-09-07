@@ -632,12 +632,13 @@ public class Player : MonoBehaviour
             if (isGetBrimstone)
             {
                 headAni.SetTrigger("Charge");
+                isBrimstoneCharge = true;
             }
-            headAni.SetBool("isShoot", true);
             if (isGetSadOnion)
             {
                 sadOnionAni.SetBool("isShot", true);
             }
+            headAni.SetBool("isNormalShoot", true);
             isShoot = true;
         }
         else if (context.canceled)
@@ -740,6 +741,14 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         
+    }
+    bool isBrimstoneCharge = false;
+    IEnumerator ShootBrimstone()
+    {
+        if (isBrimstoneCharge)
+        {
+            isBrimstoneCharge = false;
+        }
     }
     private void ShootingTear()
     {

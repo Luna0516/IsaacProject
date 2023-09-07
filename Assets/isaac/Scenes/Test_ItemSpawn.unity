@@ -757,6 +757,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 789393512896980401, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f770c51c166884c48acdf28fea7c4ed0, type: 2}
     - target: {fileID: 3792594240594029479, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -805,7 +809,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Isaac
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1022167564, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
 --- !u!1 &646086129
 GameObject:
