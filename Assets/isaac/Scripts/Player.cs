@@ -768,17 +768,7 @@ public class Player : MonoBehaviour
         }
         
     }
-<<<<<<< Updated upstream
-    bool isBrimstoneCharge = false;
-    //IEnumerator ShootBrimstone()
-    //{
-    //    if (isBrimstoneCharge)
-    //    {
-    //        isBrimstoneCharge = false;
-    //    }
-    //}
-=======
->>>>>>> Stashed changes
+
     private void ShootingTear()
     {
         if (isShoot == true)
