@@ -129,9 +129,12 @@ public class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+            AttackBase attackBase = collision.gameObject.GetComponent<AttackBase>();
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             Hitten();
-            NuckBack(collision.contacts[0].normal);
+
+            Vector2 nuckBackDir = attackBase.dir;
+            NuckBack(nuckBackDir.normalized);
         }
     }
 
@@ -141,10 +144,15 @@ public class EnemyBase : MonoBehaviour
     /// <param name="collision"></param>
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerBullet"))
+        if (collision.CompareTag("PlayerBullet"))
         {
-            damage = collision.gameObject.GetComponent<AttackBase>().Damage;
+            AttackBase attackBase = collision.GetComponent<AttackBase>();
+            damage = collision.GetComponent<AttackBase>().Damage;
             Hitten();
+
+            Vector2 nuckBackDir = attackBase.dir;
+            NuckBack(nuckBackDir.normalized);
+
         }
     }
 
