@@ -16,10 +16,10 @@ public class MonsterSpawner : MonoBehaviour
         Monstro
     }
 
-    [SerializeField]
+    [Serializable]
     public struct AllMonsterSpawners
     {
-        public AllMonsterSpawners(MonsterList monster = MonsterList.Muligun , int spawncount=1 , Vector2 pos = default(Vector2))
+        public AllMonsterSpawners(MonsterList monster = MonsterList.Muligun, int spawncount = 1, Vector2 pos = default(Vector2))
         {
             this.monsterList = monster;
             this.spawnCount = spawncount;
@@ -30,28 +30,36 @@ public class MonsterSpawner : MonoBehaviour
         public Vector2 spawnArea;
     }
 
-    public List<AllMonsterSpawners> spawnDatas;
+    public int spawnercount;
+    static int SpawnerCounty;
+    public List<GameObject> spawnGameObject = new List<GameObject>(SpawnerCounty);
+    public List<AllMonsterSpawners> AllSpawnDatas = new List<AllMonsterSpawners>(SpawnerCounty);
 
     private void Awake()
     {
-        
+        spawnercount = transform.childCount;
+        SpawnerCounty = spawnercount;
+        GetChilding(this.transform);
+        foreach (GameObject obj in spawnGameObject) 
+        {
+            MonsterSpChilde sp = obj.GetComponent<MonsterSpChilde>();
+            AllSpawnDatas.Add(sp.allMonsterSpawners);
+        }
     }
 
     private void Start()
     {
-        
+
     }
-    /*    private void OnDrawGizmos()
+
+    void GetChilding(Transform parent)
+    {
+        foreach (Transform obj in parent) 
         {
-            Gizmos.color = Color.yellow;
-            Vector3 spawnV1 = Vector3.up * spawnArea;
-            Vector3 spawnV2 = Vector3.up * (-spawnArea);
-            Vector3 spawnV3 = Vector3.right * (-spawnArea);
-            Vector3 spawnV4 = Vector3.right * spawnArea;
-            *//*        Gizmos.DrawLine(this.transform.position + new Vector3(spawnArea.x,spawnArea.y,0),new Vector3(-spawnArea.x,spawnArea.y,));*//*
-            Gizmos.DrawLine(this.transform.position + spawnV3 + spawnV2, this.transform.position + spawnV2 + spawnV4);
-            Gizmos.DrawLine(this.transform.position + spawnV2 + spawnV4, this.transform.position + spawnV1 + spawnV4);
-            Gizmos.DrawLine(this.transform.position + spawnV1 + spawnV4, this.transform.position + spawnV1 + spawnV3);
-            Gizmos.DrawLine(this.transform.position + spawnV1 + spawnV3, this.transform.position + spawnV3 + spawnV2);
-        }*/
+            spawnGameObject.Add(obj.gameObject);
+            GetChilding(obj);
+        }
+    }
+
+
 }
