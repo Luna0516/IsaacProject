@@ -129,5 +129,6 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
     /// <param name="comp">T타입 컴포넌트</param>
     protected virtual void OnGenerateObjects(T comp)
     {
+
     }
 }

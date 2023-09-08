@@ -9,7 +9,7 @@ public class Shitblood : PooledObject
     /// <summary>
     /// 게임매니저 변수
     /// </summary>
-    GameManager manager;
+    Factory manager;
 
     /// <summary>
     /// 색상 변수(public 으로 해서 게임오브젝트에서 수정 가능)
@@ -34,7 +34,7 @@ public class Shitblood : PooledObject
     private void Awake()
     {
         //게임매니저에서 매니저 불러오기
-        manager = GameManager.Inst;
+        manager = Factory.Inst;
 
         //스프라이트 렌더러 불러오기
         spriteRneder = GetComponent<SpriteRenderer>();

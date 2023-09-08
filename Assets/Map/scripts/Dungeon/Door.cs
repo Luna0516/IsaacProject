@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
     public enum DoorType
     {
         left, right, top, bottom    
@@ -16,7 +15,7 @@ public class Door : MonoBehaviour
 
     private GameObject player;
 
-    private float widthOffset = 1.75f; 
+    private float widthOffset = 2f; 
 
     private void Start()
     {
@@ -30,7 +29,7 @@ public class Door : MonoBehaviour
             switch (doorType) 
             {
                 case DoorType.bottom:
-                    player.transform.position = new Vector2(transform.position.x, transform.position.y - widthOffset);
+                    player.transform.position = new Vector2(transform.position.x, transform.position.y - widthOffset * 2);
                     break;
                 case DoorType.left:
                     player.transform.position = new Vector2(transform.position.x - widthOffset, transform.position.y);

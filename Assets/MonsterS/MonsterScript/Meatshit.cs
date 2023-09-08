@@ -11,17 +11,17 @@ public class Meatshit : PooledObject
     public float MeatLifeTime=10f;
     int random;
     SpriteRenderer rend;
-    GameManager manager;
+    Factory factory;
 
     private void Awake()
     {
-        manager = GameManager.Inst;
+        factory = Factory.Inst;
         rend = GetComponentInChildren<SpriteRenderer>();
-        random = Random.Range(0,manager.MeatSprite.Length);
+        random = Random.Range(0,factory.MeatSprite.Length);
     }
     private void OnEnable()
     {
-        rend.sprite = manager.MeatSprite[random];
+        rend.sprite = factory.MeatSprite[random];
         float x = Random.Range(-1f, 1.1f);
         float y = Random.Range(-1f, 1.1f);
         MeatLifeTime = Random.Range(5f, 11f);

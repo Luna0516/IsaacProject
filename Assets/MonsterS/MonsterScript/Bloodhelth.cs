@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Bloodhelth : PooledObject
 {
-    GameManager manager;
+    Factory factory;
     public Color clo;
     SpriteRenderer spriteRneder;
     int randomindex=0;
 
     private void Awake()
     {
-        manager = GameManager.Inst;
+        factory = Factory.Inst;
         spriteRneder = GetComponent<SpriteRenderer>();   
         clo=spriteRneder.color;
     }
     private void OnEnable()
     {
-        randomindex = Random.Range(0, manager.BloodSprite.Length);
-        spriteRneder.sprite = manager.BloodSprite[randomindex];
+        randomindex = Random.Range(0, factory.BloodSprite.Length);
+        spriteRneder.sprite = factory.BloodSprite[randomindex];
         float guage = Random.Range(0.2f, 1);
         clo.a = guage;
         spriteRneder.color = clo;
