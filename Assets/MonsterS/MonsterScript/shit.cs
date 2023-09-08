@@ -99,7 +99,7 @@ public class shit : EnemyBase
         else
         { spriteRenderer.flipX = false; }
         damageoff(spriteRenderer);
-
+        HeadToCal();
     }
     void Attack()
     {

@@ -8,7 +8,7 @@ public class Host : EnemyBase
     /// <summary>
     /// 터렛
     /// </summary>
-    GameObject turret;
+    public GameObject turret;
 
     /// <summary>
     /// 애니메이터
@@ -25,16 +25,16 @@ public class Host : EnemyBase
     /// </summary>
     int animestate;
 
+    float plusdistance = 100;
+
     /// <summary>
     /// 무적 상태 판정 (주의 : false일때 무적입니다.)
     /// </summary>
     bool invincivle = false;
 
-    bool attackactiveate = false;
-
 
     Action<SpriteRenderer> UpdateCheckerSP;
-
+    Action UpdateChecker;
     /// <summary>
     /// Awake 각 변수에 값 넣어주는 작업
     /// </summary>
@@ -45,6 +45,12 @@ public class Host : EnemyBase
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animestate = Animator.StringToHash("Attack");
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        HeadToCal();
     }
 
     /// <summary>
@@ -64,12 +70,15 @@ public class Host : EnemyBase
     protected override void OnEnable()
     {
         base.OnEnable();
+        UpdateChecker += attackDis;
+        UpdateChecker += HeadToCal;
         UpdateCheckerSP += orderInGame;
         UpdateCheckerSP += damageoff;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
+        UpdateChecker = wewantnoNull;
         UpdateCheckerSP -= orderInGame;
         UpdateCheckerSP -= damageoff;
         allcoolStop();
@@ -77,9 +86,8 @@ public class Host : EnemyBase
     protected override void Update()
     {
         base.Update();
-
-        attackupdate();
         UpdateCheckerSP(spriteRenderer);
+        UpdateChecker();
     }
 
     /// <summary>
@@ -100,6 +108,15 @@ public class Host : EnemyBase
         else if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             NuckBack(-HeadTo);
+        }
+    }
+    void attackDis()
+    {
+        plusdistance = calcHeadTo.sqrMagnitude / distance;
+        if (plusdistance < distance)
+        {
+            AttackMove();
+            UpdateChecker -= attackDis;
         }
     }
 
@@ -123,7 +140,7 @@ public class Host : EnemyBase
             animator.SetInteger(animestate, 1);
             cooltimeStart(1, 0.8f);
             cooltimeStart(3, 1.4f);
-            attackactiveate = true;
+            UpdateChecker += attackupdate;
         }
     }
 
@@ -132,19 +149,17 @@ public class Host : EnemyBase
     /// </summary>
     void attackupdate()
     {
-        if (attackactiveate)
+        if (!coolActive3)
         {
-            if (!coolActive3)
-            {
-                attackactiveate = false;
-                animator.SetInteger(animestate, 0);
-                invincivle = false;
-                allcoolStop();
-            }
-            if (!coolActive1)
-            {
-                bulletshotting(invincivle);
-            }
+            animator.SetInteger(animestate, 0);
+            invincivle = false;
+            UpdateChecker += attackDis;
+            UpdateChecker -= attackupdate;
+            allcoolStop();
+        }
+        if (!coolActive1)
+        {
+            bulletshotting(invincivle);
         }
     }
     /// <summary>
@@ -156,7 +171,7 @@ public class Host : EnemyBase
         if (!solorActive && shotactive)
         {
             turret.transform.rotation = Quaternion.LookRotation(Vector3.forward, HeadTo);
-            GameObject bullet = factory.GetObject(PoolObjectType.EnnemyBullet, turret.transform.position, turret.transform.rotation.z);
+            GameObject bullet = factory.GetObject(PoolObjectType.EnemyBullet, turret.transform.position, turret.transform.rotation.z);
             cooltimeStart(5, 0.2f);
         }
     }
@@ -168,5 +183,12 @@ public class Host : EnemyBase
         base.Hitten();
         //맞았을때 스프라이트 렌더러가 붉은색으로 변합니다.
         damaged(spriteRenderer);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.transform.position, plusdistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, distance);
     }
 }

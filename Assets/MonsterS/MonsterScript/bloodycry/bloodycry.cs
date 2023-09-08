@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,9 @@ public class bloodycry : EnemyBase
     SpriteRenderer bodysprite;
     Animator headanimator;
     Animator bodyanimator;
-    bool moveactive = false;
     bool buserkurcheck = false;
-    bool coolbloodcheck = false;
+    float plusdistance = 100;
+    Action stateChanger;
     protected override void Awake()
     {
         base.Awake();
@@ -23,29 +24,37 @@ public class bloodycry : EnemyBase
         headanimator = head.GetComponent<Animator>();
         bodyanimator = body.GetComponent<Animator>();
     }
+    protected override void Start()
+    {
+        base.Start();
+        HeadToCal();
+        stateChanger += distanceChack;
+    }
     protected override void Update()
     {
         base.Update();
         orderInGame(headsprite, bodysprite);
-        if (coolbloodcheck)
+        stateChanger();
+        damageoff(headsprite, bodysprite);
+        HeadToCal();
+    }
+    void distanceChack()
+    {
+        plusdistance = calcHeadTo.sqrMagnitude/distance;
+        if (plusdistance <= distance)
         {
-            buserkurcheck = !coolActive1;
+            stateChanger += Movement;
+            stateChanger -= distanceChack;
         }
-
-        if (buserkurcheck)
+    }
+    void bloodCryStates()
+    {
+        if (!coolActive1)
         {
             hittedanimeoff();
         }
-
-        if (moveactive)
-        {
-            Movement();
-        }
-
-
-        damageoff(headsprite, bodysprite);
-
     }
+
     protected override void Movement()
     {
         transform.Translate(speed * Time.deltaTime * HeadTo);
@@ -63,24 +72,26 @@ public class bloodycry : EnemyBase
             bodyanimator.SetInteger("WalkSideway", 1);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+    /*    protected override void OnTriggerEnter2D(Collider2D collision)
         {
-            moveactive = true;
-        }
-    }
+            base.OnTriggerEnter2D (collision);
+            if (collision.CompareTag("Player"))
+            {
+                moveactive = true;
+            }
+        }*/
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            if (this.gameObject.activeSelf == true && !buserkurcheck)//이 개체의 활성화 확인과 버서커 체크가 거짓일때 실행
+            if (this.gameObject.activeSelf && !buserkurcheck)//이 개체의 활성화 확인과 버서커 체크가 거짓일때 실행
             {
                 hittedanime();
             }
         }
     }
+
     protected override void Hitten()
     {
         base.Hitten();
@@ -90,18 +101,25 @@ public class bloodycry : EnemyBase
         }
     }
 
-
     void hittedanime()
     {
-        Debug.Log("크와아아앙 . 블러디 크라이가 울부짖었따");
-        moveactive = true;
-        headanimator.SetInteger("state", 1);
         cooltimeStart(1, 0.2f);
-        coolbloodcheck = true;
+        stateChanger += bloodCryStates;
+        stateChanger += Movement;
+        Debug.Log("크와아아앙 . 블러디 크라이가 울부짖었따");
+        headanimator.SetInteger("state", 1);
     }
 
     void hittedanimeoff()
     {
+        allcoolStop();
         headanimator.SetInteger("state", 2);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, distance);
+    }
+
 }

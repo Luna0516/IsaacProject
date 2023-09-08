@@ -26,10 +26,15 @@ public class EnemyBase : PooledObject
     /// </summary>
     protected Transform target;
 
+    protected Vector2 calcHeadTo;
+
     /// <summary>
     /// 방향 벡터
     /// </summary>
     protected Vector2 HeadTo;
+
+    [Header("플레이어 거리 감지 범위")]
+    public float distance = 1.0f;
 
     /// <summary>
     /// 몬스터 이동 속도
@@ -108,14 +113,14 @@ public class EnemyBase : PooledObject
     /// <summary>
     /// 시간
     /// </summary>
-    protected float timecounter = 0f;
+    public float timecounter = 0f;
 
     /// <summary>
     /// 쿨타임 설정 시간
     /// </summary>
-    protected float cooltimer1 = 0.0f;
-    protected float cooltimer2 = 0.0f;
-    protected float cooltimer3 = 0.0f;
+    public float cooltimer1 = 0.0f;
+    public float cooltimer2 = 0.0f;
+    public float cooltimer3 = 0.0f;
 
     /// <summary>
     /// 피격 이펙트용 쿨타임
@@ -144,6 +149,8 @@ public class EnemyBase : PooledObject
     /// </summary>
     protected bool solorActive = false;
 
+    protected bool tooclosetoFight = false;
+
 
     //에너미 베이스 Awake : 리지디 바디, 게임매니저 , 플레이어 , 타깃 위치 , 스폰 이펙트를 찾음
     protected virtual void Awake()
@@ -153,7 +160,7 @@ public class EnemyBase : PooledObject
         spawneffect = transform.GetChild(2).gameObject;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         EnemyInithialize();
     }
@@ -169,7 +176,6 @@ public class EnemyBase : PooledObject
     protected virtual void Update()
     {
         UpdateCooltimer();
-        HeadToCal();
     }
 
     //모든 적들은 콜리전이 부딫혔을때 그것이 총알이라면 데미지를 받고 넉백됨
@@ -190,7 +196,7 @@ public class EnemyBase : PooledObject
     /// 관통 총알 (PenetrationTear)용 OnTrigger2D. (필요에 따라 유지 혹은 삭제 가능성 있습니다)
     /// </summary>
     /// <param name="collision"></param>
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerBullet"))
         {
@@ -200,7 +206,6 @@ public class EnemyBase : PooledObject
 
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
-
         }
     }
 
@@ -525,7 +530,8 @@ public class EnemyBase : PooledObject
     }
     protected void HeadToCal()
     {
-        HeadTo = (target.transform.position - this.gameObject.transform.position).normalized;
+        calcHeadTo = (target.transform.position - this.gameObject.transform.position);
+        HeadTo = calcHeadTo.normalized;
     }
 
 }
