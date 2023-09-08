@@ -295,24 +295,32 @@ public class Player : MonoBehaviour
             switch (state)
             {
                 case PassiveSpriteState.None:
+                    isEmpty = true;
                     break;
                 case PassiveSpriteState.CricketHead:
                     var headResourceName = "HeadAC/Head_Cricket_AC";
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    isEmpty = false;
                     break;
                 case PassiveSpriteState.Halo:
+                    isEmpty = false;
                     break;
                 case PassiveSpriteState.SadOnion:
+                    isEmpty = false;
                     break;
                 case PassiveSpriteState.SacredHeart:
+                    isEmpty = false;
                     isGetSacredHeart = true;
                     break;
                 case PassiveSpriteState.Polyphemus:
+                    isEmpty = false;
                     isGetPolyphemus = true;
                     break;
                 case PassiveSpriteState.MutantSpider:
+                    isEmpty = false;
                     break;
                 case PassiveSpriteState.Brimstone:
+                    isEmpty = false;
                     headResourceName = "HeadAC/Head_Brimstone_AC";
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
@@ -320,6 +328,7 @@ public class Player : MonoBehaviour
                     isGetBrimstone = true;
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
+                    isEmpty = false;
                     break;
                 default:
                     break;
@@ -629,21 +638,31 @@ public class Player : MonoBehaviour
         }
         if (context.performed)
         {
+            if (isEmpty)
+            {
+                headAni.SetBool("isNormalShoot", true);
+            }
             if (isGetBrimstone)
             {
-                headAni.SetTrigger("Charge");
-                isBrimstoneCharge = true;
+                headAni.SetBool("BrimstoneCharge", true);
+                headAni.SetBool("BrimstoneShoot", false);
             }
             if (isGetSadOnion)
             {
                 sadOnionAni.SetBool("isShot", true);
             }
-            headAni.SetBool("isNormalShoot", true);
             isShoot = true;
         }
         else if (context.canceled)
         {
-            headAni.SetBool("isShoot", false);
+            if (isEmpty)
+            {
+                headAni.SetBool("isNormalShoot", false);
+            }
+            if (isGetBrimstone)
+            {
+                StartCoroutine(ShotBrimstone());
+            }
             if (isGetSadOnion)
             {
                 sadOnionAni.SetBool("isShot", false);
@@ -656,6 +675,13 @@ public class Player : MonoBehaviour
             headDir.Normalize();
         }
     }
+    IEnumerator ShotBrimstone()
+    {
+        headAni.SetBool("BrimstoneCharge", false);
+        yield return new WaitForSeconds(1);
+        headAni.SetBool("BrimstoneShoot", true);
+    }
+    
     IEnumerator TearDelay()
     {
         Transform tearSpawn = transform.GetChild(0);
@@ -742,6 +768,7 @@ public class Player : MonoBehaviour
         }
         
     }
+<<<<<<< Updated upstream
     bool isBrimstoneCharge = false;
     //IEnumerator ShootBrimstone()
     //{
@@ -750,6 +777,8 @@ public class Player : MonoBehaviour
     //        isBrimstoneCharge = false;
     //    }
     //}
+=======
+>>>>>>> Stashed changes
     private void ShootingTear()
     {
         if (isShoot == true)
