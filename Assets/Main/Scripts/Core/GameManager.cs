@@ -13,21 +13,17 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// 플레이어 프로퍼티
     /// </summary>
-    public Player Player
-    {
-        get 
-        { 
-            if (player == null)
-            {
-                player = FindObjectOfType<Player>();
-            }
-            return player; 
-        }
-    }
+    public Player Player => player;
+
+
+    ItemDataManager itemDataManager;
+    public ItemDataManager ItemData => itemDataManager;
 
     protected override void OnInitialize()
     {
-        base.OnInitialize();   
+        base.OnInitialize();
+        player = FindObjectOfType<Player>();
+        itemDataManager = FindObjectOfType<ItemDataManager>();
     }
 
     /// <summary>
@@ -47,7 +43,4 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f;
     }
-
-    public Sprite[] BloodSprite;
-    public Sprite[] MeatSprite;
 }

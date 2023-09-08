@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletBase : MonoBehaviour
+public class EnemyBulletBase : PooledObject
 {
     public float speed = 10.0f;
     public float lifeTime = 5.0f;
@@ -21,13 +21,13 @@ public class EnemyBulletBase : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall"))
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
     protected IEnumerator LifeOver(float delay = 0.0f)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 }

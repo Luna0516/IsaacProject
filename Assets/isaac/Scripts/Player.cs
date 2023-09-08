@@ -85,8 +85,9 @@ public class Player : MonoBehaviour
     Transform sadOnionSprite;
     Animator sadOnionAni;
     SpriteRenderer sadOnionSR;
-    Transform MartyrSprite;
+    Transform martyrSprite;
     Transform allGetItem;
+    Animator brimstoneAni;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -153,6 +154,7 @@ public class Player : MonoBehaviour
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
+    bool isGetMartyr = false;
     #endregion
     #region 무적
     /// <summary>
@@ -358,7 +360,8 @@ public class Player : MonoBehaviour
         sadOnionSprite = allGetItem.transform.GetChild(0);
         sadOnionAni = sadOnionSprite.GetComponent<Animator>();
         sadOnionSR = sadOnionSprite.GetComponent<SpriteRenderer>();
-        MartyrSprite = allGetItem.transform.GetChild(1);
+        martyrSprite = allGetItem.transform.GetChild(1);
+        brimstoneAni = FindObjectOfType<Animator>();
 
         isGetitem = true;
         Health = maxHealth;
@@ -367,13 +370,13 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 dir = new Vector3(bodyDir.x * Speed * Time.deltaTime, bodyDir.y * Speed * Time.deltaTime, 0);
-        transform.position += dir;
         currentTearDelay -= Time.deltaTime;
         currentInvisible -= Time.deltaTime;
     }
     private void FixedUpdate()
     {
+        Vector3 dir = new Vector3(bodyDir.x * Speed * Time.fixedDeltaTime, bodyDir.y * Speed * Time.fixedDeltaTime, 0);
+        transform.position += dir;
         ShootingTear();
     }
     private void OnEnable()
@@ -426,13 +429,33 @@ public class Player : MonoBehaviour
             if (props != null) 
             {
                 // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
-                IConsumable consum = props.ItemData as IConsumable;
-                if (consum != null) 
+                PropsItemData propsItem = props.ItemData as PropsItemData;
+                if (propsItem != null) 
                 {
-                    // 아이템 삭제 여부 확인후 아이템 삭제 ( 코인은 삭제 애니메이션 때문에 삭제 하면 안됨)
-                    if (consum.Consume(this.gameObject)) {  
+                    switch (propsItem.propsType)
+                    {
+                        case PropsItem.Penny:
+                        case PropsItem.Nickel:
+                        case PropsItem.Dime:
+                            Coin += propsItem.itemValues;
+                            break;
+                        case PropsItem.Bomb:
+                        case PropsItem.DoubleBomb:
+                            Bomb += propsItem.itemValues;
+                            break;
+                        case PropsItem.Key:
+                        case PropsItem.KeyRing:
+                            Key += propsItem.itemValues;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (propsItem.Consume(gameObject))
+                    {
                         Destroy(collision.gameObject);
                     }
+
                     return;
                 }
 
@@ -491,6 +514,7 @@ public class Player : MonoBehaviour
                             case 7:
                                 State = PassiveSpriteState.BloodOfMartyr;
                                 break;
+                            // 혈사포
                             case 118:
                                 State = PassiveSpriteState.Brimstone;
                                 break;
@@ -555,7 +579,8 @@ public class Player : MonoBehaviour
         }
         if (State == PassiveSpriteState.BloodOfMartyr)
         {
-            MartyrSprite.gameObject.SetActive(true);
+            martyrSprite.gameObject.SetActive(true);
+            isGetMartyr = true;
         }
     }
     private void OnMove(InputAction.CallbackContext context)
@@ -591,8 +616,8 @@ public class Player : MonoBehaviour
         headAni.SetFloat("ShootDir_Y", headDir.y);
         if (isGetSadOnion)
         {
-            sadOnionAni.SetFloat("ShotDir_X", headDir.x);
             sadOnionAni.SetFloat("ShotDir_Y", headDir.y);
+            sadOnionAni.SetFloat("ShotDir_X", headDir.x);
             if (headDir.y > 0.001f)
             {
                 sadOnionSR.sortingOrder = 0;
@@ -602,38 +627,28 @@ public class Player : MonoBehaviour
                 sadOnionSR.sortingOrder = 2;
             }
         }
-
         if (context.performed)
         {
             if (isGetBrimstone)
             {
                 headAni.SetTrigger("Charge");
+                isBrimstoneCharge = true;
             }
-            else
+            if (isGetSadOnion)
             {
-                headAni.SetBool("isShoot", true);
-                if (isGetSadOnion)
-                {
-                    sadOnionAni.SetBool("isShot", true);
-                }
-                isShoot = true;
+                sadOnionAni.SetBool("isShot", true);
             }
+            headAni.SetBool("isNormalShoot", true);
+            isShoot = true;
         }
         else if (context.canceled)
         {
-            if (isGetBrimstone)
+            headAni.SetBool("isShoot", false);
+            if (isGetSadOnion)
             {
-                headAni.SetTrigger("Shot");
+                sadOnionAni.SetBool("isShot", false);
             }
-            else
-            {
-                headAni.SetBool("isShoot", false);
-                if (isGetSadOnion)
-                {
-                    sadOnionAni.SetBool("isShot", false);
-                }
-                isShoot = false;
-            }
+            isShoot = false;
         }
         if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
         {
@@ -727,6 +742,14 @@ public class Player : MonoBehaviour
         }
         
     }
+    bool isBrimstoneCharge = false;
+    //IEnumerator ShootBrimstone()
+    //{
+    //    if (isBrimstoneCharge)
+    //    {
+    //        isBrimstoneCharge = false;
+    //    }
+    //}
     private void ShootingTear()
     {
         if (isShoot == true)
