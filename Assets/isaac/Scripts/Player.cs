@@ -743,13 +743,13 @@ public class Player : MonoBehaviour
         
     }
     bool isBrimstoneCharge = false;
-    IEnumerator ShootBrimstone()
-    {
-        if (isBrimstoneCharge)
-        {
-            isBrimstoneCharge = false;
-        }
-    }
+    //IEnumerator ShootBrimstone()
+    //{
+    //    if (isBrimstoneCharge)
+    //    {
+    //        isBrimstoneCharge = false;
+    //    }
+    //}
     private void ShootingTear()
     {
         if (isShoot == true)
