@@ -790,8 +790,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8261341326364178252}
+  - component: {fileID: 7518056328355707669}
   m_Layer: 0
-  m_Name: TearPool (9)
+  m_Name: SpawnEffectPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,3 +813,17 @@ Transform:
   m_Father: {fileID: 2461219587112762858}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7518056328355707669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952059101857688780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f242fc765ac12754d973f46ef68b3ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origianlPrefab: {fileID: 4811353040393568929, guid: 542722de0e86b0441875fc0035668279, type: 3}
+  poolSize: 16

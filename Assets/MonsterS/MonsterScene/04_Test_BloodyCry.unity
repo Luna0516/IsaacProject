@@ -424,7 +424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5158294031196552352, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: distance
-      value: 2.88
+      value: 4.78
       objectReference: {fileID: 0}
     - target: {fileID: 5158294031196552353, guid: 6642a72655b9eea42920484e95528b01, type: 3}
       propertyPath: m_UsedByEffector

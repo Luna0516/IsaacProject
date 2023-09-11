@@ -25,15 +25,15 @@ public class Rava : EnemyBase
     {
         UpdateCooltimer += wewantnoNull;
         rig = GetComponentInParent<Rigidbody2D>();
-        spawneffect = transform.GetChild(2).gameObject;
         animator = GetComponentInChildren<Animator>();
         Ravanian = transform.GetChild(0).gameObject;
         sprite = Ravanian.GetComponent<SpriteRenderer>();
         transform.position = transform.position;
         jumpingTerm = Random.Range(1f, 2f);
     }
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         animator.SetFloat("speed", jumpingTerm);
         targetPosition = Vector2.zero;
         cooltimeStart(2, jumpingTerm);

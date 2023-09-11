@@ -140,7 +140,7 @@ public class shit : EnemyBase
     {
         if (!solorActive)
         {
-            GameObject shitiything = Factory.Inst.GetObject(PoolObjectType.EnemyShit, transform.position);
+            GameObject shitiything = Factory.Inst.GetObject(PoolObjectType.EffectShit, transform.position);
             Shitblood bloodobj = shitiything.GetComponent<Shitblood>();
             IsDead += bloodobj.EnamvleChoosAction;
             IsDead?.Invoke(false);
@@ -189,7 +189,7 @@ public class shit : EnemyBase
         {
             float X = Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
             float Y = Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
-            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyShit, new Vector2(X, Y));
+            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EffectShit, new Vector2(X, Y));
             Shitblood bloodobj = bloodshit.GetComponent<Shitblood>();
             IsDead += bloodobj.EnamvleChoosAction;
             IsDead?.Invoke(true);

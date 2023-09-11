@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect : MonoBehaviour
+public class Effect : PooledObject
 {
-    private void OnEnable()
+    public void SpawnEffect_Done()
     {
-        Destroy(this.gameObject,1.0f);
+        this.gameObject.SetActive(false);
     }
 }

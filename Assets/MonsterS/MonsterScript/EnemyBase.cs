@@ -65,11 +65,6 @@ public class EnemyBase : PooledObject
     protected float damage;
 
     /// <summary>
-    /// 스폰 이펙트
-    /// </summary>
-    protected GameObject spawneffect;
-
-    /// <summary>
     /// 리지디 바디
     /// </summary>
     protected Rigidbody2D rig;
@@ -152,12 +147,13 @@ public class EnemyBase : PooledObject
     protected bool tooclosetoFight = false;
 
 
+    int countEnable = 0;
+
     //에너미 베이스 Awake : 리지디 바디, 게임매니저 , 플레이어 , 타깃 위치 , 스폰 이펙트를 찾음
     protected virtual void Awake()
     {
         UpdateCooltimer += wewantnoNull;
         rig = GetComponent<Rigidbody2D>();
-        spawneffect = transform.GetChild(2).gameObject;
     }
 
     protected virtual void Start()
@@ -169,7 +165,11 @@ public class EnemyBase : PooledObject
     protected virtual void OnEnable()
     {
         HPInitial();
-        spawneffect.SetActive(true);
+        if(countEnable >0)
+        {
+        factory.GetObject(PoolObjectType.SpawnEffectPool, this.transform.position);
+        }
+        countEnable++;
     }
 
     //쿨타임 델리게이트, 적을 향한 방향 계산하는 update
@@ -253,7 +253,7 @@ public class EnemyBase : PooledObject
             float X = UnityEngine.Random.Range(transform.position.x - 0.5f, transform.position.x + 0.5f);//피의 위치 조절용 X축
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
-            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EnemyBlood, bloodpos);
+            GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EffectBlood, bloodpos);
             //GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
         }
     }

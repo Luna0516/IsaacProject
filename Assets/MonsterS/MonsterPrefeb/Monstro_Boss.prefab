@@ -63,7 +63,6 @@ Transform:
   m_Children:
   - {fileID: 8842577938082247081}
   - {fileID: 3704818064544275904}
-  - {fileID: 178735193750491251}
   - {fileID: 8460685065382733358}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,9 +80,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterDamage: 1
+  factory: {fileID: 0}
+  distance: 1
   speed: 1
   NuckBackPower: 5
   MaxHP: 250
+  hiittenEfeect: 0.1
+  timecounter: 0
+  cooltimer1: 0
+  cooltimer2: 0
+  cooltimer3: 0
+  jumpcount: 0
   bulletPrefab: {fileID: 5967919590582941009, guid: 26ea565c4d121f2449beab9ec293c31f, type: 3}
   turret: {fileID: 3704818064544275904}
 --- !u!50 &8842577937410060270
@@ -230,72 +237,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000035962503, y: -0.01675308}
   m_Size: {x: 1.7491326, y: 1.5624778}
   m_Direction: 1
---- !u!1001 &4665626611649630929
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8842577937410060268}
-    m_Modifications:
-    - target: {fileID: 4811353040393568929, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_Name
-      value: SpawnEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568929, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_Layer
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 542722de0e86b0441875fc0035668279, type: 3}
---- !u!4 &178735193750491251 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-  m_PrefabInstance: {fileID: 4665626611649630929}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5283942442833983805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,7 +246,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4340961630342717203, guid: 9490e0ffbb646e64a89c92a88d5c2436, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4340961630342717203, guid: 9490e0ffbb646e64a89c92a88d5c2436, type: 3}
       propertyPath: m_LocalPosition.x

@@ -3,9 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSpChilde : MonsterSpawner
+public class MonsterSpChilde : MonoBehaviour
 {
-    public AllMonsterSpawners allMonsterSpawners = new AllMonsterSpawners();
+
+    public Action SapwnActive;
+
+    public MonsterSpawner.AllMonsterSpawners allMonsterSpawners = new MonsterSpawner.AllMonsterSpawners();
+
+    public bool spawnactive;
+    bool SpawnActiveate
+    {
+        get
+        {
+            return spawnactive;
+        }
+        set
+        {
+            if(spawnactive != value)
+            {
+                if(spawnactive)
+                {
+                spawnactive = value;
+                SapwnActive?.Invoke();
+
+                }
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        SapwnActive = Spawn;
+        SpawnActiveate = false;
+    }
+    void Spawn()
+    {
+        for(int i = 0; i < allMonsterSpawners.spawnCount; i++)
+        {
+            Vector2 spawnpoint = new Vector2(this.transform.position.x + UnityEngine.Random.Range(allMonsterSpawners.spawnArea.x, -allMonsterSpawners.spawnArea.x), this.transform.position.y + UnityEngine.Random.Range(allMonsterSpawners.spawnArea.y, -allMonsterSpawners.spawnArea.y));
+            Factory.Inst.GetObject(allMonsterSpawners.monsterList, spawnpoint);
+        }
+    }
+    private void Update()
+    {
+        if(spawnactive)
+        {
+            SpawnActiveate = true;
+            SpawnActiveate = false;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

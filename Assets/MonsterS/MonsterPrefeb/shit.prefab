@@ -97,7 +97,6 @@ Transform:
   m_Children:
   - {fileID: 6587678323746679248}
   - {fileID: 6587678322709447289}
-  - {fileID: 1849148285167720722}
   - {fileID: 4634306848232896574}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,21 +114,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterDamage: 1
+  factory: {fileID: 0}
+  distance: 1
   speed: 5
   NuckBackPower: 1
   MaxHP: 5
   hiittenEfeect: 0.1
+  timecounter: 0
   cooltimer1: 0
   cooltimer2: 0
   cooltimer3: 0
-  damagetimer: 0
-  coolActive1: 0
-  coolActive2: 0
-  coolActive3: 0
-  damageActive: 0
   power: 5
   coolTime: 5
   flyer: {fileID: 2813975671658389336, guid: 82b7673510b17b047a6a76a874272f54, type: 3}
+  attackmode: 1
+  att: 0
 --- !u!212 &6587678324038758107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -240,68 +239,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!1001 &6587678323786537904
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6587678324038758106}
-    m_Modifications:
-    - target: {fileID: 4811353040393568929, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_Name
-      value: SpawnEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 542722de0e86b0441875fc0035668279, type: 3}
---- !u!4 &1849148285167720722 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4811353040393568930, guid: 542722de0e86b0441875fc0035668279, type: 3}
-  m_PrefabInstance: {fileID: 6587678323786537904}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8966222776280639277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,7 +248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4340961630342717203, guid: 9490e0ffbb646e64a89c92a88d5c2436, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4340961630342717203, guid: 9490e0ffbb646e64a89c92a88d5c2436, type: 3}
       propertyPath: m_LocalScale.x

@@ -12,9 +12,9 @@ public enum PoolObjectType
     GuidedTear,
     TearExplosion,
     EnemyBullet,
-    EnemyBlood,
+    EffectBlood,
     EnemyMeat,
-    EnemyShit,
+    EffectShit,
 
     EnemyBloodMan,
     EnemyRava,
@@ -23,7 +23,9 @@ public enum PoolObjectType
     EnemyMulligun,
     EnemyFly,
     EnemyShiter,
-    EnnemyBullet
+    EnnemyBullet,
+
+    SpawnEffectPool
 }
 
 public class Factory : Singleton<Factory>
@@ -45,6 +47,8 @@ public class Factory : Singleton<Factory>
     HostPool hostPool;
     EnemyFlyer enemyFly;
     EnemyBulletPool enemyBulletPool;
+
+    SpawnEffectPool spawnEffectPool;
 
     protected override void OnInitialize()
     {
@@ -68,6 +72,7 @@ public class Factory : Singleton<Factory>
         enemyBulletPool = GetComponentInChildren<EnemyBulletPool>();
         monstroPool = GetComponentInChildren<MonstroPool>();
 
+        spawnEffectPool = GetComponentInChildren<SpawnEffectPool>();
 
         tearPool?.Initialize();
         tearExplosionPool?.Initialize();
@@ -86,6 +91,8 @@ public class Factory : Singleton<Factory>
         hostPool?.Initialize();
         enemyFly?.Initialize();
         enemyBulletPool?.Initialize();
+
+        spawnEffectPool?.Initialize();
     }
 
     /// <summary>
@@ -112,13 +119,13 @@ public class Factory : Singleton<Factory>
                 break;
 
 
-            case PoolObjectType.EnemyBlood:
+            case PoolObjectType.EffectBlood:
                 result = bloodPool?.GetObject(spawn)?.gameObject;
                 break;
             case PoolObjectType.EnemyMeat:
                 result = meatPool?.GetObject(spawn)?.gameObject;
                 break;
-            case PoolObjectType.EnemyShit:
+            case PoolObjectType.EffectShit:
                 result = shitPool?.GetObject()?.gameObject;
                 break;
             case PoolObjectType.PenetrationTear:
@@ -145,6 +152,9 @@ public class Factory : Singleton<Factory>
                 result = enemyBulletPool?.GetObject(spawn)?.gameObject;
                 break;
 
+            case PoolObjectType.SpawnEffectPool:
+                result = spawnEffectPool?.GetObject(spawn)?.gameObject;
+                break;
 
 
             default:

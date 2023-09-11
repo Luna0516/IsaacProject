@@ -24,8 +24,9 @@ public class Fly : EnemyBase
     float X;
     float Y;
     Action Invic;
-    private void Start()
-    {
+    protected override void Start()
+    { 
+        base.Start();
         coll = GetComponent<Collider2D>();
         rneder = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
