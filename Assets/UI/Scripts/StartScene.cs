@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartScene : MonoBehaviour
 {
@@ -40,41 +41,116 @@ public class StartScene : MonoBehaviour
         {
             if (sceneNum != value)
             {
-                currentScene = sceneNum;
+                prevScene = sceneNum;
 
-                if(value == 4)
+                if(value == 4 && ArrowNum == 0)
                 {
                     Debug.Log("GameLoadScene Gogo!!");
                 }
 
                 sceneNum = Math.Clamp(value, 0, 3);
 
-                StartCoroutine(ChangeBackground(currentScene, sceneNum));
+                StartCoroutine(ChangeBackground(prevScene, sceneNum));
             }
         }
     }
 
     /// <summary>
-    /// 현재 배경화면 번호 (저장용)
+    /// 이전 배경화면 번호 (저장용)
     /// </summary>
-    int currentScene = 0;
+    int prevScene = 0;
+
+    /// <summary>
+    /// 파일 선택 번호
+    /// </summary>
+    int fileSelectNum = 0;
+    /// <summary>
+    /// 파일 선택 번호 프로퍼티
+    /// </summary>
+    int FileSelectNum
+    {
+        get => fileSelectNum;
+        set
+        {
+            if (fileSelectNum != value)
+            {
+                prevfileSelectNum = fileSelectNum;
+
+                fileSelectNum = value;
+
+                if (fileSelectNum == -1)
+                {
+                    fileSelectNum = 1;
+                }
+                else if(fileSelectNum == 2)
+                {
+                    fileSelectNum = 0;
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// 이전 파일 선택 번호
+    /// </summary>
+    int prevfileSelectNum = 1;
+
+    int arrowNum = 0;
+    int ArrowNum
+    {
+        get => arrowNum;
+        set
+        {
+            if (arrowNum != value)
+            {
+                arrowNum = value;
+
+                if (arrowNum == -1)
+                {
+                    arrowNum = 2;
+                }
+                else if (arrowNum == 3)
+                {
+                    arrowNum = 0;
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// 배경화면 이동 속도
     /// </summary>
     float moveSpeed = 3.5f;
 
+    Vector2 pressButton;
+
     // x, y 움직임 고정 벡터
     Vector2 xMove = new Vector2(sceneWidth, 0);
     Vector2 yMove = new Vector2(0, sceneHeight);
 
-    RectTransform rectTR;
+    // arrow 고정 위치
+    Vector2 newRunArrowPos = new Vector2(-280, 240);
+    Vector2 statsArrowPos = new Vector2(-240, -160);
+    Vector2 optionsArrowPos = new Vector2(-215, -290);
+
+    GameObject[] fileSelects;
+
+    WaitForSeconds wait = new WaitForSeconds(0.3f);
+
+    RectTransform rect;
+    RectTransform arrowRect;
 
     UIInputActions inputActions;
 
     private void Awake()
     {
-        rectTR = GetComponent<RectTransform>();
+        fileSelects = new GameObject[2];
+        Transform child = transform.GetChild(1);
+        fileSelects[0] = child.GetChild(1).gameObject;
+        fileSelects[1] = child.GetChild(2).gameObject;
+
+        rect = GetComponent<RectTransform>();
+        child = transform.GetChild(3).GetChild(0);
+        arrowRect = child.GetComponent<RectTransform>();
 
         inputActions = new UIInputActions();
     }
@@ -95,7 +171,7 @@ public class StartScene : MonoBehaviour
         inputActions.Start.Disable();
     }
 
-    private void OnPress(InputAction.CallbackContext obj)
+    private void OnPress(InputAction.CallbackContext _)
     {
         if (!isMoveScene)
         {
@@ -103,7 +179,7 @@ public class StartScene : MonoBehaviour
         }
     }
 
-    private void OnBack(InputAction.CallbackContext obj)
+    private void OnBack(InputAction.CallbackContext _)
     {
         if (!isMoveScene)
         {
@@ -111,9 +187,47 @@ public class StartScene : MonoBehaviour
         }
     }
 
-    private void OnSelectArrow(InputAction.CallbackContext obj)
+    private void OnSelectArrow(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        pressButton = context.ReadValue<Vector2>();
+
+        if (SceneNum == 1)
+        {
+            FileSelectNum += (int)pressButton.x;
+            SelectFile();
+        }
+        else if(SceneNum == 3)
+        {
+            ArrowNum -= (int)pressButton.y;
+            MoveArrow();
+        }
+    }
+
+    private void SelectFile()
+    {
+        fileSelects[FileSelectNum].GetComponent<RectTransform>().anchoredPosition += Vector2.up * 60.0f;
+        fileSelects[FileSelectNum].GetComponent<Image>().color = Color.white;
+
+        fileSelects[prevfileSelectNum].GetComponent<RectTransform>().anchoredPosition += Vector2.down * 60.0f;
+        fileSelects[prevfileSelectNum].GetComponent<Image>().color = Color.black;
+    }
+
+    private void MoveArrow()
+    {
+        switch (ArrowNum)
+        {
+            case 0:
+                arrowRect.anchoredPosition = newRunArrowPos;
+                break;
+            case 1:
+                arrowRect.anchoredPosition = statsArrowPos;
+                break;
+            case 2:
+                arrowRect.anchoredPosition = optionsArrowPos;
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>
@@ -121,7 +235,7 @@ public class StartScene : MonoBehaviour
     /// </summary>
     /// <param name="start">이동 시작 지점</param>
     /// <param name="end">이동 종료 지점</param>
-    IEnumerator ChangeBackground(int start, int end)
+    private IEnumerator ChangeBackground(int start, int end)
     {
         if (!isMoveScene)
         {
@@ -132,72 +246,72 @@ public class StartScene : MonoBehaviour
             switch (end)
             {
                 case 0:
-                    while ((rectTR.anchoredPosition.y - (sceneHeight * end)) >= 0.001f)
+                    while ((rect.anchoredPosition.y - (sceneHeight * end)) >= 0.001f)
                     {
-                        rectTR.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
+                        rect.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
                         yield return null;
                     }
 
-                    rectTR.anchoredPosition = yMove * end;
+                    rect.anchoredPosition = yMove * end;
                     break;
 
                 case 1:
                     if (moveDir > 0)
                     {
-                        while (((sceneHeight * end) - rectTR.anchoredPosition.y) >= 0.001f)
+                        while (((sceneHeight * end) - rect.anchoredPosition.y) >= 0.001f)
                         {
-                            rectTR.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
+                            rect.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
                             yield return null;
                         }
                     }
                     else
                     {
-                        while ((rectTR.anchoredPosition.y - (sceneHeight * end)) >= 0.001f)
+                        while ((rect.anchoredPosition.y - (sceneHeight * end)) >= 0.001f)
                         {
-                            rectTR.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
+                            rect.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
                             yield return null;
                         }
                     }
 
-                    rectTR.anchoredPosition = yMove * end;
+                    rect.anchoredPosition = yMove * end;
                     break;
 
                 case 2:
                     if (moveDir > 0)
                     {
-                        while (((sceneHeight * end) - rectTR.anchoredPosition.y) >= 0.001f)
+                        while (((sceneHeight * end) - rect.anchoredPosition.y) >= 0.001f)
                         {
-                            rectTR.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
+                            rect.anchoredPosition += Time.deltaTime * moveDir * yMove * moveSpeed;
                             yield return null;
                         }
                     }
                     else
                     {
-                        while (rectTR.anchoredPosition.x <= -0.001f)
+                        while (rect.anchoredPosition.x <= -0.001f)
                         {
-                            rectTR.anchoredPosition -= Time.deltaTime * moveDir * xMove * moveSpeed;
+                            rect.anchoredPosition -= Time.deltaTime * moveDir * xMove * moveSpeed;
                             yield return null;
                         }
                     }
 
-                    rectTR.anchoredPosition = yMove * end;
+                    rect.anchoredPosition = yMove * end;
                     break;
 
                 case 3:
-                    while ((sceneWidth + rectTR.anchoredPosition.x) >= 0.001f)
+                    while ((sceneWidth + rect.anchoredPosition.x) >= 0.001f)
                     {
-                        rectTR.anchoredPosition -= Time.deltaTime * moveDir * xMove * moveSpeed;
+                        rect.anchoredPosition -= Time.deltaTime * moveDir * xMove * moveSpeed;
                         yield return null;
                     }
 
-                    rectTR.anchoredPosition = -xMove + yMove * 2;
+                    rect.anchoredPosition = -xMove + yMove * 2;
                     break;
                 default:
                     break;
             }
 
 
-            yield return new WaitForSeconds(0.3f);
+            yield return wait;
 
             isMoveScene = false;
         }
