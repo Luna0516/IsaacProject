@@ -645,7 +645,6 @@ public class Player : MonoBehaviour
             if (isGetBrimstone)
             {
                 headAni.SetBool("BrimstoneCharge", true);
-                headAni.SetBool("BrimstoneShoot", false);
             }
             if (isGetSadOnion)
             {
@@ -661,7 +660,7 @@ public class Player : MonoBehaviour
             }
             if (isGetBrimstone)
             {
-                StartCoroutine(ShotBrimstone());
+                headAni.SetBool("BrimstoneCharge", false);
             }
             if (isGetSadOnion)
             {
@@ -674,12 +673,6 @@ public class Player : MonoBehaviour
             headDir.x = 0;
             headDir.Normalize();
         }
-    }
-    IEnumerator ShotBrimstone()
-    {
-        headAni.SetBool("BrimstoneCharge", false);
-        yield return new WaitForSeconds(1);
-        headAni.SetBool("BrimstoneShoot", true);
     }
     
     IEnumerator TearDelay()
