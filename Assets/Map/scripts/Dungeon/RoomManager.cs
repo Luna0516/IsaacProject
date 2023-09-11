@@ -1,8 +1,7 @@
-using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,18 +13,36 @@ public class RoomInfo
 
     public int Y;
 }
-public class RoomController : MonoBehaviour
+public class RoomManager : Singleton<RoomManager>
 {
     /// <summary>
-    /// 정적 변수 instance
+    /// 현재 플레이어가 위치한 방
     /// </summary>
-    public static RoomController instance;
+    Room currentRoom;
+    /// <summary>
+    /// 현재 플레이어가 위치한 방 설정용 프로퍼티
+    /// </summary>
+    public Room CurrentRoom
+    {
+        get => currentRoom;
+        set
+        {
+            if (currentRoom != value)
+            {
+                currentRoom = value;
+                onChangeRoom?.Invoke(currentRoom);
+            }
+        }
+    }
 
-    string currentWorldName = "Basement";
+    /// <summary>
+    /// 플레이어의 방의 위치가 바뀌면 사용할 델리게이트
+    /// </summary>
+    public Action<Room> onChangeRoom;
+
+    const string currentWorldName = "Basement";
 
     RoomInfo currentLoadRoomData;
-
-    Room currRoom;
 
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
 
@@ -35,22 +52,6 @@ public class RoomController : MonoBehaviour
     bool spawnedBossRoom = false;
     bool updatedRooms = false;
 
-    void Awake()
-    {
-        instance = this; //instance에 이 개체의 RoomController 대입
-    }
-
-    void Start()
-    {
-        /*Loadroom("Start", 0, 0);
-        Loadroom("Empty", 1, 0);
-        Loadroom("Empty", -1, 0);
-        Loadroom("Empty", 0, 1);
-        Loadroom("Empty", 0, -1);*/
-
-    }
-
-    //
     void Update()
     {
         UpdateRoomQueue();
@@ -93,18 +94,18 @@ public class RoomController : MonoBehaviour
         if (loadRoomQueue.Count == 0)
         {
             Room bossRoom = loadedRooms[loadedRooms.Count - 1];
-            Room tempRoom = new Room(bossRoom.X, bossRoom.Y);
+            Room tempRoom = new Room(bossRoom.MyPos);
             Destroy(bossRoom.gameObject);
-            var roomToRemove = loadedRooms.Single(r => r.X == tempRoom.X && r.Y == tempRoom.Y);
+            var roomToRemove = loadedRooms.Single(r => r.MyPos.x == tempRoom.MyPos.x && r.MyPos.y == tempRoom.MyPos.y);
             loadedRooms.Remove(roomToRemove);
-            LoadRoom("End", tempRoom.X, tempRoom.Y);
+            LoadRoom("End", tempRoom.MyPos.x, tempRoom.MyPos.y);
         }
 
     }
 
     public void LoadRoom(string name, int x, int y)
     {
-        if (DoesRoomExist(x, y))
+        if (DoesRoomExist(new Vector2Int(x, y)))
         {
             return;
         }
@@ -129,24 +130,18 @@ public class RoomController : MonoBehaviour
 
     public void RegisterRoom(Room room)
     {
-        if (!DoesRoomExist(currentLoadRoomData.X, currentLoadRoomData.Y))
+        if (!DoesRoomExist(new Vector2Int(currentLoadRoomData.X, currentLoadRoomData.Y)))
         {
-            room.transform.position = new Vector3
-            (
-                currentLoadRoomData.X * room.Width,
-                currentLoadRoomData.Y * room.Height,
-                0
-                );
-            room.X = currentLoadRoomData.X;
-            room.Y = currentLoadRoomData.Y;
-            room.name = currentWorldName + "-" + currentLoadRoomData.name + "-" + room.X + "," + room.Y;
+            room.transform.position = new Vector3(currentLoadRoomData.X * room.width, currentLoadRoomData.Y * room.height, 0);
+            room.MyPos = new Vector2Int(currentLoadRoomData.X, currentLoadRoomData.Y);
+            room.name = currentWorldName + "-" + currentLoadRoomData.name + "-" + room.MyPos.x + "," + room.MyPos.y;
             room.transform.parent = transform;
 
             isLoadingRoom = false;
 
             if (loadedRooms.Count == 0)
             {
-                CameraController.instance.currRoom = room;
+                CurrentRoom = room;
             }
 
 
@@ -162,16 +157,20 @@ public class RoomController : MonoBehaviour
 
     }
 
-    public bool DoesRoomExist(int x, int y)
+    public bool DoesRoomExist(Vector2Int searchRoom)
     {
-        return loadedRooms.Find(item => item.X == x && item.Y == y) != null;
+        bool result = loadedRooms.Find(room => room.MyPos.x == searchRoom.x && room.MyPos.y == searchRoom.y);
 
+        return result;
     }
 
-    public Room FindRoom(int x, int y)
+    public Room FindRoom(Vector2Int findRoom)
     {
-        return loadedRooms.Find(item => item.X == x && item.Y == y);
+        Room result = null;
 
+        result = loadedRooms.Find(room => room.MyPos.x == findRoom.x && room.MyPos.y == findRoom.y);
+
+        return result;
     }
 
     public string GetRandomRoomName()
@@ -182,47 +181,7 @@ public class RoomController : MonoBehaviour
                 "Basic"
             };
 
-        return possibleRooms[Random.Range(0, possibleRooms.Length)];
+        return possibleRooms[UnityEngine.Random.Range(0, possibleRooms.Length)];
     }
-
-    public void OnPlayerEnterRoom(Room room)
-    {
-        CameraController.instance.currRoom = room;
-        currRoom = room;
-
-        //UpdateRooms();
-    }
-
-
-   /* private void UpdateRooms()
-    {
-        foreach (Room room in loadedRooms)
-        {
-            if(currRoom != room)
-            {
-                EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
-                if (enemies != null)
-                {
-                    foreach(EnemyController  enemy in enemies)
-                    {
-                        enemy.notInRoom = true;
-                        Debug.Log("Not in room");
-                    }
-                }
-            }
-            else 
-            {
-                EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
-                if (enemies != null)
-                {
-                    foreach (EnemyController enemy in enemies)
-                    {
-                        enemy.notInRoom = false;
-                        Debug.Log("In room");
-                    }
-                }
-            }
-        }
-    }*/
 }
 

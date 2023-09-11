@@ -6,87 +6,53 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    /// <summary>
-    /// 방의 가로값
-    /// </summary>
-    public int Width;
+    Vector2Int myPos = Vector2Int.zero;
 
-    /// <summary>
-    /// 방의 세로값
-    /// </summary>
-    public int Height;
+    public Vector2Int MyPos
+    {
+        get => myPos;
+        set
+        {
+            if (myPos == Vector2Int.zero)
+            {
+                myPos = value;
+            }
+        }
+    }
 
+    public Room(Vector2Int vec)
+    {
+        MyPos = vec;
+    }
 
-    /// <summary>
-    /// X
-    /// </summary>
-    public int X;
+    public int width;
+    public int height;
 
-    /// <summary>
-    /// Y
-    /// </summary>
-    public int Y;
-
-
-    /// <summary>
-    /// 방 문의 참값
-    /// </summary>
     private bool updatedDoors = false;
 
-    /// <summary>
-    /// 생성자
-    /// </summary>
-    /// <param name="x"> X 변수에 int x 대입</param>
-    /// <param name="y"> Y 변수에 int y 대입</param>
-    public Room(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-
-    /// <summary>
-    /// 왼쪽 문 Door 클래스
-    /// </summary>
     public Door leftDoor;
 
-    /// <summary>
-    /// 오른쪽 문 Door 클래스
-    /// </summary>
     public Door rightDoor;
 
-    /// <summary>
-    /// 윗쪽 문 Door 클래스
-    /// </summary>
     public Door topDoor;
 
-    /// <summary>
-    /// 아랫쪽 문 Door 클래스
-    /// </summary>
     public Door bottomDoor;
 
-    /// <summary>
-    /// Door 클래스 List doors
-    /// </summary>
     public List<Door>doors = new List<Door>();
-
-    private void Awake()
-    {
-        
-    }
 
     void Start()
     {
-        if (RoomController.instance == null)//룸 컨트롤러가 없으면 
+        if (RoomManager.Inst == null)
         {
             Debug.Log("You preesed play in the  wrong scene!");
-            return; //if문 정지
+            return;
         }
 
-        Door[] ds = GetComponentsInChildren<Door>();//자식 개체의 Door 컴포넌트들을 모아서 ds 배열에 저장
-        foreach(Door d in ds) //ds만큼 Door 클래스의 d를 반복
+        Door[] ds = GetComponentsInChildren<Door>();
+        foreach(Door d in ds)
         {
-            doors.Add(d);//리스트에 d 입력
-            switch (d.doorType)//d 
+            doors.Add(d);
+            switch (d.doorType)
             {
                 case Door.DoorType.right:
                     rightDoor = d;
@@ -101,9 +67,9 @@ public class Room : MonoBehaviour
                     bottomDoor = d;
                     break;
             }
-        } 
+        }
 
-        RoomController.instance.RegisterRoom(this);
+        RoomManager.Inst.RegisterRoom(this);
     }
 
     void Update()
@@ -141,59 +107,64 @@ public class Room : MonoBehaviour
         } 
     }
 
-    public Room GetRight()
+    Room GetRight()
     {
-        if (RoomController.instance.DoesRoomExist(X + 1, Y))
-        {
-            return RoomController.instance.FindRoom(X + 1, Y);
-        }
-        return null;
+        Room result = null;
 
+        Vector2Int rightRoomPos = MyPos + Vector2Int.right;
+
+        if (RoomManager.Inst.DoesRoomExist(rightRoomPos))
+        {
+            result = RoomManager.Inst.FindRoom(rightRoomPos);
+        }
+
+        return result;
     }
 
-    public Room GetLeft()
+    Room GetLeft()
     {
-        if (RoomController.instance.DoesRoomExist(X - 1, Y))
+        Room result = null;
+
+        Vector2Int leftRoomPos = MyPos + Vector2Int.left;
+
+        if (RoomManager.Inst.DoesRoomExist(leftRoomPos))
         {
-            return RoomController.instance.FindRoom(X - 1, Y);
+            result = RoomManager.Inst.FindRoom(leftRoomPos);
         }
-        return null;
+
+        return result;
     }
 
-    public Room GetTop()
+    Room GetTop()
     {
-        if (RoomController.instance.DoesRoomExist(X, Y + 1))
+        Room result = null;
+
+        Vector2Int upRoomPos = MyPos + Vector2Int.up;
+
+        if (RoomManager.Inst.DoesRoomExist(upRoomPos))
         {
-            return RoomController.instance.FindRoom(X, Y + 1);
+            result = RoomManager.Inst.FindRoom(upRoomPos);
         }
-        return null;
+
+        return result;
     }
 
-    public Room GetBottom()
+    Room GetBottom()
     {
-        if (RoomController.instance.DoesRoomExist(X, Y - 1))
-        {
-            return RoomController.instance.FindRoom(X, Y - 1);
-        }
-        return null;
-    }
+        Room result = null;
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector3(Width, Height, 0));
+        Vector2Int downRoomPos = MyPos + Vector2Int.down;
+
+        if (RoomManager.Inst.DoesRoomExist(downRoomPos))
+        {
+            result = RoomManager.Inst.FindRoom(downRoomPos);
+        }
+
+        return result;
     }
 
     public Vector3 GetRoomCentre()
     {
-        return new Vector3( X * Width, Y * Height);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if( other.tag == "Player")
-        {
-            RoomController.instance.OnPlayerEnterRoom(this);
-        }
+        return new Vector3( myPos.x * width, myPos.y * height);
     }
 }
