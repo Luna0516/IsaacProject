@@ -515,6 +515,10 @@ public class EnemyBase : PooledObject
         cooltimer2 = 0f;
         coolActive3 = false;
         cooltimer3 = 0f;
+        damageActive = false;
+        damagetimer = 0f;
+        solorActive = false;
+        solotimer = 0f;
         UpdateCooltimer -= timecouting;
         timecounter = 0;
     }

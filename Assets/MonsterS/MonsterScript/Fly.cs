@@ -24,26 +24,30 @@ public class Fly : EnemyBase
     float X;
     float Y;
     Action Invic;
-     protected override void Start()
-    { 
-        base.Start();
+
+    protected override void Awake()
+    {
+        base.Awake();
         coll = GetComponent<Collider2D>();
         rneder = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        Invic = wewantnoNull;
     }
     protected override void OnEnable()
     {
-        Invic += invancivalcheck;
+        invincival = false;
         base.OnEnable();
         speed = UnityEngine.Random.Range(0.5f, 2f);
-        Invic += wewantnoNull;
         cooltimeStart(1, invincivalTime);
+        Invic += invancivalcheck;
         Rnad = Vector2.zero;
     }
     protected override void OnDisable()
     {
         base.onDisable();
         Invic -= invancivalcheck;
+        Invic -= Dieying;
+        allcoolStop();
     }
     void noisyMove()
     {

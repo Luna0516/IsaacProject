@@ -88,6 +88,7 @@ public class shit : EnemyBase
         base.OnDisable();
         Attackmode = false;
         att = true;
+        allcoolStop();
     }
     protected override void Update()
     {
@@ -142,7 +143,7 @@ public class shit : EnemyBase
     {
         if (!solorActive)
         {
-            GameObject shitiything = Factory.Inst.GetObject(PoolObjectType.EffectShit, transform.position);
+            GameObject shitiything = factory.GetObject(PoolObjectType.EffectShit, transform.position);
             Shitblood bloodobj = shitiything.GetComponent<Shitblood>();
             IsDead += bloodobj.EnamvleChoosAction;
             IsDead?.Invoke(false);
