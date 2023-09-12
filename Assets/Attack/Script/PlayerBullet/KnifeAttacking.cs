@@ -38,11 +38,9 @@ public class KnifeAttacking : AttackBase
             transform.position = Vector3.MoveTowards(transform.position, targetEnd, speed * Time.deltaTime);
         }
         else
-        {
-           
+        {           
             isReturning = true;
-            targetPos = startPos;
-            
+            targetPos = startPos;            
         }
     }
 
