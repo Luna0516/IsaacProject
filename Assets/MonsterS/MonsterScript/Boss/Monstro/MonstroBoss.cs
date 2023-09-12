@@ -265,7 +265,7 @@ public class MonstroBoss : EnemyBase
             float angle = i * 360f / 10;  // 각도 계산
             Quaternion rotation = Quaternion.Euler(0f, 0f, angle);  // 회전값 계산
             Vector3 spawnPosition = transform.position;  // 생성 위치 계산
-            GameObject bullet = Instantiate(bulletPrefab, spawnPosition, rotation);  // 총알 생성
+            GameObject bullet = factory.GetObject(PoolObjectType.EnemyBullet, spawnPosition, rotation.z);  // 총알 생성
         }
     }
     void ShatteredBullet(bool attackclear)
@@ -283,7 +283,7 @@ public class MonstroBoss : EnemyBase
                 Quaternion shotgack = Quaternion.Euler(0, 0, Shattering);
                 float randx = Random.Range(-0.5f, 0.6f);
                 float randy = Random.Range(-0.5f, 0.6f);
-                GameObject bullet = Instantiate(bulletPrefab, new Vector3(turret.transform.position.x + randx, turret.transform.position.y + randy, 0), turret.rotation * shotgack);
+                GameObject bullet = factory.GetObject(PoolObjectType.EnemyBullet, new Vector3(turret.transform.position.x + randx, turret.transform.position.y + randy, 0), turret.rotation.z * shotgack.z);
             }
             attackgo = false;
         }

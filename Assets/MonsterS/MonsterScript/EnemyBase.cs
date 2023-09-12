@@ -149,27 +149,38 @@ public class EnemyBase : PooledObject
 
     int countEnable = 0;
 
+    protected float draglinear = 15f;
+
     //에너미 베이스 Awake : 리지디 바디, 게임매니저 , 플레이어 , 타깃 위치 , 스폰 이펙트를 찾음
     protected virtual void Awake()
     {
         UpdateCooltimer += wewantnoNull;
         rig = GetComponent<Rigidbody2D>();
-    }
-
-    protected virtual void Start()
-    {
-        EnemyInithialize();
+        draglinear = rig.drag;
     }
 
     // 플레이어 확인 / HP 확인 / 스폰 이펙트 관련
     protected virtual void OnEnable()
     {
         HPInitial();
-        if(countEnable >0)
+        if(countEnable>0)
         {
-        factory.GetObject(PoolObjectType.SpawnEffectPool, this.transform.position);
+            EnemyInithialize();
         }
         countEnable++;
+    }
+    protected virtual void Start()
+    {
+        if (player == null)
+        {
+            player = Manager.Player; // 플레이어를 찾아서 할당
+            target = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
+        }
+        HeadToCal();
     }
 
     //쿨타임 델리게이트, 적을 향한 방향 계산하는 update
@@ -273,9 +284,10 @@ public class EnemyBase : PooledObject
         Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
     }
 
-    protected void NuckBack(Vector2 HittenHeadTo)
+    protected virtual void NuckBack(Vector2 HittenHeadTo)
     {
         rig.isKinematic = false;
+        rig.drag = draglinear;
         rig.AddForce(HittenHeadTo * NuckBackPower, ForceMode2D.Impulse);
     }
 
@@ -430,19 +442,16 @@ public class EnemyBase : PooledObject
                 coolActive1 = true;
                 UpdateCooltimer += coolTimerSys1;
                 cooltimer1 = time;
-                Debug.Log("1번 쿨타임 시작");
                 break;
             case 2:
                 coolActive2 = true;
                 UpdateCooltimer += coolTimerSys2;
                 cooltimer2 = time;
-                Debug.Log("2번 쿨타임 시작");
                 break;
             case 3:
                 coolActive3 = true;
                 UpdateCooltimer += coolTimerSys3;
                 cooltimer3 = time;
-                Debug.Log("3번 쿨타임 시작");
                 break;
             case 4:
                 damageActive = true;
@@ -473,22 +482,18 @@ public class EnemyBase : PooledObject
             case 1:
                 coolActive1 = false;
                 cooltimer1 = 0f;
-                Debug.Log("1번 쿨타임 종료");
                 break;
             case 2:
                 coolActive2 = false;
                 cooltimer2 = 0f;
-                Debug.Log("2번 쿨타임 종료");
                 break;
             case 3:
                 coolActive3 = false;
                 cooltimer3 = 0f;
-                Debug.Log("3번 쿨타임 종료");
                 break;
             case 4:
                 damageActive = false;
                 damagetimer = 0f;
-                Debug.Log("데미지 쿨타임 종료");
                 break;
             default:
                 Debug.LogWarning("쿨타임 초기화 실패");
@@ -518,15 +523,6 @@ public class EnemyBase : PooledObject
     {
         Manager = GameManager.Inst;
         factory = Factory.Inst;
-        if (player == null)
-        {
-            player = Manager.Player; // 플레이어를 찾아서 할당
-            target = player.transform;
-        }
-        else
-        {
-            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
-        }
     }
     protected void HeadToCal()
     {

@@ -23,7 +23,7 @@ public class shit : EnemyBase
     public float coolTime = 5;
     public GameObject flyer;
     bool shitDead = false;
-    float draglinear = 15f;
+    
     static int flyCount = 0;
 
     System.Action watcher;
@@ -51,7 +51,6 @@ public class shit : EnemyBase
                 {
                     att = false;
                     Stopping();
-                    Debug.Log("쉬기");
                     coolTime = Random.Range(3, 5);
                     cooltimeStart(1, coolTime);
                     cooltimeStart(3, coolTime + 1f);
@@ -83,7 +82,12 @@ public class shit : EnemyBase
         base.OnEnable();
         Attackmode = true;
         Attackmode = false;
-        att = false;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Attackmode = false;
+        att = true;
     }
     protected override void Update()
     {
@@ -119,7 +123,6 @@ public class shit : EnemyBase
     /// </summary>
     void watchAttack()
     {
-        Debug.Log("1");
         if (!coolActive1)
         {
             Attackmode = true;
@@ -129,7 +132,6 @@ public class shit : EnemyBase
     void rest()
     {
         runningShit();
-        Debug.Log("2");
         if (!coolActive3)
         {
             Attackmode = false;
@@ -168,6 +170,10 @@ public class shit : EnemyBase
             flyCount = 5;
         }
     }
+    protected override void NuckBack(Vector2 HittenHeadTo)
+    {
+        base.NuckBack(HittenHeadTo);
+    }
 
     protected override void Die()
     {
@@ -177,7 +183,8 @@ public class shit : EnemyBase
         Vector2 pos = new Vector2(ranX, ranY);
         for (int i = 0; i < flyCount; i++)
         {
-            GameObject fly = factory.GetObject(PoolObjectType.EnemyFly, pos);
+            factory.GetObject(PoolObjectType.SpawnEffectPool, this.transform.position + (Vector3)pos);
+            factory.GetObject(PoolObjectType.EnemyFly, this.transform.position + (Vector3)pos);
         }
         allcoolStop();
         this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.

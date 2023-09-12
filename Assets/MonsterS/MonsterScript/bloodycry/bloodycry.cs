@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class bloodycry : EnemyBase
 {
     GameObject head;
@@ -24,10 +25,9 @@ public class bloodycry : EnemyBase
         headanimator = head.GetComponent<Animator>();
         bodyanimator = body.GetComponent<Animator>();
     }
-    protected override void Start()
+     protected override void Start()
     {
         base.Start();
-        HeadToCal();
         stateChanger += distanceChack;
     }
     protected override void Update()
@@ -116,10 +116,13 @@ public class bloodycry : EnemyBase
         headanimator.SetInteger("state", 2);
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.transform.position, plusdistance);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, distance);
     }
-
+#endif
 }

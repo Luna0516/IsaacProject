@@ -26,8 +26,8 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
 
     public void Initialize()
     {
-        if(pool == null)
-        { 
+        if (pool == null)
+        {
             pool = new T[poolSize];                 // 풀 전체 크기로 배열 할당
             readyQueue = new Queue<T>(poolSize);    // 레디큐 생성(capacity는 poolSize로 지정)
 
@@ -39,7 +39,7 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
         else
         {
             // 두번째 씬이 불려져서 이미 풀은 만들어져 있는 상황
-            foreach(T obj in pool)
+            foreach (T obj in pool)
             {
                 obj.gameObject.SetActive(false);    // 전부 비활성화
             }
@@ -57,11 +57,12 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
         {
             // 남아있으면
             T comp = readyQueue.Dequeue();      // 하나 꺼내고
-            if(spawnTransform != null)          // 미리 설정할 트랜스폼이 있으면 적용
+            if (spawnTransform != null)          // 미리 설정할 트랜스폼이 있으면 적용
             {
                 comp.transform.SetPositionAndRotation(
-                    spawnTransform.position, spawnTransform.rotation);                
+                    spawnTransform.position, spawnTransform.rotation);
                 comp.transform.localScale = spawnTransform.localScale;
+
             }
             else
             {
@@ -89,7 +90,7 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
 
         int newSize = poolSize * 2;     // 새로운 크기 구하기
         T[] newPool = new T[newSize];   // 새로운 크기만큼 새 배열 만들기
-        for(int i=0;i<poolSize;i++)     // 이전 배열에 있던 것을 새 배열에 복사
+        for (int i = 0; i < poolSize; i++)     // 이전 배열에 있던 것을 새 배열에 복사
         {
             newPool[i] = pool[i];
         }

@@ -205,6 +205,24 @@ public class Factory : Singleton<Factory>
 
         return obj;
     }
+    public GameObject GetObject(PoolObjectType type, Vector3 position, Vector3 scale, float angle = 0.0f)
+    {
+        GameObject obj = GetObject(type);
+        obj.transform.position = position;
+        obj.transform.localScale = scale;
+        obj.transform.Rotate(angle * Vector3.forward);
+
+        switch (type)
+        {
+            case PoolObjectType.Tear:
+                //
+                break;
+            default:
+                break;
+        }
+
+        return obj;
+    }
     public Sprite[] BloodSprite;
     public Sprite[] MeatSprite;
 }

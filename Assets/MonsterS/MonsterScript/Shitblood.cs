@@ -31,8 +31,11 @@ public class Shitblood : PooledObject
     /// </summary>
     public float speed=1f;
 
+    System.Action shitdis;
+    float timecounting=1;
     private void Awake()
     {
+        shitdis = nullF;
         //게임매니저에서 매니저 불러오기
         manager = Factory.Inst;
 
@@ -45,13 +48,23 @@ public class Shitblood : PooledObject
 
     private void OnEnable()
     {
+        timecounting = 1;
+
         //랜덤 인덱스 값에 0부터 매니저에서 불러온 BloodSprite의 길이값을 대입한다.
         randomindex = Random.Range(0, manager.BloodSprite.Length);
 
         //BloodSprite 배열에서 가져온 랜덤한 스프라이트를 스프라이트 렌더러의 스프라이트 이미지에 대입해서 이미지를 넣는다. 
         spriteRneder.sprite = manager.BloodSprite[randomindex];
     }
-
+    private void Update()
+    {
+        shitdis();
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        shitdis -= disa;
+    }
     /// <summary>
     /// 똥피의 패턴 선택기
     /// </summary>
@@ -64,28 +77,28 @@ public class Shitblood : PooledObject
         }
         else
         {
-            StartCoroutine(disapear());
+            shitdis += disa;
         }
     }
+
+    void nullF()
+    {
+
+    }
+
 
     /// <summary>
     /// 똥이 살아있을때 코루틴 행동패턴(생겨났다가 천천히 페이드 아웃되며 비활성화된다.)
     /// </summary>
     /// <returns></returns>
-    public IEnumerator disapear()
+    private void disa()
     {
-        float guage = 1;
-        while (true)
+        timecounting -= Time.deltaTime * speed;
+        clo.a = timecounting;
+        spriteRneder.color = clo;
+        if (timecounting < 0)
         {
-            yield return null;
-            guage -= Time.deltaTime * speed;
-            //float guage = Mathf.Lerp(0f, 1.1f, lifeTime / lifeCopy);
-            clo.a = guage;
-            spriteRneder.color = clo;
-            if (guage < 0)
-            {
-                this.gameObject.SetActive(false);
-            }
+            this.gameObject.SetActive(false);
         }
     }
 

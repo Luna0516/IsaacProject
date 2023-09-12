@@ -41,7 +41,9 @@ public class MonsterSpChilde : MonoBehaviour
         for(int i = 0; i < allMonsterSpawners.spawnCount; i++)
         {
             Vector2 spawnpoint = new Vector2(this.transform.position.x + UnityEngine.Random.Range(allMonsterSpawners.spawnArea.x, -allMonsterSpawners.spawnArea.x), this.transform.position.y + UnityEngine.Random.Range(allMonsterSpawners.spawnArea.y, -allMonsterSpawners.spawnArea.y));
+            Factory.Inst.GetObject(PoolObjectType.SpawnEffectPool, spawnpoint);
             Factory.Inst.GetObject(allMonsterSpawners.monsterList, spawnpoint);
+
         }
     }
     private void Update()

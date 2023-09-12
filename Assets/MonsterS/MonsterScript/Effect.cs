@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Effect : PooledObject
 {
-    public void SpawnEffect_Done()
+    private void OnEnable()
     {
-        this.gameObject.SetActive(false);
+     StartCoroutine(Gravity_Life(0.8f));
     }
+
+
 }

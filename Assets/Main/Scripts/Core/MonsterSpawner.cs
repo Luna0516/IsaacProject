@@ -56,7 +56,6 @@ public class MonsterSpawner : MonoBehaviour
 
 
     public bool SpawnNow = false;
-    public bool SpawnInitialize = false;
     private void Awake()
     {
         spawnercount = transform.childCount;
@@ -69,7 +68,6 @@ public class MonsterSpawner : MonoBehaviour
     private void Update()
     {
         spawnActive(SpawnNow);
-        SpawnInitialized(SpawnInitialize);
     }
 
 
@@ -78,6 +76,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         if (spawnCheck)
         {
+            SpawnInitialized();
             foreach (var objectspawn in mssp)
             {
                 objectspawn.SapwnActive.Invoke();
@@ -86,18 +85,15 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    void SpawnInitialized(bool Active)
+    void SpawnInitialized()
     {
-        if (Active)
+        int county = 0;
+        foreach (var objectspawn in spawnGameObject)
         {
-            int county = 0;
-            foreach (var objectspawn in spawnGameObject)
-            {
-                mssp[county].allMonsterSpawners.monsterList = allspawn[county].monsterList;
-                mssp[county].allMonsterSpawners.spawnCount = allspawn[county].spawnCount;
-                mssp[county].allMonsterSpawners.spawnArea = allspawn[county].spawnArea;
-                county++;
-            }
+            mssp[county].allMonsterSpawners.monsterList = allspawn[county].monsterList;
+            mssp[county].allMonsterSpawners.spawnCount = allspawn[county].spawnCount;
+            mssp[county].allMonsterSpawners.spawnArea = allspawn[county].spawnArea;
+            county++;
         }
     }
 

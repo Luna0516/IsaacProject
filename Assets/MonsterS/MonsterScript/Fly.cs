@@ -24,7 +24,7 @@ public class Fly : EnemyBase
     float X;
     float Y;
     Action Invic;
-    protected override void Start()
+     protected override void Start()
     { 
         base.Start();
         coll = GetComponent<Collider2D>();
@@ -59,6 +59,7 @@ public class Fly : EnemyBase
     protected override void Update()
     {
         base.Update();
+        HeadToCal();
         Invic();
         orderInGame(rneder);
         if (HeadTo.x > 0)
@@ -80,7 +81,6 @@ public class Fly : EnemyBase
             {
                 damage = collision.gameObject.GetComponent<AttackBase>().Damage;
                 Hitten();
-                NuckBack(-HeadTo);
             }
         }
     }

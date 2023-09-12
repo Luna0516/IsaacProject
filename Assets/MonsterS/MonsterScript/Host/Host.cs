@@ -6,11 +6,6 @@ using UnityEngine;
 public class Host : EnemyBase
 {
     /// <summary>
-    /// 터렛
-    /// </summary>
-    public GameObject turret;
-
-    /// <summary>
     /// 애니메이터
     /// </summary>
     Animator animator;
@@ -32,6 +27,9 @@ public class Host : EnemyBase
     /// </summary>
     bool invincivle = false;
 
+    float angle = 0.0f;
+    Vector3 hunt;
+
 
     Action<SpriteRenderer> UpdateCheckerSP;
     Action UpdateChecker;
@@ -41,16 +39,9 @@ public class Host : EnemyBase
     protected override void Awake()
     {
         base.Awake();
-        turret = transform.GetChild(0).gameObject;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animestate = Animator.StringToHash("Attack");
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        HeadToCal();
     }
 
     /// <summary>
@@ -138,6 +129,8 @@ public class Host : EnemyBase
         {
             invincivle = true;
             animator.SetInteger(animestate, 1);
+            hunt = Quaternion.LookRotation(Vector3.forward, HeadTo).eulerAngles;
+            angle = hunt.z;
             cooltimeStart(1, 0.8f);
             cooltimeStart(3, 1.4f);
             UpdateChecker += attackupdate;
@@ -159,19 +152,18 @@ public class Host : EnemyBase
         }
         if (!coolActive1)
         {
-            bulletshotting(invincivle);
+            bulletshotting(invincivle, angle);
         }
     }
     /// <summary>
     /// 총알 발사 함수
     /// </summary>
     /// <param name="shotcool">이곳에 invincivle 논리변수를 활용합니다.</param>
-    void bulletshotting(bool shotactive)
+    void bulletshotting(bool shotactive,float angle)
     {
         if (!solorActive && shotactive)
         {
-            turret.transform.rotation = Quaternion.LookRotation(Vector3.forward, HeadTo);
-            GameObject bullet = factory.GetObject(PoolObjectType.EnemyBullet, turret.transform.position, turret.transform.rotation.z);
+            factory.GetObject(PoolObjectType.EnemyBullet, this.transform.position, Vector3.one * 1.3f, angle);
             cooltimeStart(5, 0.2f);
         }
     }
@@ -184,6 +176,8 @@ public class Host : EnemyBase
         //맞았을때 스프라이트 렌더러가 붉은색으로 변합니다.
         damaged(spriteRenderer);
     }
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -191,4 +185,5 @@ public class Host : EnemyBase
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, distance);
     }
+#endif
 }
