@@ -11,7 +11,7 @@ public class StartScene : MonoBehaviour
     /// <summary>
     /// 다음에 로딩할 로드 씬의 이름
     /// </summary>
-    string nextLoadSceneName = "LoadScene";
+    //string nextLoadSceneName = "LoadScene";
 
     /// <summary>
     /// 배경화면 움직이고 있는지 확인용 변수

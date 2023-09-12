@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
-    bool isGetMartyr = false;
+    //bool isGetMartyr = false;
     #endregion
     #region 무적
     /// <summary>
@@ -589,7 +589,7 @@ public class Player : MonoBehaviour
         if (State == PassiveSpriteState.BloodOfMartyr)
         {
             martyrSprite.gameObject.SetActive(true);
-            isGetMartyr = true;
+            //isGetMartyr = true;
         }
     }
     private void OnMove(InputAction.CallbackContext context)
