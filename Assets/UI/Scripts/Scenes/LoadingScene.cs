@@ -35,11 +35,6 @@ public class LoadingScene : MonoBehaviour
     private void Start()
     {
         StartCoroutine(LoadScene());
-
-        if (loadingDone)
-        {
-            async.allowSceneActivation = true;
-        }
     }
 
     IEnumerator LoadScene()
@@ -49,14 +44,16 @@ public class LoadingScene : MonoBehaviour
 
         while (async.progress < 0.9f)
         {
-            Debug.Log($"Progress : {async.progress}");
             yield return null;
         }
 
         loadingDone = true;
 
-        Debug.Log($"로딩 끝");
-        yield return new WaitForSeconds(1.0f);
-        async.allowSceneActivation = true;
+        if (loadingDone)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            async.allowSceneActivation = true;
+        }
     }
 }
