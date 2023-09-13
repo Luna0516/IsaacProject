@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class Door : MonoBehaviour
 
     private GameObject player;
 
-    private float widthOffset = 2f; 
+    private float widthOffset = 2f;
 
     private void Start()
     {

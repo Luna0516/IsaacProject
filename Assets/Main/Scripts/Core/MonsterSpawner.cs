@@ -35,27 +35,19 @@ public class MonsterSpawner : MonoBehaviour
 
     public List<GameObject> spawnGameObject;
     public AllMonsterSpawners[] allspawn;
-    public AllMonsterSpawners[] Allspawn
-    {
-        get
-        {
-            return allspawn;
-        }
-        set
-        {
-            if (allspawn != value)
-            {
-
-            }
-        }
-    }
 
     public int spawnercount = 0;
+    public int allspawncount = 0;
 
     public List<AllMonsterSpawners> allSpawnDatas;
 
 
     public bool SpawnNow = false;
+
+    public Action playerIn;
+    public Action onAllEnemyDied;
+
+
     private void Awake()
     {
         spawnercount = transform.childCount;
@@ -64,6 +56,7 @@ public class MonsterSpawner : MonoBehaviour
         allspawn = new AllMonsterSpawners[spawnercount];
         mssp = new MonsterSpChilde[spawnercount];
         loadSpawnDatas();
+        
     }
     private void Update()
     {
@@ -80,8 +73,10 @@ public class MonsterSpawner : MonoBehaviour
             foreach (var objectspawn in mssp)
             {
                 objectspawn.SapwnActive.Invoke();
+                allspawncount += objectspawn.allMonsterSpawners.spawnCount;
             }
             SpawnNow = false;
+
         }
     }
 

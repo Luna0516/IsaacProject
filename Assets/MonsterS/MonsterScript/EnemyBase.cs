@@ -99,7 +99,6 @@ public class EnemyBase : PooledObject
     /// </summary>
     public System.Action<bool> IsDead;
 
-
     /// <summary>
     /// 쿨타임 작동 델리게이트
     /// </summary>
