@@ -152,9 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e14251546a853488e584c243c89a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minCreateRoomCount: 8
+  maxCreateRoomCount: 12
   baseRoomPrefab: {fileID: 428845128574999711, guid: 9c08fee65d90a214cbb40a1c195b18e5, type: 3}
-  minAttachRoomCount: 1
-  maxAttachRoomCount: 3
+  listRooms: []
+  minAttachRoomCount: 2
+  maxAttachRoomCount: 2
 --- !u!4 &117671091
 Transform:
   m_ObjectHideFlags: 0

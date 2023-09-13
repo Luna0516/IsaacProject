@@ -14,7 +14,7 @@ public class LoadingScene : MonoBehaviour
     /// <summary>
     /// 다음에 로딩할 씬의 이름
     /// </summary>
-    public string nextSceneName = "BasementMain";
+    public string nextSceneName = "Test_Map";
 
     /// <summary>
     /// 비동기 명령 처리용
@@ -55,6 +55,8 @@ public class LoadingScene : MonoBehaviour
 
         loadingDone = true;
 
-        yield return new WaitForSeconds(0.5f);
+        Debug.Log($"로딩 끝");
+        yield return new WaitForSeconds(1.0f);
+        async.allowSceneActivation = true;
     }
 }

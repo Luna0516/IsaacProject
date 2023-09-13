@@ -5,6 +5,9 @@ using UnityEngine;
 public class RoomManager : Singleton<RoomManager>
 {
     int roomNum = 0;
+    int createRoomCount = 0;
+    public int minCreateRoomCount = 3;
+    public int maxCreateRoomCount = 12;
 
     public GameObject baseRoomPrefab;
 
@@ -21,14 +24,16 @@ public class RoomManager : Singleton<RoomManager>
         }
     }
 
-    List<Room> listRooms = new List<Room>();
+    public List<Room> listRooms = new List<Room>();
 
-    public int minAttachRoomCount = 1;
+    public int minAttachRoomCount = 2;
     public int maxAttachRoomCount = 3;
 
     protected override void OnInitialize()
     {
         base.OnInitialize();
+
+        createRoomCount = Random.Range(minCreateRoomCount, maxCreateRoomCount);
 
         CreateStartRoom();
 
@@ -52,117 +57,177 @@ public class RoomManager : Singleton<RoomManager>
 
         CurrentRoom = startRoom;
         listRooms.Add(startRoom);
+        roomNum++;
+        index++;
+
     }
+
+    int index = 0;
 
     public void CreateOtherRoom()
     {
-        int attachCount = Random.Range(minAttachRoomCount, maxAttachRoomCount + 1);
-
-        bool createSuccess = false;
-
-        for (int i = 0; i < attachCount; )
+        while (true)
         {
-            if(NeighborRoomCount(CurrentRoom) >= attachCount)
+            if (roomNum >= createRoomCount)
             {
                 break;
             }
 
-            createSuccess = false;
-            int createDir = Random.Range(0, 4);
+            int attachCount = Random.Range(minAttachRoomCount, maxAttachRoomCount + 1);
 
-            switch (createDir)
+            for (int i = 0; i < attachCount;)
             {
-                case 0:
-                    if(CurrentRoom.leftRoom == null)
-                    {
-                        GameObject roomObj = Instantiate(baseRoomPrefab, transform);
-
-                        Room room = roomObj.GetComponent<Room>();
-
-                        room.MyPos = CurrentRoom.MyPos + Vector2Int.left;
-                        room.roomtype = RoomType.Base;
-                        room.rightRoom = CurrentRoom;
-
-                        roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
-
-                        CurrentRoom.leftRoom = room;
-                        listRooms.Add(room);
-
-                        createSuccess = true;
-                    }
+                if (NeighborRoomCount(CurrentRoom) >= attachCount)
+                {
                     break;
-                case 1:
-                    if (CurrentRoom.rightRoom == null)
-                    {
-                        GameObject roomObj = Instantiate(baseRoomPrefab, transform);
+                }
 
-                        Room room = roomObj.GetComponent<Room>();
+                bool createSuccess = false;
+                int createDir = Random.Range(0, 4);
 
-                        room.MyPos = CurrentRoom.MyPos + Vector2Int.right;
-                        room.roomtype = RoomType.Base;
-                        room.leftRoom = CurrentRoom;
+                switch (createDir)
+                {
+                    case 0:
+                        if (CurrentRoom.leftRoom == null)
+                        {
+                            Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.left;
 
-                        roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
+                            if (FindRoom(Pos))
+                            {
+                                i++;
+                            }
+                            else
+                            {
+                                GameObject roomObj = Instantiate(baseRoomPrefab, transform);
 
-                        CurrentRoom.rightRoom = room;
-                        listRooms.Add(room);
+                                Room room = roomObj.GetComponent<Room>();
 
-                        createSuccess = true;
-                    }
-                    break;
-                case 2:
-                    if (CurrentRoom.topRoom == null)
-                    {
-                        GameObject roomObj = Instantiate(baseRoomPrefab, transform);
+                                room.MyPos = Pos;
+                                room.roomtype = RoomType.Base;
+                                room.rightRoom = CurrentRoom;
 
-                        Room room = roomObj.GetComponent<Room>();
-                        
-                        room.MyPos = CurrentRoom.MyPos + Vector2Int.up;
-                        room.roomtype = RoomType.Base;
-                        room.bottomRoom = CurrentRoom;
+                                roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
 
-                        roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
+                                CurrentRoom.leftRoom = room;
+                                listRooms.Add(room);
 
-                        CurrentRoom.topRoom = room;
-                        listRooms.Add(room);
+                                createSuccess = true;
+                            }
+                        }
+                        break;
+                    case 1:
+                        if (CurrentRoom.rightRoom == null)
+                        {
+                            Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.right;
 
-                        createSuccess = true;
-                    }
-                    break;
-                case 3:
-                    if (CurrentRoom.bottomRoom == null)
-                    {
-                        GameObject roomObj = Instantiate(baseRoomPrefab, transform);
+                            if (FindRoom(Pos))
+                            {
+                                i++;
+                            }
+                            else
+                            {
+                                GameObject roomObj = Instantiate(baseRoomPrefab, transform);
 
-                        Room room = roomObj.GetComponent<Room>();
+                                Room room = roomObj.GetComponent<Room>();
 
-                        room.MyPos = CurrentRoom.MyPos + Vector2Int.down;
-                        room.roomtype = RoomType.Base;
-                        room.topRoom = CurrentRoom;
+                                room.MyPos = Pos;
+                                room.roomtype = RoomType.Base;
+                                room.leftRoom = CurrentRoom;
 
-                        roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
+                                roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
 
-                        CurrentRoom.bottomRoom = room;
-                        listRooms.Add(room);
+                                CurrentRoom.rightRoom = room;
+                                listRooms.Add(room);
 
-                        createSuccess = true;
-                    }
-                    break;
-                default:
-                    break;
+                                createSuccess = true;
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (CurrentRoom.topRoom == null)
+                        {
+                            Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.up;
+
+                            if (FindRoom(Pos))
+                            {
+                                i++;
+                            }
+                            else
+                            {
+                                GameObject roomObj = Instantiate(baseRoomPrefab, transform);
+
+                                Room room = roomObj.GetComponent<Room>();
+
+                                room.MyPos = Pos;
+                                room.roomtype = RoomType.Base;
+                                room.bottomRoom = CurrentRoom;
+
+                                roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
+
+                                CurrentRoom.topRoom = room;
+                                listRooms.Add(room);
+
+                                createSuccess = true;
+                            }
+                        }
+                        break;
+                    case 3:
+                        if (CurrentRoom.bottomRoom == null)
+                        {
+                            Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.down;
+
+                            if (FindRoom(Pos))
+                            {
+                                i++;
+                            }
+                            else
+                            {
+                                GameObject roomObj = Instantiate(baseRoomPrefab, transform);
+
+                                Room room = roomObj.GetComponent<Room>();
+
+                                room.MyPos = Pos;
+                                room.roomtype = RoomType.Base;
+                                room.topRoom = CurrentRoom;
+
+                                roomObj.name = $"BaseRoom_({room.MyPos.x}, {room.MyPos.y})";
+
+                                CurrentRoom.bottomRoom = room;
+                                listRooms.Add(room);
+
+                                createSuccess = true;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                if (createSuccess)
+                {
+                    i++;
+                }
+                else
+                {
+                    continue;
+                }
+
+                roomNum++;
+                Debug.Log($"현재까지 생성한 방의 개수 : {roomNum}");
             }
 
-            if (createSuccess)
+            if (index == listRooms.Count)
             {
-                i++;
+                Debug.LogWarning("수치 오류!");
+                index = Random.Range(0, listRooms.Count - 1);
             }
-            else
-            {
-                continue;
-            }
+
+            index = Random.Range(index, listRooms.Count);
+
+            Debug.Log($"index : {index}");
+
+            CurrentRoom = listRooms[index];
         }
-
-        roomNum++;
     }
 
     private void RefreshRoomPosition()
@@ -174,8 +239,24 @@ public class RoomManager : Singleton<RoomManager>
 
             listRooms[i].transform.position += new Vector3(xPos, yPos);
 
+            SettingNeighborRoom(listRooms[i]);
+
             RefreshDoor(listRooms[i]);
         }
+    }
+
+    private bool FindRoom(Vector2Int pos)
+    {
+        bool result = false;
+
+        Room room = listRooms.Find(room => room.MyPos.x == pos.x && room.MyPos.y == pos.y);
+
+        if(room != null)
+        {
+            result = true;
+        }
+
+        return result;
     }
 
     private void RefreshDoor(Room room)
@@ -201,6 +282,11 @@ public class RoomManager : Singleton<RoomManager>
         }
     }
 
+    /// <summary>
+    /// 방에 연결된 다른 방의 개수
+    /// </summary>
+    /// <param name="room">확인할 방</param>
+    /// <returns>연결된 방의 개수</returns>
     private int NeighborRoomCount(Room room)
     {
         int result = 0;
@@ -226,5 +312,46 @@ public class RoomManager : Singleton<RoomManager>
         }
 
         return result;
+    }
+
+    private void SettingNeighborRoom(Room room)
+    {
+        Room findRoom;
+
+        findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x - 1 && serchRoom.MyPos.y == room.MyPos.y);
+        if(findRoom != null)
+        {
+            if(room.leftRoom == null)
+            {
+                room.leftRoom = findRoom;
+            }
+        }
+
+        findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x + 1 && serchRoom.MyPos.y == room.MyPos.y);
+        if (findRoom != null)
+        {
+            if (room.rightRoom == null)
+            {
+                room.rightRoom = findRoom;
+            }
+        }
+
+        findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x && serchRoom.MyPos.y == room.MyPos.y + 1);
+        if (findRoom != null)
+        {
+            if (room.topRoom != null)
+            {
+                room.topRoom = findRoom;
+            }
+        }
+
+        findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x && serchRoom.MyPos.y == room.MyPos.y - 1);
+        if (findRoom != null)
+        {
+            if (room.bottomRoom == null)
+            {
+                room.bottomRoom = findRoom;
+            }
+        }
     }
 }
