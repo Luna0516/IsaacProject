@@ -56,9 +56,6 @@ public class PenetrationTear : AttackBase
         
     }
 
-  
-
-
 }
 
 // OnCollision override? Trigger로 설정되어있어서 어차피 작동 안됨.
