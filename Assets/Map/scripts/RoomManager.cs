@@ -229,7 +229,7 @@ public class RoomManager : Singleton<RoomManager>
                 }
 
                 roomNum++;
-                Debug.Log($"현재까지 생성한 방의 개수 : {roomNum}");
+                //Debug.Log($"현재까지 생성한 방의 개수 : {roomNum}");
             }
 
             if (index == listRooms.Count)
@@ -240,7 +240,7 @@ public class RoomManager : Singleton<RoomManager>
 
             index = Random.Range(index, listRooms.Count);
 
-            Debug.Log($"index : {index}");
+            //Debug.Log($"index : {index}");
 
             CurrentRoom = listRooms[index];
         }

@@ -381,7 +381,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         brimDelay -= Time.deltaTime;
-        Debug.Log(brimDelay);
+        //Debug.Log(brimDelay);
         currentTearDelay -= Time.deltaTime;
         currentInvisible -= Time.deltaTime;
     }
