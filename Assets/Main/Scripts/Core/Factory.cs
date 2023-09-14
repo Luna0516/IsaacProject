@@ -151,6 +151,10 @@ public class Factory : Singleton<Factory>
             case PoolObjectType.EnemyBullet:
                 result = enemyBulletPool?.GetObject(spawn)?.gameObject;
                 break;
+            case PoolObjectType.EnemyRava:
+                result = ravaPool?.GetObject(spawn)?.gameObject;
+                break;
+
 
             case PoolObjectType.SpawnEffectPool:
                 result = spawnEffectPool?.GetObject(spawn)?.gameObject;

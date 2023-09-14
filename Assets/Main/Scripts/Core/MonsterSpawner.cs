@@ -31,17 +31,24 @@ public class MonsterSpawner : MonoBehaviour
         public int spawnCount;
         public Vector2 spawnArea;
     }
-    public MonsterSpChilde[] mssp;
 
-    public List<GameObject> spawnGameObject;
+    MonsterSpChilde[] mssp;
+
+    List<GameObject> spawnGameObject;
+
+    [Header("스폰 리스트")]
     public AllMonsterSpawners[] allspawn;
+    [Space(10)]
 
+    [Header("스포너 갯수")]
     public int spawnercount = 0;
+    [Space(5)]
+    [Header("스폰 몬스터 갯수")]
     public int allspawncount = 0;
+    [Space(15)]
 
-    public List<AllMonsterSpawners> allSpawnDatas;
 
-
+    [Header("스폰 버튼")]
     public bool SpawnNow = false;
 
     public Action playerIn;
@@ -55,16 +62,12 @@ public class MonsterSpawner : MonoBehaviour
         GetChilding(this.transform);
         allspawn = new AllMonsterSpawners[spawnercount];
         mssp = new MonsterSpChilde[spawnercount];
-        loadSpawnDatas();
-        
+        loadSpawnDatas();      
     }
     private void Update()
     {
         spawnActive(SpawnNow);
     }
-
-
-
     void spawnActive(bool spawnCheck)
     {
         if (spawnCheck)
@@ -76,10 +79,8 @@ public class MonsterSpawner : MonoBehaviour
                 allspawncount += objectspawn.allMonsterSpawners.spawnCount;
             }
             SpawnNow = false;
-
         }
     }
-
     void SpawnInitialized()
     {
         int county = 0;
@@ -91,7 +92,6 @@ public class MonsterSpawner : MonoBehaviour
             county++;
         }
     }
-
     void GetChilding(Transform parent)
     {
         foreach (Transform obj in parent)
@@ -103,7 +103,6 @@ public class MonsterSpawner : MonoBehaviour
     void loadSpawnDatas()
     {
         int county = 0;
-        allSpawnDatas.Clear();
         foreach (GameObject obj in spawnGameObject)
         {
             mssp[county] = obj.GetComponent<MonsterSpChilde>();
