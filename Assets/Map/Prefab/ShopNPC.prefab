@@ -236,10 +236,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 629042420130721169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545cc605b4a1f4142bf16b273e1892ed, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b7b9c008bd27e4180a6fa55c3afd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prises: 0
+  itemPrice: 0
 --- !u!1 &629042420208798453
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,10 +351,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 629042420208798453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545cc605b4a1f4142bf16b273e1892ed, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b7b9c008bd27e4180a6fa55c3afd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prises: 0
+  itemPrice: 0
 --- !u!1 &629042421182057812
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,10 +466,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 629042421182057812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545cc605b4a1f4142bf16b273e1892ed, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b7b9c008bd27e4180a6fa55c3afd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prises: 0
+  itemPrice: 0
 --- !u!1 &629042421414670955
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,10 +581,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 629042421414670955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545cc605b4a1f4142bf16b273e1892ed, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b7b9c008bd27e4180a6fa55c3afd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prises: 0
+  itemPrice: 0
 --- !u!1 &629042421566486911
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,7 +679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 629042421571705476}
   - component: {fileID: 629042421571705475}
-  - component: {fileID: 629042421571705474}
+  - component: {fileID: 2646260719032262615}
   m_Layer: 0
   m_Name: shopSYS
   m_TagString: Untagged
@@ -732,7 +732,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15.87, y: 8.07}
   m_EdgeRadius: 0
---- !u!114 &629042421571705474
+--- !u!114 &2646260719032262615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -741,13 +741,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 629042421571705477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e709c18b9315bd449cb837d491b7597, type: 3}
+  m_Script: {fileID: 11500000, guid: dc7cb25b0b9d5f24f85ceaeb9e8bcb8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsOBJ: []
   priceSprites:
   - {fileID: 1218959515, guid: 531326ac1c091ca4eb1205ca415203bd, type: 3}
   - {fileID: -652011411, guid: 531326ac1c091ca4eb1205ca415203bd, type: 3}
   - {fileID: -2081011778, guid: 531326ac1c091ca4eb1205ca415203bd, type: 3}
-  items: {fileID: 0}
-  elapse: 10

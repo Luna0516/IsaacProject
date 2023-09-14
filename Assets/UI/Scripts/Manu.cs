@@ -13,7 +13,7 @@ public class Manu : MonoBehaviour
     Animator pauseAnim;
     Animator passiveInvenAnim;
 
-    UIInputAction UiInput;
+    UIInputActions UiInput;
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class Manu : MonoBehaviour
         child = transform.GetChild(1);
         passiveInvenAnim = child.GetComponent<Animator>();
 
-        UiInput = new UIInputAction();
+        UiInput = new UIInputActions();
     }
 
     private void OnEnable()
