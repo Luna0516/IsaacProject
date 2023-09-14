@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door_0
+      name: TopDoor_Close
       rect:
         serializedVersion: 2
         x: 0
@@ -113,7 +113,7 @@ TextureImporter:
         width: 92.25
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -126,7 +126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_1
+      name: BottomDoor_Close
       rect:
         serializedVersion: 2
         x: 92
@@ -134,7 +134,7 @@ TextureImporter:
         width: 92.25
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_2
+      name: RightDoor_Close
       rect:
         serializedVersion: 2
         x: 184
@@ -155,7 +155,7 @@ TextureImporter:
         width: 92.25
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_3
+      name: LeftDoor_Close
       rect:
         serializedVersion: 2
         x: 276
@@ -176,7 +176,7 @@ TextureImporter:
         width: 92.25
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,7 +189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_4
+      name: TopDoor_Open
       rect:
         serializedVersion: 2
         x: 0
@@ -197,7 +197,7 @@ TextureImporter:
         width: 92.25
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_5
+      name: BottomDoor_Open
       rect:
         serializedVersion: 2
         x: 92
@@ -218,7 +218,7 @@ TextureImporter:
         width: 92.25
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,15 +231,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_6
+      name: RightDoor_Open
       rect:
         serializedVersion: 2
         x: 184
         y: 0
-        width: 92.25
+        width: 92
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,7 +252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_7
+      name: LeftDoor_Open
       rect:
         serializedVersion: 2
         x: 276
@@ -260,7 +260,7 @@ TextureImporter:
         width: 92.25
         height: 93
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,14 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      door_0: 1858197099
-      door_1: 1164628827
-      door_2: -1933308825
-      door_3: -115613950
-      door_4: -1280548809
-      door_5: 1776227877
-      door_6: 1345244230
-      door_7: -1724408403
+      BottomDoor_Close: 1164628827
+      BottomDoor_Open: 1776227877
+      LeftDoor_Close: -115613950
+      LeftDoor_Open: -1724408403
+      RightDoor_Close: -1933308825
+      RightDoor_Open: 1345244230
+      TopDoor_Close: 1858197099
+      TopDoor_Open: -1280548809
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

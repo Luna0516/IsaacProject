@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class RoomManager : Singleton<RoomManager>
 {
+    public bool isLoading = true;
+
     int roomNum = 0;
     int createRoomCount = 0;
+    
     public int minCreateRoomCount = 3;
     public int maxCreateRoomCount = 12;
 
+    public int minAttachRoomCount = 2;
+    public int maxAttachRoomCount = 3;
+
+    public GameObject startRoomPrefab;
     public GameObject baseRoomPrefab;
+    public GameObject bossRoomPrefab;
 
     Room currentRoom = null;
     public Room CurrentRoom
@@ -20,17 +28,22 @@ public class RoomManager : Singleton<RoomManager>
             if(currentRoom != value)
             {
                 currentRoom = value;
+                if (!isLoading)
+                {
+                    onChangeRoom?.Invoke(currentRoom);
+                }
             }
         }
     }
 
     public List<Room> listRooms = new List<Room>();
 
-    public int minAttachRoomCount = 2;
-    public int maxAttachRoomCount = 3;
+    public System.Action<Room> onChangeRoom;
 
     protected override void OnInitialize()
     {
+        isLoading = true;
+
         base.OnInitialize();
 
         createRoomCount = Random.Range(minCreateRoomCount, maxCreateRoomCount);
@@ -41,12 +54,15 @@ public class RoomManager : Singleton<RoomManager>
 
         RefreshRoomPosition();
 
+        isLoading = false;
+
         CurrentRoom = listRooms[0];
+        CurrentRoom.IsVisit = true;
     }
 
     public void CreateStartRoom()
     {
-        GameObject startRoomObj = Instantiate(baseRoomPrefab, transform);
+        GameObject startRoomObj = Instantiate(startRoomPrefab, transform);
 
         Room startRoom = startRoomObj.GetComponent<Room>();
 
