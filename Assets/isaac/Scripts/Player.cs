@@ -343,7 +343,8 @@ public class Player : MonoBehaviour
     /// 플레이어의 HP가 변경되었음을 알리는 델리게이트
     /// </summary>
     public Action onHealthChange;
-
+    bool shotbrim => brimDelay < 0;
+    float brimDelay;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -379,6 +380,8 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        brimDelay -= Time.deltaTime;
+        Debug.Log(brimDelay);
         currentTearDelay -= Time.deltaTime;
         currentInvisible -= Time.deltaTime;
     }
@@ -645,6 +648,9 @@ public class Player : MonoBehaviour
             {
                 brimstoneDir = headDir;
                 headAni.SetBool("BrimstoneCharge", true);
+                headAni.SetBool("CanShot", false);
+                brimDelay = 0.8f;
+                Time.timeScale = 0.5f;
             }
             if (isGetSadOnion)
             {
@@ -661,6 +667,11 @@ public class Player : MonoBehaviour
             if (isGetBrimstone)
             {
                 StartCoroutine(ShootBrimstone());
+                if (shotbrim)
+                {
+                    headAni.SetBool("CanShot", true);
+                }
+                Time.timeScale = 1f;
             }
             if (isGetSadOnion)
             {
@@ -675,6 +686,10 @@ public class Player : MonoBehaviour
         }
     }
     Vector2 brimstoneDir = Vector2.zero;
+    IEnumerator ChargeBrimstone()
+    {
+        yield return null;
+    }
     IEnumerator ShootBrimstone()
     {
         headAni.SetFloat("ShootDir_X", brimstoneDir.x);

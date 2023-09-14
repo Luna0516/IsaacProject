@@ -131,11 +131,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: ShootDir_X
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: BrimstoneCharge
     m_EventTreshold: 0
-  - m_ConditionMode: 3
-    m_ConditionEvent: ShootDir_X
+  - m_ConditionMode: 1
+    m_ConditionEvent: CanShot
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -9010895416195760996}
@@ -181,11 +184,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 4
+    m_ConditionEvent: ShootDir_X
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: BrimstoneCharge
     m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: ShootDir_X
+  - m_ConditionMode: 1
+    m_ConditionEvent: CanShot
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2396836927452807117}
@@ -215,31 +221,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: CanShot
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: ShootDir_X
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: ShootDir_Y
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: MoveDir_X
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: MoveDir_Y
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -401,11 +413,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 4
+    m_ConditionEvent: ShootDir_Y
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: BrimstoneCharge
     m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: ShootDir_Y
+  - m_ConditionMode: 1
+    m_ConditionEvent: CanShot
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 648485928405554298}
@@ -468,7 +483,7 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 1
---- !u!1101 &6873085748103014098
+--- !u!1101 &6398465406754231754
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -479,8 +494,36 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: BrimstoneCharge
     m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -8892855025948580976}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75409836
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &6873085748103014098
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: ShootDir_Y
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: BrimstoneCharge
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: CanShot
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3255781173485106635}
@@ -566,6 +609,7 @@ AnimatorState:
   - {fileID: 3672881624545712227}
   - {fileID: -3465818641481764084}
   - {fileID: -14398879106963469}
+  - {fileID: 6398465406754231754}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
