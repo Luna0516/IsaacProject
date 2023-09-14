@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,6 +58,7 @@ public class Room : MonoBehaviour
         {
             child = transform.GetChild(i);
             doors[i] = child.GetComponent<Door>();
+            doors[i].onPlayerMove += MoveSignal;
             doors[i].doorType = (DoorType)i;
             doors[i].onPlayerMove += MovePlayer;
         }
@@ -89,5 +91,14 @@ public class Room : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    /// <summary>
+    /// 문에서 플레이어 이동시키면 실행할 함수
+    /// </summary>
+    /// <param name="doorType">문의 타입</param>
+    void MoveSignal(DoorType doorType)
+    {
+        
     }
 }
