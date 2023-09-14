@@ -620,7 +620,6 @@ public class Player : MonoBehaviour
     {
         Vector2 value = context.ReadValue<Vector2>();
         headDir = value;
-
         headAni.SetFloat("ShootDir_X", headDir.x);
         headAni.SetFloat("ShootDir_Y", headDir.y);
         if (isGetSadOnion)
@@ -644,6 +643,7 @@ public class Player : MonoBehaviour
             }
             if (isGetBrimstone)
             {
+                brimstoneDir = headDir;
                 headAni.SetBool("BrimstoneCharge", true);
             }
             if (isGetSadOnion)
@@ -660,7 +660,7 @@ public class Player : MonoBehaviour
             }
             if (isGetBrimstone)
             {
-                headAni.SetBool("BrimstoneCharge", false);
+                StartCoroutine(ShootBrimstone());
             }
             if (isGetSadOnion)
             {
@@ -674,7 +674,18 @@ public class Player : MonoBehaviour
             headDir.Normalize();
         }
     }
-    
+    Vector2 brimstoneDir = Vector2.zero;
+    IEnumerator ShootBrimstone()
+    {
+        headAni.SetFloat("ShootDir_X", brimstoneDir.x);
+        headAni.SetFloat("ShootDir_Y", brimstoneDir.y);
+        headAni.SetBool("BrimstoneCharge", false);
+        yield return new WaitForSeconds(0.5f);
+        headAni.SetFloat("ShootDir_X", 0);
+        headAni.SetFloat("ShootDir_Y", 0);
+        brimstoneDir = Vector2.zero;
+        headDir = Vector2.zero;
+    }
     IEnumerator TearDelay()
     {
         Transform tearSpawn = transform.GetChild(0);
