@@ -7,15 +7,16 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public enum MonsterList
+    [Serializable]
+    public enum PatternSellect
     {
-        Blood_Cry = 0,
-        Muligun,
-        Host,
-        Fly,
-        Shit,
-        Rava,
-        Monstro
+        TestMode=0,
+        HostPattern,
+        MuligunAndBloodMan,
+        ShitAndHost,
+        ShitAndMuligun,
+        FlyAndBloodMan,
+        BossRoom
     }
 
     [Serializable]
@@ -31,22 +32,31 @@ public class MonsterSpawner : MonoBehaviour
         public int spawnCount;
         public Vector2 spawnArea;
     }
-    public MonsterSpChilde[] mssp;
 
-    public List<GameObject> spawnGameObject;
+    MonsterSpChilde[] mssp;
+
+    List<GameObject> spawnGameObject;
+
+    [Header("패턴 선택기")]
+    public PatternSellect patternSellector;
+
+    [Header("스폰 리스트")]
     public AllMonsterSpawners[] allspawn;
+    [Space(10)]
 
+    [Header("스포너 갯수")]
     public int spawnercount = 0;
+    [Space(5)]
+    [Header("스폰 몬스터 갯수")]
     public int allspawncount = 0;
+    [Space(15)]
 
-    public List<AllMonsterSpawners> allSpawnDatas;
 
-
+    [Header("스폰 버튼")]
     public bool SpawnNow = false;
 
     public Action playerIn;
     public Action onAllEnemyDied;
-
 
     private void Awake()
     {
@@ -55,31 +65,37 @@ public class MonsterSpawner : MonoBehaviour
         GetChilding(this.transform);
         allspawn = new AllMonsterSpawners[spawnercount];
         mssp = new MonsterSpChilde[spawnercount];
-        loadSpawnDatas();
-        
+        loadSpawnDatas();      
     }
+    private void OnEnable()
+    {
+        playerIn += () => spawnActive(true);
+    }
+
     private void Update()
     {
         spawnActive(SpawnNow);
     }
-
-
-
     void spawnActive(bool spawnCheck)
     {
-        if (spawnCheck)
+        if(spawnCheck)
         {
-            SpawnInitialized();
-            foreach (var objectspawn in mssp)
+            if (patternSellector == 0)
             {
-                objectspawn.SapwnActive.Invoke();
-                allspawncount += objectspawn.allMonsterSpawners.spawnCount;
+                SpawnInitialized();
+                foreach (var objectspawn in mssp)
+                {
+                    objectspawn.SapwnActive.Invoke();
+                    allspawncount += objectspawn.allMonsterSpawners.spawnCount;
+                }
+                SpawnNow = false;
             }
-            SpawnNow = false;
-
+            else
+            {
+                patterSwitchSys(patternSellector);
+            }
         }
     }
-
     void SpawnInitialized()
     {
         int county = 0;
@@ -91,7 +107,6 @@ public class MonsterSpawner : MonoBehaviour
             county++;
         }
     }
-
     void GetChilding(Transform parent)
     {
         foreach (Transform obj in parent)
@@ -103,7 +118,6 @@ public class MonsterSpawner : MonoBehaviour
     void loadSpawnDatas()
     {
         int county = 0;
-        allSpawnDatas.Clear();
         foreach (GameObject obj in spawnGameObject)
         {
             mssp[county] = obj.GetComponent<MonsterSpChilde>();
@@ -111,4 +125,55 @@ public class MonsterSpawner : MonoBehaviour
             county++;
         }
     }
+    //---------------------------------------<이 아래, 패턴 선택기>--------------------------------------------
+    void patterSwitchSys(PatternSellect pi)
+    {
+        switch (pi) 
+        { 
+        case PatternSellect.HostPattern:
+                HostPattern();
+                break;
+            case PatternSellect.MuligunAndBloodMan:
+                MuligunAndBloodMan();
+                break;
+            case PatternSellect.ShitAndHost:
+                ShitAndHost();
+                break;
+            case PatternSellect.ShitAndMuligun:
+                ShitAndMuligun();
+                break;
+            case PatternSellect.FlyAndBloodMan:
+                FlyAndBloodMan();
+                break;
+            case PatternSellect.BossRoom:
+                BossRoom();
+                break;
+        }
+    }
+    void HostPattern()
+    {
+
+    }
+    void MuligunAndBloodMan()
+    {
+
+    }
+    void ShitAndHost()
+    {
+
+    }
+    void ShitAndMuligun()
+    {
+
+    }
+    void FlyAndBloodMan()
+    {
+
+    }
+    void BossRoom()
+    {
+
+    }
+
+
 }
