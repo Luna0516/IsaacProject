@@ -7,15 +7,16 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public enum MonsterList
+    [Serializable]
+    public enum PatternSellect
     {
-        Blood_Cry = 0,
-        Muligun,
-        Host,
-        Fly,
-        Shit,
-        Rava,
-        Monstro
+        TestMode=0,
+        HostPattern,
+        MuligunAndBloodMan,
+        ShitAndHost,
+        ShitAndMuligun,
+        FlyAndBloodMan,
+        BossRoom
     }
 
     [Serializable]
@@ -36,6 +37,9 @@ public class MonsterSpawner : MonoBehaviour
 
     List<GameObject> spawnGameObject;
 
+    [Header("패턴 선택기")]
+    public PatternSellect patternSellector;
+
     [Header("스폰 리스트")]
     public AllMonsterSpawners[] allspawn;
     [Space(10)]
@@ -54,7 +58,6 @@ public class MonsterSpawner : MonoBehaviour
     public Action playerIn;
     public Action onAllEnemyDied;
 
-
     private void Awake()
     {
         spawnercount = transform.childCount;
@@ -64,21 +67,33 @@ public class MonsterSpawner : MonoBehaviour
         mssp = new MonsterSpChilde[spawnercount];
         loadSpawnDatas();      
     }
+    private void OnEnable()
+    {
+        playerIn += () => spawnActive(true);
+    }
+
     private void Update()
     {
         spawnActive(SpawnNow);
     }
     void spawnActive(bool spawnCheck)
     {
-        if (spawnCheck)
+        if(spawnCheck)
         {
-            SpawnInitialized();
-            foreach (var objectspawn in mssp)
+            if (patternSellector == 0)
             {
-                objectspawn.SapwnActive.Invoke();
-                allspawncount += objectspawn.allMonsterSpawners.spawnCount;
+                SpawnInitialized();
+                foreach (var objectspawn in mssp)
+                {
+                    objectspawn.SapwnActive.Invoke();
+                    allspawncount += objectspawn.allMonsterSpawners.spawnCount;
+                }
+                SpawnNow = false;
             }
-            SpawnNow = false;
+            else
+            {
+                patterSwitchSys(patternSellector);
+            }
         }
     }
     void SpawnInitialized()
@@ -110,4 +125,55 @@ public class MonsterSpawner : MonoBehaviour
             county++;
         }
     }
+    //---------------------------------------<이 아래, 패턴 선택기>--------------------------------------------
+    void patterSwitchSys(PatternSellect pi)
+    {
+        switch (pi) 
+        { 
+        case PatternSellect.HostPattern:
+                HostPattern();
+                break;
+            case PatternSellect.MuligunAndBloodMan:
+                MuligunAndBloodMan();
+                break;
+            case PatternSellect.ShitAndHost:
+                ShitAndHost();
+                break;
+            case PatternSellect.ShitAndMuligun:
+                ShitAndMuligun();
+                break;
+            case PatternSellect.FlyAndBloodMan:
+                FlyAndBloodMan();
+                break;
+            case PatternSellect.BossRoom:
+                BossRoom();
+                break;
+        }
+    }
+    void HostPattern()
+    {
+
+    }
+    void MuligunAndBloodMan()
+    {
+
+    }
+    void ShitAndHost()
+    {
+
+    }
+    void ShitAndMuligun()
+    {
+
+    }
+    void FlyAndBloodMan()
+    {
+
+    }
+    void BossRoom()
+    {
+
+    }
+
+
 }
