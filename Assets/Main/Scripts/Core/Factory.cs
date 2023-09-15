@@ -154,6 +154,9 @@ public class Factory : Singleton<Factory>
             case PoolObjectType.EnemyRava:
                 result = ravaPool?.GetObject(spawn)?.gameObject;
                 break;
+            case PoolObjectType.EnemyMulligun:
+                result = muligunPool?.GetObject(spawn)?.gameObject;
+                break;
 
 
             case PoolObjectType.SpawnEffectPool:

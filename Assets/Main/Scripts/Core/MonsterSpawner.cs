@@ -10,12 +10,14 @@ public class MonsterSpawner : MonoBehaviour
     [Serializable]
     public enum PatternSellect
     {
-        TestMode=0,
+        TestMode = 0,
         HostPattern,
         MuligunAndBloodMan,
         ShitAndHost,
         ShitAndMuligun,
         FlyAndBloodMan,
+        Rava,
+        RavaAndShit,
         BossRoom
     }
 
@@ -65,11 +67,16 @@ public class MonsterSpawner : MonoBehaviour
         GetChilding(this.transform);
         allspawn = new AllMonsterSpawners[spawnercount];
         mssp = new MonsterSpChilde[spawnercount];
-        loadSpawnDatas();      
+        loadSpawnDatas();
     }
     private void OnEnable()
     {
         playerIn += () => spawnActive(true);
+    }
+    private void Start()
+    {
+        patterSwitchSys(patternSellector);
+        loadSpawnDatas();
     }
 
     private void Update()
@@ -78,22 +85,16 @@ public class MonsterSpawner : MonoBehaviour
     }
     void spawnActive(bool spawnCheck)
     {
-        if(spawnCheck)
+        if (spawnCheck)
         {
-            if (patternSellector == 0)
+            SpawnInitialized();
+            foreach (var objectspawn in mssp)
             {
-                SpawnInitialized();
-                foreach (var objectspawn in mssp)
-                {
-                    objectspawn.SapwnActive.Invoke();
-                    allspawncount += objectspawn.allMonsterSpawners.spawnCount;
-                }
-                SpawnNow = false;
+                objectspawn.SapwnActive.Invoke();
+                allspawncount += objectspawn.allMonsterSpawners.spawnCount;
             }
-            else
-            {
-                patterSwitchSys(patternSellector);
-            }
+            SpawnNow = false;
+
         }
     }
     void SpawnInitialized()
@@ -128,9 +129,13 @@ public class MonsterSpawner : MonoBehaviour
     //---------------------------------------<이 아래, 패턴 선택기>--------------------------------------------
     void patterSwitchSys(PatternSellect pi)
     {
-        switch (pi) 
-        { 
-        case PatternSellect.HostPattern:
+        foreach (GameObject obj in spawnGameObject)
+        {
+            obj.SetActive(true);
+        }
+        switch (pi)
+        {
+            case PatternSellect.HostPattern:
                 HostPattern();
                 break;
             case PatternSellect.MuligunAndBloodMan:
@@ -145,34 +150,127 @@ public class MonsterSpawner : MonoBehaviour
             case PatternSellect.FlyAndBloodMan:
                 FlyAndBloodMan();
                 break;
+            case PatternSellect.Rava:
+                Rava();
+                break;
+            case PatternSellect.RavaAndShit:
+                RavaAbdShit();
+                break;
             case PatternSellect.BossRoom:
                 BossRoom();
                 break;
         }
     }
+
+    void patternChildControl(PoolObjectType mon, int num, int spawncount, Vector2 pos, Vector2 transform)
+    {
+        spawnGameObject[num].transform.localPosition = transform;
+        mssp[num].allMonsterSpawners.monsterList = mon;
+        mssp[num].allMonsterSpawners.spawnCount = spawncount;
+        mssp[num].allMonsterSpawners.spawnArea = pos;
+    }
+    void patternChild4Cornur(PoolObjectType mon, int num, int spawncount, Vector2 pos, Vector2 transform)
+    {
+        Vector2 tras = transform;
+        for (int i = num; i < num + 4; i++)
+        {
+            transform = tras;
+            if (i == num)
+            {
+                transform.x = -(transform.x);
+            }
+            else if (i == num + 1)
+            {
+                transform.y = -(transform.y);
+            }
+            else if (i == num + 2)
+            {
+                transform.x = -(transform.x);
+                transform.y = -(transform.y);
+            }
+            else
+            {
+
+            }
+            spawnGameObject[i].transform.localPosition = transform;
+            mssp[i].allMonsterSpawners.monsterList = mon;
+            mssp[i].allMonsterSpawners.spawnCount = spawncount;
+            mssp[i].allMonsterSpawners.spawnArea = pos;
+        }
+    }
+
+    /// <summary>
+    /// 자식개체 숫자를 맞추는 함수
+    /// </summary>
+    /// <param name="num">num을 초과한 숫자의 자식은 비활성화시킨다.</param>
+    void DeActiveAtors(int num)
+    {
+        for (int i = num + 1; i < spawnGameObject.Count; i++)
+        {
+            mssp[i].allMonsterSpawners.spawnCount = 0;
+            spawnGameObject[i].SetActive(false);
+        }
+    }
     void HostPattern()
     {
-
+        Vector2 spawnArea = new Vector2(0.5f, 0.5f);
+        patternChild4Cornur(PoolObjectType.EnemyHost, 0, 1, spawnArea, new Vector2(5, 2));
+        DeActiveAtors(3);
+    }
+    void Rava()
+    {
+        Vector2 spawnArea = new Vector2(0.5f, 0.5f);
+        patternChild4Cornur(PoolObjectType.EnemyRava, 0, 1, spawnArea, new Vector2(5, 2));
+        DeActiveAtors(3);
+    }
+    void RavaAbdShit()
+    {
+        Vector2 spawnArea = new Vector2(0.5f, 0.5f);
+        patternChild4Cornur(PoolObjectType.EnemyShiter, 0, 1, spawnArea, new Vector2(4, 2));
+        patternChildControl(PoolObjectType.EnemyRava, 4, 1, spawnArea, new Vector2(-1, 0));
+        patternChildControl(PoolObjectType.EnemyRava, 5, 1, spawnArea, Vector2.zero);
+        patternChildControl(PoolObjectType.EnemyRava, 6, 1, spawnArea, new Vector2(1, 0));
+        DeActiveAtors(6);
     }
     void MuligunAndBloodMan()
     {
-
+        Vector2 spawnArea = new Vector2(0.5f, 0.5f);
+        patternChild4Cornur(PoolObjectType.EnemyMulligun, 0, 1, spawnArea, new Vector2(4, 2));
+        patternChildControl(PoolObjectType.EnemyBloodMan, 4, 1, spawnArea, new Vector2(-1, 0));
+        patternChildControl(PoolObjectType.EnemyBloodMan, 5, 1, spawnArea, Vector2.zero);
+        patternChildControl(PoolObjectType.EnemyBloodMan, 6, 1, spawnArea, new Vector2(1, 0));
+        DeActiveAtors(6);
     }
     void ShitAndHost()
     {
-
+        Vector2 spawnArea = new Vector2(0.5f, 0.5f);
+        patternChild4Cornur(PoolObjectType.EnemyHost, 0, 1, spawnArea, new Vector2(5, 2));
+        patternChildControl(PoolObjectType.EnemyShiter, 4, 1, spawnArea, new Vector2(2, 0));
+        patternChildControl(PoolObjectType.EnemyShiter, 5, 1, spawnArea, new Vector2(-2, 0));
+        DeActiveAtors(5);
     }
     void ShitAndMuligun()
     {
-
+        Vector2 spawnArea = new Vector2(0.5f, 0.5f);
+        patternChild4Cornur(PoolObjectType.EnemyShiter, 0, 1, spawnArea, new Vector2(4, 2));
+        patternChildControl(PoolObjectType.EnemyMulligun, 4, 1, spawnArea, new Vector2(2, 0));
+        patternChildControl(PoolObjectType.EnemyMulligun, 5, 1, spawnArea, new Vector2(-2, 0));
+        DeActiveAtors(5);
     }
     void FlyAndBloodMan()
     {
-
+        Vector2 spawnArea = new Vector2(0.5f, 0.5f);
+        patternChild4Cornur(PoolObjectType.EnemyFly, 0, 1, spawnArea, new Vector2(5, 2));
+        patternChildControl(PoolObjectType.EnemyBloodMan, 4, 1, spawnArea, new Vector2(-1, 0));
+        patternChildControl(PoolObjectType.EnemyBloodMan, 5, 1, spawnArea, Vector2.zero);
+        patternChildControl(PoolObjectType.EnemyBloodMan, 6, 1, spawnArea, new Vector2(1, 0));
+        DeActiveAtors(6);
     }
     void BossRoom()
     {
-
+        Vector2 spawnArea = new Vector2(1, 1);
+        patternChildControl(PoolObjectType.EnemyMonstro, 0, 1, spawnArea, Vector2.zero);
+        DeActiveAtors(0);
     }
 
 

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 4077435422309685190, guid: 7e792346dc1aa2d4499b25590d6cce1c, type: 3}
-  poolSize: 64
+  poolSize: 16
 --- !u!1 &168818291412362396
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 5967919590582941009, guid: 26ea565c4d121f2449beab9ec293c31f, type: 3}
-  poolSize: 32
+  poolSize: 16
 --- !u!1 &1191425008767912341
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,37 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 1582209639462560527, guid: b1c9dce57787bd947bddc42182d0ae62, type: 3}
   poolSize: 4
---- !u!1 &1425201107308971235
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7782322477461413859}
-  m_Layer: 0
-  m_Name: TearPool (10)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7782322477461413859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425201107308971235}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2461219587112762858}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2000652303871440242
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 2813975671658389336, guid: 82b7673510b17b047a6a76a874272f54, type: 3}
-  poolSize: 4
+  poolSize: 8
 --- !u!1 &2220502799780176343
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 590492536057030649, guid: 4714ff1487cb6924cb072cc0f8ee262c, type: 3}
-  poolSize: 64
+  poolSize: 32
 --- !u!1 &2461219586513365224
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +366,6 @@ Transform:
   - {fileID: 5863377805087233714}
   - {fileID: 920186036238400302}
   - {fileID: 8261341326364178252}
-  - {fileID: 7782322477461413859}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -504,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 1305249523445921363, guid: 3cc78a796bda1134980996c1b19f768b, type: 3}
-  poolSize: 32
+  poolSize: 16
 --- !u!1 &2461219587552464196
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 6404622750835960673, guid: 617b4bff25d251c4882ec86a828f97a0, type: 3}
-  poolSize: 16
+  poolSize: 32
 --- !u!1 &2688528800312122091
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 8842577937410060259, guid: d1e8257aa956d7342848194eef4ea37d, type: 3}
-  poolSize: 4
+  poolSize: 1
 --- !u!1 &3832368244158460027
 GameObject:
   m_ObjectHideFlags: 0
