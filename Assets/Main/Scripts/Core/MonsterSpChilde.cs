@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class MonsterSpChilde : MonoBehaviour
 {
+    public EnemyBase monsters;
 
     public Action SapwnActive;
 
     public MonsterSpawner.AllMonsterSpawners allMonsterSpawners = new MonsterSpawner.AllMonsterSpawners();
 
     public bool spawnactive;
+
+    public bool TestMode = false;
     bool SpawnActiveate
     {
         get
@@ -19,12 +22,12 @@ public class MonsterSpChilde : MonoBehaviour
         }
         set
         {
-            if(spawnactive != value)
+            if (spawnactive != value)
             {
-                if(spawnactive)
+                if (spawnactive)
                 {
-                spawnactive = value;
-                SapwnActive?.Invoke();
+                    spawnactive = value;
+                    SapwnActive?.Invoke();
                 }
             }
         }
@@ -37,21 +40,26 @@ public class MonsterSpChilde : MonoBehaviour
     }
     void Spawn()
     {
-        for(int i = 0; i < allMonsterSpawners.spawnCount; i++)
+        for (int i = 0; i < allMonsterSpawners.spawnCount; i++)
         {
             Vector2 spawnpoint = new Vector2(this.transform.position.x + UnityEngine.Random.Range(allMonsterSpawners.spawnArea.x, -allMonsterSpawners.spawnArea.x), this.transform.position.y + UnityEngine.Random.Range(allMonsterSpawners.spawnArea.y, -allMonsterSpawners.spawnArea.y));
             Factory.Inst.GetObject(PoolObjectType.SpawnEffectPool, spawnpoint);
-            Factory.Inst.GetObject(allMonsterSpawners.monsterList, spawnpoint);
+            GameObject obj = Factory.Inst.GetObject(allMonsterSpawners.monsterList, spawnpoint);
+            if (!TestMode)
+            {
+                monsters = obj.GetComponent<EnemyBase>();
+            }
         }
     }
     private void Update()
     {
-        if(spawnactive)
+        if (spawnactive)
         {
             SpawnActiveate = true;
             SpawnActiveate = false;
         }
     }
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -64,4 +72,5 @@ public class MonsterSpChilde : MonoBehaviour
         Gizmos.DrawLine(this.transform.position + spawnV1 + spawnV4, this.transform.position + spawnV1 + spawnV3);
         Gizmos.DrawLine(this.transform.position + spawnV1 + spawnV3, this.transform.position + spawnV3 + spawnV2);
     }
+#endif
 }

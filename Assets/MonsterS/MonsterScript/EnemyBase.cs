@@ -167,17 +167,17 @@ public class EnemyBase : PooledObject
             EnemyInithialize();
         }
         countEnable++;
+        IsDead = (bool obj) => { wewantnoNull(); };
     }
+
+
+
     protected virtual void Start()
     {
         if (player == null)
         {
             player = Manager.Player; // 플레이어를 찾아서 할당
             target = player.transform;
-        }
-        else
-        {
-            Debug.LogWarning("플레이어를 찾을수가 없습니다.");
         }
         HeadToCal();
     }
@@ -187,7 +187,11 @@ public class EnemyBase : PooledObject
     {
         UpdateCooltimer();
     }
-
+    protected override void OnDisable()
+    {
+        base.onDisable();
+        IsDead?.Invoke(true);
+    }
     //모든 적들은 콜리전이 부딫혔을때 그것이 총알이라면 데미지를 받고 넉백됨
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -196,7 +200,6 @@ public class EnemyBase : PooledObject
             AttackBase attackBase = collision.gameObject.GetComponent<AttackBase>();
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             Hitten();
-
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
         }

@@ -69,7 +69,7 @@ public class Room : MonoBehaviour
             doors[i].onPlayerMove += MovePlayer;
         }
 
-        child = transform.GetChild(4);
+        child = transform.GetChild(5);
         Tilemap tileMap = child.GetComponent<Tilemap>();
         width = tileMap.size.x;
         height = tileMap.size.y;

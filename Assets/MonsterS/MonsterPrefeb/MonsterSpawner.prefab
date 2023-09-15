@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe00af09242dad48aac2d9e858cb79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patternSellector: 0
+  patternSellector: 7
   allspawn: []
   spawnercount: 5
   allspawncount: 0

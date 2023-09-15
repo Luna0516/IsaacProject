@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -11,14 +8,14 @@ public class MonsterSpawner : MonoBehaviour
     public enum PatternSellect
     {
         TestMode = 0,
-        HostPattern,
-        MuligunAndBloodMan,
-        ShitAndHost,
-        ShitAndMuligun,
-        FlyAndBloodMan,
-        Rava,
-        RavaAndShit,
-        BossRoom
+        HostPattern=1,
+        MuligunAndBloodMan=2,
+        ShitAndHost=3,
+        ShitAndMuligun=4,
+        FlyAndBloodMan=5,
+        Rava=6,
+        RavaAndShit=7,
+        BossRoom=8
     }
 
     [Serializable]
@@ -38,6 +35,7 @@ public class MonsterSpawner : MonoBehaviour
     MonsterSpChilde[] mssp;
 
     List<GameObject> spawnGameObject;
+    public List<EnemyBase> enemies;
 
     [Header("패턴 선택기")]
     public PatternSellect patternSellector;
@@ -52,13 +50,43 @@ public class MonsterSpawner : MonoBehaviour
     [Header("스폰 몬스터 갯수")]
     public int allspawncount = 0;
     [Space(15)]
+    [Header("죽은 몬스터 갯수")]
+    public int deadCount = 999;
+    [Space(15)]
 
 
     [Header("스폰 버튼")]
     public bool SpawnNow = false;
 
+    [Header("랜덤 버튼")]
+    public bool RandomButton = true;
+
     public Action playerIn;
     public Action onAllEnemyDied;
+
+    public int DeadCount
+    {
+        get 
+        {
+            return deadCount;
+        }
+        set
+        { 
+            if(value < 20)
+            {
+                if (deadCount != value)
+                {
+                    deadCount = value;
+                }
+                if (deadCount == allspawncount)
+                {
+                    onAllEnemyDied?.Invoke();
+                }
+            }
+        }
+    }
+
+    int selpa = 1;
 
     private void Awake()
     {
@@ -72,10 +100,16 @@ public class MonsterSpawner : MonoBehaviour
     private void OnEnable()
     {
         playerIn += () => spawnActive(true);
+        onAllEnemyDied += () => { Debug.Log("모든 몬스터는 사망했다.");};
     }
     private void Start()
     {
-        patterSwitchSys(patternSellector);
+        if (RandomButton)
+        {
+            selpa = UnityEngine.Random.Range(1, 8);
+        }
+        
+        patterSwitchSys((PatternSellect)selpa);
         loadSpawnDatas();
     }
 
@@ -94,8 +128,19 @@ public class MonsterSpawner : MonoBehaviour
                 allspawncount += objectspawn.allMonsterSpawners.spawnCount;
             }
             SpawnNow = false;
-
+            DeadCount = 0;
+            foreach (var objectspawn in mssp)
+            {
+                if(objectspawn.monsters != null)
+                {
+                    objectspawn.monsters.IsDead += DeadCounnting;
+                }
+            }
         }
+    }
+    void DeadCounnting(bool obj)
+    {
+        DeadCount++;
     }
     void SpawnInitialized()
     {
@@ -198,7 +243,10 @@ public class MonsterSpawner : MonoBehaviour
             mssp[i].allMonsterSpawners.spawnArea = pos;
         }
     }
-
+    public void DeadCounting()
+    {
+        DeadCount++;
+    }
     /// <summary>
     /// 자식개체 숫자를 맞추는 함수
     /// </summary>

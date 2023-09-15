@@ -23,10 +23,11 @@ public class shit : EnemyBase
     public float coolTime = 5;
     public GameObject flyer;
     bool shitDead = false;
-    
+
     static int flyCount = 0;
 
     System.Action watcher;
+    System.Action<bool> attackshit;
 
     public bool attackmode = true;
     public bool att = false;
@@ -80,12 +81,14 @@ public class shit : EnemyBase
     protected override void OnEnable()
     {
         base.OnEnable();
+        attackshit = (bool obj) => { wewantnoNull(); };
         Attackmode = true;
         Attackmode = false;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
+        attackshit = (bool obj) => { wewantnoNull(); };
         Attackmode = false;
         att = true;
         allcoolStop();
@@ -117,6 +120,7 @@ public class shit : EnemyBase
         allcoolStop();
         rig.drag = draglinear;
         rig.velocity = Vector2.zero;
+        attackshit = (bool obj) => { wewantnoNull(); };
     }
 
     /// <summary>
@@ -145,9 +149,8 @@ public class shit : EnemyBase
         {
             GameObject shitiything = factory.GetObject(PoolObjectType.EffectShit, transform.position);
             Shitblood bloodobj = shitiything.GetComponent<Shitblood>();
-            IsDead += bloodobj.EnamvleChoosAction;
-            IsDead?.Invoke(false);
-            IsDead -= bloodobj.EnamvleChoosAction;
+            attackshit += bloodobj.EnamvleChoosAction;
+            attackshit?.Invoke(false);
             cooltimeStart(5, 0.2f);
         }
     }
@@ -200,7 +203,6 @@ public class shit : EnemyBase
             GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EffectShit, new Vector2(X, Y));
             Shitblood bloodobj = bloodshit.GetComponent<Shitblood>();
             IsDead += bloodobj.EnamvleChoosAction;
-            IsDead?.Invoke(true);
         }
     }
     protected override void Hitten()
