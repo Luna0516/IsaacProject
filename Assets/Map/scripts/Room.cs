@@ -23,7 +23,7 @@ public class Room : MonoBehaviour
             if (!isVisit)
             {
                 isVisit = true;
-                //spawner.델리게이트?.Invoke();
+                spawner.playerIn?.Invoke();
             }
         }
     }
@@ -55,7 +55,7 @@ public class Room : MonoBehaviour
 
     public Door[] doors = new Door[4];
 
-    //Spawner spawner;
+    MonsterSpawner spawner;
 
     private void Awake()
     {
@@ -73,9 +73,12 @@ public class Room : MonoBehaviour
         Tilemap tileMap = child.GetComponent<Tilemap>();
         width = tileMap.size.x;
         height = tileMap.size.y;
+    }
 
-        //child = transform.GetChild(4);
-        //spawner = child.GetComponent<Spawner>();
+    private void Start()
+    {
+        Transform child = transform.GetChild(4);
+        spawner = child.GetComponent<MonsterSpawner>();
     }
 
     private void MovePlayer(DoorType type)
