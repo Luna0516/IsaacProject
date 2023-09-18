@@ -57,7 +57,6 @@ public class RoomManager : Singleton<RoomManager>
         isLoading = false;
 
         CurrentRoom = listRooms[0];
-        CurrentRoom.IsVisit = true;
     }
 
     public void CreateStartRoom()
@@ -369,5 +368,12 @@ public class RoomManager : Singleton<RoomManager>
                 room.bottomRoom = findRoom;
             }
         }
+    }
+
+    //----------------------------------------------------------------------
+    // 테스트용 함수
+     public void TestRemoveWallColl()
+    {
+        CurrentRoom.transform.GetChild(5).GetChild(0).gameObject.SetActive(false);
     }
 }
