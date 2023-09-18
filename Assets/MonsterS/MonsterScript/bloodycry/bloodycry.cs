@@ -25,14 +25,18 @@ public class bloodycry : EnemyBase
         headanimator = head.GetComponent<Animator>();
         bodyanimator = body.GetComponent<Animator>();
     }
-     protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         stateChanger += distanceChack;
     }
-    protected override void Update()
+    protected override void OnDisable()
     {
-        base.Update();
+        base.OnDisable();
+        stateChanger = wewantnoNull;
+    }
+    private void FixedUpdate()
+    {
         orderInGame(headsprite, bodysprite);
         stateChanger();
         damageoff(headsprite, bodysprite);
@@ -72,14 +76,6 @@ public class bloodycry : EnemyBase
             bodyanimator.SetInteger("WalkSideway", 1);
         }
     }
-    /*    protected override void OnTriggerEnter2D(Collider2D collision)
-        {
-            base.OnTriggerEnter2D (collision);
-            if (collision.CompareTag("Player"))
-            {
-                moveactive = true;
-            }
-        }*/
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
@@ -108,7 +104,6 @@ public class bloodycry : EnemyBase
         stateChanger += Movement;
         headanimator.SetInteger("state", 1);
     }
-
     void hittedanimeoff()
     {
         allcoolStop();

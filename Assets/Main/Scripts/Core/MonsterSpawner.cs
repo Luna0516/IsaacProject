@@ -152,7 +152,6 @@ public class MonsterSpawner : MonoBehaviour
     void DeadCounnting(bool obj)
     {
         DeadCount++;//그래서 소환된 애들은 죽었을때 Dead 카운트가 증가하나, 파리같은 추가 소환은 증가 안해요
-        Debug.Log($"{deadCount}/{allspawncount}");
     }
     void SpawnInitialized()
     {
