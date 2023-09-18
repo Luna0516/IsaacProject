@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// 방의 타입
+/// </summary>
 public enum RoomType
 {
     Start,
@@ -78,12 +81,6 @@ public class Room : MonoBehaviour
         width = tileMap.size.x;
         height = tileMap.size.y;
     }
-
-    //private void Start()
-    //{
-    //    Transform child = transform.GetChild(4);
-    //    spawner = child.GetComponent<MonsterSpawner>();
-    //}
 
     private void MovePlayer(DoorType type)
     {
