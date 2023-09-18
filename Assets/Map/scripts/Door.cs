@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 문의 타입
+/// </summary>
 public enum DoorType
 {
     left,
@@ -11,12 +14,16 @@ public enum DoorType
     bottom,
     None,
 }
+
 public class Door : MonoBehaviour
 {
     /// <summary>
-    /// 이 문의 타입 설정
+    /// 자신의 문의 타입
     /// </summary>
     DoorType doorType = DoorType.None;
+    /// <summary>
+    /// 자신의 문의 타입을 설정하는 프로퍼티(처음 생성될 때 한번만 설정 가능)
+    /// </summary>
     public DoorType DoorType
     {
         get => doorType;

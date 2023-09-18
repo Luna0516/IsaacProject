@@ -17,7 +17,13 @@ public enum RoomType
 
 public class Room : MonoBehaviour
 {
+    /// <summary>
+    /// 한번 방문 했음을 확인하는 변수
+    /// </summary>
     bool isVisit = false;
+    /// <summary>
+    /// 방문 여부를 확인하는 프로퍼티
+    /// </summary>
     public bool IsVisit
     {
         get => isVisit;
@@ -33,12 +39,27 @@ public class Room : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 맵의 가로 길이
+    /// </summary>
     public int width;
+    /// <summary>
+    /// 맵의 세로 길이
+    /// </summary>
     public int height;
 
+    /// <summary>
+    /// 문을 통해 플레이어를 이동시킬 거리
+    /// </summary>
     float playerMoveDistance = 2.5f;
 
+    /// <summary>
+    /// 그리드 상 자신의 방의 위치
+    /// </summary>
     Vector2Int myPos = Vector2Int.zero;
+    /// <summary>
+    /// 자신의 방의 위치를 설정하는 프로퍼티
+    /// </summary>
     public Vector2Int MyPos
     {
         get => myPos;
@@ -51,15 +72,36 @@ public class Room : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 자신의 방의 타입
+    /// </summary>
     public RoomType roomtype = RoomType.Base;
 
+    /// <summary>
+    /// 자신의 왼쪽 방
+    /// </summary>
     public Room leftRoom = null;
+    /// <summary>
+    /// 자신의 오른쪽 방
+    /// </summary>
     public Room rightRoom = null;
+    /// <summary>
+    /// 자신의 위쪽 방
+    /// </summary>
     public Room topRoom = null;
+    /// <summary>
+    /// 자신의 아래쪽 방
+    /// </summary>
     public Room bottomRoom = null;
 
+    /// <summary>
+    /// 상하좌우 문들
+    /// </summary>
     public Door[] doors = new Door[4];
 
+    /// <summary>
+    /// 스포너
+    /// </summary>
     MonsterSpawner spawner;
 
     private void Awake()
@@ -82,6 +124,10 @@ public class Room : MonoBehaviour
         height = tileMap.size.y;
     }
 
+    /// <summary>
+    /// 문을 통해 플레이어를 이동 시킬 함수
+    /// </summary>
+    /// <param name="type"></param>
     private void MovePlayer(DoorType type)
     {
         Player player = GameManager.Inst.Player;
@@ -117,29 +163,29 @@ public class Room : MonoBehaviour
                 if (leftRoom != null)
                 {
                     leftRoom.IsVisit = true;
+                    RoomManager.Inst.CurrentRoom = leftRoom;
                 }
-                RoomManager.Inst.CurrentRoom = leftRoom;
                 break;
             case DoorType.right:
                 if (rightRoom != null)
                 {
                     rightRoom.IsVisit = true;
+                    RoomManager.Inst.CurrentRoom = rightRoom;
                 }
-                RoomManager.Inst.CurrentRoom = rightRoom;
                 break;
             case DoorType.top:
                 if (topRoom != null)
                 {
                     topRoom.IsVisit = true;
+                    RoomManager.Inst.CurrentRoom = topRoom;
                 }
-                RoomManager.Inst.CurrentRoom = topRoom;
                 break;
             case DoorType.bottom:
                 if (bottomRoom != null)
                 {
                     bottomRoom.IsVisit = true;
+                    RoomManager.Inst.CurrentRoom = bottomRoom;
                 }
-                RoomManager.Inst.CurrentRoom = bottomRoom;
                 break;
             default:
                 break;

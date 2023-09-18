@@ -156,11 +156,10 @@ MonoBehaviour:
   minCreateRoomCount: 9
   maxCreateRoomCount: 12
   minAttachRoomCount: 2
-  maxAttachRoomCount: 4
+  maxAttachRoomCount: 3
   startRoomPrefab: {fileID: 428845128574999711, guid: 135e769c206581141a2c42d51d9bbc7f, type: 3}
   baseRoomPrefab: {fileID: 428845128574999711, guid: 9c08fee65d90a214cbb40a1c195b18e5, type: 3}
   bossRoomPrefab: {fileID: 0}
-  listRooms: []
 --- !u!4 &117671091
 Transform:
   m_ObjectHideFlags: 0
