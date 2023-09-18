@@ -37,7 +37,7 @@ public class RoomManager : Singleton<RoomManager>
         }
     }
 
-    public List<Room> listRooms = new List<Room>();
+    List<Room> listRooms = new List<Room>();
 
     public System.Action<Room> onChangeRoom;
 
