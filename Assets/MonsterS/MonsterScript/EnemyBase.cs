@@ -11,6 +11,10 @@ public class EnemyBase : PooledObject
     [Header("몬스터 데미지")]
     public float MonsterDamage = 1;
 
+    public int AddableSpawnEnemy = 0;
+    public EnemyBase[] addenemy;
+    public System.Action<bool> count;
+
     /// <summary>
     /// 게임 매니저
     /// </summary>
@@ -170,8 +174,6 @@ public class EnemyBase : PooledObject
         IsDead = (bool obj) => { wewantnoNull(); };
     }
 
-
-
     protected virtual void Start()
     {
         if (player == null)
@@ -190,6 +192,7 @@ public class EnemyBase : PooledObject
     protected override void OnDisable()
     {
         base.onDisable();
+        AddableSpawnEnemy = 0;
         IsDead?.Invoke(true);
     }
     //모든 적들은 콜리전이 부딫혔을때 그것이 총알이라면 데미지를 받고 넉백됨
@@ -243,7 +246,7 @@ public class EnemyBase : PooledObject
     {
         bloodshatter();
         meatshatter();
-        Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
+        this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
 
     /// <summary>
@@ -283,7 +286,7 @@ public class EnemyBase : PooledObject
     protected virtual void Hitten()
     {
         HP -= damage;
-        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
+        /*Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");*/
     }
 
     protected virtual void NuckBack(Vector2 HittenHeadTo)

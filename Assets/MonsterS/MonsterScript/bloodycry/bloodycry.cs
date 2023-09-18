@@ -106,7 +106,6 @@ public class bloodycry : EnemyBase
         cooltimeStart(1, 0.2f);
         stateChanger += bloodCryStates;
         stateChanger += Movement;
-        Debug.Log("크와아아앙 . 블러디 크라이가 울부짖었따");
         headanimator.SetInteger("state", 1);
     }
 
