@@ -11,6 +11,9 @@ public class EnemyBase : PooledObject
     [Header("몬스터 데미지")]
     public float MonsterDamage = 1;
 
+    public int AddableSpawnEnemy = 0;
+    public EnemyBase[] addenemy;
+
     /// <summary>
     /// 게임 매니저
     /// </summary>
@@ -170,8 +173,6 @@ public class EnemyBase : PooledObject
         IsDead = (bool obj) => { wewantnoNull(); };
     }
 
-
-
     protected virtual void Start()
     {
         if (player == null)
@@ -190,6 +191,7 @@ public class EnemyBase : PooledObject
     protected override void OnDisable()
     {
         base.onDisable();
+        AddableSpawnEnemy = 0;
         IsDead?.Invoke(true);
     }
     //모든 적들은 콜리전이 부딫혔을때 그것이 총알이라면 데미지를 받고 넉백됨

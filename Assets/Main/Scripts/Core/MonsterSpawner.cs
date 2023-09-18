@@ -8,14 +8,14 @@ public class MonsterSpawner : MonoBehaviour
     public enum PatternSellect
     {
         TestMode = 0,
-        HostPattern=1,
-        MuligunAndBloodMan=2,
-        ShitAndHost=3,
-        ShitAndMuligun=4,
-        FlyAndBloodMan=5,
-        Rava=6,
-        RavaAndShit=7,
-        BossRoom=8
+        HostPattern = 1,
+        MuligunAndBloodMan = 2,
+        ShitAndHost = 3,
+        ShitAndMuligun = 4,
+        FlyAndBloodMan = 5,
+        Rava = 6,
+        RavaAndShit = 7,
+        BossRoom = 8
     }
 
     [Serializable]
@@ -66,13 +66,13 @@ public class MonsterSpawner : MonoBehaviour
 
     public int DeadCount
     {
-        get 
+        get
         {
             return deadCount;
         }
         set
-        { 
-            if(value < 20)
+        {
+            if (value < 20)
             {
                 if (deadCount != value)
                 {
@@ -100,7 +100,7 @@ public class MonsterSpawner : MonoBehaviour
     private void OnEnable()
     {
         playerIn += () => spawnActive(true);
-        onAllEnemyDied += () => { Debug.Log("모든 몬스터는 사망했다.");};
+        onAllEnemyDied += () => { Debug.Log("모든 몬스터는 사망했다."); };
     }
     private void Start()
     {
@@ -108,7 +108,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             selpa = UnityEngine.Random.Range(1, 8);
         }
-        
+
         patterSwitchSys((PatternSellect)selpa);
         loadSpawnDatas();
     }
@@ -117,30 +117,43 @@ public class MonsterSpawner : MonoBehaviour
     {
         spawnActive(SpawnNow);
     }
+
+    /// <summary>
+    /// 자식 스포너 개체들에게 스폰 명령
+    /// </summary>
+    /// <param name="spawnCheck"></param>
     void spawnActive(bool spawnCheck)
     {
         if (spawnCheck)
         {
-            SpawnInitialized();
-            foreach (var objectspawn in mssp)
+            SpawnInitialized();//입력 정보를 한번 동기화 하고
+            foreach (var objectspawn in mssp)//자식 개체들에게 스폰하라고 신호전달
             {
                 objectspawn.SapwnActive.Invoke();
-                allspawncount += objectspawn.allMonsterSpawners.spawnCount;
+                allspawncount += objectspawn.allMonsterSpawners.spawnCount;//스폰카운트만큼 집계해서 몬스터 수를 구하고
+                allspawncount += objectspawn.monsters.AddableSpawnEnemy;
             }
-            SpawnNow = false;
-            DeadCount = 0;
+            SpawnNow = false;//다음 프레임에 스폰 함수 실행방지
+            DeadCount = 0;//데드카운트를 0으로 만들어서 프로퍼티 실행 시작(20 이상의 수가 들어오지 못하게 막아둠)
             foreach (var objectspawn in mssp)
             {
-                if(objectspawn.monsters != null)
+                if (objectspawn.monsters != null)
                 {
-                    objectspawn.monsters.IsDead += DeadCounnting;
+                    objectspawn.monsters.IsDead += DeadCounnting;//이 스포너로 소환된 모든 몬스터들 IsDead 델리게이트에 DeadCount를 증가시키는 함수 연결
+                    if (objectspawn.monsters.AddableSpawnEnemy != 0)
+                    {
+                        for (int i = 0; i < objectspawn.monsters.AddableSpawnEnemy; i++)
+                        {
+                            objectspawn.monsters.addenemy[i].IsDead += DeadCounnting;
+                        }
+                    }
                 }
             }
         }
     }
     void DeadCounnting(bool obj)
     {
-        DeadCount++;
+        DeadCount++;//그래서 소환된 애들은 죽었을때 Dead 카운트가 증가하나, 파리같은 추가 소환은 증가 안해요
     }
     void SpawnInitialized()
     {
@@ -242,10 +255,6 @@ public class MonsterSpawner : MonoBehaviour
             mssp[i].allMonsterSpawners.spawnCount = spawncount;
             mssp[i].allMonsterSpawners.spawnArea = pos;
         }
-    }
-    public void DeadCounting()
-    {
-        DeadCount++;
     }
     /// <summary>
     /// 자식개체 숫자를 맞추는 함수

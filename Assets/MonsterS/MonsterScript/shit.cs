@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static PlayerAction;
 
 public class shit : EnemyBase
 {
@@ -24,7 +23,7 @@ public class shit : EnemyBase
     public GameObject flyer;
     bool shitDead = false;
 
-    static int flyCount = 0;
+    private int flyCount = 0;
 
     System.Action watcher;
     System.Action<bool> attackshit;
@@ -76,11 +75,13 @@ public class shit : EnemyBase
         draglinear = rig.drag;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        flyCounter();
     }
     protected override void OnEnable()
     {
         base.OnEnable();
+        flyCounter();
+        addenemy = new EnemyBase[flyCount];
+        AddableSpawnEnemy = flyCount;
         attackshit = (bool obj) => { wewantnoNull(); };
         Attackmode = true;
         Attackmode = false;
@@ -188,7 +189,8 @@ public class shit : EnemyBase
         for (int i = 0; i < flyCount; i++)
         {
             factory.GetObject(PoolObjectType.SpawnEffectPool, this.transform.position + (Vector3)pos);
-            factory.GetObject(PoolObjectType.EnemyFly, this.transform.position + (Vector3)pos);
+            GameObject obj = factory.GetObject(PoolObjectType.EnemyFly, this.transform.position + (Vector3)pos);
+            addenemy[i] = obj.GetComponent<EnemyBase>();
         }
         allcoolStop();
         this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.

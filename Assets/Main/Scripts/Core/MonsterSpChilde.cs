@@ -38,6 +38,14 @@ public class MonsterSpChilde : MonoBehaviour
         SapwnActive = Spawn;
         SpawnActiveate = false;
     }
+    private void Update()
+    {
+        if (spawnactive)
+        {
+            SpawnActiveate = true;
+            SpawnActiveate = false;
+        }
+    }
     void Spawn()
     {
         for (int i = 0; i < allMonsterSpawners.spawnCount; i++)
@@ -49,14 +57,6 @@ public class MonsterSpChilde : MonoBehaviour
             {
                 monsters = obj.GetComponent<EnemyBase>();
             }
-        }
-    }
-    private void Update()
-    {
-        if (spawnactive)
-        {
-            SpawnActiveate = true;
-            SpawnActiveate = false;
         }
     }
 #if UNITY_EDITOR
