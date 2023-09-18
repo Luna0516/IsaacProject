@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPos: {x: 0, y: 0}
   activeItem: 0
-  passiveItem: 6
+  passiveItem: 7
   heartItem: 0
   propsItem: 6
   chest: {fileID: 5837268257509165235, guid: a479892d4061e0f4a9c4354c251175a0, type: 3}

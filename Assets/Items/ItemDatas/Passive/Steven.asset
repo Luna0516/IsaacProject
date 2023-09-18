@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Steven
-  explain: DMG up
+  itemPrefab: {fileID: 7490964534661180644, guid: 81dcb9b38c05bbc4b8b28a1c4158367d, type: 3}
   itemNum: 50
   icon: {fileID: 21300000, guid: 02d9d6d03001140419749839ec0b8605, type: 3}
-  itemPrefab: {fileID: 6114705758385047781, guid: 48c8c72a15f5fb04bb7b53be2970e12f, type: 3}
+  explain: DMG up
   grade: 3
   damage: 1
   speed: 0
