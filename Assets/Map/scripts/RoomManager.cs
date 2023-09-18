@@ -30,6 +30,7 @@ public class RoomManager : Singleton<RoomManager>
                 currentRoom = value;
                 if (!isLoading)
                 {
+                    currentRoom.IsVisit = true;
                     onChangeRoom?.Invoke(currentRoom);
                 }
             }
@@ -66,7 +67,7 @@ public class RoomManager : Singleton<RoomManager>
         Room startRoom = startRoomObj.GetComponent<Room>();
 
         startRoom.MyPos = Vector2Int.zero;
-        startRoom.roomtype = RoomType.Base;
+        startRoom.roomtype = RoomType.Start;
 
         startRoomObj.name = $"StartRoom_({startRoom.MyPos.x}, {startRoom.MyPos.y})";
 

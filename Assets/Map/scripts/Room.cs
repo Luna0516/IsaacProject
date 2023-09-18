@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 public enum RoomType
 {
+    Start,
     Base,
     Shop,
     Boss
@@ -20,9 +21,10 @@ public class Room : MonoBehaviour
         set
         {
             // 한번 방문하면 다시 신호 안줌
-            if (!isVisit)
+            if (!isVisit && roomtype != RoomType.Start)
             {
                 isVisit = true;
+                Debug.Log(spawner.transform.parent.name);
                 spawner.playerIn?.Invoke();
             }
         }
