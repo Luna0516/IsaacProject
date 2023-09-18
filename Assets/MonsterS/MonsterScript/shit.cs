@@ -71,17 +71,19 @@ public class shit : EnemyBase
     }
     protected override void Awake()
     {
+        flyCount = 0;
         base.Awake();
         draglinear = rig.drag;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        attackshit = (bool obj) => { wewantnoNull(); };
     }
     protected override void OnEnable()
     {
         base.OnEnable();
         flyCounter();
-        addenemy = new EnemyBase[flyCount];
         AddableSpawnEnemy = flyCount;
+        addenemy = new EnemyBase[AddableSpawnEnemy];
         attackshit = (bool obj) => { wewantnoNull(); };
         Attackmode = true;
         Attackmode = false;
@@ -89,9 +91,12 @@ public class shit : EnemyBase
     protected override void OnDisable()
     {
         base.OnDisable();
+        addenemy = null;
+        count = (bool obj) => { wewantnoNull(); };
         attackshit = (bool obj) => { wewantnoNull(); };
         Attackmode = false;
         att = true;
+        flyCount = 0;
         allcoolStop();
     }
     protected override void Update()
@@ -174,6 +179,7 @@ public class shit : EnemyBase
         {
             flyCount = 5;
         }
+        Debug.Log($"날파리 수 = {flyCount} 개");
     }
     protected override void NuckBack(Vector2 HittenHeadTo)
     {
@@ -193,7 +199,6 @@ public class shit : EnemyBase
             addenemy[i] = obj.GetComponent<EnemyBase>();
             addenemy[i].IsDead += count;
         }
-        count?.Invoke(true);
         allcoolStop();
         this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }

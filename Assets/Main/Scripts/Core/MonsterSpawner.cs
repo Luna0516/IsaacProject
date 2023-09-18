@@ -44,9 +44,7 @@ public class MonsterSpawner : MonoBehaviour
     public AllMonsterSpawners[] allspawn;
     [Space(10)]
 
-    [Header("스포너 갯수")]
-    public int spawnercount = 0;
-    [Space(5)]
+    private int spawnercount = 0;
     [Header("스폰 몬스터 갯수")]
     public int allspawncount = 0;
     [Space(15)]
@@ -72,7 +70,7 @@ public class MonsterSpawner : MonoBehaviour
         }
         set
         {
-            if (value < 20)
+            if (value < 40)
             {
                 if (deadCount != value)
                 {
@@ -130,7 +128,10 @@ public class MonsterSpawner : MonoBehaviour
             foreach (var objectspawn in mssp)//자식 개체들에게 스폰하라고 신호전달
             {
                 objectspawn.SapwnActive.Invoke();
+                if(objectspawn.gameObject.activeSelf)
+                {
                 allspawncount += objectspawn.allMonsterSpawners.spawnCount;//스폰카운트만큼 집계해서 몬스터 수를 구하고
+                }
             }
             SpawnNow = false;//다음 프레임에 스폰 함수 실행방지
             DeadCount = 0;//데드카운트를 0으로 만들어서 프로퍼티 실행 시작(20 이상의 수가 들어오지 못하게 막아둠)
@@ -141,11 +142,8 @@ public class MonsterSpawner : MonoBehaviour
                     objectspawn.monsters.IsDead += DeadCounnting;//이 스포너로 소환된 모든 몬스터들 IsDead 델리게이트에 DeadCount를 증가시키는 함수 연결
                     if (objectspawn.monsters.AddableSpawnEnemy != 0)
                     {
-                        for (int i = 0; i < objectspawn.monsters.AddableSpawnEnemy; i++)
-                        {
-                            allspawncount += objectspawn.monsters.AddableSpawnEnemy;
-                            objectspawn.monsters.addenemy[i].count += DeadCounnting;
-                        }
+                        allspawncount += objectspawn.monsters.AddableSpawnEnemy;
+                        objectspawn.monsters.count += DeadCounnting;
                     }
                 }
             }
@@ -154,6 +152,7 @@ public class MonsterSpawner : MonoBehaviour
     void DeadCounnting(bool obj)
     {
         DeadCount++;//그래서 소환된 애들은 죽었을때 Dead 카운트가 증가하나, 파리같은 추가 소환은 증가 안해요
+        Debug.Log($"{deadCount}/{allspawncount}");
     }
     void SpawnInitialized()
     {
