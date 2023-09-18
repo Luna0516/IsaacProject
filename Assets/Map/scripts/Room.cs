@@ -69,17 +69,19 @@ public class Room : MonoBehaviour
             doors[i].onPlayerMove += MovePlayer;
         }
 
-        child = transform.GetChild(5);
-        Tilemap tileMap = child.GetComponent<Tilemap>();
+        child = transform.GetChild(4);
+        spawner = child.GetComponent<MonsterSpawner>();
+
+        Tilemap tileMap = GetComponentInChildren<Tilemap>();
         width = tileMap.size.x;
         height = tileMap.size.y;
     }
 
-    private void Start()
-    {
-        Transform child = transform.GetChild(4);
-        spawner = child.GetComponent<MonsterSpawner>();
-    }
+    //private void Start()
+    //{
+    //    Transform child = transform.GetChild(4);
+    //    spawner = child.GetComponent<MonsterSpawner>();
+    //}
 
     private void MovePlayer(DoorType type)
     {
