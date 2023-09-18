@@ -13,6 +13,7 @@ public class EnemyBase : PooledObject
 
     public int AddableSpawnEnemy = 0;
     public EnemyBase[] addenemy;
+    public System.Action<bool> count;
 
     /// <summary>
     /// 게임 매니저
@@ -245,7 +246,7 @@ public class EnemyBase : PooledObject
     {
         bloodshatter();
         meatshatter();
-        Destroy(this.gameObject);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
+        this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
 
     /// <summary>
@@ -285,7 +286,7 @@ public class EnemyBase : PooledObject
     protected virtual void Hitten()
     {
         HP -= damage;
-        Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");
+        /*Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");*/
     }
 
     protected virtual void NuckBack(Vector2 HittenHeadTo)

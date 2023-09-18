@@ -131,7 +131,6 @@ public class MonsterSpawner : MonoBehaviour
             {
                 objectspawn.SapwnActive.Invoke();
                 allspawncount += objectspawn.allMonsterSpawners.spawnCount;//스폰카운트만큼 집계해서 몬스터 수를 구하고
-                allspawncount += objectspawn.monsters.AddableSpawnEnemy;
             }
             SpawnNow = false;//다음 프레임에 스폰 함수 실행방지
             DeadCount = 0;//데드카운트를 0으로 만들어서 프로퍼티 실행 시작(20 이상의 수가 들어오지 못하게 막아둠)
@@ -144,7 +143,8 @@ public class MonsterSpawner : MonoBehaviour
                     {
                         for (int i = 0; i < objectspawn.monsters.AddableSpawnEnemy; i++)
                         {
-                            objectspawn.monsters.addenemy[i].IsDead += DeadCounnting;
+                            allspawncount += objectspawn.monsters.AddableSpawnEnemy;
+                            objectspawn.monsters.addenemy[i].count += DeadCounnting;
                         }
                     }
                 }

@@ -191,7 +191,9 @@ public class shit : EnemyBase
             factory.GetObject(PoolObjectType.SpawnEffectPool, this.transform.position + (Vector3)pos);
             GameObject obj = factory.GetObject(PoolObjectType.EnemyFly, this.transform.position + (Vector3)pos);
             addenemy[i] = obj.GetComponent<EnemyBase>();
+            addenemy[i].IsDead += count;
         }
+        count?.Invoke(true);
         allcoolStop();
         this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
