@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1582209639462560525}
   - component: {fileID: 1582209639462560515}
   - component: {fileID: 1582209639462560512}
-  - component: {fileID: 1328255760396553173}
+  - component: {fileID: 3866282973047109864}
   m_Layer: 31
   m_Name: Host
   m_TagString: Enemy
@@ -50,8 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterDamage: 1
+  AddableSpawnEnemy: 0
+  addenemy: []
   factory: {fileID: 0}
-  distance: 1
+  distance: 2.5
   speed: 5
   NuckBackPower: 1
   MaxHP: 5
@@ -60,7 +62,6 @@ MonoBehaviour:
   cooltimer1: 0
   cooltimer2: 0
   cooltimer3: 0
-  turret: {fileID: 0}
 --- !u!212 &1582209639462560514
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &1328255760396553173
+--- !u!58 &3866282973047109864
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,4 +187,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.92
+  m_Radius: 2.5

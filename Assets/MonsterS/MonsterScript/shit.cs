@@ -179,7 +179,6 @@ public class shit : EnemyBase
         {
             flyCount = 5;
         }
-        Debug.Log($"날파리 수 = {flyCount} 개");
     }
     protected override void NuckBack(Vector2 HittenHeadTo)
     {

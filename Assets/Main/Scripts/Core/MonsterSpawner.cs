@@ -105,9 +105,12 @@ public class MonsterSpawner : MonoBehaviour
         if (RandomButton)
         {
             selpa = UnityEngine.Random.Range(1, 8);
+            patterSwitchSys((PatternSellect)selpa);
         }
-
-        patterSwitchSys((PatternSellect)selpa);
+        else
+        { 
+            patterSwitchSys(patternSellector); 
+        };
         loadSpawnDatas();
     }
 
@@ -128,9 +131,9 @@ public class MonsterSpawner : MonoBehaviour
             foreach (var objectspawn in mssp)//자식 개체들에게 스폰하라고 신호전달
             {
                 objectspawn.SapwnActive.Invoke();
-                if(objectspawn.gameObject.activeSelf)
+                if (objectspawn.gameObject.activeSelf)
                 {
-                allspawncount += objectspawn.allMonsterSpawners.spawnCount;//스폰카운트만큼 집계해서 몬스터 수를 구하고
+                    allspawncount += objectspawn.allMonsterSpawners.spawnCount;//스폰카운트만큼 집계해서 몬스터 수를 구하고
                 }
             }
             SpawnNow = false;//다음 프레임에 스폰 함수 실행방지
@@ -152,7 +155,6 @@ public class MonsterSpawner : MonoBehaviour
     void DeadCounnting(bool obj)
     {
         DeadCount++;//그래서 소환된 애들은 죽었을때 Dead 카운트가 증가하나, 파리같은 추가 소환은 증가 안해요
-        Debug.Log($"{deadCount}/{allspawncount}");
     }
     void SpawnInitialized()
     {
