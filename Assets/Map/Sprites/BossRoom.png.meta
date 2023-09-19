@@ -1,0 +1,536 @@
+fileFormatVersion: 2
+guid: 04736761119bba846b9b1dcbddcb1e40
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 52
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boss_Corner_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01780fa354042834d87b3af45c83e129
+      internalID: 1222450729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Corner_1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 416
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7d7d5e3becb664195fd779fc5cafbc
+      internalID: -1294149684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Corner_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 520ce65dc1f73034cb9390075e3d8152
+      internalID: -621606588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Center_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 353
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e131902add528504b9bfef1b190b817a
+      internalID: -1156449755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Center_1
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 353
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8f9be626a96bba47b1e1fd3c996a1c3
+      internalID: 1832504194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Center_2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 353
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1caa3b531afcdb241863df31e3566fa3
+      internalID: 739007463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Boss_Center_0: -1156449755
+      Boss_Center_1: 1832504194
+      Boss_Center_2: 739007463
+      Boss_Corner_0: 1222450729
+      Boss_Corner_1: -1294149684
+      Boss_Corner_2: -621606588
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_100: 2125429237
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_101: 787456107
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_102: -1482905063
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_103: 262395996
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_104: 942460636
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_105: 1234759618
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_106: -187151903
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_107: 1864248422
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_108: -135813201
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_109: -474536528
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_110: -1085816940
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_111: 759428048
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_112: -1934594848
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_113: -1991732821
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_114: -800207731
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_115: 1382276918
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_116: 1027759593
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_117: -837982387
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_118: -331942398
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_119: 470275146
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_12: 1289681046
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_120: 1464785659
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_121: -1606585902
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_122: -1792927864
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_123: 1201392332
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_124: 1342151193
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_125: -1065349164
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_126: -972448436
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_127: 285996763
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_128: 1614379805
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_129: 1416034698
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_13: 51106770
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_130: -65776880
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_131: 8455516
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_132: -1906008791
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_133: 1781859665
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_134: -255277901
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_135: 484199385
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_136: 605679033
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_137: 1374440008
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_138: -796176446
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_139: -1210081220
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_14: -230225292
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_140: -697475694
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_141: 2067300440
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_142: 1677450385
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_143: 1943425911
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_144: -748757542
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_145: 358309057
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_146: -1925415586
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_147: 1311907719
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_148: -1483310201
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_149: -1445662570
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_15: 37232908
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_150: -1831775737
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_151: -905711634
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_152: 2050014573
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_153: 39714825
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_154: 618373900
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_155: 1676214772
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_156: -183460587
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_157: -622131508
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_158: -1854960243
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_159: -832895308
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_16: 2027617792
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_160: 197105267
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_161: -1095693564
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_162: 2103597764
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_163: 1592298279
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_164: -288023094
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_165: 182634655
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_166: 235911371
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_167: -1317917318
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_168: -1146398225
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_169: -663918865
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_17: -69034277
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_170: 782791884
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_171: -509034706
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_172: -658890206
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_173: -1205380627
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_174: -85657494
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_175: -1130085965
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_176: 1929826023
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_177: 2041125702
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_178: -1454726622
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_179: -1015808914
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_18: 712786868
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_180: -2121169589
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_181: -1475775234
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_182: -1518852896
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_183: -724139398
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_184: 745746657
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_185: -1580599559
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_186: 169036394
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_187: -1470708445
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_188: 1691454832
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_189: -822256515
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_19: 48392273
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_190: 372840000
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_191: 674765757
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_192: 867009494
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_193: -1694140531
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_194: -807330014
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_195: -1669852458
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_196: -92061796
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_197: 1217656779
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_198: -1689540804
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_199: -1911630253
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_2: 1468396160
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_20: -706647743
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_200: -304150879
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_201: -1317591499
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_202: 1119808461
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_203: -364304629
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_204: 235840736
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_205: 1534133323
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_206: -1775758325
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_207: -1411673510
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_208: 2142827498
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_209: -896446171
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_21: 1993321613
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_210: 1075307544
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_211: -624557052
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_212: 773429654
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_213: -524982037
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_214: -1148362789
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_215: -1232339934
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_216: -666634117
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_217: -413443008
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_218: 306496510
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_219: 210149343
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_22: -1739308697
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_220: -101958757
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_221: 785780384
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_222: 1257809531
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_223: 682652780
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_224: -352966710
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_225: 1089213118
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_226: 1130196278
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_227: -929359147
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_228: -121195150
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_229: -2055671000
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_23: -1084235805
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_230: -294162874
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_231: -581047134
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_232: 102149930
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_233: 1416789345
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_234: 273092362
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_235: -427579342
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_236: -93414689
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_237: 1652542363
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_238: -278211467
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_239: 1158103795
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_24: -1024754901
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_240: -553278423
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_241: -1720206589
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_242: -629608744
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_243: -2075859250
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_244: -1765693393
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_245: 1395619726
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_246: -1388363271
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_247: -1852664711
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_248: 1621070938
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_249: 1466750813
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_25: 1588660810
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_250: 865552827
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_251: 737944722
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_252: 227667992
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_253: -1942991735
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_254: -129776840
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_255: -848752127
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_256: 1986517615
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_257: -674327877
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_258: 1391235383
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_259: -1802617929
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_26: 1186254280
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_260: 1493180760
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_261: 1560409754
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_262: 2094255020
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_263: -1251225925
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_264: -1417922446
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_265: -2114317663
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_266: 861344995
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_267: 937716867
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_268: -1860407434
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_269: -1020428683
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_27: -448513821
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_270: -1932038434
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_271: -348967898
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_272: 1673811503
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_273: 1247163822
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_274: 1581462710
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_275: 608575504
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_276: -42237274
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_277: -279027631
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_278: -1777609079
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_279: 806524319
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_28: -1216459546
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_280: 31219659
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_281: 1968665467
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_282: 945603877
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_283: -1648776804
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_284: -2019463253
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_29: 111038016
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_3: 115149228
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_30: -626673759
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_31: -1558505572
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_32: -524114539
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_33: 631170860
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_34: -149665000
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_35: 1271409402
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_36: 850748428
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_37: -553374331
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_38: -1420021064
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_39: -674846041
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_4: -1086366790
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_40: -1923643390
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_41: -1086190903
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_42: 1520432621
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_43: -1435267007
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_44: -671865577
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_45: 2065410052
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_46: -1407830
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_47: -49193336
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_48: -1140624202
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_49: -377486292
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_5: 2090363038
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_50: -960786400
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_51: -385774926
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_52: -443315962
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_53: -1023305883
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_54: -331264905
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_55: 755285471
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_56: -1492675707
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_57: 36053282
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_58: 1480872983
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_59: -549607633
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_6: 1510745900
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_60: 1814254040
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_61: 134501231
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_62: -1950916952
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_63: 3086023
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_64: 807538731
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_65: -261195587
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_66: -918853878
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_67: 726785368
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_68: -1974425460
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_69: 1455503656
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_7: -878224495
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_70: 631116836
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_71: -1888554686
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_72: 1702247221
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_73: -115881916
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_74: -1601070432
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_75: 1912774637
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_76: 1467070933
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_77: -1703417181
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_78: -567511131
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_79: -390915894
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_8: -1950508996
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_80: 1665427137
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_81: 296487368
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_82: 2007956668
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_83: 1750481715
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_84: 269628494
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_85: 2143536301
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_86: 1090735995
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_87: 417193941
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_88: -2005630753
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_89: -1106202385
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_9: -472263684
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_90: -529601288
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_91: 1945797749
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_92: 1744676228
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_93: 661276108
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_94: 1393196191
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_95: 672157529
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_96: 2112116737
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_97: -544802665
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_98: -470775790
+      PC Computer - The Binding of Isaac Rebirth - Catacombs_99: -563184685
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
