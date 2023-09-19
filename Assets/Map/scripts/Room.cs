@@ -51,7 +51,7 @@ public class Room : MonoBehaviour
     /// <summary>
     /// 문을 통해 플레이어를 이동시킬 거리
     /// </summary>
-    float playerMoveDistance = 2.5f;
+    float playerMoveDistance = 3.2f;
 
     /// <summary>
     /// 그리드 상 자신의 방의 위치
@@ -118,6 +118,10 @@ public class Room : MonoBehaviour
 
         child = transform.GetChild(4);
         spawner = child.GetComponent<MonsterSpawner>();
+        if (spawner != null)
+        {
+            spawner.onAllEnemyDied += OpenDoor;
+        }
 
         Tilemap tileMap = GetComponentInChildren<Tilemap>();
         width = tileMap.size.x;
@@ -189,6 +193,20 @@ public class Room : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    /// <summary>
+    /// 자신의 방의 문을 여는 함수
+    /// </summary>
+    public void OpenDoor()
+    {
+        foreach(Door door in doors)
+        {
+            if(door != null)
+            {
+                door.IsOpen = true;
+            }
         }
     }
 }

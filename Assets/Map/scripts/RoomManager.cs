@@ -70,6 +70,11 @@ public class RoomManager : Singleton<RoomManager>
     public GameObject baseRoomPrefab;
 
     /// <summary>
+    /// 상점 방의 프리펩
+    /// </summary>
+    public GameObject shopRoomPrefab;
+
+    /// <summary>
     /// 보스 방의 프리펩
     /// </summary>
     public GameObject bossRoomPrefab;
@@ -130,6 +135,11 @@ public class RoomManager : Singleton<RoomManager>
         isLoading = false;
 
         CurrentRoom = listRooms[0];
+
+        if(CurrentRoom.roomtype == RoomType.Start)
+        {
+            CurrentRoom.OpenDoor();
+        }
     }
 
     /// <summary>
@@ -166,7 +176,7 @@ public class RoomManager : Singleton<RoomManager>
             {
                 createSuccess = false;
 
-                if (NeighborRoomCount() >= attachCount)
+                if (NeighborRoomCount(CurrentRoom) >= attachCount)
                 {
                     break;
                 }
@@ -179,6 +189,11 @@ public class RoomManager : Singleton<RoomManager>
                         if (CurrentRoom.leftRoom == null)
                         {
                             Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.left;
+
+                            if (!CheckCreateRoom(Pos))
+                            {
+                                break;
+                            }
 
                             GameObject roomObj = Instantiate(baseRoomPrefab, transform);
 
@@ -202,6 +217,11 @@ public class RoomManager : Singleton<RoomManager>
                         {
                             Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.right;
 
+                            if (!CheckCreateRoom(Pos))
+                            {
+                                break;
+                            }
+
                             GameObject roomObj = Instantiate(baseRoomPrefab, transform);
 
                             Room room = roomObj.GetComponent<Room>();
@@ -223,6 +243,11 @@ public class RoomManager : Singleton<RoomManager>
                         if (CurrentRoom.topRoom == null)
                         {
                             Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.up;
+
+                            if (!CheckCreateRoom(Pos))
+                            {
+                                break;
+                            }
 
                             GameObject roomObj = Instantiate(baseRoomPrefab, transform);
 
@@ -246,8 +271,10 @@ public class RoomManager : Singleton<RoomManager>
                         {
                             Vector2Int Pos = CurrentRoom.MyPos + Vector2Int.down;
 
-                            // 만들어진 방의 4방향에 있는 방이 maxAttach값을 넘는지 확인
-                            // or 랜덤으로 붙는 값을 방이 만들어 질때 위에서 그 방에 넣고 확인 => 어차피 만들어 지다가 총 만들 방의 개수가 되면 자동으로 그 방에 붙는 값을 자신 주변에 있는 값으로 바꾸기
+                            if (!CheckCreateRoom(Pos))
+                            {
+                                break;
+                            }
 
                             GameObject roomObj = Instantiate(baseRoomPrefab, transform);
 
@@ -275,7 +302,7 @@ public class RoomManager : Singleton<RoomManager>
                     roomNum++;
                     i++;
 
-                    if (NeighborRoomCount() >= attachCount)
+                    if (NeighborRoomCount(CurrentRoom) >= attachCount)
                     {
                         break;
                     }
@@ -305,30 +332,57 @@ public class RoomManager : Singleton<RoomManager>
     }
 
     /// <summary>
+    /// 생성할 방의 주변 방들이 조건에 맞는 방인지 확인하는 함수
+    /// </summary>
+    /// <param name="Pos">생성할 방의 그리드 위치</param>
+    /// <returns>생성 가능 여부 조건(true면 생성 가능, false면 생성 불가능)</returns>
+    private bool CheckCreateRoom(Vector2Int pos)
+    {
+        bool result = true;
+
+        Vector2Int[] checkDir = new Vector2Int[4] { Vector2Int.left, Vector2Int.right, Vector2Int.down, Vector2Int.up };
+
+        for (int i = 0; i < checkDir.Length; i++)
+        {
+            Room findRoom = FindRoom(pos + checkDir[i]);
+            if (findRoom != null)
+            {
+                if(NeighborRoomCount(findRoom) >= maxAttachRoomCount)
+                {
+                    result = false;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
     /// 현재 방에 연결된 다른 방의 개수
     /// </summary>
     /// <param name="room">확인할 방</param>
     /// <returns>연결된 방의 개수</returns>
-    private int NeighborRoomCount()
+    private int NeighborRoomCount(Room room)
     {
         int result = 0;
 
-        if (CurrentRoom.leftRoom != null)
+        if (room.leftRoom != null)
         {
             result++;
         }
 
-        if (CurrentRoom.rightRoom != null)
+        if (room.rightRoom != null)
         {
             result++;
         }
 
-        if (CurrentRoom.topRoom != null)
+        if (room.topRoom != null)
         {
             result++;
         }
 
-        if (CurrentRoom.bottomRoom != null)
+        if (room.bottomRoom != null)
         {
             result++;
         }
@@ -347,8 +401,6 @@ public class RoomManager : Singleton<RoomManager>
             float yPos = listRooms[i].MyPos.y * listRooms[i].height;
 
             listRooms[i].transform.position += new Vector3(xPos, yPos);
-
-            //SettingNeighborRoom(listRooms[i]);
 
             RefreshDoor(listRooms[i]);
         }
@@ -429,10 +481,13 @@ public class RoomManager : Singleton<RoomManager>
         }
     }
 
-    //----------------------------------------------------------------------
-    // 테스트용 함수
-    public void TestRemoveWallColl()
+    /// <summary>
+    /// 그리드 위치의 방이 생성되었는지 확인하는 함수
+    /// </summary>
+    /// <param name="pos">확인할 그리드 좌표</param>
+    /// <returns>찾는 값 반환, 없으면 null</returns>
+    private Room FindRoom(Vector2Int pos)
     {
-        CurrentRoom.transform.GetChild(5).GetChild(0).gameObject.SetActive(false);
+        return listRooms.Find(serchRoom => serchRoom.MyPos.x == pos.x && serchRoom.MyPos.y == pos.y);
     }
 }
