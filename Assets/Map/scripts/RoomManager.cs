@@ -309,13 +309,13 @@ public class RoomManager : Singleton<RoomManager>
                 }
 
                 // 안에도 넣어야 붙이는 방을 만들때 총 만들어진 카운트가 createRoomCount를 안넘긴다 => 안쓰면 오류남
-                if (createRoomCount == listRooms.Count || createRoomCount == roomNum)
+                if (createRoomCount <= listRooms.Count || createRoomCount <= roomNum)
                 {
                     break;
                 }
             }
 
-            if(createRoomCount == listRooms.Count || createRoomCount == roomNum)
+            if(createRoomCount <= listRooms.Count || createRoomCount <= roomNum)
             {
                 break;
             }
