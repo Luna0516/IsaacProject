@@ -160,7 +160,7 @@ MonoBehaviour:
   startRoomPrefab: {fileID: 428845128574999711, guid: 135e769c206581141a2c42d51d9bbc7f, type: 3}
   baseRoomPrefab: {fileID: 428845128574999711, guid: 9c08fee65d90a214cbb40a1c195b18e5, type: 3}
   shopRoomPrefab: {fileID: 0}
-  bossRoomPrefab: {fileID: 0}
+  bossRoomPrefab: {fileID: 428845128574999711, guid: ea56086a20943084eb42c6e033694d23, type: 3}
 --- !u!4 &117671091
 Transform:
   m_ObjectHideFlags: 0

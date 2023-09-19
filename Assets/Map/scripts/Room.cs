@@ -53,6 +53,19 @@ public class Room : MonoBehaviour
     /// </summary>
     float playerMoveDistance = 3.2f;
 
+    float distance = 0.0f;
+    public float Distance
+    {
+        get => distance;
+        private set
+        {
+            if(value > 0)
+            {
+                distance = value;
+            }
+        }
+    }
+
     /// <summary>
     /// 그리드 상 자신의 방의 위치
     /// </summary>
@@ -68,6 +81,7 @@ public class Room : MonoBehaviour
             if(myPos == Vector2Int.zero && value != Vector2Int.zero)
             {
                 myPos = value;
+                Distance = Vector2.SqrMagnitude(MyPos);
             }
         }
     }
