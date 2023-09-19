@@ -432,7 +432,7 @@ public class Player : MonoBehaviour
         {
             Damaged();
             KnockBack(collision);
-            Debug.Log("적과 충돌/ 남은 체력 : " + health);
+            Debug.Log("적과 충돌/ 남은 체력 : " + Health);
         }
 
         // 프롭스 태그를 가진 오브젝트와 충돌 했을 때
@@ -735,7 +735,7 @@ public class Player : MonoBehaviour
             if (Health > 0)
             {
                 isDamaged = true;
-                health--;
+                Health--;
                 if (Health == 0)
                 {
                     Die();
