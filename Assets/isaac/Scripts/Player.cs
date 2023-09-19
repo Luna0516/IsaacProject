@@ -318,6 +318,8 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.MutantSpider:
                     isEmpty = false;
+                    headResourceName = "HeadAC/Head_Mutant_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     break;
                 case PassiveSpriteState.Brimstone:
                     isEmpty = false;
@@ -543,6 +545,7 @@ public class Player : MonoBehaviour
                                 break;
                             // 거미눈물 4발
                             case 153:
+                                State = PassiveSpriteState.MutantSpider;
                                 break;
                         }
 
@@ -640,7 +643,7 @@ public class Player : MonoBehaviour
         }
         if (context.performed)
         {
-            if (isEmpty)
+            if (isEmpty || !isGetBrimstone)
             {
                 headAni.SetBool("isNormalShoot", true);
             }
@@ -660,7 +663,7 @@ public class Player : MonoBehaviour
         }
         else if (context.canceled)
         {
-            if (isEmpty)
+            if (isEmpty || !isGetBrimstone)
             {
                 headAni.SetBool("isNormalShoot", false);
             }
