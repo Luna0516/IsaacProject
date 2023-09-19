@@ -262,8 +262,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterDamage: 1
+  AddableSpawnEnemy: 0
+  addenemy: []
   factory: {fileID: 0}
-  distance: 1.38
+  distance: 2.5
   speed: 2
   NuckBackPower: 5
   MaxHP: 10

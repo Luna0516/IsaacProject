@@ -44,23 +44,10 @@ public class Host : EnemyBase
         animestate = Animator.StringToHash("Attack");
     }
 
-    /// <summary>
-    /// 플레이어가 공격범위 내로 들어왔다가 나갈때 트리거
-    /// </summary>
-    /// <param name="collision">부딫히는 대상</param>
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        ///조건문 : collision의 태그가 Player일 경우
-        if (collision.CompareTag("Player"))
-        {
-            ///공격 작동 함수
-            AttackMove();
-        }
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
+        invincivle = false;
         UpdateChecker += attackDis;
         UpdateChecker += HeadToCal;
         UpdateCheckerSP += orderInGame;
@@ -106,17 +93,9 @@ public class Host : EnemyBase
         plusdistance = calcHeadTo.sqrMagnitude / distance;
         if (plusdistance < distance)
         {
-            AttackMove();
+            attackCoroutine(invincivle);
             UpdateChecker -= attackDis;
         }
-    }
-
-    /// <summary>
-    /// 공격 액션 함수
-    /// </summary>
-    void AttackMove()
-    {
-        attackCoroutine(invincivle);
     }
 
     /// <summary>

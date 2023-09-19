@@ -29,6 +29,10 @@ public class bloodycry : EnemyBase
     {
         base.OnEnable();
         stateChanger += distanceChack;
+        if(player != null)
+        {
+        HeadToCal();
+        }
     }
     protected override void OnDisable()
     {

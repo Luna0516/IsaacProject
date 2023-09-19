@@ -23,7 +23,7 @@ public class EnemyBase : PooledObject
     /// <summary>
     /// 플레이어
     /// </summary>
-    Player player = null;
+    protected Player player = null;
 
     /// <summary>
     /// 이동 목표(플레이어)
