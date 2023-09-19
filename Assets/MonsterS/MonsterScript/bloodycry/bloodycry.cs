@@ -13,6 +13,7 @@ public class bloodycry : EnemyBase
     Animator headanimator;
     Animator bodyanimator;
     bool buserkurcheck = false;
+    bool moveActive = false;
     float plusdistance = 100;
     Action stateChanger;
     protected override void Awake()
@@ -27,8 +28,8 @@ public class bloodycry : EnemyBase
     }
     protected override void OnEnable()
     {
+        buserkurcheck = false;
         base.OnEnable();
-        stateChanger += distanceChack;
         if(player != null)
         {
         HeadToCal();
@@ -46,26 +47,10 @@ public class bloodycry : EnemyBase
         damageoff(headsprite, bodysprite);
         HeadToCal();
     }
-    void distanceChack()
-    {
-        plusdistance = calcHeadTo.sqrMagnitude/distance;
-        if (plusdistance <= distance)
-        {
-            stateChanger += Movement;
-            stateChanger -= distanceChack;
-        }
-    }
-    void bloodCryStates()
-    {
-        if (!coolActive1)
-        {
-            hittedanimeoff();
-        }
-    }
 
     protected override void Movement()
     {
-        transform.Translate(speed * Time.deltaTime * HeadTo);
+        transform.Translate(speed * Time.fixedDeltaTime * HeadTo);
         if (HeadTo.x > 0)
         {
             headsprite.flipX = false;
@@ -87,8 +72,26 @@ public class bloodycry : EnemyBase
         {
             if (this.gameObject.activeSelf && !buserkurcheck)//이 개체의 활성화 확인과 버서커 체크가 거짓일때 실행
             {
+                moveActvie();
                 hittedanime();
+                buserkurcheck = true;
+                moveActive = true;
             }
+        }
+    }
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            moveActvie();
+            moveActive = true;
+        }
+    }
+    void bloodCryStates()
+    {
+        if (!coolActive1)
+        {
+            hittedanimeoff();
         }
     }
 
@@ -100,12 +103,18 @@ public class bloodycry : EnemyBase
             damaged(headsprite, bodysprite);
         }
     }
+    void moveActvie()
+    {
+        if(!moveActive)
+        {
+            stateChanger += Movement;
+        }
+    }
 
     void hittedanime()
     {
         cooltimeStart(1, 0.2f);
         stateChanger += bloodCryStates;
-        stateChanger += Movement;
         headanimator.SetInteger("state", 1);
     }
     void hittedanimeoff()

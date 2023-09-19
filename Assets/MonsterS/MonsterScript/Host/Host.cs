@@ -88,6 +88,13 @@ public class Host : EnemyBase
             NuckBack(-HeadTo);
         }
     }
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            attackCoroutine(invincivle);
+        }
+    }
     void attackDis()
     {
         plusdistance = calcHeadTo.sqrMagnitude / distance;
@@ -155,14 +162,4 @@ public class Host : EnemyBase
         //맞았을때 스프라이트 렌더러가 붉은색으로 변합니다.
         damaged(spriteRenderer);
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(this.transform.position, plusdistance);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, distance);
-    }
-#endif
 }
