@@ -12,7 +12,7 @@ public class Shop : MonoBehaviour
         public int price;
         public Transform tr;
         public Collider2D coll;
-        public CheckBox checkBox;
+        public ItemCheckBox checkBox;
         public Collider2D checkBoxColl;
     }
 
@@ -95,7 +95,7 @@ public class Shop : MonoBehaviour
 
             shopItemObj.transform.parent = shopItems[i].tr;
 
-            shopItems[i].checkBox = shopItems[i].tr.GetComponent<CheckBox>();
+            shopItems[i].checkBox = shopItems[i].tr.GetComponent<ItemCheckBox>();
 
             shopItems[i].checkBoxColl = shopItems[i].tr.GetComponent<Collider2D>();
 
