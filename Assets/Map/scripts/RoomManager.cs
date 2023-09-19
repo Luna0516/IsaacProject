@@ -331,6 +331,11 @@ public class RoomManager : Singleton<RoomManager>
         }
     }
 
+    private void CreateBossRoom()
+    {
+        GameObject bossRoomObj = Instantiate(bossRoomPrefab, transform);
+    }
+
     /// <summary>
     /// 생성할 방의 주변 방들이 조건에 맞는 방인지 확인하는 함수
     /// </summary>

@@ -2023,7 +2023,7 @@ GameObject:
   - component: {fileID: 428845128574999712}
   - component: {fileID: 428845128574999708}
   m_Layer: 0
-  m_Name: BaseRoom
+  m_Name: BossRoom
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2662,8 +2662,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5275135124780803843, guid: a62d9718e99f1ec40b320fbbf3665a01, type: 3}
+      propertyPath: RandomButton
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275135124780803843, guid: a62d9718e99f1ec40b320fbbf3665a01, type: 3}
       propertyPath: patternSellector
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62d9718e99f1ec40b320fbbf3665a01, type: 3}
