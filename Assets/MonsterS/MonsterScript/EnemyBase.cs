@@ -191,7 +191,7 @@ public class EnemyBase : PooledObject
     }
     protected override void OnDisable()
     {
-        base.onDisable();
+        base.OnDisable();
         AddableSpawnEnemy = 0;
         IsDead?.Invoke(true);
     }
@@ -270,7 +270,6 @@ public class EnemyBase : PooledObject
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
             GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EffectBlood, bloodpos);
-            //GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
         }
     }
     void meatshatter()//고기를 흩뿌리는 함수

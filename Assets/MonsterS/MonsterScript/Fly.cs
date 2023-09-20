@@ -44,9 +44,7 @@ public class Fly : EnemyBase
     }
     protected override void OnDisable()
     {
-        base.onDisable();
-        AddableSpawnEnemy = 0;
-        IsDead?.Invoke(true);
+        base.OnDisable();
         Invic -= invancivalcheck;
         Invic -= Dieying;
         allcoolStop();

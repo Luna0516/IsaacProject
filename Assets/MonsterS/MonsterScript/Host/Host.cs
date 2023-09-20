@@ -24,6 +24,21 @@ public class Host : EnemyBase
     /// 무적 상태 판정 (주의 : false일때 무적입니다.)
     /// </summary>
     bool invincivle = false;
+    bool Invincivle
+    {
+        get 
+        {
+            return invincivle; 
+        }
+        set 
+        {
+            if (invincivle != value) 
+            {
+                attackCoroutine(invincivle);
+            }
+        }
+    }
+
 
     float angle = 0.0f;
     Vector3 hunt;
@@ -90,7 +105,7 @@ public class Host : EnemyBase
     {
         if (collision.CompareTag("Player"))
         {
-            attackCoroutine(invincivle);
+            Invincivle = true;
         }
     }
     /// <summary>
