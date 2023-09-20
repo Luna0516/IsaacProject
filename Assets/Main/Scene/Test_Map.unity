@@ -1373,18 +1373,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Factory
       objectReference: {fileID: 0}
-    - target: {fileID: 2461219587549027607, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 2461219587552464202, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 2509279407834698905, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
-      propertyPath: poolSize
-      value: 32
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
 --- !u!1 &1260800730

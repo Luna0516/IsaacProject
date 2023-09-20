@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bloodhelth : PooledObject
 {
     Factory factory;
-    public Color clo;
+    Color clo;
     SpriteRenderer spriteRneder;
     int randomindex=0;
 
@@ -22,5 +22,7 @@ public class Bloodhelth : PooledObject
         float guage = Random.Range(0.2f, 1);
         clo.a = guage;
         spriteRneder.color = clo;
+        RoomManager.Inst.onChangeRoom += (_) => { this.gameObject.SetActive(false); };
     }
+    
 }

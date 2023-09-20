@@ -98,7 +98,6 @@ public class MonsterSpawner : MonoBehaviour
     private void OnEnable()
     {
         playerIn += () => spawnActive(true);
-        onAllEnemyDied += () => { Debug.Log("모든 몬스터는 사망했다."); };
     }
     private void Start()
     {

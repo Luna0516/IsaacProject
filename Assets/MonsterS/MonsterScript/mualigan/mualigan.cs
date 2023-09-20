@@ -29,18 +29,6 @@ public class mualigan : EnemyBase
         orderInGame(headsprite, bodysprite);
         damageoff(headsprite, bodysprite);
         HeadToCal();
-        if (HeadTo.x < 0)
-        {
-            headsprite.flipX = false;
-            bodysprite.flipX = false;
-            animator.SetInteger("WalkSideway", 1);
-        }
-        else
-        {
-            headsprite.flipX = true;
-            bodysprite.flipX = true;
-            animator.SetInteger("WalkSideway", 1);
-        }
     }
     private void FixedUpdate()
     {
@@ -63,6 +51,18 @@ public class mualigan : EnemyBase
     protected override void Movement()
     {
         transform.Translate(-HeadTo * speed * Time.fixedDeltaTime);
+        if (HeadTo.x < 0)
+        {
+            headsprite.flipX = false;
+            bodysprite.flipX = false;
+            animator.SetInteger("WalkSideway", 1);
+        }
+        else
+        {
+            headsprite.flipX = true;
+            bodysprite.flipX = true;
+            animator.SetInteger("WalkSideway", 1);
+        }
     }
     protected override void Hitten()
     {

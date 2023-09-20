@@ -26,13 +26,10 @@ public class Shitblood : PooledObject
     /// </summary>
     int randomindex = 0;
 
-    /// <summary>
-    /// 똥피가 사라지는 속도
-    /// </summary>
-    public float speed=1f;
-
     System.Action shitdis;
-    float timecounting=1;
+    public float timecounting=1.5f;
+    float timecopy;
+
     private void Awake()
     {
         shitdis = nullF;
@@ -44,17 +41,17 @@ public class Shitblood : PooledObject
 
         //게임오브젝트에서 지정한 색상을 스프라이트 렌더러 색상값에 넣기(현재 똥색)
         spriteRneder.color = clo;
+        timecopy = timecounting;
     }
 
     private void OnEnable()
     {
-        timecounting = 1;
-
+        timecounting = timecopy;
         //랜덤 인덱스 값에 0부터 매니저에서 불러온 BloodSprite의 길이값을 대입한다.
         randomindex = Random.Range(0, manager.BloodSprite.Length);
-
         //BloodSprite 배열에서 가져온 랜덤한 스프라이트를 스프라이트 렌더러의 스프라이트 이미지에 대입해서 이미지를 넣는다. 
         spriteRneder.sprite = manager.BloodSprite[randomindex];
+        RoomManager.Inst.onChangeRoom += (_) => { this.gameObject.SetActive(false); };
     }
     private void Update()
     {
@@ -71,13 +68,13 @@ public class Shitblood : PooledObject
     /// <param name="DeadAction">DeadAction에 true를 넣으면 죽었을때 패턴을, false를 넣으면 살아있을때 패턴을 작동한다.</param>
     public void EnamvleChoosAction(bool DeadAction)
     {
-        if (DeadAction)
+        if (!DeadAction)
         {
-            DieShitBlood();
+            shitdis += disa;
         }
         else
         {
-            shitdis += disa;
+            DieShitBlood();
         }
     }
 
@@ -93,8 +90,8 @@ public class Shitblood : PooledObject
     /// <returns></returns>
     private void disa()
     {
-        timecounting -= Time.deltaTime * speed;
-        clo.a = timecounting;
+        timecounting -= Time.deltaTime;
+        clo.a = timecounting/timecopy;
         spriteRneder.color = clo;
         if (timecounting < 0)
         {

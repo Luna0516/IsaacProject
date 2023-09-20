@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clo: {r: 0.33333334, g: 1, b: 0, a: 0}
-  lifeTime: 0
-  speed: 0.5
+  timecounting: 8
 --- !u!212 &797976357026066343
 SpriteRenderer:
   m_ObjectHideFlags: 0
