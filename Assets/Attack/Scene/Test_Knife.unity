@@ -1510,6 +1510,9 @@ GameObject:
   m_Component:
   - component: {fileID: 604666130}
   - component: {fileID: 604666129}
+  - component: {fileID: 604666131}
+  - component: {fileID: 604666133}
+  - component: {fileID: 604666132}
   m_Layer: 0
   m_Name: Brimstone
   m_TagString: Untagged
@@ -1563,7 +1566,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 2.95, y: 7.407786}
+  m_Size: {x: 2.5, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1577,13 +1580,72 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604666128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.74, y: -0.4711, z: 0}
+  m_LocalPosition: {x: -5.74, y: -0.7565, z: 0}
   m_LocalScale: {x: 1, y: 0.97, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &604666131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604666128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e28887199f86fe4db57c6c03382653c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &604666132
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604666128}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &604666133
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604666128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 1.85, z: 0, w: 1.4785714}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.95, y: 7.3}
+    newSize: {x: 2.5, y: 6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.95, y: 7.3}
+  m_EdgeRadius: 0
 --- !u!1 &615675072
 GameObject:
   m_ObjectHideFlags: 0
@@ -8614,15 +8676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef16329cf76dc664eb4b11161b360e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 18
-  Height: 10
-  X: 0
-  Y: 0
-  leftDoor: {fileID: 0}
-  rightDoor: {fileID: 0}
-  topDoor: {fileID: 0}
-  bottomDoor: {fileID: 0}
-  doors: []
 --- !u!61 &1991656562
 BoxCollider2D:
   m_ObjectHideFlags: 0
