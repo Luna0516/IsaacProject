@@ -79,7 +79,8 @@ public class EnemyBase : PooledObject
     public float HP
     {
         get => hp;
-        protected set
+
+        set
         {
             if (hp != value)
             {
@@ -166,7 +167,7 @@ public class EnemyBase : PooledObject
     protected virtual void OnEnable()
     {
         HPInitial();
-        if(countEnable>0)
+        if (countEnable > 0)
         {
             EnemyInithialize();
         }
