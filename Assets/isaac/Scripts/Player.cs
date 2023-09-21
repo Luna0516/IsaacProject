@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -154,7 +154,8 @@ public class Player : MonoBehaviour
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
-    //bool isGetMartyr = false;
+    bool isGetMutant = false;
+    bool isGetMartyr = false;
     #endregion
     #region 무적
     /// <summary>
@@ -320,6 +321,20 @@ public class Player : MonoBehaviour
                     isEmpty = false;
                     headResourceName = "HeadAC/Head_Mutant_AC";
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    Transform tearSpawn = transform.GetChild(0);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        GameObject obj = new GameObject($"tearSpawn({i})");
+                        obj.transform.parent = tearSpawn.transform;
+                    }
+                    mutantTear = new Transform[tearSpawn.childCount];
+                    for (int i = 0; i < mutantTear.Length; i++)
+                    {
+                        mutantTear[i] = tearSpawn.GetChild(i);
+                        mutantTear[i].rotation = Quaternion.Euler(0, 0, i * 10.0f);
+                        mutantTear[i].localPosition = Vector3.zero;
+                    }
+                    isGetMutant = true;
                     break;
                 case PassiveSpriteState.Brimstone:
                     isEmpty = false;
@@ -331,6 +346,7 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
                     isEmpty = false;
+                    isGetMartyr = true;
                     break;
                 default:
                     break;
@@ -340,7 +356,7 @@ public class Player : MonoBehaviour
     #endregion
     public Action<PassiveItemData> getPassiveItem;
     public Action<ActiveItemData> getActiveItem;
-
+    Transform[] mutantTear;
     /// <summary>
     /// 플레이어의 HP가 변경되었음을 알리는 델리게이트
     /// </summary>
@@ -349,6 +365,8 @@ public class Player : MonoBehaviour
     float brimDelay;
     private void Awake()
     {
+        Transform tearSpawn = transform.GetChild(0);
+
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         inputAction = new PlayerAction();
@@ -363,6 +381,7 @@ public class Player : MonoBehaviour
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
         
+
         TearSpeedCaculate();
     }
     private void Start()
@@ -545,6 +564,7 @@ public class Player : MonoBehaviour
                                 break;
                             // 거미눈물 4발
                             case 153:
+                                
                                 State = PassiveSpriteState.MutantSpider;
                                 break;
                         }
@@ -721,6 +741,13 @@ public class Player : MonoBehaviour
         {
             tear = Factory.Inst.GetObject(PoolObjectType.GuidedTear, tearSpawn.position);
             isEmpty = false;
+        }
+        if (isGetMutant)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                tear = Factory.Inst.GetObject(PoolObjectType.Tear, mutantTear[i].position);
+            }
         }
 
         currentTearDelay = tearFire; // 딜레이 시간 초기화
