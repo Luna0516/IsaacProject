@@ -24,5 +24,10 @@ public class Bloodhelth : PooledObject
         spriteRneder.color = clo;
         RoomManager.Inst.onChangeRoom += (_) => { this.gameObject.SetActive(false); };
     }
-    
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        RoomManager.Inst.onChangeRoom -= (_) => { this.gameObject.SetActive(false); };
+    }
+
 }
