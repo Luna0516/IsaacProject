@@ -103,7 +103,7 @@ public class shit : EnemyBase
 
         watcher();
 
-        if (HeadTo.x < 0)
+        if (HeadToNormal.x < 0)
         {
             spriteRenderer.flipX = true;
         }
@@ -115,7 +115,7 @@ public class shit : EnemyBase
     void Attack()
     {
         rig.drag = 1;
-        rig.AddForce(HeadTo * power, ForceMode2D.Impulse);
+        rig.AddForce(HeadToNormal * power, ForceMode2D.Impulse);
         animator.SetTrigger("Attack");
     }
     private void Stopping()

@@ -4,6 +4,4 @@ public class Effect : PooledObject
     {
      StartCoroutine(Gravity_Life(0.8f));
     }
-
-
 }

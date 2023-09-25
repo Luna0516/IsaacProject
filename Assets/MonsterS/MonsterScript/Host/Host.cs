@@ -92,11 +92,11 @@ public class Host : EnemyBase
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             ///공격 받는 함수 호출
             Hitten();
-            NuckBack(-HeadTo);
+            NuckBack(-HeadToNormal);
         }
         else if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            NuckBack(-HeadTo);
+            NuckBack(-HeadToNormal);
         }
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
@@ -116,7 +116,7 @@ public class Host : EnemyBase
         {
             invincivle = true;
             animator.SetInteger(animestate, 1);
-            hunt = Quaternion.LookRotation(Vector3.forward, HeadTo).eulerAngles;
+            hunt = Quaternion.LookRotation(Vector3.forward, HeadToNormal).eulerAngles;
             angle = hunt.z;
             cooltimeStart(1, 0.8f);
             cooltimeStart(3, 1.4f);

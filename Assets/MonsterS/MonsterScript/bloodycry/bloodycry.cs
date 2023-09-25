@@ -50,8 +50,8 @@ public class bloodycry : EnemyBase
 
     protected override void Movement()
     {
-        transform.Translate(speed * Time.fixedDeltaTime * HeadTo);
-        if (HeadTo.x > 0)
+        transform.Translate(speed * Time.fixedDeltaTime * HeadToNormal);
+        if (HeadToNormal.x > 0)
         {
             headsprite.flipX = false;
             bodysprite.flipX = false;

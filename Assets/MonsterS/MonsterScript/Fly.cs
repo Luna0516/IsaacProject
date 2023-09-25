@@ -62,7 +62,7 @@ public class Fly : EnemyBase
         HeadToCal();
         Invic();
         orderInGame(rneder);
-        if (HeadTo.x > 0)
+        if (HeadToNormal.x > 0)
         {
             rneder.flipX = true;
         }
@@ -70,7 +70,7 @@ public class Fly : EnemyBase
         {
             rneder.flipX = false;
         }
-        this.gameObject.transform.Translate(Time.deltaTime * speed * HeadTo);
+        this.gameObject.transform.Translate(Time.deltaTime * speed * HeadToNormal);
         noisyMove();
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
