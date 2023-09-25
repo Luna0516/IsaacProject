@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-
 public class Fly : EnemyBase
 {
     Vector2 Rnad;
@@ -44,9 +40,7 @@ public class Fly : EnemyBase
     }
     protected override void OnDisable()
     {
-        base.onDisable();
-        AddableSpawnEnemy = 0;
-        IsDead?.Invoke(true);
+        base.OnDisable();
         Invic -= invancivalcheck;
         Invic -= Dieying;
         allcoolStop();

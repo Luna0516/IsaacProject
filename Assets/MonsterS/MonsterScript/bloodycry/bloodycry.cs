@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -29,6 +27,7 @@ public class bloodycry : EnemyBase
     protected override void OnEnable()
     {
         buserkurcheck = false;
+        moveActive = false;
         base.OnEnable();
         if(player != null)
         {
@@ -39,6 +38,7 @@ public class bloodycry : EnemyBase
     {
         base.OnDisable();
         stateChanger = wewantnoNull;
+
     }
     private void FixedUpdate()
     {

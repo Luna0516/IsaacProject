@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 2813975671658389336, guid: 82b7673510b17b047a6a76a874272f54, type: 3}
-  poolSize: 8
+  poolSize: 32
 --- !u!1 &2220502799780176343
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 1305249523445921363, guid: 3cc78a796bda1134980996c1b19f768b, type: 3}
-  poolSize: 16
+  poolSize: 64
 --- !u!1 &2461219587552464196
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 6404622750835960673, guid: 617b4bff25d251c4882ec86a828f97a0, type: 3}
-  poolSize: 32
+  poolSize: 64
 --- !u!1 &2688528800312122091
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,4 +794,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origianlPrefab: {fileID: 4811353040393568929, guid: 542722de0e86b0441875fc0035668279, type: 3}
-  poolSize: 16
+  poolSize: 32

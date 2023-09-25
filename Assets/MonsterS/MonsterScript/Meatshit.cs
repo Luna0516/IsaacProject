@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Meatshit : PooledObject
@@ -27,6 +26,20 @@ public class Meatshit : PooledObject
         MeatLifeTime = Random.Range(5f, 11f);
         moveDir = new Vector2(x, y);
         StartCoroutine(MoveingMeatSpeed());
+        RoomManager.Inst.onChangeRoom += (_) => 
+        { 
+            StopAllCoroutines();
+            this.gameObject.SetActive(false); 
+        };
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        RoomManager.Inst.onChangeRoom -= (_) =>
+        {
+            StopAllCoroutines();
+            this.gameObject.SetActive(false);
+        };
     }
 
     private void Update()

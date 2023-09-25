@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class Rava : EnemyBase
 {
     Animator animator;
@@ -18,7 +13,7 @@ public class Rava : EnemyBase
 
     protected override void Movement()
     {
-        transform.Translate(Time.deltaTime * speed * targetPosition);
+        transform.Translate(Time.fixedDeltaTime * speed * targetPosition);
     }
 
     protected override void Awake()
@@ -49,10 +44,13 @@ public class Rava : EnemyBase
     protected override void Update()
     {
         UpdateCooltimer();
-        Movement();
         orderInGame(sprite);
         damageoff(sprite);
         moveingRava();
+    }
+    private void FixedUpdate()
+    {
+        Movement();
     }
     private void SetNextTargetPosition()
     {

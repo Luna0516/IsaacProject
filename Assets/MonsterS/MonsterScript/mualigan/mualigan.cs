@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class mualigan : EnemyBase
@@ -10,6 +9,8 @@ public class mualigan : EnemyBase
     SpriteRenderer bodysprite;
     Animator animator;
 
+    Action updateCheacker;
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,19 +19,36 @@ public class mualigan : EnemyBase
         headsprite = head.GetComponent<SpriteRenderer>();
         bodysprite = body.GetComponent<SpriteRenderer>();
         animator = body.GetComponent<Animator>();
+        updateCheacker = wewantnoNull;
     }
-
-
     protected override void Update()
     {
         base.Update();
-        Movement();
         orderInGame(headsprite, bodysprite);
         damageoff(headsprite, bodysprite);
+        HeadToCal();
+    }
+    private void FixedUpdate()
+    {
+        updateCheacker();
+    }
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            updateCheacker += Movement;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            updateCheacker -= Movement;
+        }
     }
     protected override void Movement()
     {
-        transform.Translate(-HeadTo * speed * Time.deltaTime);
+        transform.Translate(-HeadTo * speed * Time.fixedDeltaTime);
         if (HeadTo.x < 0)
         {
             headsprite.flipX = false;
