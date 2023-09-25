@@ -9,7 +9,8 @@ public class BrimStone : MonoBehaviour
     Rigidbody2D rb;
 
     Vector3 currentScale;   // 현재 빔 크기
-
+    Vector3 startPos;       // 빔 발사 위치
+    bool isAttacking = false;
 
     private void Awake()
     {
@@ -19,27 +20,72 @@ public class BrimStone : MonoBehaviour
     }
     private void Start()
     {
-        
+        DisableBeam();
+    }
+
+    private void Update()
+    {
+        // 테스트 코드
+        if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
+        {
+            // Space 키를 누르면 빔 발사
+            StartAttack();
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && isAttacking)
+        {
+            isAttacking = false;
+            DisableBeam();
+        }
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
+        if (isAttacking)
         {
-            
-            boxCollider.size.Scale(currentScale);
-        }
-        if (spriteRenderer != null)
-        {
-           
-            currentScale = transform.localScale;
-            currentScale.y = 0.2f;      // 사이즈 변경되는지 확인용으로 임시 설정
-
-            //currentScale.y = transform.position.y - collision.transform.position.y; // 길이 만큼? 
-            transform.localScale = currentScale;
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
+            {
+                startPos = transform.position;
+                // 충돌한 대상이 적이나 벽이면 빔의 길이를 충돌 거리에 따라 조절
+                Vector3 hitPoint = collision.contacts[0].point;
+                float newLength = Vector3.Distance(startPos, hitPoint);
+                
+                LengthChange(newLength);
+            }
         }
     }
 
+    void StartAttack()
+    {
+        // 빔을 발사하는 동안 충돌 처리를 활성화
+        isAttacking = true;
+        EnableBeam();
+    }
+
+    void EnableBeam()
+    {
+        // 빔 활성화 시 스프라이트와 콜라이더를 활성화
+        spriteRenderer.enabled = true;
+        boxCollider.enabled = true;
+        // 원하는 빔 크기로 설정
+        currentScale = new Vector3(1f, 10f, 1f); // 예시로 y축 크기를 10으로 설정
+        transform.localScale = currentScale;
+
+         
+    }
+
+    void DisableBeam()
+    {
+        // 빔 비활성화 시 스프라이트와 콜라이더를 비활성화
+        spriteRenderer.enabled = false;
+        boxCollider.enabled = false;
+    }
+    void LengthChange(float length)
+    {
+        //플레이어 발사 위치에서 부딪힌 거리
+        currentScale.y = length;
+        transform.localScale = currentScale;
+    }
     // 스크립트
     // 1. 브림스톤의 기본 사이즈를 최대한 길게 설정 
     // 2. 브림스톤이 충돌하는 대상에 따라 boxcollider와 sprite의 scale을 변경하도록 설정 
