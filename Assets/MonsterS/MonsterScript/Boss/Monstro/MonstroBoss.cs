@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.UIElements;
 
 public class MonstroBoss : EnemyBase
 {
@@ -245,10 +239,10 @@ public class MonstroBoss : EnemyBase
     protected override void Movement()
     {
         //플레이어를 향해 이동하는 식
-        transform.Translate(Time.deltaTime * speed * HeadTo);
+        transform.Translate(Time.deltaTime * speed * HeadToNormal);
 
         //방향에 따라 스프라이트 렌더러의 Flip값을 수정하는 조건문
-        if (HeadTo.x < 0)
+        if (HeadToNormal.x < 0)
         {
             spriteRenderer.flipX = false;
         }
@@ -272,7 +266,7 @@ public class MonstroBoss : EnemyBase
     {
         if (attackclear)
         {
-            if (HeadTo.x < 0)
+            if (HeadToNormal.x < 0)
             { turret.rotation = Quaternion.Euler(0, 0, 90); }
             else
             { turret.rotation = Quaternion.Euler(0, 0, -90); }

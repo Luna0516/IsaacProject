@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
+
+    /// <summary>
+    /// 적 스폰 패턴
+    /// </summary>
     [Serializable]
     public enum PatternSellect
     {
@@ -98,7 +102,6 @@ public class MonsterSpawner : MonoBehaviour
     private void OnEnable()
     {
         playerIn += () => spawnActive(true);
-        onAllEnemyDied += () => { Debug.Log("모든 몬스터는 사망했다."); };
     }
     private void Start()
     {
@@ -152,10 +155,20 @@ public class MonsterSpawner : MonoBehaviour
             }
         }
     }
+
+
+    /// <summary>
+    /// 방 안 몬스터들의 죽음을 더해주는 함수
+    /// </summary>
+    /// <param name="obj"></param>
     void DeadCounnting(bool obj)
     {
-        DeadCount++;//그래서 소환된 애들은 죽었을때 Dead 카운트가 증가하나, 파리같은 추가 소환은 증가 안해요
+        DeadCount++;
     }
+
+    /// <summary>
+    /// 메인 스포너에서 자식 스포너로 정보 전달.
+    /// </summary>
     void SpawnInitialized()
     {
         int county = 0;
@@ -167,6 +180,11 @@ public class MonsterSpawner : MonoBehaviour
             county++;
         }
     }
+
+    /// <summary>
+    /// 자식 개체들을 리스트로 만듦
+    /// </summary>
+    /// <param name="parent"></param>
     void GetChilding(Transform parent)
     {
         foreach (Transform obj in parent)
@@ -175,6 +193,10 @@ public class MonsterSpawner : MonoBehaviour
             GetChilding(obj);
         }
     }
+
+    /// <summary>
+    /// 자식 개체의 스폰 데이터를 동기화시킨다.
+    /// </summary>
     void loadSpawnDatas()
     {
         int county = 0;
@@ -186,6 +208,11 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
     //---------------------------------------<이 아래, 패턴 선택기>--------------------------------------------
+
+    /// <summary>
+    /// 패턴 선택 함수
+    /// </summary>
+    /// <param name="pi">enum에 따라 결정된다.</param>
     void patterSwitchSys(PatternSellect pi)
     {
         foreach (GameObject obj in spawnGameObject)

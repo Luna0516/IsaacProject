@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-
 public class Fly : EnemyBase
 {
     Vector2 Rnad;
@@ -44,9 +40,7 @@ public class Fly : EnemyBase
     }
     protected override void OnDisable()
     {
-        base.onDisable();
-        AddableSpawnEnemy = 0;
-        IsDead?.Invoke(true);
+        base.OnDisable();
         Invic -= invancivalcheck;
         Invic -= Dieying;
         allcoolStop();
@@ -68,7 +62,7 @@ public class Fly : EnemyBase
         HeadToCal();
         Invic();
         orderInGame(rneder);
-        if (HeadTo.x > 0)
+        if (HeadToNormal.x > 0)
         {
             rneder.flipX = true;
         }
@@ -76,7 +70,7 @@ public class Fly : EnemyBase
         {
             rneder.flipX = false;
         }
-        this.gameObject.transform.Translate(Time.deltaTime * speed * HeadTo);
+        this.gameObject.transform.Translate(Time.deltaTime * speed * HeadToNormal);
         noisyMove();
     }
     protected override void OnCollisionEnter2D(Collision2D collision)

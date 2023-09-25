@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class shit : EnemyBase
@@ -106,7 +103,7 @@ public class shit : EnemyBase
 
         watcher();
 
-        if (HeadTo.x < 0)
+        if (HeadToNormal.x < 0)
         {
             spriteRenderer.flipX = true;
         }
@@ -118,7 +115,7 @@ public class shit : EnemyBase
     void Attack()
     {
         rig.drag = 1;
-        rig.AddForce(HeadTo * power, ForceMode2D.Impulse);
+        rig.AddForce(HeadToNormal * power, ForceMode2D.Impulse);
         animator.SetTrigger("Attack");
     }
     private void Stopping()
@@ -187,6 +184,7 @@ public class shit : EnemyBase
 
     protected override void Die()
     {
+        allcoolStop();
         bloodshatter();
         float ranX = Random.Range(-1, 1.1f);
         float ranY = Random.Range(-1, 1.1f);
@@ -198,7 +196,6 @@ public class shit : EnemyBase
             addenemy[i] = obj.GetComponent<EnemyBase>();
             addenemy[i].IsDead += count;
         }
-        allcoolStop();
         this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
     }
 
@@ -210,7 +207,7 @@ public class shit : EnemyBase
             float Y = Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EffectShit, new Vector2(X, Y));
             Shitblood bloodobj = bloodshit.GetComponent<Shitblood>();
-            IsDead += bloodobj.EnamvleChoosAction;
+            bloodobj.EnamvleChoosAction(true);
         }
     }
     protected override void Hitten()

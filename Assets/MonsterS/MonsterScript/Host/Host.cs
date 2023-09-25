@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Host : EnemyBase
@@ -20,12 +18,25 @@ public class Host : EnemyBase
     /// </summary>
     int animestate;
 
-    float plusdistance = 100;
-
     /// <summary>
     /// 무적 상태 판정 (주의 : false일때 무적입니다.)
     /// </summary>
     bool invincivle = false;
+    bool Invincivle
+    {
+        get 
+        {
+            return invincivle; 
+        }
+        set 
+        {
+            if (invincivle != value) 
+            {
+                attackCoroutine(invincivle);
+            }
+        }
+    }
+
 
     float angle = 0.0f;
     Vector3 hunt;
@@ -46,10 +57,9 @@ public class Host : EnemyBase
 
     protected override void OnEnable()
     {
+        allcoolStop();
         base.OnEnable();
         invincivle = false;
-        UpdateChecker += attackDis;
-        UpdateChecker += HeadToCal;
         UpdateCheckerSP += orderInGame;
         UpdateCheckerSP += damageoff;
     }
@@ -64,6 +74,7 @@ public class Host : EnemyBase
     protected override void Update()
     {
         base.Update();
+        HeadToCal();
         UpdateCheckerSP(spriteRenderer);
         UpdateChecker();
     }
@@ -81,48 +92,37 @@ public class Host : EnemyBase
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             ///공격 받는 함수 호출
             Hitten();
-            NuckBack(-HeadTo);
+            NuckBack(-HeadToNormal);
         }
         else if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            NuckBack(-HeadTo);
+            NuckBack(-HeadToNormal);
         }
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            attackCoroutine(invincivle);
+            Invincivle = true;
         }
     }
-    void attackDis()
-    {
-        plusdistance = calcHeadTo.sqrMagnitude / distance;
-        if (plusdistance < distance)
-        {
-            attackCoroutine(invincivle);
-            UpdateChecker -= attackDis;
-        }
-    }
-
     /// <summary>
     /// 공격 함수
     /// </summary>
     /// <param name="attackmode"></param>
     void attackCoroutine(bool attackmode)
     {
-        if (attackmode != true)
+        if (!attackmode)
         {
             invincivle = true;
             animator.SetInteger(animestate, 1);
-            hunt = Quaternion.LookRotation(Vector3.forward, HeadTo).eulerAngles;
+            hunt = Quaternion.LookRotation(Vector3.forward, HeadToNormal).eulerAngles;
             angle = hunt.z;
             cooltimeStart(1, 0.8f);
             cooltimeStart(3, 1.4f);
             UpdateChecker += attackupdate;
         }
     }
-
     /// <summary>
     /// 업데이트에서 실행되는 감시 함수
     /// </summary>
@@ -132,7 +132,6 @@ public class Host : EnemyBase
         {
             animator.SetInteger(animestate, 0);
             invincivle = false;
-            UpdateChecker += attackDis;
             UpdateChecker -= attackupdate;
             allcoolStop();
         }
@@ -145,7 +144,7 @@ public class Host : EnemyBase
     /// 총알 발사 함수
     /// </summary>
     /// <param name="shotcool">이곳에 invincivle 논리변수를 활용합니다.</param>
-    void bulletshotting(bool shotactive,float angle)
+    void bulletshotting(bool shotactive, float angle)
     {
         if (!solorActive && shotactive)
         {

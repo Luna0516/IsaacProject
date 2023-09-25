@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterDamage: 1
+  AddableSpawnEnemy: 0
+  addenemy: []
   factory: {fileID: 0}
   distance: 1
   speed: 1
@@ -176,7 +178,7 @@ MonoBehaviour:
   cooltimer1: 0
   cooltimer2: 0
   cooltimer3: 0
-  invincivalTime: 1
+  invincivalTime: 0.5
   noise: 3
 --- !u!95 &2813975671658389335
 Animator:

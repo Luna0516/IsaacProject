@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBase : PooledObject
@@ -11,15 +9,31 @@ public class EnemyBase : PooledObject
     [Header("몬스터 데미지")]
     public float MonsterDamage = 1;
 
+    /// <summary>
+    /// 에너미에서 적을 추가로 스폰하는 경우, 그 적의 숫자
+    /// </summary>
     public int AddableSpawnEnemy = 0;
+
+    /// <summary>
+    /// 추가되는 적을 저장하는 배열
+    /// </summary>
     public EnemyBase[] addenemy;
+
+    /// <summary>
+    /// 
+    /// </summary>
     public System.Action<bool> count;
 
     /// <summary>
     /// 게임 매니저
     /// </summary>
     GameManager Manager;
-    public Factory factory;
+
+    /// <summary>
+    /// 펙토리
+    /// </summary>
+    protected Factory factory;
+
     /// <summary>
     /// 플레이어
     /// </summary>
@@ -30,12 +44,15 @@ public class EnemyBase : PooledObject
     /// </summary>
     protected Transform target;
 
+    /// <summary>
+    /// 방향벡터
+    /// </summary>
     protected Vector2 calcHeadTo;
 
     /// <summary>
-    /// 방향 벡터
+    /// 방향 벡터(노멀)
     /// </summary>
-    protected Vector2 HeadTo;
+    protected Vector2 HeadToNormal;
 
     [Header("플레이어 거리 감지 범위")]
     public float distance = 1.0f;
@@ -79,7 +96,8 @@ public class EnemyBase : PooledObject
     public float HP
     {
         get => hp;
-        protected set
+
+        set
         {
             if (hp != value)
             {
@@ -147,14 +165,25 @@ public class EnemyBase : PooledObject
     /// </summary>
     protected bool solorActive = false;
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected bool tooclosetoFight = false;
 
-
+    /// <summary>
+    /// 처음 초기화때 찾으면 안되는 녀석들을 찾지 않게 하기 위해 넣어둔 int값(첫번째 초기화는 무시하고, 두번째 초기화부터 초기화가 정상적으로 이루어진다.)
+    /// </summary>
     int countEnable = 0;
 
+    /// <summary>
+    /// 몬스터들의 마찰력을 담을 float
+    /// </summary>
     protected float draglinear = 15f;
 
-    //에너미 베이스 Awake : 리지디 바디, 게임매니저 , 플레이어 , 타깃 위치 , 스폰 이펙트를 찾음
+
+    /// <summary>
+    /// 쿨타임용 델리게이트에 null방지 함수 추가, rigidbody 를 추가하고 마찰력값을 저장
+    /// </summary>
     protected virtual void Awake()
     {
         UpdateCooltimer += wewantnoNull;
@@ -162,11 +191,13 @@ public class EnemyBase : PooledObject
         draglinear = rig.drag;
     }
 
-    // 플레이어 확인 / HP 확인 / 스폰 이펙트 관련
+    /// <summary>
+    /// 체력 초기화, 적이 필요한 정보 초기화, 활성화시 초기화 방지용 숫자를 1 더한다. ISDead Null방지
+    /// </summary>
     protected virtual void OnEnable()
     {
         HPInitial();
-        if(countEnable>0)
+        if (countEnable > 0)
         {
             EnemyInithialize();
         }
@@ -174,6 +205,9 @@ public class EnemyBase : PooledObject
         IsDead = (bool obj) => { wewantnoNull(); };
     }
 
+    /// <summary>
+    /// 플레이어와 그 위치를 정하고 방향도 한번 계산해준다.
+    /// </summary>
     protected virtual void Start()
     {
         if (player == null)
@@ -184,18 +218,29 @@ public class EnemyBase : PooledObject
         HeadToCal();
     }
 
-    //쿨타임 델리게이트, 적을 향한 방향 계산하는 update
+    /// <summary>
+    /// 비활성화시 추가 생성 적의 수를 0으로 만들고 죽었다고 알린다.
+    /// </summary>
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        AddableSpawnEnemy = 0;
+        IsDead?.Invoke(true);
+    }
+
+    /// <summary>
+    /// Update에서 실행되는 쿨타임 계산용 델리게이트
+    /// </summary>
     protected virtual void Update()
     {
         UpdateCooltimer();
     }
-    protected override void OnDisable()
-    {
-        base.onDisable();
-        AddableSpawnEnemy = 0;
-        IsDead?.Invoke(true);
-    }
-    //모든 적들은 콜리전이 부딫혔을때 그것이 총알이라면 데미지를 받고 넉백됨
+
+
+    /// <summary>
+    /// 모든 적이 플레이어 총알과 부딫히면 데미지를 받고 피격 이펙트를 취한 후, 넉백된다.
+    /// </summary>
+    /// <param name="collision"></param>
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
@@ -225,7 +270,9 @@ public class EnemyBase : PooledObject
         }
     }
 
-
+    /// <summary>
+    /// 체력 초기화
+    /// </summary>
     private void HPInitial()
     {
         hp = MaxHP;
@@ -240,13 +287,13 @@ public class EnemyBase : PooledObject
     }
 
     /// <summary>
-    /// 죽었을때 실행될 가상함수
+    /// 죽었을때 실행될 가상함수(피랑 고기를 흩뿌리고 비활성화된다.)
     /// </summary>
     protected virtual void Die()
     {
         bloodshatter();
         meatshatter();
-        this.gameObject.SetActive(false);//피를 다 만들고 나면 이 게임 오브젝트는 죽는다.
+        this.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -257,8 +304,9 @@ public class EnemyBase : PooledObject
 
     }
 
+
     /// <summary>
-    /// 
+    /// 피를 흩뿌리는 함수
     /// </summary>
     protected virtual void bloodshatter()//피를 흩뿌리는 함수
     {
@@ -270,9 +318,12 @@ public class EnemyBase : PooledObject
             float Y = UnityEngine.Random.Range(transform.position.y - 0.3f, transform.position.y);//피의 위치 조절용 Y축
             Vector3 bloodpos = new Vector3(X, Y, 0);//피의 위치 설정용 변수 bloodpos
             GameObject bloodshit = Factory.Inst.GetObject(PoolObjectType.EffectBlood, bloodpos);
-            //GameObject bloodshit = Instantiate(blood, bloodpos, Quaternion.identity);//bloodshit이라는 게임 오브젝트 생성 종류는 빈 게임 오브젝트, 위치는 bloodpos, 각도는 기존 각도
         }
     }
+
+    /// <summary>
+    /// 고기를 흩뿌리는 함수
+    /// </summary>
     void meatshatter()//고기를 흩뿌리는 함수
     {
         int meatCount = UnityEngine.Random.Range(3, 6);
@@ -283,12 +334,20 @@ public class EnemyBase : PooledObject
             //GameObject meatshit = Instantiate(meat, transform.position, Quaternion.identity);
         }
     }
+
+    /// <summary>
+    /// 피격시 데미지를 받는 함수
+    /// </summary>
     protected virtual void Hitten()
     {
         HP -= damage;
         /*Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");*/
     }
 
+    /// <summary>
+    /// 넉백 함수
+    /// </summary>
+    /// <param name="HittenHeadTo">이곳에 입력된 벡터쪽으로 날아간다.(-벡터를 넣어야 넉백됨)</param>
     protected virtual void NuckBack(Vector2 HittenHeadTo)
     {
         rig.isKinematic = false;
@@ -337,6 +396,11 @@ public class EnemyBase : PooledObject
         }
     }
 
+
+    /// <summary>
+    /// 오더레이어 함수(앞 뒤에 따라 렌더링이 위에 된다.)
+    /// </summary>
+    /// <param name="render"></param>
     protected void orderInGame(SpriteRenderer render)
     {
         float Yhi = this.transform.position.y;
@@ -350,8 +414,6 @@ public class EnemyBase : PooledObject
         {
             total = (int)Mathf.Clamp(Mathf.Floor(-Yhi + 20), 10, 20);
         }
-
-
         render.sortingOrder = total;
     }
     protected void orderInGame(SpriteRenderer head, SpriteRenderer body)
@@ -373,6 +435,26 @@ public class EnemyBase : PooledObject
         body.sortingOrder = total;
     }
 
+    /// <summary>
+    /// 적이 필요로 하는 정보들을 불러오는 함수
+    /// </summary>
+    void EnemyInithialize()
+    {
+        Manager = GameManager.Inst;
+        factory = Factory.Inst;
+    }
+
+    /// <summary>
+    /// 방향 계산 함수
+    /// </summary>
+    protected void HeadToCal()
+    {
+        calcHeadTo = (target.transform.position - this.gameObject.transform.position);
+        HeadToNormal = calcHeadTo.normalized;
+    }
+
+
+    //---------------------------------------------------<여기서 부터는 쿨타임 관련>-----------------------------------------------------------------
 
     void timecouting()
     {
@@ -527,18 +609,6 @@ public class EnemyBase : PooledObject
         UpdateCooltimer -= timecouting;
         timecounter = 0;
     }
-
-    void EnemyInithialize()
-    {
-        Manager = GameManager.Inst;
-        factory = Factory.Inst;
-    }
-    protected void HeadToCal()
-    {
-        calcHeadTo = (target.transform.position - this.gameObject.transform.position);
-        HeadTo = calcHeadTo.normalized;
-    }
-
 }
 
 
