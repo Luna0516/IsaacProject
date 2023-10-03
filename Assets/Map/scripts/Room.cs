@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -122,7 +124,7 @@ public class Room : MonoBehaviour
         {
             child = transform.GetChild(i);
             doors[i] = child.GetComponent<Door>();
-            doors[i].DoorType = (DoorType)i;
+            doors[i].doorType = (DoorType)i + 1;
             doors[i].onPlayerMove += MoveSignal;
             doors[i].onPlayerMove += MovePlayer;
         }
@@ -149,16 +151,16 @@ public class Room : MonoBehaviour
 
         switch (type)
         {
-            case DoorType.left:
+            case DoorType.Left:
                 player.transform.position += Vector3.left * playerMoveDistance;
                 break;
-            case DoorType.right:
+            case DoorType.Right:
                 player.transform.position += Vector3.right * playerMoveDistance;
                 break;
-            case DoorType.top:
+            case DoorType.Up:
                 player.transform.position += Vector3.up * playerMoveDistance;
                 break;
-            case DoorType.bottom:
+            case DoorType.Down:
                 player.transform.position += Vector3.down * playerMoveDistance;
                 break;
             default:
@@ -174,28 +176,28 @@ public class Room : MonoBehaviour
     {
         switch (doorType)
         {
-            case DoorType.left:
+            case DoorType.Left:
                 if (leftRoom != null)
                 {
                     leftRoom.IsVisit = true;
                     RoomManager.Inst.CurrentRoom = leftRoom;
                 }
                 break;
-            case DoorType.right:
+            case DoorType.Right:
                 if (rightRoom != null)
                 {
                     rightRoom.IsVisit = true;
                     RoomManager.Inst.CurrentRoom = rightRoom;
                 }
                 break;
-            case DoorType.top:
+            case DoorType.Up:
                 if (topRoom != null)
                 {
                     topRoom.IsVisit = true;
                     RoomManager.Inst.CurrentRoom = topRoom;
                 }
                 break;
-            case DoorType.bottom:
+            case DoorType.Down:
                 if (bottomRoom != null)
                 {
                     bottomRoom.IsVisit = true;

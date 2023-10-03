@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TopDoor_Close
+      name: UpDoor_Close
       rect:
         serializedVersion: 2
         x: 0
@@ -126,7 +126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BottomDoor_Close
+      name: DownDoor_Close
       rect:
         serializedVersion: 2
         x: 92
@@ -189,7 +189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TopDoor_Open
+      name: UpDoor_Open
       rect:
         serializedVersion: 2
         x: 0
@@ -210,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BottomDoor_Open
+      name: DownDoor_Open
       rect:
         serializedVersion: 2
         x: 92
@@ -283,14 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BottomDoor_Close: 1164628827
-      BottomDoor_Open: 1776227877
+      DownDoor_Close: 1164628827
+      DownDoor_Open: 1776227877
       LeftDoor_Close: -115613950
       LeftDoor_Open: -1724408403
       RightDoor_Close: -1933308825
       RightDoor_Open: 1345244230
-      TopDoor_Close: 1858197099
-      TopDoor_Open: -1280548809
+      UpDoor_Close: 1858197099
+      UpDoor_Open: -1280548809
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
