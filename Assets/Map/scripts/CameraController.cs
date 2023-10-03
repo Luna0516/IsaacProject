@@ -18,22 +18,13 @@ public class CameraController : MonoBehaviour
 
     IEnumerator CameraMove(Room room)
     {
-        Vector3 movePos = MovePosition(room);
+        Vector2 roomPos = room.RoomPosition();
+        Vector3 movePos = new Vector3(roomPos.x, roomPos.y, transform.position.z);
 
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, movePos, Time.deltaTime * moveSpeed);
             yield return null;
         }
-    }
-
-    /// <summary>
-    /// 현재 방의 위치 구하는 함수
-    /// </summary>
-    private Vector3 MovePosition(Room currentRoom)
-    {
-        Vector3 currentRoomPos = new Vector3(currentRoom.MyPos.x * currentRoom.width, currentRoom.MyPos.y * currentRoom.height, transform.position.z);
-
-        return currentRoomPos;
     }
 }
