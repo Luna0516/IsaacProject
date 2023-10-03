@@ -129,6 +129,8 @@ public class RoomManager : Singleton<RoomManager>
 
         connectReadyRooms.Clear();
 
+        //CreateBossRoom();
+
         RefreshRoomPosition();
 
         isLoading = false;
@@ -328,11 +330,30 @@ public class RoomManager : Singleton<RoomManager>
 
             CurrentRoom = connectReadyRooms[index];
         }
+
+        CreateBossRoom();
     }
 
     private void CreateBossRoom()
     {
         GameObject bossRoomObj = Instantiate(bossRoomPrefab, transform);
+
+        Room room = bossRoomObj.GetComponent<Room>();
+
+        Room lastRoom = listRooms[listRooms.Count - 1];
+
+        room.MyPos = lastRoom.MyPos;
+        room.roomtype = RoomType.Boss;
+
+        bossRoomObj.name = $"BossRoom_({room.MyPos.x}, {room.MyPos.y})";
+        
+        listRooms.Remove(lastRoom);
+
+        Destroy(lastRoom.gameObject);
+
+        listRooms.Add(room);
+
+        SettingNeighborRoom(room);
     }
 
     /// <summary>
@@ -447,41 +468,29 @@ public class RoomManager : Singleton<RoomManager>
         findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x - 1 && serchRoom.MyPos.y == room.MyPos.y);
         if (findRoom != null)
         {
-            if (room.leftRoom == null)
-            {
-                room.leftRoom = findRoom;
-                findRoom.rightRoom = room;
-            }
+            room.leftRoom = findRoom;
+            findRoom.rightRoom = room;
         }
 
         findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x + 1 && serchRoom.MyPos.y == room.MyPos.y);
         if (findRoom != null)
         {
-            if (room.rightRoom == null)
-            {
-                room.rightRoom = findRoom;
-                findRoom.leftRoom = room;
-            }
+            room.rightRoom = findRoom;
+            findRoom.leftRoom = room;
         }
 
         findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x && serchRoom.MyPos.y == room.MyPos.y - 1);
         if (findRoom != null)
         {
-            if (room.bottomRoom == null)
-            {
-                room.bottomRoom = findRoom;
-                findRoom.topRoom = room;
-            }
+            room.bottomRoom = findRoom;
+            findRoom.topRoom = room;
         }
 
         findRoom = listRooms.Find(serchRoom => serchRoom.MyPos.x == room.MyPos.x && serchRoom.MyPos.y == room.MyPos.y + 1);
         if (findRoom != null)
         {
-            if (room.topRoom == null)
-            {
-                room.topRoom = findRoom;
-                findRoom.bottomRoom = room;
-            }
+            room.topRoom = findRoom;
+            findRoom.bottomRoom = room;
         }
     }
 
