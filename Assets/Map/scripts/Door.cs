@@ -19,7 +19,22 @@ public class Door : MonoBehaviour
     /// <summary>
     /// 문의 종류
     /// </summary>
-    public DoorType doorType;
+    DoorType doorType;
+    /// <summary>
+    /// 문의 종류 설정용 프로퍼티
+    /// </summary>
+    public DoorType DoorType
+    {
+        get => doorType;
+        set
+        {
+            doorType = value;
+            if(doorType == DoorType.None)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
 
     /// <summary>
     /// 문이 열려 있는지 확인하는 변수
@@ -38,7 +53,10 @@ public class Door : MonoBehaviour
             {
                 isOpen = value;
 
-                sprite.sprite = openDoor[(int)doorType - 1];
+                if (DoorType != DoorType.None)
+                {
+                    sprite.sprite = openDoor[(int)DoorType - 1];
+                }
             }
         }
     }
@@ -87,7 +105,7 @@ public class Door : MonoBehaviour
     /// </summary>
     IEnumerator PlayerMoveRoutine()
     {
-        onPlayerMove?.Invoke(doorType);
+        onPlayerMove?.Invoke(DoorType);
 
         coll.enabled = false;
 
