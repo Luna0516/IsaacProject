@@ -33,6 +33,15 @@ public class Room : MonoBehaviour
             if (!isVisit && roomtype != RoomType.Start)
             {
                 isVisit = value;
+
+                if(roomtype == RoomType.Boss)
+                {
+                    foreach(Door door in doors)
+                    {
+                        door.gameObject.SetActive(false);
+                    }
+                }
+
                 spawner.playerIn?.Invoke();
             }
         }
@@ -228,7 +237,12 @@ public class Room : MonoBehaviour
     {
         foreach(Door door in doors)
         {
-            if(door != null)
+            if(roomtype == RoomType.Boss && door.DoorType != DoorType.None)
+            {
+                door.gameObject.SetActive(true);
+            }
+
+            if(door.DoorType != DoorType.None)
             {
                 door.IsOpen = true;
             }
