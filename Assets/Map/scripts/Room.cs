@@ -1,8 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /// <summary>
-/// 방의 타입
+/// 방의 종류
 /// </summary>
 public enum RoomType
 {
@@ -18,6 +20,7 @@ public class Room : MonoBehaviour
     /// 한번 방문 했음을 확인하는 변수
     /// </summary>
     bool isVisit = false;
+
     /// <summary>
     /// 방문 여부를 확인하는 프로퍼티
     /// </summary>
@@ -29,8 +32,16 @@ public class Room : MonoBehaviour
             // 한번 방문하면 다시 신호 안줌
             if (!isVisit && roomtype != RoomType.Start)
             {
-                isVisit = true;
-                Debug.Log(spawner.transform.parent.name);
+                isVisit = value;
+
+                if(roomtype == RoomType.Boss)
+                {
+                    foreach(Door door in doors)
+                    {
+                        door.gameObject.SetActive(false);
+                    }
+                }
+
                 spawner.playerIn?.Invoke();
             }
         }
@@ -39,11 +50,12 @@ public class Room : MonoBehaviour
     /// <summary>
     /// 맵의 가로 길이
     /// </summary>
-    public int width;
+    int width;
+
     /// <summary>
     /// 맵의 세로 길이
     /// </summary>
-    public int height;
+    int height;
 
     /// <summary>
     /// 문을 통해 플레이어를 이동시킬 거리
@@ -87,7 +99,15 @@ public class Room : MonoBehaviour
     /// 자신의 방의 타입
     /// </summary>
     public RoomType roomtype = RoomType.Base;
-
+    
+    /// <summary>
+    /// 자신의 위쪽 방
+    /// </summary>
+    public Room upRoom = null;
+    /// <summary>
+    /// 자신의 아래쪽 방
+    /// </summary>
+    public Room downRoom = null;
     /// <summary>
     /// 자신의 왼쪽 방
     /// </summary>
@@ -96,14 +116,6 @@ public class Room : MonoBehaviour
     /// 자신의 오른쪽 방
     /// </summary>
     public Room rightRoom = null;
-    /// <summary>
-    /// 자신의 위쪽 방
-    /// </summary>
-    public Room topRoom = null;
-    /// <summary>
-    /// 자신의 아래쪽 방
-    /// </summary>
-    public Room bottomRoom = null;
 
     /// <summary>
     /// 상하좌우 문들
@@ -111,7 +123,7 @@ public class Room : MonoBehaviour
     public Door[] doors = new Door[4];
 
     /// <summary>
-    /// 스포너
+    /// 몬스터 스포너
     /// </summary>
     MonsterSpawner spawner;
 
@@ -122,13 +134,13 @@ public class Room : MonoBehaviour
         {
             child = transform.GetChild(i);
             doors[i] = child.GetComponent<Door>();
-            doors[i].DoorType = (DoorType)i;
-            doors[i].onPlayerMove += MoveSignal;
+            doors[i].DoorType = (DoorType)i + 1;
             doors[i].onPlayerMove += MovePlayer;
         }
 
         child = transform.GetChild(4);
         spawner = child.GetComponent<MonsterSpawner>();
+        // 시작방은 스포너가 없다...
         if (spawner != null)
         {
             spawner.onAllEnemyDied += OpenDoor;
@@ -149,17 +161,25 @@ public class Room : MonoBehaviour
 
         switch (type)
         {
-            case DoorType.left:
-                player.transform.position += Vector3.left * playerMoveDistance;
-                break;
-            case DoorType.right:
-                player.transform.position += Vector3.right * playerMoveDistance;
-                break;
-            case DoorType.top:
+            case DoorType.Up:
                 player.transform.position += Vector3.up * playerMoveDistance;
+                upRoom.IsVisit = true;
+                RoomManager.Inst.CurrentRoom = upRoom;
                 break;
-            case DoorType.bottom:
+            case DoorType.Down:
                 player.transform.position += Vector3.down * playerMoveDistance;
+                downRoom.IsVisit = true;
+                RoomManager.Inst.CurrentRoom = downRoom;
+                break;
+            case DoorType.Left:
+                player.transform.position += Vector3.left * playerMoveDistance;
+                leftRoom.IsVisit = true;
+                RoomManager.Inst.CurrentRoom = leftRoom;
+                break;
+            case DoorType.Right:
+                player.transform.position += Vector3.right * playerMoveDistance;
+                rightRoom.IsVisit = true;
+                RoomManager.Inst.CurrentRoom = rightRoom;
                 break;
             default:
                 break;
@@ -167,44 +187,47 @@ public class Room : MonoBehaviour
     }
 
     /// <summary>
-    /// 문에서 플레이어 이동시키면 실행할 함수
+    /// 방들의 위치를 초기화 하는 함수
     /// </summary>
-    /// <param name="doorType">문의 타입</param>
-    void MoveSignal(DoorType doorType)
+    public void RefreshPosition()
     {
-        switch (doorType)
+        transform.position = RoomPosition();
+    }
+
+    /// <summary>
+    /// 방의 현재 연결된 방에 따라 문을 비활성화 시키는 함수
+    /// </summary>
+    public void RefreshDoor()
+    {
+        if (upRoom == null)
         {
-            case DoorType.left:
-                if (leftRoom != null)
-                {
-                    leftRoom.IsVisit = true;
-                    RoomManager.Inst.CurrentRoom = leftRoom;
-                }
-                break;
-            case DoorType.right:
-                if (rightRoom != null)
-                {
-                    rightRoom.IsVisit = true;
-                    RoomManager.Inst.CurrentRoom = rightRoom;
-                }
-                break;
-            case DoorType.top:
-                if (topRoom != null)
-                {
-                    topRoom.IsVisit = true;
-                    RoomManager.Inst.CurrentRoom = topRoom;
-                }
-                break;
-            case DoorType.bottom:
-                if (bottomRoom != null)
-                {
-                    bottomRoom.IsVisit = true;
-                    RoomManager.Inst.CurrentRoom = bottomRoom;
-                }
-                break;
-            default:
-                break;
+            doors[0].DoorType = DoorType.None;
         }
+
+        if (downRoom == null)
+        {
+            doors[1].DoorType = DoorType.None;
+        }
+
+        if (leftRoom == null)
+        {
+            doors[2].DoorType = DoorType.None;
+        }
+
+        if (rightRoom == null)
+        {
+            doors[3].DoorType = DoorType.None;
+        }
+    }
+
+    /// <summary>
+    /// 자신 방의 위치 구하는 함수
+    /// </summary>
+    public Vector2 RoomPosition()
+    {
+        Vector2 currentRoomPos = new Vector2(MyPos.x * width, MyPos.y * height);
+
+        return currentRoomPos;
     }
 
     /// <summary>
@@ -214,7 +237,12 @@ public class Room : MonoBehaviour
     {
         foreach(Door door in doors)
         {
-            if(door != null)
+            if(roomtype == RoomType.Boss && door.DoorType != DoorType.None)
+            {
+                door.gameObject.SetActive(true);
+            }
+
+            if(door.DoorType != DoorType.None)
             {
                 door.IsOpen = true;
             }
