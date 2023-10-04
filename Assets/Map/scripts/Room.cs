@@ -125,7 +125,7 @@ public class Room : MonoBehaviour
         {
             child = transform.GetChild(i);
             doors[i] = child.GetComponent<Door>();
-            doors[i].doorType = (DoorType)i + 1;
+            doors[i].DoorType = (DoorType)i + 1;
             doors[i].onPlayerMove += MovePlayer;
         }
 
@@ -183,33 +183,31 @@ public class Room : MonoBehaviour
     public void RefreshPosition()
     {
         transform.position = RoomPosition();
-
-        RefreshDoor();
     }
 
     /// <summary>
     /// 방의 현재 연결된 방에 따라 문을 비활성화 시키는 함수
     /// </summary>
-    private void RefreshDoor()
+    public void RefreshDoor()
     {
         if (upRoom == null)
         {
-            doors[0].gameObject.SetActive(false);
+            doors[0].DoorType = DoorType.None;
         }
 
         if (downRoom == null)
         {
-            doors[1].gameObject.SetActive(false);
+            doors[1].DoorType = DoorType.None;
         }
 
         if (leftRoom == null)
         {
-            doors[2].gameObject.SetActive(false);
+            doors[2].DoorType = DoorType.None;
         }
 
         if (rightRoom == null)
         {
-            doors[3].gameObject.SetActive(false);
+            doors[3].DoorType = DoorType.None;
         }
     }
 

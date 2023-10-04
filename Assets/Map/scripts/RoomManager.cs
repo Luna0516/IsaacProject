@@ -133,11 +133,11 @@ public class RoomManager : Singleton<RoomManager>
 
         CreateBaseRoom();
 
-        connectReadyRooms.Clear();
-
         CreateBossRoom();
 
         RefreshRoomPosition();
+
+        RefreshBossRoom();
 
         isLoading = false;
 
@@ -247,6 +247,8 @@ public class RoomManager : Singleton<RoomManager>
 
             CurrentRoom = connectReadyRooms[index];
         }
+
+        connectReadyRooms.Clear();
     }
 
     /// <summary>
@@ -272,6 +274,66 @@ public class RoomManager : Singleton<RoomManager>
         listRooms.Add(room);
 
         SettingNeighborRoom(room);
+    }
+
+    /// <summary>
+    /// 보스방을 다른방과 하나만 연결시키는 함수
+    /// </summary>
+    private void RefreshBossRoom()
+    {
+        Room bossRoom = listRooms[listRooms.Count - 1];
+
+        List<DoorType> connectDoors = new List<DoorType>();
+
+        foreach(Door one in bossRoom.doors)
+        {
+            if(one != null && one.DoorType != DoorType.None)
+            {
+                connectDoors.Add(one.DoorType);
+            }
+        }
+
+        while(connectDoors.Count > 1)
+        {
+            DoorType doorDir = connectDoors[Random.Range(0, connectDoors.Count)];
+            switch (doorDir)
+            {
+                case DoorType.Up:
+                    bossRoom.upRoom.downRoom = null;
+                    bossRoom.upRoom.doors[1].DoorType = DoorType.None;
+                    bossRoom.upRoom = null;
+                    bossRoom.doors[0].DoorType = DoorType.None;
+                    break;
+
+                case DoorType.Down:
+                    bossRoom.downRoom.upRoom = null;
+                    bossRoom.downRoom.doors[0].DoorType = DoorType.None;
+                    bossRoom.downRoom = null;
+                    bossRoom.doors[1].DoorType = DoorType.None;
+                    break;
+
+                case DoorType.Left:
+                    bossRoom.leftRoom.rightRoom = null;
+                    bossRoom.leftRoom.doors[3].DoorType = DoorType.None;
+                    bossRoom.leftRoom = null;
+                    bossRoom.doors[2].DoorType = DoorType.None;
+                    break;
+
+                case DoorType.Right:
+                    bossRoom.rightRoom.leftRoom = null;
+                    bossRoom.rightRoom.doors[2].DoorType = DoorType.None;
+                    bossRoom.rightRoom = null;
+                    bossRoom.doors[3].DoorType = DoorType.None;
+                    break;
+
+                case DoorType.None:
+                default:
+                    Debug.LogError("수식 오류!!");
+                    break;
+            }
+
+            connectDoors.Remove(doorDir);
+        }
     }
 
     /// <summary>
@@ -344,6 +406,7 @@ public class RoomManager : Singleton<RoomManager>
         foreach (Room room in listRooms)
         {
             room.RefreshPosition();
+            room.RefreshDoor();
         }
     }
 
