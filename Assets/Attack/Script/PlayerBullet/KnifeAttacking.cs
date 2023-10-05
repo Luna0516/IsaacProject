@@ -74,7 +74,6 @@ public class KnifeAttacking : AttackBase
     {
 
     }
-
     void testInst()
     {
         speed = playerTest.TearSpeed;
@@ -103,21 +102,23 @@ public class KnifeAttacking : AttackBase
     void rotateTurret(Vector2 dir)
     {
         if (!isfireing)
-        if (dir.x > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 270);
-        }
-        else if (dir.x < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 90);
-        }
-        else if (dir.y < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 180);
-        }
-        else if (dir.y > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (dir.x > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 270);
+            }
+            else if (dir.x < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+            else if (dir.y < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+            else if (dir.y > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
     public void pressButton()
@@ -130,7 +131,7 @@ public class KnifeAttacking : AttackBase
     }
     public void cancleButton()
     {
-        if (isfireing) 
+        if (isfireing)
         {
             updater -= chargeing;
             copychager = ChargeGage;
@@ -145,7 +146,7 @@ public class KnifeAttacking : AttackBase
     }
     void MovingKnife()
     {
-        child.transform.Translate(Vector2.up * Time.deltaTime * copychager,Space.Self);
+        child.transform.Translate(Vector2.up * Time.deltaTime * copychager, Space.Self);
         Debug.Log(lifeTime * copychager * 0.1f);
         if (child.transform.localPosition.y > lifeTime * copychager * 0.1f)
         {
@@ -155,7 +156,7 @@ public class KnifeAttacking : AttackBase
     }
     void ReturningKnife()
     {
-        child.transform.Translate(Vector2.down * Time.deltaTime * copychager,Space.Self);
+        child.transform.Translate(Vector2.down * Time.deltaTime * copychager, Space.Self);
         if (child.transform.localPosition.y < 0.5f)
         {
             updater -= ReturningKnife;
