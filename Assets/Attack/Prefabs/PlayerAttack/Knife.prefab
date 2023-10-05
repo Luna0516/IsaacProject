@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7939433485452361560}
   - component: {fileID: 7939433485452361561}
-  - component: {fileID: 270422292294676395}
   - component: {fileID: 8843869992636029462}
   m_Layer: 6
   m_Name: sprite
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7939433485452361563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.47, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -86,27 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &270422292294676395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7939433485452361563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be80ef85c0a874c43bcb71b2deab233c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  lifeTime: 5
-  rangeToLife: 2.5
-  dropDuration: 2
-  startGravity: 0.8
-  gravityScale: 3
-  moveDir: {x: 0, y: 0}
-  dir: {x: 1, y: 0}
-  damage: 0
 --- !u!70 &8843869992636029462
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -132,6 +110,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8887699503583469904}
+  - component: {fileID: 6675252643785016694}
+  - component: {fileID: 4549875786117990250}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -155,3 +135,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6675252643785016694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887699503583469919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be80ef85c0a874c43bcb71b2deab233c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  lifeTime: 5
+  rangeToLife: 2.5
+  dropDuration: 2
+  startGravity: 0.8
+  gravityScale: 3
+  moveDir: {x: 0, y: 0}
+  dir: {x: 1, y: 0}
+  damage: 0
+--- !u!50 &4549875786117990250
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887699503583469919}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

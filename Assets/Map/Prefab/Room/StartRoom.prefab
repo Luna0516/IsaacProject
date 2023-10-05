@@ -2074,8 +2074,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2782b4ce032ce9d4099646135c674fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0
-  height: 0
   roomtype: 0
   upRoom: {fileID: 0}
   downRoom: {fileID: 0}
