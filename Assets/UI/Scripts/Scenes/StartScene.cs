@@ -45,11 +45,10 @@ public class StartScene : MonoBehaviour
 
                 if(value == 4 && ArrowNum == 0)
                 {
-                    Debug.Log("GameLoadScene Gogo!!");
+                    Debug.Log("GameLoadScene GoGo!!");
+
                 }
-
                 sceneNum = Math.Clamp(value, 0, 3);
-
                 StartCoroutine(ChangeBackground(prevScene, sceneNum));
             }
         }
