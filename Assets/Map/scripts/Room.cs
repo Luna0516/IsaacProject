@@ -221,7 +221,7 @@ public class Room : MonoBehaviour
     }
 
     /// <summary>
-    /// 자신 방의 위치 구하는 함수
+    /// 자신 방의 실제 위치 구하는 함수
     /// </summary>
     public Vector2 RoomPosition()
     {
