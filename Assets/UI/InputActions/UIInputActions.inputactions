@@ -96,6 +96,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "7aa7b940-e668-432a-b54f-116f6a886d51",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KM",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
                     "id": "7f2117c6-c17e-4bda-9e22-ee6ab0ae43d5",
                     "path": "2DVector(mode=1)",
