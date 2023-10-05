@@ -42,7 +42,7 @@ public class Room : MonoBehaviour
                     }
                 }
 
-                spawner.playerIn?.Invoke();
+                monsterSpawner.playerIn?.Invoke();
             }
         }
     }
@@ -125,7 +125,9 @@ public class Room : MonoBehaviour
     /// <summary>
     /// 몬스터 스포너
     /// </summary>
-    MonsterSpawner spawner;
+    MonsterSpawner monsterSpawner;
+
+
 
     private void Awake()
     {
@@ -139,11 +141,11 @@ public class Room : MonoBehaviour
         }
 
         child = transform.GetChild(4);
-        spawner = child.GetComponent<MonsterSpawner>();
+        monsterSpawner = child.GetComponent<MonsterSpawner>();
         // 시작방은 스포너가 없다...
-        if (spawner != null)
+        if (monsterSpawner != null)
         {
-            spawner.onAllEnemyDied += OpenDoor;
+            monsterSpawner.onAllEnemyDied += OpenDoor;
         }
 
         Tilemap tileMap = GetComponentInChildren<Tilemap>();
@@ -235,7 +237,9 @@ public class Room : MonoBehaviour
     /// </summary>
     public void OpenDoor()
     {
-        foreach(Door door in doors)
+        ItemSpawn();
+
+        foreach (Door door in doors)
         {
             if(roomtype == RoomType.Boss && door.DoorType != DoorType.None)
             {
@@ -245,6 +249,53 @@ public class Room : MonoBehaviour
             if(door.DoorType != DoorType.None)
             {
                 door.IsOpen = true;
+            }
+        }
+    }
+
+    void ItemSpawn()
+    {
+        Vector2 itemSpawnPos = transform.position;
+
+        if (roomtype == RoomType.Start)
+        {
+            GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
+            itemObj.transform.position = itemSpawnPos;
+            return;
+        }
+        else if (roomtype == RoomType.Base)
+        {
+
+            // 0.0 < Active < 0.03 < Passive < 0.2 < Heart < 0.5 < Props < 0.8 < Nothing < 1.0
+            float itemType = Random.value;
+
+            if (itemType < 0.03)
+            {
+                GameObject itemObj = ItemFactory.Inst.CreateActiveItem((ActiveItem)(Random.Range(0, System.Enum.GetValues(typeof(ActiveItem)).Length)));
+                itemObj.transform.position = itemSpawnPos;
+                return;
+            }
+            else if (itemType < 0.2)
+            {
+                GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
+                itemObj.transform.position = itemSpawnPos;
+                return;
+            }
+            else if (itemType < 0.5)
+            {
+                GameObject itemObj = ItemFactory.Inst.CreateHeartItem((HeartItem)(Random.Range(0, System.Enum.GetValues(typeof(HeartItem)).Length)));
+                itemObj.transform.position = itemSpawnPos;
+                return;
+            }
+            else if (itemType < 0.8)
+            {
+                GameObject itemObj = ItemFactory.Inst.CreatePropsItem((PropsItem)(Random.Range(0, System.Enum.GetValues(typeof(PropsItem)).Length)));
+                itemObj.transform.position = itemSpawnPos;
+                return;
+            }
+            else
+            {
+                return;
             }
         }
     }
