@@ -8,11 +8,6 @@ using UnityEngine.SceneManagement;
 public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     /// <summary>
-    /// 로딩 완료 변수
-    /// </summary>
-    bool loadingDone = false;
-
-    /// <summary>
     /// 다음에 로딩할 씬의 이름
     /// </summary>
     public string nextSceneName = "LoadingScene";
@@ -87,8 +82,6 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             yield return null;
         }
-
-        loadingDone = true;
 
         async.allowSceneActivation = true;
     }
