@@ -51,6 +51,18 @@ public class Player : MonoBehaviour
     /// 눈물 공격키를 눌렀는지 확인하는 변수
     /// </summary>
     bool isShoot = false;
+
+    enum TearState
+    {
+        Base = 0,
+        Big,
+        Guided,
+        Knife,
+        Brimsotne,
+        Mutant
+    }
+    TearState tearState = TearState.Base;
+    
     #endregion
     #region 이속
     /// <summary>
@@ -88,6 +100,7 @@ public class Player : MonoBehaviour
     Transform martyrSprite;
     Transform allGetItem;
     Animator brimstoneAni;
+    KnifeAttacking knife;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -155,7 +168,7 @@ public class Player : MonoBehaviour
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
     bool isGetMutant = false;
-    bool isGetMartyr = false;
+    bool isGetKnife = false;
     #endregion
     #region 무적
     /// <summary>
@@ -284,7 +297,8 @@ public class Player : MonoBehaviour
         Polyphemus,
         MutantSpider,
         Brimstone,
-        BloodOfMartyr
+        BloodOfMartyr,
+        Knife
     }
     PassiveSpriteState state = PassiveSpriteState.None;
     public PassiveSpriteState State
@@ -345,8 +359,13 @@ public class Player : MonoBehaviour
                     isGetBrimstone = true;
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
+                    break;
+                case PassiveSpriteState.Knife:
                     isEmpty = false;
-                    isGetMartyr = true;
+                    Transform child = transform.GetChild(4);
+                    Transform knife = child.GetChild(2);
+                    knife.gameObject.SetActive(true);
+                    isGetKnife = true;
                     break;
                 default:
                     break;
@@ -402,7 +421,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         brimDelay -= Time.deltaTime;
-        //Debug.Log(brimDelay);
         currentTearDelay -= Time.deltaTime;
         currentInvisible -= Time.deltaTime;
     }
@@ -536,36 +554,45 @@ public class Player : MonoBehaviour
 
                         switch (passive.itemNum)
                         {
+                            // 양파
                             case 1:
                                 State = PassiveSpriteState.SadOnion;
+                                tearState = TearState.Base;
                                 break;
                             // 크리켓
                             case 4:
                                 State = PassiveSpriteState.CricketHead;
+                                tearState = TearState.Base;
                                 break;
                             // 가시관
                             case 7:
                                 State = PassiveSpriteState.BloodOfMartyr;
+                                tearState = TearState.Base;
                                 break;
                             // 혈사포
                             case 118:
                                 State = PassiveSpriteState.Brimstone;
+                                tearState = TearState.Brimsotne;
                                 break;
                             // 왕눈이눈물
                             case 169:
                                 State = PassiveSpriteState.Polyphemus;
+                                tearState = TearState.Big;
                                 break;
                             // 유도눈물
                             case 182:
                                 State = PassiveSpriteState.SacredHeart;
+                                tearState = TearState.Guided;
                                 break;
                             // 칼
                             case 114:
+                                State = PassiveSpriteState.Knife;
+                                tearState = TearState.Knife;
                                 break;
                             // 거미눈물 4발
                             case 153:
-                                
                                 State = PassiveSpriteState.MutantSpider;
+                                tearState = TearState.Mutant;
                                 break;
                         }
 
@@ -615,7 +642,6 @@ public class Player : MonoBehaviour
         if (State == PassiveSpriteState.BloodOfMartyr)
         {
             martyrSprite.gameObject.SetActive(true);
-            //isGetMartyr = true;
         }
     }
     private void OnMove(InputAction.CallbackContext context)
@@ -673,11 +699,15 @@ public class Player : MonoBehaviour
                 headAni.SetBool("BrimstoneCharge", true);
                 headAni.SetBool("CanShot", false);
                 brimDelay = 0.8f;
-                Time.timeScale = 0.5f;
             }
             if (isGetSadOnion)
             {
                 sadOnionAni.SetBool("isShot", true);
+            }
+            if (isGetKnife)
+            {
+                knife.pressButton();
+                knife.cancleButton();
             }
             isShoot = true;
         }
@@ -694,7 +724,6 @@ public class Player : MonoBehaviour
                 {
                     headAni.SetBool("CanShot", true);
                 }
-                Time.timeScale = 1f;
             }
             if (isGetSadOnion)
             {
@@ -709,10 +738,6 @@ public class Player : MonoBehaviour
         }
     }
     Vector2 brimstoneDir = Vector2.zero;
-    IEnumerator ChargeBrimstone()
-    {
-        yield return null;
-    }
     IEnumerator ShootBrimstone()
     {
         headAni.SetFloat("ShootDir_X", brimstoneDir.x);
@@ -728,33 +753,32 @@ public class Player : MonoBehaviour
     {
         Transform tearSpawn = transform.GetChild(0);
         GameObject tear;
-        if (isEmpty)
+        switch (tearState)
         {
-            tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
+            case TearState.Base:
+                tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawn.position);
+                break;
+            case TearState.Guided:
+                tear = Factory.Inst.GetObject(PoolObjectType.GuidedTear, tearSpawn.position);
+                break;
+            case TearState.Knife:
+                break;
+            case TearState.Big:
+                tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
+                break;
+            case TearState.Brimsotne:
+                break;
+            case TearState.Mutant:
+                for (int i = 0; i < 4; i++)
+                {
+                    tear = Factory.Inst.GetObject(PoolObjectType.Tear, mutantTear[i].position);
+                }
+                break;
         }
-        if (isGetPolyphemus)
-        {
-            tear = Factory.Inst.GetObject(PoolObjectType.BigTear, tearSpawn.position);
-            isEmpty = false;
-        }
-        else if (isGetSacredHeart)
-        {
-            tear = Factory.Inst.GetObject(PoolObjectType.GuidedTear, tearSpawn.position);
-            isEmpty = false;
-        }
-        if (isGetMutant)
-        {
-            for(int i = 0; i < 4; i++)
-            {
-                tear = Factory.Inst.GetObject(PoolObjectType.Tear, mutantTear[i].position);
-            }
-        }
-
         currentTearDelay = tearFire; // 딜레이 시간 초기화
 
         yield return new WaitForSeconds(tearFire);
     }
-    public Action isFire;
     public void Damaged()
     {
         if (SoulHealth <= 0)
@@ -815,7 +839,6 @@ public class Player : MonoBehaviour
             bodySR.color = new(1, 1, 1, 1);
             yield return new WaitForSeconds(0.05f);
         }
-        
     }
 
     private void ShootingTear()
