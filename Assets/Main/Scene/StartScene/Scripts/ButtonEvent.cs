@@ -17,18 +17,31 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     /// </summary>
     AsyncOperation async;
 
+    /// <summary>
+    /// 버튼 타입 Enum
+    /// </summary>
     public enum ButtonType
     {
         NewRun,
         ExitGame
     }
 
+    /// <summary>
+    /// 이 버튼의 타입
+    /// </summary>
     public ButtonType type;
 
+    /// <summary>
+    /// 화살표 오브젝트
+    /// </summary>
     GameObject arrow;
 
+    // 컴포넌트
     Image image;
 
+    /// <summary>
+    /// 초기 색상 저장용
+    /// </summary>
     Color defaultColor;
 
     private void Awake()
@@ -39,12 +52,18 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         defaultColor = image.color;
     }
 
+    /// <summary>
+    /// 활성 함수
+    /// </summary>
     private void Active()
     {
         image.color = Color.white;
         arrow.SetActive(true);
     }
 
+    /// <summary>
+    /// 비활성 함수
+    /// </summary>
     private void Inactive()
     {
         image.color = defaultColor;
@@ -69,10 +88,14 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
         else if(type == ButtonType.ExitGame)
         {
-            Debug.Log("게임 종료!!!");
+            // 빌드 하면 꺼진다...
+            Application.Quit();
         }
     }
 
+    /// <summary>
+    /// 다음 씬 로드 코루틴
+    /// </summary>
     IEnumerator LoadScene()
     {
         async = SceneManager.LoadSceneAsync(nextSceneName);

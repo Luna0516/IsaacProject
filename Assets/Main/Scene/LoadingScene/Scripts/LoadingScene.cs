@@ -37,6 +37,9 @@ public class LoadingScene : MonoBehaviour
         StartCoroutine(LoadScene());
     }
 
+    /// <summary>
+    /// 게임 씬으로 넘어가는 코루틴
+    /// </summary>
     IEnumerator LoadScene()
     {
         async = SceneManager.LoadSceneAsync(nextSceneName);
