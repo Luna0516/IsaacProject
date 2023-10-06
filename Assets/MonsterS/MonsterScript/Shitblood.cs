@@ -56,6 +56,10 @@ public class Shitblood : PooledObject
     protected override void OnDisable()
     {
         base.OnDisable();
+        if (RoomManager.Inst != null)
+        {
+            RoomManager.Inst.onChangeRoom -= (_) => { this.gameObject.SetActive(false); };
+        }
         shitdis -= disa;
     }
     /// <summary>

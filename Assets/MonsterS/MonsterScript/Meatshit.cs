@@ -35,11 +35,14 @@ public class Meatshit : PooledObject
     protected override void OnDisable()
     {
         base.OnDisable();
-        RoomManager.Inst.onChangeRoom -= (_) =>
+        if (RoomManager.Inst != null)
         {
-            StopAllCoroutines();
-            this.gameObject.SetActive(false);
-        };
+            RoomManager.Inst.onChangeRoom -= (_) =>
+            {
+                this.gameObject.SetActive(false);
+            };
+        }
+        StopAllCoroutines();
     }
 
     private void Update()
