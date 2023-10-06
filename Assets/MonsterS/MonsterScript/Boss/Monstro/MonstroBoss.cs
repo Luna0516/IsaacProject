@@ -12,6 +12,7 @@ public class MonstroBoss : EnemyBase
     System.Action stateWatcher;
     bool attackgo = false;
     public int jumpcount = 0;
+    Vector3 turret = Vector3.zero;
     protected Monstate Statecom
     {
         get
@@ -43,7 +44,7 @@ public class MonstroBoss : EnemyBase
 
                     StateDone = false;
                     speed = 0;
-                    
+
                     cooltimeStart(1, 0.5f);
                     cooltimeStart(2, 2.25f);
                     cooltimeStart(3, 2.4f);
@@ -144,8 +145,6 @@ public class MonstroBoss : EnemyBase
         }
     }
 
-    public Transform turret;
-
     protected override void Awake()
     {
         base.Awake();
@@ -154,8 +153,6 @@ public class MonstroBoss : EnemyBase
 
         //스프라이트 렌더러 불러오기
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
-
-        turret = transform.GetChild(1);
         sppeed = speed;
         speed = 0;
         Statecom = Monstate.Idel;
@@ -163,11 +160,15 @@ public class MonstroBoss : EnemyBase
     protected override void Update()
     {
         base.Update();
+        HeadToCal();
         stateWatcher();
         orderInGame(spriteRenderer);
         //이동 함수 실행
-        Movement();
         damageoff(spriteRenderer);
+    }
+    private void FixedUpdate()
+    {
+        Movement();
     }
 
     //공격 받을경우 체력 깎임(EnemyBase 오버라이드)
@@ -257,9 +258,8 @@ public class MonstroBoss : EnemyBase
         for (int i = 0; i < 10; i++)
         {
             float angle = i * 360f / 10;  // 각도 계산
-            Quaternion rotation = Quaternion.Euler(0f, 0f, angle);  // 회전값 계산
             Vector3 spawnPosition = transform.position;  // 생성 위치 계산
-            GameObject bullet = factory.GetObject(PoolObjectType.EnemyBullet, spawnPosition, rotation.z);  // 총알 생성
+            factory.GetObject(PoolObjectType.EnemyBullet, spawnPosition, Vector3.one * 1.5f, angle);  // 총알 생성
         }
     }
     void ShatteredBullet(bool attackclear)
@@ -267,17 +267,17 @@ public class MonstroBoss : EnemyBase
         if (attackclear)
         {
             if (HeadToNormal.x < 0)
-            { turret.rotation = Quaternion.Euler(0, 0, 90); }
+            { turret = Quaternion.Euler(0, 0, 90).eulerAngles; }
             else
-            { turret.rotation = Quaternion.Euler(0, 0, -90); }
+            { turret = Quaternion.Euler(0, 0, -90).eulerAngles; }
             int randomshot = Random.Range(7, 15);
             for (int i = 0; i < randomshot; i++)
             {
                 float Shattering = Random.Range(-45, 46);
-                Quaternion shotgack = Quaternion.Euler(0, 0, Shattering);
+                Vector3 shotgack = Quaternion.Euler(0, 0, Shattering).eulerAngles;
                 float randx = Random.Range(-0.5f, 0.6f);
                 float randy = Random.Range(-0.5f, 0.6f);
-                GameObject bullet = factory.GetObject(PoolObjectType.EnemyBullet, new Vector3(turret.transform.position.x + randx, turret.transform.position.y + randy, 0), turret.rotation.z * shotgack.z);
+                factory.GetObject(PoolObjectType.EnemyBullet, new Vector3(transform.position.x + randx, transform.position.y + randy, 0), Vector3.one * 1.5f, turret.z + shotgack.z);
             }
             attackgo = false;
         }

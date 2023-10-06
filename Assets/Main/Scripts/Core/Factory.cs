@@ -226,6 +226,8 @@ public class Factory : Singleton<Factory>
 
         return obj;
     }
+    [Header("사망 이펙트 스프라이트")]
+    [Tooltip("아래 배열로 고기와 피 스프라이트를 추가하시면 됩니다.")]
     public Sprite[] BloodSprite;
     public Sprite[] MeatSprite;
 }
