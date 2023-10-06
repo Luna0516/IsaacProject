@@ -11,7 +11,8 @@ public class KnifeAttacking : AttackBase
 
     bool isfireing = false;
 
-    Test_KnifeShooter playerTest;
+    Player playerTest;
+    //Test_KnifeShooter playerTest;
     float copychager;
     float chargeGage = 0f;
 
@@ -54,7 +55,8 @@ public class KnifeAttacking : AttackBase
         base.Awake();
         child = transform.GetChild(0).gameObject;
         updater = changeDir;
-        playerTest = FindAnyObjectByType<Test_KnifeShooter>();
+        playerTest = FindAnyObjectByType<Player>();
+        //playerTest = FindAnyObjectByType<Test_KnifeShooter>();
     }
     protected override void OnEnable()
     {

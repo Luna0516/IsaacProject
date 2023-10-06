@@ -16,7 +16,7 @@ public class BrimStone : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
-
+        
     }
     private void Start()
     {
@@ -36,7 +36,11 @@ public class BrimStone : MonoBehaviour
             isAttacking = false;
             DisableBeam();
         }
-       
+        
+        if(isAttacking)
+        {
+            LengthenBeam();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,8 +71,9 @@ public class BrimStone : MonoBehaviour
         // 빔 활성화 시 스프라이트와 콜라이더를 활성화
         spriteRenderer.enabled = true;
         boxCollider.enabled = true;
+        
         // 원하는 빔 크기로 설정
-        currentScale = new Vector3(1f, 10f, 1f); // 예시로 y축 크기를 10으로 설정
+        currentScale = new Vector3(1f, 1f, 1f); // 예시로 y축 크기를 10으로 설정
         transform.localScale = currentScale;
 
          
@@ -80,16 +85,30 @@ public class BrimStone : MonoBehaviour
         spriteRenderer.enabled = false;
         boxCollider.enabled = false;
     }
+    float fireSpeed = 3.0f;
     void LengthChange(float length)
     {
         //플레이어 발사 위치에서 부딪힌 거리
         currentScale.y = length;
         transform.localScale = currentScale;
     }
+
+    void LengthenBeam()
+    {
+        // 빔을 발사 중인 동안 길이를 늘려줌
+        float maxLength = 10.0f; // 최대 길이 설정
+        currentScale.y = Mathf.Clamp(currentScale.y + Time.deltaTime * fireSpeed, 0f, maxLength);
+        transform.localScale = currentScale;
+    }
+
+
+
+
+
     // 스크립트
     // 1. 브림스톤의 기본 사이즈를 최대한 길게 설정 
     // 2. 브림스톤이 충돌하는 대상에 따라 boxcollider와 sprite의 scale을 변경하도록 설정 
-    
+
     // 작동 방식 
     // 1. 빔이 길게 발사됨 
     // 2. 만일 충돌 대상이 적이나 벽이라면 
