@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 
 public class KnifeAttacking : AttackBase
@@ -9,11 +10,15 @@ public class KnifeAttacking : AttackBase
 
     Action updater;
 
-    bool isfireing = false;
+    public bool isfireing = false;
+    public bool inMyHand = true;
 
-    Test_KnifeShooter playerTest;
+    Player playerTest;
     float copychager;
-    float chargeGage = 0f;
+
+
+    [ReadOnly(true)]
+    public float chargeGage = 0f;
 
     Vector2 MoveDir
     {
@@ -54,13 +59,12 @@ public class KnifeAttacking : AttackBase
         base.Awake();
         child = transform.GetChild(0).gameObject;
         updater = changeDir;
-        playerTest = FindAnyObjectByType<Test_KnifeShooter>();
     }
     protected override void OnEnable()
     {
-        player = GameManager.Inst.Player;
+        playerTest = GameManager.Inst.Player;
 
-        if (player != null)
+        if (playerTest != null)
         {
             Init(); // 눈물 세부사항 초기화
         }
@@ -74,64 +78,58 @@ public class KnifeAttacking : AttackBase
     {
 
     }
-
-    void testInst()
+    protected override void Init()
     {
         speed = playerTest.TearSpeed;
         this.Damage = playerTest.Damage;
         lifeTime = playerTest.Range;
-        MoveDir = playerTest.MoveDir;
-        rigidBody.gravityScale = 0.0f;
-        dir = MoveDir;
-        Damage *= 2;
-    }
-    protected override void Init()
-    {
-        /*base.Init();  플레이어 생기면 추가*/
-        speed = player.TearSpeed;
-        this.Damage = player.Damage;
-        lifeTime = player.Range;
-        MoveDir = player.MoveDir;
+        MoveDir = playerTest.AttackDir;
         rigidBody.gravityScale = 0.0f;
         dir = MoveDir;
         Damage *= 2;
     }
     void changeDir()
     {
-        MoveDir = player.MoveDir;
+        MoveDir = playerTest.AttackDir;
+        Debug.Log(moveDir);
     }
     void rotateTurret(Vector2 dir)
     {
-        if (!isfireing)
-        if (dir.x > 0)
+        if (inMyHand)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 270);
-        }
-        else if (dir.x < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 90);
-        }
-        else if (dir.y < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 180);
-        }
-        else if (dir.y > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            Debug.Log("값 변함");
+            if (dir.x > 0)
+            {
+                this.transform.localRotation = Quaternion.Euler(0, 0, 270);
+            }
+            else if (dir.x < 0)
+            {
+                this.transform.localRotation = Quaternion.Euler(0, 0, 90);
+            }
+            else if (dir.y < 0)
+            {
+                this.transform.localRotation = Quaternion.Euler(0, 0, 180);
+            }
+            else if (dir.y > 0)
+            {
+                this.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
     public void pressButton()
     {
-        if (!isfireing)
+        if (!isfireing && inMyHand)
         {
-            updater += chargeing;
             isfireing = true;
+            Debug.Log("샷");
+            updater += chargeing;
         }
     }
     public void cancleButton()
     {
-        if (isfireing) 
+        if (inMyHand)
         {
+            Debug.Log("취소");
             updater -= chargeing;
             copychager = ChargeGage;
             updater += MovingKnife;
@@ -141,12 +139,11 @@ public class KnifeAttacking : AttackBase
     void chargeing()
     {
         ChargeGage += Time.deltaTime * speed;
-        Debug.Log(ChargeGage);
     }
     void MovingKnife()
     {
-        child.transform.Translate(Vector2.up * Time.deltaTime * copychager,Space.Self);
-        Debug.Log(lifeTime * copychager * 0.1f);
+        inMyHand = false;
+        child.transform.Translate(Vector2.up * Time.deltaTime * copychager, Space.Self);
         if (child.transform.localPosition.y > lifeTime * copychager * 0.1f)
         {
             updater += ReturningKnife;
@@ -155,11 +152,12 @@ public class KnifeAttacking : AttackBase
     }
     void ReturningKnife()
     {
-        child.transform.Translate(Vector2.down * Time.deltaTime * copychager,Space.Self);
+        child.transform.Translate(Vector2.down * Time.deltaTime * copychager, Space.Self);
         if (child.transform.localPosition.y < 0.5f)
         {
             updater -= ReturningKnife;
             isfireing = false;
+            inMyHand = true;
         }
     }
 }

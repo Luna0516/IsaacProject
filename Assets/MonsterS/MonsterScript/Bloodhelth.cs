@@ -5,13 +5,13 @@ public class Bloodhelth : PooledObject
     Factory factory;
     Color clo;
     SpriteRenderer spriteRneder;
-    int randomindex=0;
+    int randomindex = 0;
 
     private void Awake()
     {
         factory = Factory.Inst;
-        spriteRneder = GetComponent<SpriteRenderer>();   
-        clo=spriteRneder.color;
+        spriteRneder = GetComponent<SpriteRenderer>();
+        clo = spriteRneder.color;
     }
     private void OnEnable()
     {
@@ -25,7 +25,10 @@ public class Bloodhelth : PooledObject
     protected override void OnDisable()
     {
         base.OnDisable();
-        RoomManager.Inst.onChangeRoom -= (_) => { this.gameObject.SetActive(false); };
+        if (RoomManager.Inst != null)
+        {
+            RoomManager.Inst.onChangeRoom -= (_) => { this.gameObject.SetActive(false); };
+        }
     }
 
 }

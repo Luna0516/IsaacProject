@@ -1055,11 +1055,62 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1385107b6f0201047ac5fe3f0feb93ee, type: 3}
+--- !u!4 &1003419093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2461219587112762858, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+  m_PrefabInstance: {fileID: 1545944742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1056844175 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4022382155282767390, guid: a250c25a3286c934d8462f83141addf3, type: 3}
   m_PrefabInstance: {fileID: 191746698}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1226578815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226578816}
+  - component: {fileID: 1226578817}
+  m_Layer: 0
+  m_Name: BigTearPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226578816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226578815}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1003419093}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1226578817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226578815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bc360758197b64888b525638f60de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origianlPrefab: {fileID: 3664031754060791768, guid: 5a3ec9f6b42cbe541be095b625ded615, type: 3}
+  poolSize: 32
 --- !u!224 &1410464495 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6834861552239900601, guid: 33ec97a36f107d3439fb4324240c5775, type: 3}
@@ -1496,7 +1547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPos: {x: 0, y: 0}
   activeItem: 0
-  passiveItem: 7
+  passiveItem: 8
   heartItem: 0
   propsItem: 6
   chest: {fileID: 5837268257509165235, guid: a479892d4061e0f4a9c4354c251175a0, type: 3}
