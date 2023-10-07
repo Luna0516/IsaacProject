@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         Mutant
     }
     TearState tearState = TearState.Base;
-    
+
     #endregion
     #region 이속
     /// <summary>
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
     /// </summary>
-    public Vector2 AttackDir 
+    public Vector2 AttackDir
     {
         get => headDir;
     }
@@ -213,9 +213,11 @@ public class Player : MonoBehaviour
     /// </summary>
     public Action<int> onBombChange;
     int key = 0;
-    public int Key {
+    public int Key
+    {
         get => key;
-        set {
+        set
+        {
             key = value;
             onKeyChange?.Invoke(key);
         }
@@ -267,19 +269,24 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 띄울 health 프로퍼티
     /// </summary>
-    public int Health {
+    public int Health
+    {
         get => health;
-        set {
+        set
+        {
             health = value;
             health = Mathf.Clamp(health, 0, maxHealth);
             onHealthChange?.Invoke();
         }
     }
     int soulHealth = 0;
-    public int SoulHealth {
+    public int SoulHealth
+    {
         get => soulHealth;
-        set {
-            if(soulHealth != value) {
+        set
+        {
+            if (soulHealth != value)
+            {
                 soulHealth = Math.Max(0, value);
                 onHealthChange?.Invoke();
             }
@@ -364,6 +371,7 @@ public class Player : MonoBehaviour
                     isEmpty = false;
                     Transform child = transform.GetChild(4);
                     Transform knife = child.GetChild(2);
+                    this.knife = knife.gameObject.GetComponent<KnifeAttacking>();
                     knife.gameObject.SetActive(true);
                     isGetKnife = true;
                     break;
@@ -399,7 +407,7 @@ public class Player : MonoBehaviour
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
-        
+
 
         TearSpeedCaculate();
     }
@@ -453,7 +461,8 @@ public class Player : MonoBehaviour
     private void SetBomb(InputAction.CallbackContext context)
     {
         // 폭탄의 개수가 0보다 크면 개수를 1개 줄이고 폭탄 생성
-        if (Bomb > 0) {
+        if (Bomb > 0)
+        {
             Bomb--;
             GameObject bomb = Instantiate(bombObj);
             bomb.transform.position = transform.position;
@@ -473,15 +482,15 @@ public class Player : MonoBehaviour
         }
 
         // 프롭스 태그를 가진 오브젝트와 충돌 했을 때
-        if (collision.gameObject.CompareTag("Props")) 
+        if (collision.gameObject.CompareTag("Props"))
         {
             // 아이템 데이터 확인
             ItemDataObject props = collision.gameObject.GetComponent<ItemDataObject>();
-            if (props != null) 
+            if (props != null)
             {
                 // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
                 PropsItemData propsItem = props.ItemData as PropsItemData;
-                if (propsItem != null) 
+                if (propsItem != null)
                 {
                     switch (propsItem.propsType)
                     {
@@ -512,7 +521,7 @@ public class Player : MonoBehaviour
 
                 // 아이템 데이터 안에 IHealth 인터페이스가 있는지 확인
                 IHealth heart = props.ItemData as IHealth;
-                if (heart != null) 
+                if (heart != null)
                 {
                     // 아이템으로 힐이 성공 했을 때 그 아이템을 삭제
                     if (heart.Heal(this.gameObject))
@@ -634,7 +643,7 @@ public class Player : MonoBehaviour
         getItemSR.sprite = null;
         head.gameObject.SetActive(true);
         isGetitem = true;
-        if(State == PassiveSpriteState.SadOnion)
+        if (State == PassiveSpriteState.SadOnion)
         {
             sadOnionSprite.gameObject.SetActive(true);
             isGetSadOnion = true;
@@ -707,7 +716,6 @@ public class Player : MonoBehaviour
             if (isGetKnife)
             {
                 knife.pressButton();
-                knife.cancleButton();
             }
             isShoot = true;
         }
@@ -729,8 +737,13 @@ public class Player : MonoBehaviour
             {
                 sadOnionAni.SetBool("isShot", false);
             }
+            if (isGetKnife)
+            {
+                knife.cancleButton();
+            }
             isShoot = false;
         }
+
         if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
         {
             headDir.x = 0;
@@ -830,7 +843,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator Invisible()
     {
-        while(isDamaged)
+        while (isDamaged)
         {
             headSR.color = new(1, 1, 1, 0);
             bodySR.color = new(1, 1, 1, 0);
@@ -855,7 +868,7 @@ public class Player : MonoBehaviour
     }
     void TearSpeedCaculate()
     {
-        if(itemSpeed >= 3.5f)
+        if (itemSpeed >= 3.5f)
         {
             itemSpeed = 3.5f;
         }
