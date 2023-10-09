@@ -336,6 +336,8 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.Polyphemus:
                     isEmpty = false;
+                    headResourceName = "HeadAC/Head_Poly_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     isGetPolyphemus = true;
                     break;
                 case PassiveSpriteState.MutantSpider:
@@ -369,6 +371,8 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.Knife:
                     isEmpty = false;
+                    headResourceName = "HeadAC/Head_Knife_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     Transform child = transform.GetChild(4);
                     Transform knife = child.GetChild(2);
                     this.knife = knife.gameObject.GetComponent<KnifeAttacking>();
