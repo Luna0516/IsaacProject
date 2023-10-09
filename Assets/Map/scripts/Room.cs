@@ -127,7 +127,10 @@ public class Room : MonoBehaviour
     /// </summary>
     MonsterSpawner monsterSpawner;
 
-
+    /// <summary>
+    /// 계단 게임 오브젝트
+    /// </summary>
+    public GameObject stair;
 
     private void Awake()
     {
@@ -151,6 +154,14 @@ public class Room : MonoBehaviour
         Tilemap tileMap = GetComponentInChildren<Tilemap>();
         width = tileMap.size.x;
         height = tileMap.size.y;
+    }
+
+    private void Start()
+    {
+        if (roomtype == RoomType.Boss)
+        {
+            stair.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -235,8 +246,11 @@ public class Room : MonoBehaviour
     /// <summary>
     /// 자신의 방의 문을 여는 함수
     /// </summary>
-    public void OpenDoor()
+    /// <param name="killCount">죽인 몬스터 수</param>
+    public void OpenDoor(int killCount)
     {
+        GameManager.Inst.totalKill += killCount;
+
         ItemSpawn();
 
         foreach (Door door in doors)
@@ -250,6 +264,11 @@ public class Room : MonoBehaviour
             {
                 door.IsOpen = true;
             }
+        }
+
+        if(roomtype == RoomType.Boss)
+        {
+            stair.SetActive(true);
         }
     }
 
@@ -301,6 +320,39 @@ public class Room : MonoBehaviour
                 else
                 {
                     return;
+                }
+            }
+            else if(roomtype == RoomType.Boss)
+            {
+                // 패시브 or 액티브 아이템 소환
+                float itemType = Random.value;
+
+                if (itemType < 0.05)
+                {
+                    GameObject itemObj = ItemFactory.Inst.CreateActiveItem((ActiveItem)(Random.Range(0, System.Enum.GetValues(typeof(ActiveItem)).Length)));
+                    itemObj.transform.position = itemSpawnPos;
+                }
+                else
+                {
+                    GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
+                    itemObj.transform.position = itemSpawnPos;
+                }
+
+                // 하트 or 프롭스 아이템 소환 x2
+                for (int i = 0; i< 2; i++)
+                {
+                    itemType = Random.value;
+                    itemSpawnPos = transform.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)) + Vector3.down;
+                    if (itemType < 0.5)
+                    {
+                        GameObject itemObj = ItemFactory.Inst.CreateHeartItem((HeartItem)(Random.Range(0, System.Enum.GetValues(typeof(HeartItem)).Length)));
+                        itemObj.transform.position = itemSpawnPos;
+                    }
+                    else
+                    {
+                        GameObject itemObj = ItemFactory.Inst.CreatePropsItem((PropsItem)(Random.Range(0, System.Enum.GetValues(typeof(PropsItem)).Length)));
+                        itemObj.transform.position = itemSpawnPos;
+                    }
                 }
             }
         }
