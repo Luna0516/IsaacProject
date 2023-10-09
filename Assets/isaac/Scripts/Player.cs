@@ -314,14 +314,18 @@ public class Player : MonoBehaviour
         set
         {
             state = value;
+            var headResourceName = "";
             switch (state)
             {
                 case PassiveSpriteState.None:
                     isEmpty = true;
                     break;
                 case PassiveSpriteState.CricketHead:
-                    var headResourceName = "HeadAC/Head_Cricket_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    if(!isGetKnife && !isGetBrimstone)
+                    {
+                        headResourceName = "HeadAC/Head_Cricket_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
                     isEmpty = false;
                     break;
                 case PassiveSpriteState.Halo:
@@ -336,14 +340,20 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.Polyphemus:
                     isEmpty = false;
-                    headResourceName = "HeadAC/Head_Poly_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    if (!isGetKnife && !isGetBrimstone)
+                    {
+                        headResourceName = "HeadAC/Head_Poly_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
                     isGetPolyphemus = true;
                     break;
                 case PassiveSpriteState.MutantSpider:
                     isEmpty = false;
-                    headResourceName = "HeadAC/Head_Mutant_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    if (!isGetKnife && !isGetBrimstone)
+                    {
+                        headResourceName = "HeadAC/Head_Mutant_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
                     Transform tearSpawn = transform.GetChild(0);
                     for (int i = 0; i < 4; i++)
                     {
@@ -570,43 +580,58 @@ public class Player : MonoBehaviour
                             // 양파
                             case 1:
                                 State = PassiveSpriteState.SadOnion;
-                                tearState = TearState.Base;
                                 break;
                             // 크리켓
                             case 4:
                                 State = PassiveSpriteState.CricketHead;
-                                tearState = TearState.Base;
                                 break;
                             // 가시관
                             case 7:
                                 State = PassiveSpriteState.BloodOfMartyr;
-                                tearState = TearState.Base;
                                 break;
                             // 혈사포
                             case 118:
                                 State = PassiveSpriteState.Brimstone;
-                                tearState = TearState.Brimsotne;
                                 break;
                             // 왕눈이눈물
                             case 169:
                                 State = PassiveSpriteState.Polyphemus;
-                                tearState = TearState.Big;
                                 break;
                             // 유도눈물
                             case 182:
                                 State = PassiveSpriteState.SacredHeart;
-                                tearState = TearState.Guided;
                                 break;
                             // 칼
                             case 114:
                                 State = PassiveSpriteState.Knife;
-                                tearState = TearState.Knife;
                                 break;
                             // 거미눈물 4발
                             case 153:
                                 State = PassiveSpriteState.MutantSpider;
-                                tearState = TearState.Mutant;
                                 break;
+                        }
+                        if (isEmpty)
+                        {
+                            tearState = TearState.Base;
+                        }
+                        else if (!isEmpty && !isGetBrimstone && !isGetKnife)
+                        {
+                            if (isGetPolyphemus)
+                            {
+                                tearState = TearState.Big;
+                            }
+                            if (isGetSacredHeart)
+                            {
+                                tearState = TearState.Guided;
+                            }
+                        }
+                        if (isGetKnife)
+                        {
+                            tearState = TearState.Knife;
+                        }
+                        if (isGetBrimstone)
+                        {
+                            tearState = TearState.Brimsotne;
                         }
 
                         if (passive.itemNum == 169 || passive.itemNum == 182)
