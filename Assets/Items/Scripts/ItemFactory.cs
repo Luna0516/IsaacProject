@@ -11,7 +11,7 @@ public class ItemFactory : Singleton<ItemFactory>
     /// <returns>액티브 아이템 프리펩</returns>
     public GameObject CreateActiveItem(ActiveItem activeItemCode)
     {
-        ActiveItemData activeItem = GameManager.Inst.ItemData.GetActiveItemData(activeItemCode);
+        ActiveItemData activeItem = ItemDataManager.Inst.GetActiveItemData(activeItemCode);
 
         GameObject activeItemObj = GameObject.Instantiate(activeItem.itemPrefab);
 
@@ -43,7 +43,7 @@ public class ItemFactory : Singleton<ItemFactory>
     /// <returns>패시브 아이템 프리펩</returns>
     public GameObject CreatePassiveItem(PassiveItem passiveItemCode)
     {
-        PassiveItemData passiveItem = GameManager.Inst.ItemData.GetPassiveItemData(passiveItemCode);
+        PassiveItemData passiveItem = ItemDataManager.Inst.GetPassiveItemData(passiveItemCode);
 
         GameObject passiveItemObj = GameObject.Instantiate(passiveItem.itemPrefab);
 
@@ -75,7 +75,7 @@ public class ItemFactory : Singleton<ItemFactory>
     /// <returns>하트 아이템 프리펩</returns>
     public GameObject CreateHeartItem(HeartItem heartItemCode)
     {
-        HeartItemData heartItem = GameManager.Inst.ItemData.GetHeartItemData(heartItemCode);
+        HeartItemData heartItem = ItemDataManager.Inst.GetHeartItemData(heartItemCode);
 
         GameObject heartItemObj = GameObject.Instantiate(heartItem.itemPrefab);
 
@@ -107,7 +107,7 @@ public class ItemFactory : Singleton<ItemFactory>
     /// <returns>기타 아이템 프리펩</returns>
     public GameObject CreatePropsItem(PropsItem propsItemCode)
     {
-        PropsItemData propsItem = GameManager.Inst.ItemData.GetPropsItemData(propsItemCode);
+        PropsItemData propsItem = ItemDataManager.Inst.GetPropsItemData(propsItemCode);
 
         GameObject propsItemObj = GameObject.Instantiate(propsItem.itemPrefab);
 

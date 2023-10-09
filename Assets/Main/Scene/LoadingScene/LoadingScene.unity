@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b59250e461ecf0458a967a2ce4e9b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Test_Map
+  nextSceneName: CreateMap
   loadingSprites:
   - {fileID: -487933439, guid: 321206c3dd290ae4d86e7225c5d69e06, type: 3}
   - {fileID: -10560473, guid: 321206c3dd290ae4d86e7225c5d69e06, type: 3}
