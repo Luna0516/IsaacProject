@@ -167,7 +167,6 @@ public class Player : MonoBehaviour
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
-    bool isGetMutant = false;
     bool isGetKnife = false;
     #endregion
     #region 무적
@@ -360,14 +359,6 @@ public class Player : MonoBehaviour
                         GameObject obj = new GameObject($"tearSpawn({i})");
                         obj.transform.parent = tearSpawn.transform;
                     }
-                    mutantTear = new Transform[tearSpawn.childCount];
-                    for (int i = 0; i < mutantTear.Length; i++)
-                    {
-                        mutantTear[i] = tearSpawn.GetChild(i);
-                        mutantTear[i].rotation = Quaternion.Euler(0, 0, i * 10.0f);
-                        mutantTear[i].localPosition = Vector3.zero;
-                    }
-                    isGetMutant = true;
                     break;
                 case PassiveSpriteState.Brimstone:
                     isEmpty = false;
@@ -811,10 +802,6 @@ public class Player : MonoBehaviour
             case TearState.Brimsotne:
                 break;
             case TearState.Mutant:
-                for (int i = 0; i < 4; i++)
-                {
-                    tear = Factory.Inst.GetObject(PoolObjectType.Tear, mutantTear[i].position);
-                }
                 break;
         }
         currentTearDelay = tearFire; // 딜레이 시간 초기화
