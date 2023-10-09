@@ -14,7 +14,6 @@ public class KillScore : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(GameManager.Inst.totalKill);
         score.text = $"{GameManager.Inst.totalKill:F0}";
     }
 }
