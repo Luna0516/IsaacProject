@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: LoadingScene
-  type: 1
+  type: 2
 --- !u!114 &2139439902
 MonoBehaviour:
   m_ObjectHideFlags: 0

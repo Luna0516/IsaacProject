@@ -11,14 +11,10 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public Player Player => player;
 
-    ItemDataManager itemDataManager;
-    public ItemDataManager ItemData => itemDataManager;
-
     protected override void OnInitialize()
     {
         base.OnInitialize();
         player = FindObjectOfType<Player>();
-        itemDataManager = FindObjectOfType<ItemDataManager>();
     }
 
     /// <summary>

@@ -64,7 +64,7 @@ public enum PropsItem
     KeyRing
 }
 
-public class ItemDataManager : MonoBehaviour
+public class ItemDataManager : Singleton<ItemDataManager>
 {
     /// <summary>
     /// 액티브 아이템 데이터 종류

@@ -23,6 +23,7 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public enum ButtonType
     {
         NewRun,
+        ResumeGame,
         ExitGame
     }
 
@@ -42,14 +43,15 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     /// <summary>
     /// 초기 색상 저장용
     /// </summary>
-    Color defaultColor;
+    Color defaultColor = new(1.0f, 1.0f, 1.0f, 0.3f);
 
     private void Awake()
     {
         arrow = transform.GetChild(0).gameObject;
 
         image = GetComponent<Image>();
-        defaultColor = image.color;
+
+        Inactive();
     }
 
     /// <summary>
@@ -82,14 +84,19 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(type == ButtonType.NewRun)
+        switch (type)
         {
-            StartCoroutine(LoadScene());
-        }
-        else if(type == ButtonType.ExitGame)
-        {
-            // 빌드 하면 꺼진다...
-            Application.Quit();
+            case ButtonType.NewRun:
+                StartCoroutine(LoadScene());
+                break;
+            case ButtonType.ResumeGame:
+                Debug.Log("재시작 버튼 클릭함");
+                break;
+            case ButtonType.ExitGame:
+                Application.Quit();
+                break;
+            default:
+                break;
         }
     }
 

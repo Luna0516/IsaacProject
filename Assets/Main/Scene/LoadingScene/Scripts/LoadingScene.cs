@@ -14,7 +14,7 @@ public class LoadingScene : MonoBehaviour
     /// <summary>
     /// 다음에 로딩할 씬의 이름
     /// </summary>
-    public string nextSceneName = "Test_Map";
+    public string nextSceneName = "CreateMap";
 
     /// <summary>
     /// 비동기 명령 처리용

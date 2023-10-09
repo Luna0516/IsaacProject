@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 2651776477424947461}
   - component: {fileID: 2651776477424947514}
   - component: {fileID: 2651776477424947515}
+  - component: {fileID: 1653372377668591173}
   m_Layer: 5
   m_Name: ResumeGame
   m_TagString: Untagged
@@ -325,19 +326,21 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2651776477424947514}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2651776479103998005}
-        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: NewRun
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &1653372377668591173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2651776477424947513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49953462642ba4149a4ff6fde7742d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: LoadingScene
+  type: 1
 --- !u!1 &2651776477742745429
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +557,7 @@ GameObject:
   - component: {fileID: 2651776477925954664}
   - component: {fileID: 2651776477925954665}
   - component: {fileID: 2651776477925954670}
+  - component: {fileID: 7306012636558991388}
   m_Layer: 5
   m_Name: ExitGame
   m_TagString: Untagged
@@ -663,19 +667,21 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2651776477925954665}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2651776479103998005}
-        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: NewRun
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &7306012636558991388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2651776477925954668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49953462642ba4149a4ff6fde7742d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: LoadingScene
+  type: 2
 --- !u!1 &2651776478047258125
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +898,7 @@ GameObject:
   - component: {fileID: 2651776478273493609}
   - component: {fileID: 2651776478273493614}
   - component: {fileID: 2651776478273493615}
+  - component: {fileID: 7740928187890439621}
   m_Layer: 5
   m_Name: NewRun
   m_TagString: Untagged
@@ -1001,19 +1008,21 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2651776478273493614}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2651776479103998005}
-        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: NewRun
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &7740928187890439621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2651776478273493613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49953462642ba4149a4ff6fde7742d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: LoadingScene
+  type: 0
 --- !u!1 &2651776478299183979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,7 +1822,6 @@ GameObject:
   - component: {fileID: 2651776479103998007}
   - component: {fileID: 2651776479103998004}
   - component: {fileID: 2651776479103997994}
-  - component: {fileID: 2651776479103998005}
   m_Layer: 5
   m_Name: PauseManu
   m_TagString: Untagged
@@ -1903,18 +1911,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2651776479103998005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2651776479103997999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb8fb3eaabc5f245b6ae909102fd36c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2651776479177420620
 GameObject:
   m_ObjectHideFlags: 0
