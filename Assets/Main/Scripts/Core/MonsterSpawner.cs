@@ -64,7 +64,7 @@ public class MonsterSpawner : MonoBehaviour
     public bool RandomButton = true;
 
     public Action playerIn;
-    public Action onAllEnemyDied;
+    public Action<int> onAllEnemyDied;
 
     public int DeadCount
     {
@@ -82,7 +82,7 @@ public class MonsterSpawner : MonoBehaviour
                 }
                 if (deadCount == allspawncount)
                 {
-                    onAllEnemyDied?.Invoke();
+                    onAllEnemyDied?.Invoke(allspawncount);
                 }
             }
         }

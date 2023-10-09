@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public Player Player => player;
 
+    public int totalKill = 0;
+
     protected override void OnInitialize()
     {
         base.OnInitialize();

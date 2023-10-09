@@ -147,7 +147,7 @@ public class RoomManager : Singleton<RoomManager>
 
         if(CurrentRoom.roomtype == RoomType.Start)
         {
-            CurrentRoom.OpenDoor();
+            CurrentRoom.OpenDoor(0);
         }
     }
 
@@ -162,17 +162,10 @@ public class RoomManager : Singleton<RoomManager>
 
         for(int i = 0; i< listRooms.Count; i++)
         {
-            Debug.Log($"listRoom{i} : {listRooms[i].name}");
             Destroy(listRooms[i].gameObject);
         }
 
         listRooms.Clear();
-        Debug.Log($"================================================================");
-
-        for (int i = 0; i < listRooms.Count; i++)
-        {
-            Debug.Log($"listRoom{i} : {listRooms[i].name}");
-        }
     }
 
     /// <summary>

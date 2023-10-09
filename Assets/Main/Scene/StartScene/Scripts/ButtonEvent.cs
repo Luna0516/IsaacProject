@@ -95,6 +95,7 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             case ButtonType.NewRun:
                 GameManager.Inst.QuitPauseGame();
+                GameManager.Inst.totalKill = 0;
                 StartCoroutine(LoadScene());
                 break;
             case ButtonType.ResumeGame:
