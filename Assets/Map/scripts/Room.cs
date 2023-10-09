@@ -258,47 +258,50 @@ public class Room : MonoBehaviour
     /// </summary>
     void ItemSpawn()
     {
-        Vector2 itemSpawnPos = transform.position;
-
-        if (roomtype == RoomType.Start)
+        if (ItemFactory.Inst != null)
         {
-            GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
-            itemObj.transform.position = itemSpawnPos;
-            return;
-        }
-        else if (roomtype == RoomType.Base)
-        {
+            Vector2 itemSpawnPos = transform.position;
 
-            // 0.0 < Active < 0.03 < Passive < 0.2 < Heart < 0.5 < Props < 0.8 < Nothing < 1.0
-            float itemType = Random.value;
-
-            if (itemType < 0.03)
-            {
-                GameObject itemObj = ItemFactory.Inst.CreateActiveItem((ActiveItem)(Random.Range(0, System.Enum.GetValues(typeof(ActiveItem)).Length)));
-                itemObj.transform.position = itemSpawnPos;
-                return;
-            }
-            else if (itemType < 0.2)
+            if (roomtype == RoomType.Start)
             {
                 GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
                 itemObj.transform.position = itemSpawnPos;
                 return;
             }
-            else if (itemType < 0.5)
+            else if (roomtype == RoomType.Base)
             {
-                GameObject itemObj = ItemFactory.Inst.CreateHeartItem((HeartItem)(Random.Range(0, System.Enum.GetValues(typeof(HeartItem)).Length)));
-                itemObj.transform.position = itemSpawnPos;
-                return;
-            }
-            else if (itemType < 0.8)
-            {
-                GameObject itemObj = ItemFactory.Inst.CreatePropsItem((PropsItem)(Random.Range(0, System.Enum.GetValues(typeof(PropsItem)).Length)));
-                itemObj.transform.position = itemSpawnPos;
-                return;
-            }
-            else
-            {
-                return;
+
+                // 0.0 < Active < 0.03 < Passive < 0.2 < Heart < 0.5 < Props < 0.8 < Nothing < 1.0
+                float itemType = Random.value;
+
+                if (itemType < 0.03)
+                {
+                    GameObject itemObj = ItemFactory.Inst.CreateActiveItem((ActiveItem)(Random.Range(0, System.Enum.GetValues(typeof(ActiveItem)).Length)));
+                    itemObj.transform.position = itemSpawnPos;
+                    return;
+                }
+                else if (itemType < 0.2)
+                {
+                    GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
+                    itemObj.transform.position = itemSpawnPos;
+                    return;
+                }
+                else if (itemType < 0.5)
+                {
+                    GameObject itemObj = ItemFactory.Inst.CreateHeartItem((HeartItem)(Random.Range(0, System.Enum.GetValues(typeof(HeartItem)).Length)));
+                    itemObj.transform.position = itemSpawnPos;
+                    return;
+                }
+                else if (itemType < 0.8)
+                {
+                    GameObject itemObj = ItemFactory.Inst.CreatePropsItem((PropsItem)(Random.Range(0, System.Enum.GetValues(typeof(PropsItem)).Length)));
+                    itemObj.transform.position = itemSpawnPos;
+                    return;
+                }
+                else
+                {
+                    return;
+                }
             }
         }
     }
