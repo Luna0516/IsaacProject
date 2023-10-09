@@ -45,6 +45,11 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     /// </summary>
     Color defaultColor = new(1.0f, 1.0f, 1.0f, 0.3f);
 
+    /// <summary>
+    /// 메뉴 변수
+    /// </summary>
+    Manu manu;
+
     private void Awake()
     {
         arrow = transform.GetChild(0).gameObject;
@@ -52,6 +57,8 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         image = GetComponent<Image>();
 
         Inactive();
+
+        manu = GetComponentInParent<Manu>();
     }
 
     /// <summary>
@@ -87,10 +94,15 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         switch (type)
         {
             case ButtonType.NewRun:
+                GameManager.Inst.QuitPauseGame();
                 StartCoroutine(LoadScene());
                 break;
             case ButtonType.ResumeGame:
-                Debug.Log("재시작 버튼 클릭함");
+                if (manu != null)
+                {
+                    Debug.Log("재시작 버튼 클릭함");
+                    StartCoroutine(manu.PauseDelay(true));
+                }
                 break;
             case ButtonType.ExitGame:
                 Application.Quit();

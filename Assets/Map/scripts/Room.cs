@@ -253,6 +253,9 @@ public class Room : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 방에 있는 몬스터가 다 죽으면 아이템 스포너를 통해 아이템 생성 함수
+    /// </summary>
     void ItemSpawn()
     {
         Vector2 itemSpawnPos = transform.position;
