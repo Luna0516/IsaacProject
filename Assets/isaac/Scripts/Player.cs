@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -168,6 +169,7 @@ public class Player : MonoBehaviour
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
     bool isGetKnife = false;
+    bool isGetMutant = false;
     #endregion
     #region 무적
     /// <summary>
@@ -358,6 +360,8 @@ public class Player : MonoBehaviour
                     {
                         GameObject obj = new GameObject($"tearSpawn({i})");
                         obj.transform.parent = tearSpawn.transform;
+                        obj.transform.position = Vector3.zero;
+                        obj.transform.Rotate(0, 0, 15 - (i * 10));
                     }
                     break;
                 case PassiveSpriteState.Brimstone:
@@ -372,8 +376,11 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.Knife:
                     isEmpty = false;
-                    headResourceName = "HeadAC/Head_Knife_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    if (!isGetBrimstone)
+                    {
+                        headResourceName = "HeadAC/Head_Knife_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
                     Transform child = transform.GetChild(4);
                     Transform knife = child.GetChild(2);
                     this.knife = knife.gameObject.GetComponent<KnifeAttacking>();
@@ -616,12 +623,16 @@ public class Player : MonoBehaviour
                                 tearState = TearState.Guided;
                             }
                         }
-                        if (isGetKnife)
+                        else if (isGetKnife && !isGetBrimstone)
                         {
                             tearState = TearState.Knife;
                         }
-                        if (isGetBrimstone)
+                        else if (isGetBrimstone)
                         {
+                            if (isGetKnife)
+                            {
+                                knife.gameObject.SetActive(false);
+                            }
                             tearState = TearState.Brimsotne;
                         }
 
@@ -802,6 +813,12 @@ public class Player : MonoBehaviour
             case TearState.Brimsotne:
                 break;
             case TearState.Mutant:
+                Transform[] tearSpawns = new Transform[tearSpawn.transform.childCount];
+                for(int i = 0; i < tearSpawns.Length; i++)
+                {
+                    tearSpawns[i] = tearSpawn.GetChild(i);
+                    tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawns[i]);
+                }
                 break;
         }
         currentTearDelay = tearFire; // 딜레이 시간 초기화
