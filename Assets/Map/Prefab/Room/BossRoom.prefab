@@ -2526,6 +2526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f689e3f5d7884cc458c1c6d002b2929d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: EndingScene
 --- !u!1001 &5066645148896410504
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2033,6 +2033,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1260800734}
     m_Modifications:
+    - target: {fileID: 541617471, guid: 1385107b6f0201047ac5fe3f0feb93ee, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6857593999360453603, guid: 1385107b6f0201047ac5fe3f0feb93ee, type: 3}
       propertyPath: m_Name
       value: InfoBackground_5
