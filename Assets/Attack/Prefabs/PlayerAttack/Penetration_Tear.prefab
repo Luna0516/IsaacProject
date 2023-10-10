@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2380541311595889547}
   - component: {fileID: 4561432284524307384}
   m_Layer: 3
-  m_Name: Test_Penetration_Tear
+  m_Name: Penetration_Tear
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
