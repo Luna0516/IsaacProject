@@ -2,120 +2,121 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrimStone : MonoBehaviour
+public class BrimStone : PooledObject
 {
-    SpriteRenderer spriteRenderer;
-    BoxCollider2D boxCollider;
-    Rigidbody2D rb;
+    /// <summary>
+    /// 플레이어 (아이작)
+    /// </summary>
+    Player player;
 
-    Vector3 currentScale;   // 현재 빔 크기
-    Vector3 startPos;       // 빔 발사 위치
-    bool isAttacking = false;
+    /// <summary>
+    /// 총알 발사 위치
+    /// </summary>
+    Transform firePos;
 
-    private void Awake()
+    /// <summary>
+    /// 현재 방의 위치를 알기 위한 변수
+    /// </summary>
+    Room room;
+
+    /// <summary>
+    /// 시작 점 X
+    /// </summary>
+    float startDotX;
+    /// <summary>
+    /// 시작 점 Y
+    /// </summary>
+    float startDotY;
+
+    /// <summary>
+    /// 순서대로 위쪽 벽의 y, 아래 벽의 y, 왼쪽 벽의 x, 오른쪽 벽의 x
+    /// </summary>
+    float[] roomDistance = new float[4];
+
+    /// <summary>
+    /// 총 늘어날 거리
+    /// </summary>
+    float totalDistance;
+
+    /// <summary>
+    /// 발사 방향
+    /// </summary>
+    int dir;
+
+    private void OnEnable()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        
+        transform.localScale = Vector3.zero;
+
+        room = RoomManager.Inst.CurrentRoom;
+
+        if (player.AttackDir.y >= 1.0f && player.AttackDir.x == 0)
+        {
+            dir = 0;
+        }
+        else if (player.AttackDir.y <= -1.0f && player.AttackDir.x == 0)
+        {
+            dir = 1;
+        }
+        else if (player.AttackDir.x <= -1.0f && player.AttackDir.y == 0)
+        {
+            dir = 2;
+        }
+        else if (player.AttackDir.x >= 1.0f && player.AttackDir.y == 0)
+        {
+            dir = 3;
+        }
+
+        if (dir >= 2)
+        {
+            transform.rotation = Quaternion.Euler(Vector3.forward * -90);
+        }
     }
+
     private void Start()
     {
-        DisableBeam();
+        player = GameManager.Inst.Player;
+        firePos = player.gameObject.transform.GetChild(0);
+
+        roomDistance[0] = room.MyPos.y * 10 - (10 * 0.5f - 1);
+        roomDistance[1] = room.MyPos.y * 10 + (10 * 0.5f - 1);
+        roomDistance[2] = room.MyPos.x * 17.9f - (17.9f * 0.5f - 1);
+        roomDistance[3] = room.MyPos.x * 17.9f + (17.9f * 0.5f - 1);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // 테스트 코드
-        if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
+        if (player.AttackDir != Vector2.zero)
         {
-            // Space 키를 누르면 빔 발사
-            StartAttack();
-        }
-        else if(Input.GetKeyDown(KeyCode.Space) && isAttacking)
-        {
-            isAttacking = false;
-            DisableBeam();
-        }
-        
-        if(isAttacking)
-        {
-            LengthenBeam();
-        }
-    }
+            transform.position = firePos.position;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (isAttacking)
-        {
-            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
+            startDotX = firePos.position.y;
+            startDotY = firePos.position.x;
+
+            if (dir >= 2)
             {
-                startPos = transform.position;
-                // 충돌한 대상이 적이나 벽이면 빔의 길이를 충돌 거리에 따라 조절
-                Vector3 hitPoint = collision.contacts[0].point;
-                float newLength = Vector3.Distance(startPos, hitPoint);
-                
-                LengthChange(newLength);
+                totalDistance = startDotX - roomDistance[dir];
             }
+            else
+            {
+                totalDistance = startDotY - roomDistance[dir];
+            }
+
+            transform.localScale = new Vector3(1, totalDistance * 0.25f, 1);
+        }
+        else
+        {
+            StartCoroutine(Gravity_Life(2.0f));
         }
     }
-
-    void StartAttack()
-    {
-        // 빔을 발사하는 동안 충돌 처리를 활성화
-        isAttacking = true;
-        EnableBeam();
-    }
-
-    void EnableBeam()
-    {
-        // 빔 활성화 시 스프라이트와 콜라이더를 활성화
-        spriteRenderer.enabled = true;
-        boxCollider.enabled = true;
-        
-        // 원하는 빔 크기로 설정
-        currentScale = new Vector3(1f, 1f, 1f); // 예시로 y축 크기를 10으로 설정
-        transform.localScale = currentScale;
-
-         
-    }
-
-    void DisableBeam()
-    {
-        // 빔 비활성화 시 스프라이트와 콜라이더를 비활성화
-        spriteRenderer.enabled = false;
-        boxCollider.enabled = false;
-    }
-    float fireSpeed = 3.0f;
-    void LengthChange(float length)
-    {
-        //플레이어 발사 위치에서 부딪힌 거리
-        currentScale.y = length;
-        transform.localScale = currentScale;
-    }
-
-    void LengthenBeam()
-    {
-        // 빔을 발사 중인 동안 길이를 늘려줌
-        float maxLength = 10.0f; // 최대 길이 설정
-        currentScale.y = Mathf.Clamp(currentScale.y + Time.deltaTime * fireSpeed, 0f, maxLength);
-        transform.localScale = currentScale;
-    }
-
-
-
-
-
-    // 스크립트
-    // 1. 브림스톤의 기본 사이즈를 최대한 길게 설정 
-    // 2. 브림스톤이 충돌하는 대상에 따라 boxcollider와 sprite의 scale을 변경하도록 설정 
-
-    // 작동 방식 
-    // 1. 빔이 길게 발사됨 
-    // 2. 만일 충돌 대상이 적이나 벽이라면 
-    // 3. currentScale을 줄임 (동시에 콜라이더의 크기가 줄어듬) 
-    // 4. 적이 공격 범위에서 사라진다면 다시 길어져야함.
-    // + X축 최대길이를 기본으로 설정 (y축이 더 짧기 때문에) 
-
-
-    // ++ currentScale의 길이를 충돌거리 만큼 조절하는 법?
 }
+
+/*
+ * 슈도코드 => 글로 다 적어서 구현하게끔 작성?
+ * 
+ * 내 위치를 총알 발사 위치로 이동한다. => Factory 로 하면 자동으로 위치 설정될거에요 => 플레이어에서 Factory로 만들면서 자기 눈물 위치에 붙이거든요
+ * 플레이어의 총알 발사 방향을 받아와서 저장한다. => 상 하 좌 우
+ * 이 방향에 맞게 벽의 x값이나 y값을 받아와서 거리를 계산한다 => 업데이트나 픽스드 업데이트에서 해야한다. => 계속 계산해야 해서
+ * 거리값에 맞게 스케일 조절을 해야하기 때문에 0.25를 곱해준다(4로 나눈다)
+ * 플레이어가 발사 방향에 손을 떼면 발사되고 일정 시간 지난뒤에 비활성화 되어야 한다.
+ * 이 오브젝트랑 닿는 Enemy는 데미지를 입어야 한다
+*/
