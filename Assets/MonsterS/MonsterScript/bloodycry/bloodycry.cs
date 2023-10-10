@@ -12,7 +12,6 @@ public class bloodycry : EnemyBase
     Animator bodyanimator;
     bool buserkurcheck = false;
     bool moveActive = false;
-    float plusdistance = 100;
     Action stateChanger;
     protected override void Awake()
     {
@@ -122,14 +121,4 @@ public class bloodycry : EnemyBase
         allcoolStop();
         headanimator.SetInteger("state", 2);
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(this.transform.position, plusdistance);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, distance);
-    }
-#endif
 }

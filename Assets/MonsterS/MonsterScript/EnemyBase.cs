@@ -200,6 +200,13 @@ public class EnemyBase : PooledObject
         if (countEnable > 0)
         {
             EnemyInithialize();
+            player = Manager.Player; // 플레이어를 찾아서 할당
+            target = player.transform;
+
+        }
+        if (player != null)
+        {
+            HeadToCal();
         }
         countEnable++;
         IsDead = (bool obj) => { wewantnoNull(); };
@@ -449,7 +456,7 @@ public class EnemyBase : PooledObject
     /// </summary>
     protected void HeadToCal()
     {
-        calcHeadTo = (target.transform.position - this.gameObject.transform.position);
+        calcHeadTo = (target.transform.position - gameObject.transform.position);
         HeadToNormal = calcHeadTo.normalized;
     }
 
