@@ -14,7 +14,7 @@ public class LoadingScene : MonoBehaviour
     /// <summary>
     /// 다음에 로딩할 씬의 이름
     /// </summary>
-    public string nextSceneName = "Test_Map";
+    public string nextSceneName = "CreateMap";
 
     /// <summary>
     /// 비동기 명령 처리용
@@ -37,6 +37,9 @@ public class LoadingScene : MonoBehaviour
         StartCoroutine(LoadScene());
     }
 
+    /// <summary>
+    /// 게임 씬으로 넘어가는 코루틴
+    /// </summary>
     IEnumerator LoadScene()
     {
         async = SceneManager.LoadSceneAsync(nextSceneName);

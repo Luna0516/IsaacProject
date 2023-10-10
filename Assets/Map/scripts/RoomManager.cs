@@ -127,6 +127,8 @@ public class RoomManager : Singleton<RoomManager>
     {
         isLoading = true;
 
+        ListRoomsInit();
+
         createRoomCount = Random.Range(minCreateRoomCount, maxCreateRoomCount + 1);
 
         CreateStartRoom();
@@ -145,8 +147,25 @@ public class RoomManager : Singleton<RoomManager>
 
         if(CurrentRoom.roomtype == RoomType.Start)
         {
-            CurrentRoom.OpenDoor();
+            CurrentRoom.OpenDoor(0);
         }
+    }
+
+    /// <summary>
+    /// 방들의 리스트 초기화 함수
+    /// </summary>
+    private void ListRoomsInit()
+    {
+        roomNum = 0;
+
+        if (listRooms.Count < 1) { return; }
+
+        for(int i = 0; i< listRooms.Count; i++)
+        {
+            Destroy(listRooms[i].gameObject);
+        }
+
+        listRooms.Clear();
     }
 
     /// <summary>

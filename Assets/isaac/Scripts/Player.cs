@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         Mutant
     }
     TearState tearState = TearState.Base;
-    
+
     #endregion
     #region 이속
     /// <summary>
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 총알 능력치 초기화때 쓸 프로퍼티, 총알 발사 방향
     /// </summary>
-    public Vector2 AttackDir 
+    public Vector2 AttackDir
     {
         get => headDir;
     }
@@ -167,7 +167,6 @@ public class Player : MonoBehaviour
     bool isGetSacredHeart = false;
     bool isGetSadOnion = false;
     bool isGetBrimstone = false;
-    bool isGetMutant = false;
     bool isGetKnife = false;
     #endregion
     #region 무적
@@ -213,9 +212,11 @@ public class Player : MonoBehaviour
     /// </summary>
     public Action<int> onBombChange;
     int key = 0;
-    public int Key {
+    public int Key
+    {
         get => key;
-        set {
+        set
+        {
             key = value;
             onKeyChange?.Invoke(key);
         }
@@ -267,19 +268,24 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 화면에 띄울 health 프로퍼티
     /// </summary>
-    public int Health {
+    public int Health
+    {
         get => health;
-        set {
+        set
+        {
             health = value;
             health = Mathf.Clamp(health, 0, maxHealth);
             onHealthChange?.Invoke();
         }
     }
     int soulHealth = 0;
-    public int SoulHealth {
+    public int SoulHealth
+    {
         get => soulHealth;
-        set {
-            if(soulHealth != value) {
+        set
+        {
+            if (soulHealth != value)
+            {
                 soulHealth = Math.Max(0, value);
                 onHealthChange?.Invoke();
             }
@@ -307,14 +313,18 @@ public class Player : MonoBehaviour
         set
         {
             state = value;
+            var headResourceName = "";
             switch (state)
             {
                 case PassiveSpriteState.None:
                     isEmpty = true;
                     break;
                 case PassiveSpriteState.CricketHead:
-                    var headResourceName = "HeadAC/Head_Cricket_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    if(!isGetKnife && !isGetBrimstone)
+                    {
+                        headResourceName = "HeadAC/Head_Cricket_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
                     isEmpty = false;
                     break;
                 case PassiveSpriteState.Halo:
@@ -329,26 +339,26 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.Polyphemus:
                     isEmpty = false;
+                    if (!isGetKnife && !isGetBrimstone)
+                    {
+                        headResourceName = "HeadAC/Head_Poly_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
                     isGetPolyphemus = true;
                     break;
                 case PassiveSpriteState.MutantSpider:
                     isEmpty = false;
-                    headResourceName = "HeadAC/Head_Mutant_AC";
-                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    if (!isGetKnife && !isGetBrimstone)
+                    {
+                        headResourceName = "HeadAC/Head_Mutant_AC";
+                        headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
                     Transform tearSpawn = transform.GetChild(0);
                     for (int i = 0; i < 4; i++)
                     {
                         GameObject obj = new GameObject($"tearSpawn({i})");
                         obj.transform.parent = tearSpawn.transform;
                     }
-                    mutantTear = new Transform[tearSpawn.childCount];
-                    for (int i = 0; i < mutantTear.Length; i++)
-                    {
-                        mutantTear[i] = tearSpawn.GetChild(i);
-                        mutantTear[i].rotation = Quaternion.Euler(0, 0, i * 10.0f);
-                        mutantTear[i].localPosition = Vector3.zero;
-                    }
-                    isGetMutant = true;
                     break;
                 case PassiveSpriteState.Brimstone:
                     isEmpty = false;
@@ -362,8 +372,11 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.Knife:
                     isEmpty = false;
+                    headResourceName = "HeadAC/Head_Knife_AC";
+                    headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     Transform child = transform.GetChild(4);
                     Transform knife = child.GetChild(2);
+                    this.knife = knife.gameObject.GetComponent<KnifeAttacking>();
                     knife.gameObject.SetActive(true);
                     isGetKnife = true;
                     break;
@@ -399,7 +412,7 @@ public class Player : MonoBehaviour
         head = transform.GetChild(3);
         headAni = head.GetComponent<Animator>();
         headSR = head.GetComponent<SpriteRenderer>();
-        
+
 
         TearSpeedCaculate();
     }
@@ -453,7 +466,8 @@ public class Player : MonoBehaviour
     private void SetBomb(InputAction.CallbackContext context)
     {
         // 폭탄의 개수가 0보다 크면 개수를 1개 줄이고 폭탄 생성
-        if (Bomb > 0) {
+        if (Bomb > 0)
+        {
             Bomb--;
             GameObject bomb = Instantiate(bombObj);
             bomb.transform.position = transform.position;
@@ -473,15 +487,15 @@ public class Player : MonoBehaviour
         }
 
         // 프롭스 태그를 가진 오브젝트와 충돌 했을 때
-        if (collision.gameObject.CompareTag("Props")) 
+        if (collision.gameObject.CompareTag("Props"))
         {
             // 아이템 데이터 확인
             ItemDataObject props = collision.gameObject.GetComponent<ItemDataObject>();
-            if (props != null) 
+            if (props != null)
             {
                 // 아이템 데이터 안에 IConsumable 인터페이스가 있는지 확인
                 PropsItemData propsItem = props.ItemData as PropsItemData;
-                if (propsItem != null) 
+                if (propsItem != null)
                 {
                     switch (propsItem.propsType)
                     {
@@ -512,7 +526,7 @@ public class Player : MonoBehaviour
 
                 // 아이템 데이터 안에 IHealth 인터페이스가 있는지 확인
                 IHealth heart = props.ItemData as IHealth;
-                if (heart != null) 
+                if (heart != null)
                 {
                     // 아이템으로 힐이 성공 했을 때 그 아이템을 삭제
                     if (heart.Heal(this.gameObject))
@@ -557,43 +571,58 @@ public class Player : MonoBehaviour
                             // 양파
                             case 1:
                                 State = PassiveSpriteState.SadOnion;
-                                tearState = TearState.Base;
                                 break;
                             // 크리켓
                             case 4:
                                 State = PassiveSpriteState.CricketHead;
-                                tearState = TearState.Base;
                                 break;
                             // 가시관
                             case 7:
                                 State = PassiveSpriteState.BloodOfMartyr;
-                                tearState = TearState.Base;
                                 break;
                             // 혈사포
                             case 118:
                                 State = PassiveSpriteState.Brimstone;
-                                tearState = TearState.Brimsotne;
                                 break;
                             // 왕눈이눈물
                             case 169:
                                 State = PassiveSpriteState.Polyphemus;
-                                tearState = TearState.Big;
                                 break;
                             // 유도눈물
                             case 182:
                                 State = PassiveSpriteState.SacredHeart;
-                                tearState = TearState.Guided;
                                 break;
                             // 칼
                             case 114:
                                 State = PassiveSpriteState.Knife;
-                                tearState = TearState.Knife;
                                 break;
                             // 거미눈물 4발
                             case 153:
                                 State = PassiveSpriteState.MutantSpider;
-                                tearState = TearState.Mutant;
                                 break;
+                        }
+                        if (isEmpty)
+                        {
+                            tearState = TearState.Base;
+                        }
+                        else if (!isEmpty && !isGetBrimstone && !isGetKnife)
+                        {
+                            if (isGetPolyphemus)
+                            {
+                                tearState = TearState.Big;
+                            }
+                            if (isGetSacredHeart)
+                            {
+                                tearState = TearState.Guided;
+                            }
+                        }
+                        if (isGetKnife)
+                        {
+                            tearState = TearState.Knife;
+                        }
+                        if (isGetBrimstone)
+                        {
+                            tearState = TearState.Brimsotne;
                         }
 
                         if (passive.itemNum == 169 || passive.itemNum == 182)
@@ -634,7 +663,7 @@ public class Player : MonoBehaviour
         getItemSR.sprite = null;
         head.gameObject.SetActive(true);
         isGetitem = true;
-        if(State == PassiveSpriteState.SadOnion)
+        if (State == PassiveSpriteState.SadOnion)
         {
             sadOnionSprite.gameObject.SetActive(true);
             isGetSadOnion = true;
@@ -707,7 +736,6 @@ public class Player : MonoBehaviour
             if (isGetKnife)
             {
                 knife.pressButton();
-                knife.cancleButton();
             }
             isShoot = true;
         }
@@ -729,8 +757,13 @@ public class Player : MonoBehaviour
             {
                 sadOnionAni.SetBool("isShot", false);
             }
+            if (isGetKnife)
+            {
+                knife.cancleButton();
+            }
             isShoot = false;
         }
+
         if (headDir.x > 0 && headDir.x < 0 || headDir.y != 0)
         {
             headDir.x = 0;
@@ -769,10 +802,6 @@ public class Player : MonoBehaviour
             case TearState.Brimsotne:
                 break;
             case TearState.Mutant:
-                for (int i = 0; i < 4; i++)
-                {
-                    tear = Factory.Inst.GetObject(PoolObjectType.Tear, mutantTear[i].position);
-                }
                 break;
         }
         currentTearDelay = tearFire; // 딜레이 시간 초기화
@@ -830,7 +859,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator Invisible()
     {
-        while(isDamaged)
+        while (isDamaged)
         {
             headSR.color = new(1, 1, 1, 0);
             bodySR.color = new(1, 1, 1, 0);
@@ -855,7 +884,7 @@ public class Player : MonoBehaviour
     }
     void TearSpeedCaculate()
     {
-        if(itemSpeed >= 3.5f)
+        if (itemSpeed >= 3.5f)
         {
             itemSpeed = 3.5f;
         }

@@ -47,20 +47,22 @@ public class Manu : MonoBehaviour
     /// Esc버튼을 눌렀을 때 실행할 코루틴
     /// </summary>
     /// <param name="active">메뉴가 열려있는지 확인하는 bool값</param>
-    IEnumerator PauseDelay(bool active)
+    public IEnumerator PauseDelay(bool active)
     {
         if (active)
         {
+            GameManager.Inst.QuitPauseGame();
             pauseAnim.SetBool("Open", false);
             passiveInvenAnim.SetBool("Open", false);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
             isOpen = !active;
         }
         else
         {
+            GameManager.Inst.PauseGame();
             pauseAnim.SetBool("Open", true);
             passiveInvenAnim.SetBool("Open", true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
             isOpen = !active;
         }
     }

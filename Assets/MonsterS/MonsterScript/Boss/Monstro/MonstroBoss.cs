@@ -157,6 +157,11 @@ public class MonstroBoss : EnemyBase
         speed = 0;
         Statecom = Monstate.Idel;
     }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        state = Monstate.Idel;
+    }
     protected override void Update()
     {
         base.Update();
