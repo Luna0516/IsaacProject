@@ -1802,6 +1802,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 422052663477779061, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: origianlPrefab
+      value: 
+      objectReference: {fileID: 4077435422309685190, guid: aa9a7eec64faddc489c51845b7adf583, type: 3}
+    - target: {fileID: 2461219586513365230, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
+      propertyPath: origianlPrefab
+      value: 
+      objectReference: {fileID: 4077435422309685190, guid: f40ba8b8b7ff27c41b8b072dc104ec4d, type: 3}
     - target: {fileID: 2461219587112762858, guid: 9d08bed9bc011a14ea79deccb40be9f0, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2033,6 +2041,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1260800734}
     m_Modifications:
+    - target: {fileID: 541617471, guid: 1385107b6f0201047ac5fe3f0feb93ee, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6857593999360453603, guid: 1385107b6f0201047ac5fe3f0feb93ee, type: 3}
       propertyPath: m_Name
       value: InfoBackground_5

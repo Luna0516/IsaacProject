@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8843869992636029462}
   m_Layer: 6
   m_Name: sprite
-  m_TagString: PlayerBullet
+  m_TagString: PlayerKnife
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,6 +156,9 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0}
   dir: {x: 1, y: 0}
   damage: 0
+  isfireing: 0
+  inMyHand: 1
+  chargeGage: 0
 --- !u!50 &4549875786117990250
 Rigidbody2D:
   serializedVersion: 4

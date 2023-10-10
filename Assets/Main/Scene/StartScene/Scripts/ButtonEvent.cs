@@ -101,7 +101,6 @@ public class ButtonEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             case ButtonType.ResumeGame:
                 if (manu != null)
                 {
-                    Debug.Log("재시작 버튼 클릭함");
                     StartCoroutine(manu.PauseDelay(true));
                 }
                 break;
