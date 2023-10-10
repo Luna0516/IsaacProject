@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BrimStone : PooledObject
@@ -42,6 +43,41 @@ public class BrimStone : PooledObject
     /// 발사 방향
     /// </summary>
     int dir;
+
+    bool isFiring = false;
+
+    // 계수 관련 변수---------------------------------------------- 
+
+    float speed;
+    float damage;
+
+    float chargeGage;
+    float maxGage;
+    // ------------------------------------------------------------
+
+    private void Init()
+    {
+        speed = player.TearSpeed;
+        damage = player.Damage;
+    }
+
+    float ChargeGage
+    { 
+        get
+        {
+            return chargeGage;
+        }
+
+        set
+        {
+            chargeGage = value;
+            if(chargeGage > maxGage)
+            {
+                chargeGage = maxGage;
+            }
+        }
+    }
+
 
     private void OnEnable()
     {
@@ -107,6 +143,23 @@ public class BrimStone : PooledObject
         {
             StartCoroutine(Gravity_Life(2.0f));
         }
+    }
+    void Press()
+    {
+        if(!isFiring)
+        {
+
+        }
+    }
+
+    void Release()
+    {
+
+    }
+
+    void Charging()
+    {
+        chargeGage += Time.deltaTime * speed;
     }
 }
 
