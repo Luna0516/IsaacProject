@@ -271,8 +271,15 @@ public class EnemyBase : PooledObject
             AttackBase attackBase = collision.GetComponent<AttackBase>();
             damage = collision.GetComponent<AttackBase>().Damage;
             Hitten();
-
             Vector2 nuckBackDir = attackBase.dir;
+            NuckBack(nuckBackDir.normalized);
+        }
+        if (collision.gameObject.CompareTag("PlayerKnife"))
+        {
+            KnifeAttacking knife = collision.transform.parent.GetComponent<KnifeAttacking>();
+            damage = knife.Damage;
+            Hitten();
+            Vector2 nuckBackDir = knife.dir;
             NuckBack(nuckBackDir.normalized);
         }
     }
