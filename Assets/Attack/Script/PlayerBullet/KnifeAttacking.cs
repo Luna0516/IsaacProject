@@ -82,6 +82,10 @@ public class KnifeAttacking : AttackBase
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyBase enemy = collision.transform.GetComponentInChildren<EnemyBase>();
+            if (enemy == null)
+            {
+                enemy = collision.GetComponentInParent<EnemyBase>();
+            }
             enemy.damage = Damage;
             enemy.Hitten();
             Vector2 nuckBackDir = dir;
