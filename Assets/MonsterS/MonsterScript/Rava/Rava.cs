@@ -72,7 +72,7 @@ public class Rava : EnemyBase
         targetPosition.Normalize();
         cooltimeStart(2, jumpingTerm);
     }
-    protected override void Hitten()
+    public  override void Hitten()
     {
         base.Hitten();
         damaged(sprite);

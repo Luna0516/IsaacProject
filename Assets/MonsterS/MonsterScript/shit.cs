@@ -177,7 +177,7 @@ public class shit : EnemyBase
             flyCount = 5;
         }
     }
-    protected override void NuckBack(Vector2 HittenHeadTo)
+    public override void NuckBack(Vector2 HittenHeadTo)
     {
         base.NuckBack(HittenHeadTo);
     }
@@ -210,7 +210,7 @@ public class shit : EnemyBase
             bloodobj.EnamvleChoosAction(true);
         }
     }
-    protected override void Hitten()
+    public override void Hitten()
     {
         base.Hitten();
         damaged(spriteRenderer);

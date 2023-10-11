@@ -11,6 +11,7 @@ TagManager:
   - Floor
   - Props
   - PlayerKnife
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

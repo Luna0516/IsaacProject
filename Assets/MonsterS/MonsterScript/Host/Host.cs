@@ -155,7 +155,7 @@ public class Host : EnemyBase
     /// <summary>
     /// 맞는 처리 함수
     /// </summary>
-    protected override void Hitten()
+    public override void Hitten()
     {
         base.Hitten();
         //맞았을때 스프라이트 렌더러가 붉은색으로 변합니다.

@@ -492,7 +492,12 @@ public class Player : MonoBehaviour
             KnockBack(collision);
             Debug.Log("적과 충돌/ 남은 체력 : " + Health);
         }
-
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Damaged();
+            KnockBack(collision);
+            Debug.Log("적과 충돌/ 남은 체력 : " + Health);
+        }
         // 프롭스 태그를 가진 오브젝트와 충돌 했을 때
         if (collision.gameObject.CompareTag("Props"))
         {
