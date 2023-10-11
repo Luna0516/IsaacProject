@@ -102,6 +102,7 @@ public class Player : MonoBehaviour
     Transform allGetItem;
     Animator brimstoneAni;
     KnifeAttacking knife;
+    Transform tearSpawn;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -355,14 +356,7 @@ public class Player : MonoBehaviour
                         headResourceName = "HeadAC/Head_Mutant_AC";
                         headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     }
-                    Transform tearSpawn = transform.GetChild(0);
-                    for (int i = 0; i < 4; i++)
-                    {
-                        GameObject obj = new GameObject($"tearSpawn({i})");
-                        obj.transform.parent = tearSpawn.transform;
-                        obj.transform.position = Vector3.zero;
-                        obj.transform.Rotate(0, 0, 15 - (i * 10));
-                    }
+                    isGetMutant = true;
                     break;
                 case PassiveSpriteState.Brimstone:
                     isEmpty = false;
@@ -402,10 +396,9 @@ public class Player : MonoBehaviour
     public Action onHealthChange;
     bool shotbrim => brimDelay < 0;
     float brimDelay;
+    public GameObject obj;
     private void Awake()
     {
-        Transform tearSpawn = transform.GetChild(0);
-
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         inputAction = new PlayerAction();
@@ -432,6 +425,7 @@ public class Player : MonoBehaviour
         sadOnionSR = sadOnionSprite.GetComponent<SpriteRenderer>();
         martyrSprite = allGetItem.transform.GetChild(1);
         brimstoneAni = FindObjectOfType<Animator>();
+        tearSpawn = transform.GetChild(0);
 
         isGetitem = true;
         Health = maxHealth;
@@ -611,6 +605,14 @@ public class Player : MonoBehaviour
                             // 거미눈물 4발
                             case 153:
                                 State = PassiveSpriteState.MutantSpider;
+                                for (int i = 0; i < 4; i++)
+                                {
+                                    obj = new GameObject($"tearSpawn({i})");
+                                    obj.transform.parent = tearSpawn.transform;
+                                    obj.transform.position = tearSpawn.position;
+                                    obj.transform.Translate(0, (i * 0.2f) - 0.3f, 0);
+                                }
+                                tearState = TearState.Mutant;
                                 break;
                         }
                         if (isEmpty)
@@ -732,6 +734,17 @@ public class Player : MonoBehaviour
                 sadOnionSR.sortingOrder = 2;
             }
         }
+        if (isGetMutant)
+        {
+            if (headDir.x > 0.8f || headDir.x < -0.8f)
+            {
+                tearSpawn.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (headDir.y > 0.7f || headDir.y < -0.7f)
+            {
+                tearSpawn.transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+        }
         if (context.performed)
         {
             if (isEmpty || !isGetBrimstone)
@@ -753,6 +766,7 @@ public class Player : MonoBehaviour
             {
                 knife.pressButton();
             }
+            
             isShoot = true;
         }
         else if (context.canceled)
@@ -800,7 +814,6 @@ public class Player : MonoBehaviour
     }
     IEnumerator TearDelay()
     {
-        Transform tearSpawn = transform.GetChild(0);
         GameObject tear;
         switch (tearState)
         {
@@ -818,12 +831,13 @@ public class Player : MonoBehaviour
             case TearState.Brimsotne:
                 break;
             case TearState.Mutant:
-                Transform[] tearSpawns = new Transform[tearSpawn.transform.childCount];
-                for(int i = 0; i < tearSpawns.Length; i++)
+                Transform[] tearSpawns = new Transform[tearSpawn.childCount];
+                for (int i = 0; i < tearSpawns.Length; i++)
                 {
-                    tearSpawns[i] = tearSpawn.GetChild(i);
-                    tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawns[i]);
+                    tearSpawns[i] = tearSpawn.transform.GetChild(i);
+                    tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawns[i].position);
                 }
+                
                 break;
         }
         currentTearDelay = tearFire; // 딜레이 시간 초기화
@@ -874,9 +888,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         inputAction.Player.Shot.Enable();
         head.gameObject.SetActive(true);
+        collider.enabled = true;
 
         yield return new WaitForSeconds(currentInvisible);
-        collider.enabled = true;
         isDamaged = false;
     }
     IEnumerator Invisible()
@@ -931,7 +945,7 @@ public class Player : MonoBehaviour
     }
     private void KnockBack(Collision2D collision)
     {
-        rigid.AddForce((transform.position - collision.transform.position).normalized * 10.0f, ForceMode2D.Impulse);
+        rigid.AddForce((transform.position - collision.transform.position).normalized * 5.0f, ForceMode2D.Impulse);
     }
 }
 
