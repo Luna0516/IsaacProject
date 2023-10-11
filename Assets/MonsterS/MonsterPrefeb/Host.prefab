@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1582209639462560525}
   - component: {fileID: 1582209639462560515}
   - component: {fileID: 1582209639462560512}
-  - component: {fileID: 3866282973047109864}
   m_Layer: 31
   m_Name: Host
   m_TagString: Enemy
@@ -33,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 3.9199896, y: -1.1081603, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7661084113003828093}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,11 +52,11 @@ MonoBehaviour:
   MonsterDamage: 1
   AddableSpawnEnemy: 0
   addenemy: []
-  factory: {fileID: 0}
   distance: 2.5
   speed: 5
   NuckBackPower: 1
   MaxHP: 5
+  damage: 0
   hiittenEfeect: 0.1
   timecounter: 0
   cooltimer1: 0
@@ -172,13 +172,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &3866282973047109864
+--- !u!1 &6355669195278114835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7661084113003828093}
+  - component: {fileID: 4698491444599594303}
+  m_Layer: 31
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7661084113003828093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355669195278114835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1582209639462560524}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4698491444599594303
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582209639462560527}
+  m_GameObject: {fileID: 6355669195278114835}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}

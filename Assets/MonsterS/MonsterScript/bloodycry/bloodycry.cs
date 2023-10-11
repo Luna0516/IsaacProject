@@ -94,7 +94,7 @@ public class bloodycry : EnemyBase
         }
     }
 
-    protected override void Hitten()
+    public override void Hitten()
     {
         base.Hitten();
         if (this.gameObject.activeSelf)

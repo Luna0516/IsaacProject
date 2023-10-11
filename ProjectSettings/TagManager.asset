@@ -10,6 +10,9 @@ TagManager:
   - Item
   - Floor
   - Props
+  - PlayerKnife
+  - EnemyBullet
+  - EnemySight
   layers:
   - Default
   - TransparentFX

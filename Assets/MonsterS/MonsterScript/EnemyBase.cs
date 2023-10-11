@@ -83,7 +83,7 @@ public class EnemyBase : PooledObject
     /// <summary>
     /// 몬스터에게 들어오는 데미지
     /// </summary>
-    protected float damage;
+    public float damage;
 
     /// <summary>
     /// 리지디 바디
@@ -258,6 +258,14 @@ public class EnemyBase : PooledObject
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
         }
+/*        if (collision.gameObject.CompareTag("PlayerKnife"))
+        {
+            KnifeAttacking attackBase = collision.gameObject.GetComponent<KnifeAttacking>();
+            damage = attackBase.Damage;
+            Hitten();
+            Vector2 nuckBackDir = attackBase.dir;
+            NuckBack(nuckBackDir.normalized);
+        }*/
     }
 
     /// <summary>
@@ -271,10 +279,17 @@ public class EnemyBase : PooledObject
             AttackBase attackBase = collision.GetComponent<AttackBase>();
             damage = collision.GetComponent<AttackBase>().Damage;
             Hitten();
-
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
         }
+/*        if (collision.CompareTag("PlayerKnife"))
+        {
+            KnifeAttacking attackBase = collision.GetComponent<KnifeAttacking>();
+            damage = attackBase.Damage;
+            Hitten();
+            Vector2 nuckBackDir = attackBase.dir;
+            NuckBack(nuckBackDir.normalized);
+        }*/
     }
 
     /// <summary>
@@ -345,7 +360,7 @@ public class EnemyBase : PooledObject
     /// <summary>
     /// 피격시 데미지를 받는 함수
     /// </summary>
-    protected virtual void Hitten()
+    public virtual void Hitten()
     {
         HP -= damage;
         /*Debug.Log($"{gameObject.name}이 {damage}만큼 공격받았다. 남은 체력: {HP}");*/
@@ -355,7 +370,7 @@ public class EnemyBase : PooledObject
     /// 넉백 함수
     /// </summary>
     /// <param name="HittenHeadTo">이곳에 입력된 벡터쪽으로 날아간다.(-벡터를 넣어야 넉백됨)</param>
-    protected virtual void NuckBack(Vector2 HittenHeadTo)
+    public virtual void NuckBack(Vector2 HittenHeadTo)
     {
         rig.isKinematic = false;
         rig.drag = draglinear;

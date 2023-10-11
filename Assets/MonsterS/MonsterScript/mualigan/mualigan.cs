@@ -104,7 +104,7 @@ public class mualigan : EnemyBase
             animator.SetInteger("WalkSideway", 1);
         }
     }
-    protected override void Hitten()
+    public override void Hitten()
     {
         base.Hitten();
         if (this.gameObject.activeSelf)

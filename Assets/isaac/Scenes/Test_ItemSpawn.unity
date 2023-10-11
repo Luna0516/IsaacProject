@@ -766,6 +766,34 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f770c51c166884c48acdf28fea7c4ed0, type: 2}
+    - target: {fileID: 2617567171133729389, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617567171133729389, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617567171133729389, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617567171133729389, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617567171133729389, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617567171133729389, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617567171133729389, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3792594240594029479, guid: ee0b110bba47e9847b9517c49f7927e6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1553,7 +1581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPos: {x: 0, y: 0}
   activeItem: 0
-  passiveItem: 8
+  passiveItem: 5
   heartItem: 0
   propsItem: 6
   chest: {fileID: 5837268257509165235, guid: a479892d4061e0f4a9c4354c251175a0, type: 3}

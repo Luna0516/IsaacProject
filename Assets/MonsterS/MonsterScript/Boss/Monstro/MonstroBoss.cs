@@ -287,7 +287,7 @@ public class MonstroBoss : EnemyBase
             attackgo = false;
         }
     }
-    protected override void Hitten()
+    public override void Hitten()
     {
         base.Hitten();
         damaged(spriteRenderer);
