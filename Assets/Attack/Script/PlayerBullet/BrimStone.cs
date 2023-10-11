@@ -58,22 +58,10 @@ public class BrimStone : PooledObject
     float damage;
 
     float chargeGage = 0f;
-    float maxGage = 0.8f;
+    float maxGage = 5f;
     // ------------------------------------------------------------
 
 
-    private void Awake()
-    {
-        player = new Player();
-    }
-    private void Init()
-    {
-        if(player != null)
-        {
-            speed = player.TearSpeed;
-            damage = player.Damage;
-        }      
-    }
 
     float ChargeGage
     { 
@@ -98,6 +86,8 @@ public class BrimStone : PooledObject
         transform.localScale = Vector3.zero;
 
         room = RoomManager.Inst.CurrentRoom;
+
+
 
         if (player.AttackDir.y >= 1.0f && player.AttackDir.x == 0)
         {
@@ -127,6 +117,11 @@ public class BrimStone : PooledObject
         player = GameManager.Inst.Player;
         firePos = player.gameObject.transform.GetChild(0);
 
+        if(player != null)
+        {
+            Init();
+        }
+
         roomDistance[0] = room.MyPos.y * 10 - (10 * 0.5f - 1);
         roomDistance[1] = room.MyPos.y * 10 + (10 * 0.5f - 1);
         roomDistance[2] = room.MyPos.x * 17.9f - (17.9f * 0.5f - 1);
@@ -136,6 +131,7 @@ public class BrimStone : PooledObject
     private void FixedUpdate()
     {
         signal();
+
         if (player.AttackDir != Vector2.zero)
         {
             transform.position = firePos.position;
@@ -161,40 +157,52 @@ public class BrimStone : PooledObject
     }
    public void Press()
     {
-        if(!isPressed)
+        if(isPressed && ChargeGage < maxGage)
         {
+            gameObject.SetActive(false);
             isPressed = true;
             signal += Charging;
-
         }
     }
 
     public void Release()
     {
-        gameObject.SetActive(true);
-        signal -= Charging;
-        ChargeGage = 0;
+        if (!isPressed && ChargeGage >= maxGage)
+        {
+            gameObject.SetActive(true);
+            ChargeGage = 0;
+            signal -= Charging;
+        }
     }
 
     public void Charging()
     {
-        chargeGage += Time.deltaTime * speed;
+        chargeGage += Time.deltaTime * speed; 
     }
 
-  /*  void BrimstoneOn()
+    private void Init()
     {
-        if(!isFiring)
+        if (player != null)
         {
-            signal += BrimstoneOff;
-            signal -= BrimstoneOn;
+            speed = player.TearSpeed;
+            damage = player.Damage;
         }
-        
     }
 
-    void BrimstoneOff()
-    {
-        signal -= BrimstoneOn;
-    }*/
+    /*  void BrimstoneOn()
+      {
+          if(!isFiring)
+          {
+              signal += BrimstoneOff;
+              signal -= BrimstoneOn;
+          }
+
+      }
+
+      void BrimstoneOff()
+      {
+          signal -= BrimstoneOn;
+      }*/
 }
 
 /*
