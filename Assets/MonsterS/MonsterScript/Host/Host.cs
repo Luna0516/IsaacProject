@@ -157,8 +157,11 @@ public class Host : EnemyBase
     /// </summary>
     public override void Hitten()
     {
-        base.Hitten();
-        //맞았을때 스프라이트 렌더러가 붉은색으로 변합니다.
-        damaged(spriteRenderer);
+        if(invincivle)
+        {
+            base.Hitten();
+            //맞았을때 스프라이트 렌더러가 붉은색으로 변합니다.
+            damaged(spriteRenderer);
+        }
     }
 }

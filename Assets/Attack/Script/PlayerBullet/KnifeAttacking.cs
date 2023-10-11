@@ -78,6 +78,25 @@ public class KnifeAttacking : AttackBase
     {
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyBase enemy = collision.transform.GetComponentInChildren<EnemyBase>();
+            if (enemy == null)
+            {
+                enemy = collision.GetComponentInParent<EnemyBase>();
+            }
+            enemy.damage = Damage;
+            enemy.Hitten();
+            Vector2 nuckBackDir = dir;
+            enemy.NuckBack(nuckBackDir.normalized);
+        }
+    }
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+
+    }
     protected override void Init()
     {
         speed = playerTest.TearSpeed;

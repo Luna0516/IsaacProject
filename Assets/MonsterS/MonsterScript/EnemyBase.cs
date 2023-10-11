@@ -78,7 +78,7 @@ public class EnemyBase : PooledObject
     /// <summary>
     /// 실제 체력
     /// </summary>
-    float hp;
+    public float hp;
 
     /// <summary>
     /// 몬스터에게 들어오는 데미지

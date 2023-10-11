@@ -2463,7 +2463,7 @@ MonoBehaviour:
   bombObj: {fileID: 4702667416383564111, guid: df80f88c337ffb444ad4490bf263d646, type: 3}
   maxHealth: 10
   health: 0
-  damage: 1
+  damage: 10
 --- !u!1 &1742968307568160219
 GameObject:
   m_ObjectHideFlags: 0

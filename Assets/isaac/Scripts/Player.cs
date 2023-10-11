@@ -942,7 +942,7 @@ public class Player : MonoBehaviour
     }
     private void KnockBack(Collision2D collision)
     {
-        rigid.AddForce((transform.position - collision.transform.position).normalized * 10.0f, ForceMode2D.Impulse);
+        rigid.AddForce((transform.position - collision.transform.position).normalized * 5.0f, ForceMode2D.Impulse);
     }
 }
 
