@@ -1,9 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
+
 
 public class BrimStone : PooledObject
 {
+
+    Action signal;
+
     /// <summary>
     /// 플레이어 (아이작)
     /// </summary>
@@ -42,6 +49,49 @@ public class BrimStone : PooledObject
     /// 발사 방향
     /// </summary>
     int dir;
+
+    bool isPressed = false;
+
+    // 계수 관련 변수---------------------------------------------- 
+
+    float speed;
+    float damage;
+
+    float chargeGage = 0f;
+    float maxGage = 0.8f;
+    // ------------------------------------------------------------
+
+
+    private void Awake()
+    {
+        player = new Player();
+    }
+    private void Init()
+    {
+        if(player != null)
+        {
+            speed = player.TearSpeed;
+            damage = player.Damage;
+        }      
+    }
+
+    float ChargeGage
+    { 
+        get
+        {
+            return chargeGage;
+        }
+
+        set
+        {
+            chargeGage = value;
+            if(chargeGage > maxGage)
+            {
+                chargeGage = maxGage;
+            }
+        }
+    }
+
 
     private void OnEnable()
     {
@@ -85,6 +135,7 @@ public class BrimStone : PooledObject
 
     private void FixedUpdate()
     {
+        signal();
         if (player.AttackDir != Vector2.zero)
         {
             transform.position = firePos.position;
@@ -108,6 +159,42 @@ public class BrimStone : PooledObject
             StartCoroutine(Gravity_Life(2.0f));
         }
     }
+   public void Press()
+    {
+        if(!isPressed)
+        {
+            isPressed = true;
+            signal += Charging;
+
+        }
+    }
+
+    public void Release()
+    {
+        gameObject.SetActive(true);
+        signal -= Charging;
+        ChargeGage = 0;
+    }
+
+    public void Charging()
+    {
+        chargeGage += Time.deltaTime * speed;
+    }
+
+  /*  void BrimstoneOn()
+    {
+        if(!isFiring)
+        {
+            signal += BrimstoneOff;
+            signal -= BrimstoneOn;
+        }
+        
+    }
+
+    void BrimstoneOff()
+    {
+        signal -= BrimstoneOn;
+    }*/
 }
 
 /*

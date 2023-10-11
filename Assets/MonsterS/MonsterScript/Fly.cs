@@ -75,13 +75,10 @@ public class Fly : EnemyBase
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (invincival)
+        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            if (collision.gameObject.CompareTag("PlayerBullet"))
-            {
-                damage = collision.gameObject.GetComponent<AttackBase>().Damage;
-                Hitten();
-            }
+            damage = collision.gameObject.GetComponent<AttackBase>().Damage;
+            Hitten();
         }
     }
     protected override void Die()
@@ -89,11 +86,18 @@ public class Fly : EnemyBase
         coll.isTrigger = true;
         animator.SetInteger("Dead", 1);
         cooltimeStart(2, 0.917f);
-        Invic += Dieying;  
+        Invic += Dieying;
+    }
+    public override void Hitten()
+    {
+        if (invincival)
+        {
+            base.Hitten();
+        }
     }
     void Dieying()
     {
-        if(!coolActive2)
+        if (!coolActive2)
         {
             this.gameObject.SetActive(false);
         }

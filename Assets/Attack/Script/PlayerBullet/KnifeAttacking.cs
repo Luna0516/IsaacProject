@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
 
@@ -79,11 +80,13 @@ public class KnifeAttacking : AttackBase
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("닿음");
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("적임");
             EnemyBase enemy = collision.transform.GetComponentInChildren<EnemyBase>();
+            if (enemy == null)
+            {
+                enemy = collision.GetComponentInParent<EnemyBase>();
+            }
             enemy.damage = Damage;
             enemy.Hitten();
             Vector2 nuckBackDir = dir;
@@ -107,11 +110,13 @@ public class KnifeAttacking : AttackBase
     void changeDir()
     {
         MoveDir = playerTest.AttackDir;
+        Debug.Log(moveDir);
     }
     void rotateTurret(Vector2 dir)
     {
         if (inMyHand)
         {
+            Debug.Log("값 변함");
             if (dir.x > 0)
             {
                 this.transform.localRotation = Quaternion.Euler(0, 0, 270);
@@ -135,6 +140,7 @@ public class KnifeAttacking : AttackBase
         if (!isfireing && inMyHand)
         {
             isfireing = true;
+            Debug.Log("샷");
             updater += chargeing;
         }
     }
@@ -142,6 +148,7 @@ public class KnifeAttacking : AttackBase
     {
         if (inMyHand)
         {
+            Debug.Log("취소");
             updater -= chargeing;
             copychager = ChargeGage;
             updater += MovingKnife;

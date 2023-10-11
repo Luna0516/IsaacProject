@@ -78,7 +78,7 @@ public class EnemyBase : PooledObject
     /// <summary>
     /// 실제 체력
     /// </summary>
-    float hp;
+    public float hp;
 
     /// <summary>
     /// 몬스터에게 들어오는 데미지
@@ -266,14 +266,14 @@ public class EnemyBase : PooledObject
     /// <param name="collision"></param>
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerBullet"))
+/*        if (collision.CompareTag("PlayerBullet"))
         {
             AttackBase attackBase = collision.GetComponent<AttackBase>();
             damage = collision.GetComponent<AttackBase>().Damage;
             Hitten();
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
-        }
+        }*/
     }
 
     /// <summary>
