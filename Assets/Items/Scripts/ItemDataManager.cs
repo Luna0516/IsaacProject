@@ -7,13 +7,13 @@ using UnityEngine;
 /// </summary>
 public enum ActiveItem
 {                       // 아이템 고유 번호
+    YumHeart,           // 45
+    LemonMishap,        // 56
+    MyLittleUnicorn,    // 77
     //TheBible,           // 33
     //TheNecronomicon,    // 35
-    YumHeart = 2,           // 45
     //ShoopDaWhoop,       // 49
-    LemonMishap = 4,        // 56
     //AnarchistCookbook,  // 65
-    MyLittleUnicorn = 6,    // 77
     //TheNail,            // 83
     //ThePinkingShears,   // 107
     //DeadSeaScrolls,     // 124
@@ -30,11 +30,11 @@ public enum PassiveItem
     BloodOfTheMartyr,   // 7
     Steven,             // 50
     TheHalo,            // 101
-    //MomsKnife,          // 114
-    //Brimstone,          // 118
-    MutantSpider = 7,       // 153
-    Polyphemus = 8,         // 169
-    SacredHeart = 9,        // 182
+    MomsKnife,          // 114
+    Brimstone,          // 118
+    MutantSpider,       // 153
+    Polyphemus,         // 169
+    SacredHeart,        // 182
 }
 
 /// <summary>
