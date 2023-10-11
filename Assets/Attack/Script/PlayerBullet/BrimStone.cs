@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class BrimStone : PooledObject
 {
+
     Action signal;
 
     /// <summary>
@@ -49,7 +50,7 @@ public class BrimStone : PooledObject
     /// </summary>
     int dir;
 
-    bool isFiring = false;
+    bool isPressed = false;
 
     // 계수 관련 변수---------------------------------------------- 
 
@@ -57,19 +58,21 @@ public class BrimStone : PooledObject
     float damage;
 
     float chargeGage = 0f;
-    float maxGage;
+    float maxGage = 0.8f;
     // ------------------------------------------------------------
 
 
     private void Awake()
     {
         player = new Player();
-        signal = OnEnable;
     }
     private void Init()
     {
-        speed = player.TearSpeed;
-        damage = player.Damage;
+        if(player != null)
+        {
+            speed = player.TearSpeed;
+            damage = player.Damage;
+        }      
     }
 
     float ChargeGage
@@ -156,11 +159,11 @@ public class BrimStone : PooledObject
             StartCoroutine(Gravity_Life(2.0f));
         }
     }
-    public void Press()
+   public void Press()
     {
-        if(!isFiring)
+        if(!isPressed)
         {
-            isFiring = true;
+            isPressed = true;
             signal += Charging;
 
         }
@@ -168,11 +171,12 @@ public class BrimStone : PooledObject
 
     public void Release()
     {
+        gameObject.SetActive(true);
         signal -= Charging;
         ChargeGage = 0;
     }
 
-    void Charging()
+    public void Charging()
     {
         chargeGage += Time.deltaTime * speed;
     }

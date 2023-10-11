@@ -372,7 +372,7 @@ public class Player : MonoBehaviour
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
                     bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
                     this.gameObject.GetComponent<BrimStone>();
-                    brimstone.gameObject.SetActive(true);
+                    
                     isGetBrimstone = true;
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
