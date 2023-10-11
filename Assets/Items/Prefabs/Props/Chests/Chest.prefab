@@ -171,18 +171,10 @@ MonoBehaviour:
   dropPropsItems:
   - propsItemCode: 0
     dropPercentage: 0.9
-  - propsItemCode: 1
-    dropPercentage: 0.1
-  - propsItemCode: 2
-    dropPercentage: 0.01
   - propsItemCode: 3
     dropPercentage: 0.5
-  - propsItemCode: 4
-    dropPercentage: 0.001
   - propsItemCode: 5
     dropPercentage: 0.5
-  - propsItemCode: 6
-    dropPercentage: 0.001
   dropHeartItem:
   - heartItemCode: 0
     dropPercentage: 0.8

@@ -59,7 +59,7 @@ public class Bomb : MonoBehaviour
                 Vector3 force = (one.transform.position - transform.position).normalized;
                 Rigidbody2D targetRigid = one.gameObject.GetComponent<Rigidbody2D>();
 
-                targetRigid.AddForce(force * 25, ForceMode2D.Impulse);
+                targetRigid.AddForce(force * 5, ForceMode2D.Impulse);
             }
         }
     }

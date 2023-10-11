@@ -7,13 +7,13 @@ using UnityEngine;
 /// </summary>
 public enum ActiveItem
 {                       // 아이템 고유 번호
+    YumHeart,           // 45
     //TheBible,           // 33
     //TheNecronomicon,    // 35
-    YumHeart,           // 45
     //ShoopDaWhoop,       // 49
-    LemonMishap,        // 56
+    //LemonMishap,        // 56
     //AnarchistCookbook,  // 65
-    MyLittleUnicorn,    // 77
+    //MyLittleUnicorn,    // 77
     //TheNail,            // 83
     //ThePinkingShears,   // 107
     //DeadSeaScrolls,     // 124
@@ -42,12 +42,12 @@ public enum PassiveItem
 /// </summary>
 public enum HeartItem
 {
-    RedHeart_Half,
     RedHeart_Full,
-    SoulHeart_Half,
+    RedHeart_Half,
     SoulHeart_Full,
+    // SoulHeart_Half,
+    // BlackHeart_Full,
     // BlackHeart_Half,
-    // BlackHeart_Full
 }
 
 /// <summary>
@@ -87,6 +87,11 @@ public class ItemDataManager : Singleton<ItemDataManager>
     public PropsItemData[] propsItemData;
 
     /// <summary>
+    /// 상자 아이템 프리펩
+    /// </summary>
+    public GameObject chest;
+
+    /// <summary>
     /// 액티브 아이템 데이터 받아오기
     /// </summary>
     public ActiveItemData GetActiveItemData(ActiveItem code)
@@ -117,5 +122,4 @@ public class ItemDataManager : Singleton<ItemDataManager>
     {
         return propsItemData[(int)code];
     }
-
 }
