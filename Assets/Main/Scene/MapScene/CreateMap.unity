@@ -2468,6 +2468,7 @@ MonoBehaviour:
   maxHealth: 10
   health: 0
   damage: 10
+  obj: {fileID: 0}
 --- !u!1 &1742968307568160219
 GameObject:
   m_ObjectHideFlags: 0

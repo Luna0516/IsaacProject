@@ -13,7 +13,6 @@ public class GuidedMissileTear : AttackBase
     /// 추적중이면 true, 아니면 false
     /// </summary>
     bool isChase = false;
-    Vector3 rotationbullet;
 
     protected override void OnEnable()
     {
@@ -30,8 +29,7 @@ public class GuidedMissileTear : AttackBase
         if (target != null)
         {
             isChase = true;
-            rotationbullet = Quaternion.LookRotation(target.position).eulerAngles;
-            transform.rotation = Quaternion.Euler(0, 0, rotationbullet.z);
+            dir = (target.position - transform.position).normalized;
         }
         else
         {
@@ -45,7 +43,16 @@ public class GuidedMissileTear : AttackBase
         if (other.gameObject.CompareTag("Enemy"))
         {
             target = other.transform;
+            if (target == null) 
+            {
+                target = other.transform;
+            }
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        TearDie();
+        Debug.Log("나갔다.");
     }
 
     protected override void Init()
