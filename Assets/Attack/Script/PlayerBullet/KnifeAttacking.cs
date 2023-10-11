@@ -79,10 +79,8 @@ public class KnifeAttacking : AttackBase
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("닿음");
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("적임");
             EnemyBase enemy = collision.transform.GetComponentInChildren<EnemyBase>();
             enemy.damage = Damage;
             enemy.Hitten();

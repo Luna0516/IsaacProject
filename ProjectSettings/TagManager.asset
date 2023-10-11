@@ -12,6 +12,7 @@ TagManager:
   - Props
   - PlayerKnife
   - EnemyBullet
+  - EnemySight
   layers:
   - Default
   - TransparentFX
