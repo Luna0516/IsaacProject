@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 여러명이 걸려도 한명이 먼저 걸리면 그 친구만 따라가게 수정 필요 
-// bool 값을 사용하여 true 일떄는 다른 적을 추적하지 않는다 
 public class GuidedMissileTear : AttackBase
 {
-
+    /// <summary>
+    /// 추적할 대상
+    /// </summary>
     Transform target = null;
+
+    /// <summary>
+    /// 추적중이면 true, 아니면 false
+    /// </summary>
     bool isChase = false;
 
     protected override void  OnEnable()
@@ -24,9 +28,14 @@ public class GuidedMissileTear : AttackBase
 
         if (target !=null)
         {
+            isChase = true;
             dir = (target.position - transform.position).normalized;
-        } 
-        
+        }
+        else
+        {
+            isChase = false;
+        }
+  
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -38,8 +47,19 @@ public class GuidedMissileTear : AttackBase
             { 
                 target = other.transform;
                 isChase = true;
-            }  
+
+                if(isChase && target == null) 
+                {
+                    TearDie();
+                    isChase = false;
+                }
+            }             
         }
+    }
+
+    protected override void Init()
+    {
+        base.Init();
     }
 }
 

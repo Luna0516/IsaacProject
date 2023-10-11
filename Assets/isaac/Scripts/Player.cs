@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
     Transform allGetItem;
     Animator brimstoneAni;
     KnifeAttacking knife;
+    BrimStone brimstone;
     // 머리 움직일 때 쓸 벡터값
     Vector2 headDir = Vector2.zero;
     // 몸 움직일때 쓸 벡터값
@@ -366,6 +367,8 @@ public class Player : MonoBehaviour
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
                     bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
+                    this.gameObject.GetComponent<BrimStone>();
+                    brimstone.gameObject.SetActive(true);
                     isGetBrimstone = true;
                     break;
                 case PassiveSpriteState.BloodOfMartyr:
@@ -737,6 +740,10 @@ public class Player : MonoBehaviour
             {
                 knife.pressButton();
             }
+            if (isGetBrimstone)
+            {
+                brimstone.Press();
+            }
             isShoot = true;
         }
         else if (context.canceled)
@@ -760,6 +767,10 @@ public class Player : MonoBehaviour
             if (isGetKnife)
             {
                 knife.cancleButton();
+            }
+            if(isGetBrimstone)
+            {
+                brimstone.Release();
             }
             isShoot = false;
         }

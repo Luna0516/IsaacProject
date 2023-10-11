@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+
 public class BrimStone : PooledObject
 {
+    Action signal;
+
     /// <summary>
     /// 플레이어 (아이작)
     /// </summary>
@@ -51,10 +56,16 @@ public class BrimStone : PooledObject
     float speed;
     float damage;
 
-    float chargeGage;
+    float chargeGage = 0f;
     float maxGage;
     // ------------------------------------------------------------
 
+
+    private void Awake()
+    {
+        player = new Player();
+        signal = OnEnable;
+    }
     private void Init()
     {
         speed = player.TearSpeed;
@@ -121,6 +132,7 @@ public class BrimStone : PooledObject
 
     private void FixedUpdate()
     {
+        signal();
         if (player.AttackDir != Vector2.zero)
         {
             transform.position = firePos.position;
@@ -144,23 +156,41 @@ public class BrimStone : PooledObject
             StartCoroutine(Gravity_Life(2.0f));
         }
     }
-    void Press()
+    public void Press()
     {
         if(!isFiring)
         {
+            isFiring = true;
+            signal += Charging;
 
         }
     }
 
-    void Release()
+    public void Release()
     {
-
+        signal -= Charging;
+        ChargeGage = 0;
     }
 
     void Charging()
     {
         chargeGage += Time.deltaTime * speed;
     }
+
+  /*  void BrimstoneOn()
+    {
+        if(!isFiring)
+        {
+            signal += BrimstoneOff;
+            signal -= BrimstoneOn;
+        }
+        
+    }
+
+    void BrimstoneOff()
+    {
+        signal -= BrimstoneOn;
+    }*/
 }
 
 /*
