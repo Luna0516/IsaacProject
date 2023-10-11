@@ -34,9 +34,9 @@ public class Room : MonoBehaviour
             {
                 isVisit = value;
 
-                if(roomtype == RoomType.Boss)
+                if (roomtype == RoomType.Boss)
                 {
-                    foreach(Door door in doors)
+                    foreach (Door door in doors)
                     {
                         door.gameObject.SetActive(false);
                     }
@@ -68,7 +68,7 @@ public class Room : MonoBehaviour
         get => distance;
         private set
         {
-            if(value > 0)
+            if (value > 0)
             {
                 distance = value;
             }
@@ -87,7 +87,7 @@ public class Room : MonoBehaviour
         get => myPos;
         set
         {
-            if(myPos == Vector2Int.zero && value != Vector2Int.zero)
+            if (myPos == Vector2Int.zero && value != Vector2Int.zero)
             {
                 myPos = value;
                 Distance = Vector2.SqrMagnitude(MyPos);
@@ -99,7 +99,7 @@ public class Room : MonoBehaviour
     /// 자신의 방의 타입
     /// </summary>
     public RoomType roomtype = RoomType.Base;
-    
+
     /// <summary>
     /// 자신의 위쪽 방
     /// </summary>
@@ -135,7 +135,7 @@ public class Room : MonoBehaviour
     private void Awake()
     {
         Transform child;
-        for(int i = 0; i< doors.Length; i++)
+        for (int i = 0; i < doors.Length; i++)
         {
             child = transform.GetChild(i);
             doors[i] = child.GetComponent<Door>();
@@ -255,18 +255,18 @@ public class Room : MonoBehaviour
 
         foreach (Door door in doors)
         {
-            if(roomtype == RoomType.Boss && door.DoorType != DoorType.None)
+            if (roomtype == RoomType.Boss && door.DoorType != DoorType.None)
             {
                 door.gameObject.SetActive(true);
             }
 
-            if(door.DoorType != DoorType.None)
+            if (door.DoorType != DoorType.None)
             {
                 door.IsOpen = true;
             }
         }
 
-        if(roomtype == RoomType.Boss)
+        if (roomtype == RoomType.Boss)
         {
             stair.SetActive(true);
         }
@@ -283,8 +283,8 @@ public class Room : MonoBehaviour
 
             if (roomtype == RoomType.Start)
             {
-                GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
-/*                GameObject itemObj = ItemFactory.Inst.CreatePassiveItem(PassiveItem.MomsKnife);*/
+                /*GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));*/
+                GameObject itemObj = ItemFactory.Inst.CreatePassiveItem(PassiveItem.SacredHeart);
                 itemObj.transform.position = itemSpawnPos;
                 return;
             }
@@ -323,7 +323,7 @@ public class Room : MonoBehaviour
                     return;
                 }
             }
-            else if(roomtype == RoomType.Boss)
+            else if (roomtype == RoomType.Boss)
             {
                 // 패시브 or 액티브 아이템 소환
                 float itemType = Random.value;
@@ -340,7 +340,7 @@ public class Room : MonoBehaviour
                 }
 
                 // 하트 or 프롭스 아이템 소환 x2
-                for (int i = 0; i< 2; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     itemType = Random.value;
                     itemSpawnPos = transform.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)) + Vector3.down;

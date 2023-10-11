@@ -258,14 +258,6 @@ public class EnemyBase : PooledObject
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
         }
-/*        if (collision.gameObject.CompareTag("PlayerKnife"))
-        {
-            KnifeAttacking attackBase = collision.gameObject.GetComponent<KnifeAttacking>();
-            damage = attackBase.Damage;
-            Hitten();
-            Vector2 nuckBackDir = attackBase.dir;
-            NuckBack(nuckBackDir.normalized);
-        }*/
     }
 
     /// <summary>
@@ -274,18 +266,10 @@ public class EnemyBase : PooledObject
     /// <param name="collision"></param>
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerBullet"))
+/*        if (collision.CompareTag("PlayerBullet"))
         {
             AttackBase attackBase = collision.GetComponent<AttackBase>();
             damage = collision.GetComponent<AttackBase>().Damage;
-            Hitten();
-            Vector2 nuckBackDir = attackBase.dir;
-            NuckBack(nuckBackDir.normalized);
-        }
-/*        if (collision.CompareTag("PlayerKnife"))
-        {
-            KnifeAttacking attackBase = collision.GetComponent<KnifeAttacking>();
-            damage = attackBase.Damage;
             Hitten();
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
