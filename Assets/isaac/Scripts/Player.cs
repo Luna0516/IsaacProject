@@ -872,10 +872,6 @@ public class Player : MonoBehaviour
                     StartCoroutine(InvisibleTime());
                 }
             }
-            else if (Health <= 0)
-            {
-                Die();
-            }
         }
         else
         {
@@ -952,6 +948,8 @@ public class Player : MonoBehaviour
         inputAction.Player.Disable();
         collider.enabled = false;
         head.gameObject.SetActive(false);
+
+        GameManager.Inst.FinshGame(false);
     }
     private void KnockBack(Collision2D collision)
     {

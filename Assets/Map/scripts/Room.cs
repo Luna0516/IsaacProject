@@ -249,8 +249,6 @@ public class Room : MonoBehaviour
     /// <param name="killCount">죽인 몬스터 수</param>
     public void OpenDoor(int killCount)
     {
-        GameManager.Inst.totalKill += killCount;
-
         ItemSpawn();
 
         foreach (Door door in doors)
@@ -290,29 +288,33 @@ public class Room : MonoBehaviour
             }
             else if (roomtype == RoomType.Base)
             {
-
-                // 0.0 < Active < 0.03 < Passive < 0.2 < Heart < 0.5 < Props < 0.8 < Nothing < 1.0
+                // Active < 0.003 < Passive < 0.2 < Heart < 0.7 < Props < 0.9 < Nothing
                 float itemType = Random.value;
 
-                if (itemType < 0.03)
+                if(itemType < 0.4f)
+                {
+                    ItemFactory.Inst.CreateChest(itemSpawnPos + Vector2.up);
+                }
+
+                if (itemType < 0.003f)
                 {
                     GameObject itemObj = ItemFactory.Inst.CreateActiveItem((ActiveItem)(Random.Range(0, System.Enum.GetValues(typeof(ActiveItem)).Length)));
                     itemObj.transform.position = itemSpawnPos;
                     return;
                 }
-                else if (itemType < 0.2)
+                else if (itemType < 0.2f)
                 {
                     GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
                     itemObj.transform.position = itemSpawnPos;
                     return;
                 }
-                else if (itemType < 0.5)
+                else if (itemType < 0.7f)
                 {
                     GameObject itemObj = ItemFactory.Inst.CreateHeartItem((HeartItem)(Random.Range(0, System.Enum.GetValues(typeof(HeartItem)).Length)));
                     itemObj.transform.position = itemSpawnPos;
                     return;
                 }
-                else if (itemType < 0.8)
+                else if (itemType < 0.9f)
                 {
                     GameObject itemObj = ItemFactory.Inst.CreatePropsItem((PropsItem)(Random.Range(0, System.Enum.GetValues(typeof(PropsItem)).Length)));
                     itemObj.transform.position = itemSpawnPos;

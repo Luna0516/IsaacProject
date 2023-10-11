@@ -131,4 +131,13 @@ public class ItemFactory : Singleton<ItemFactory>
 
         return propsItemObj;
     }
+
+    public GameObject CreateChest(Vector2 pos)
+    {
+        GameObject chestItemObj = Instantiate(ItemDataManager.Inst.chest);
+
+        chestItemObj.transform.position = pos;
+
+        return chestItemObj;
+    }
 }

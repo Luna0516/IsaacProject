@@ -299,6 +299,7 @@ public class EnemyBase : PooledObject
     {
         bloodshatter();
         meatshatter();
+        GameManager.Inst.totalKill++;
         this.gameObject.SetActive(false);
     }
 
