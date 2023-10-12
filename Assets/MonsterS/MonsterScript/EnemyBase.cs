@@ -89,7 +89,6 @@ public class EnemyBase : PooledObject
     /// 리지디 바디
     /// </summary>
     protected Rigidbody2D rig;
-
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -102,7 +101,6 @@ public class EnemyBase : PooledObject
             if (hp != value)
             {
                 hp = value;
-
                 if (hp <= 0)
                 {
                     hp = 0;
@@ -258,14 +256,6 @@ public class EnemyBase : PooledObject
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
         }
-/*        if (collision.gameObject.CompareTag("PlayerKnife"))
-        {
-            KnifeAttacking attackBase = collision.gameObject.GetComponent<KnifeAttacking>();
-            damage = attackBase.Damage;
-            Hitten();
-            Vector2 nuckBackDir = attackBase.dir;
-            NuckBack(nuckBackDir.normalized);
-        }*/
     }
 
     /// <summary>
@@ -274,18 +264,10 @@ public class EnemyBase : PooledObject
     /// <param name="collision"></param>
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerBullet"))
+/*        if (collision.CompareTag("PlayerBullet"))
         {
             AttackBase attackBase = collision.GetComponent<AttackBase>();
             damage = collision.GetComponent<AttackBase>().Damage;
-            Hitten();
-            Vector2 nuckBackDir = attackBase.dir;
-            NuckBack(nuckBackDir.normalized);
-        }
-/*        if (collision.CompareTag("PlayerKnife"))
-        {
-            KnifeAttacking attackBase = collision.GetComponent<KnifeAttacking>();
-            damage = attackBase.Damage;
             Hitten();
             Vector2 nuckBackDir = attackBase.dir;
             NuckBack(nuckBackDir.normalized);
@@ -315,6 +297,7 @@ public class EnemyBase : PooledObject
     {
         bloodshatter();
         meatshatter();
+        GameManager.Inst.totalKill++;
         this.gameObject.SetActive(false);
     }
 

@@ -58,8 +58,10 @@ public class Bomb : MonoBehaviour
             foreach (Collider2D one in coll) {
                 Vector3 force = (one.transform.position - transform.position).normalized;
                 Rigidbody2D targetRigid = one.gameObject.GetComponent<Rigidbody2D>();
-
-                targetRigid.AddForce(force * 25, ForceMode2D.Impulse);
+                if (targetRigid != null)
+                {
+                    targetRigid.AddForce(force * 5, ForceMode2D.Impulse);
+                }
             }
         }
     }

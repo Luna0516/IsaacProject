@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 
 public class GuidedMissileTear : AttackBase
@@ -14,49 +15,45 @@ public class GuidedMissileTear : AttackBase
     /// </summary>
     bool isChase = false;
 
-    protected override void  OnEnable()
+    Vector2 targethorming;
+    protected override void OnEnable()
     {
         base.OnEnable();
 
-        target = null;    
+        target = null;
         isChase = false;
+        targethorming = dir;
     }
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+        rigidBody.MovePosition(rigidBody.position + targethorming * speed * Time.fixedDeltaTime); // 눈물 날아가는 속도 및 방향
+        rigidBody.velocity = new Vector3(targethorming.x * speed, targethorming.y * speed);                 // 눈물 velocity 적용
 
-        if (target !=null)
+        if (isChase)
         {
-            isChase = true;
-            dir = (target.position - transform.position).normalized;
+            targethorming = (target.position - transform.position).normalized;
         }
         else
         {
-            isChase = false;
+            targethorming = dir;
         }
-  
+
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        
-        if(other.gameObject.CompareTag("Enemy"))
+        if (target == null && other.gameObject.CompareTag("Enemy"))
         {
-            if(!isChase) 
-            { 
-                target = other.transform;
-                isChase = true;
-
-                if(isChase && target == null) 
-                {
-                    TearDie();
-                    isChase = false;
-                }
-            }             
+            isChase = true;
+            target = other.transform;
         }
     }
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        target = null;
+        isChase = false;
+    }
     protected override void Init()
     {
         base.Init();

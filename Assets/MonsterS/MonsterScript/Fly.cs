@@ -8,6 +8,8 @@ public class Fly : EnemyBase
     Animator animator;
     SpriteRenderer rneder;
     Collider2D coll;
+    string enemytag = "Enemy";
+    string untager = "DeadFly";
 
 
     /// <summary>
@@ -31,6 +33,7 @@ public class Fly : EnemyBase
     }
     protected override void OnEnable()
     {
+        transform.tag = enemytag;
         invincival = false;
         base.OnEnable();
         speed = UnityEngine.Random.Range(0.5f, 2f);
@@ -86,6 +89,7 @@ public class Fly : EnemyBase
         coll.isTrigger = true;
         animator.SetInteger("Dead", 1);
         cooltimeStart(2, 0.917f);
+        transform.tag = untager;
         Invic += Dieying;
     }
     public override void Hitten()
