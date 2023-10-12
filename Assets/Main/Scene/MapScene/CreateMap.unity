@@ -1297,6 +1297,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 961229215, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
+      propertyPath: m_Size.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 961229215, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
+      propertyPath: m_Offset.y
+      value: -10.07
+      objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875060, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_Icon
       value: 
@@ -1307,7 +1315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875060, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_RootOrder
@@ -1355,7 +1363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7019239044764982893, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2629577
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
@@ -2548,7 +2556,7 @@ MonoBehaviour:
   tearSpeed: 0
   tearFire: 0
   range: 6.5
-  speed: 10
+  speed: 15
   bombObj: {fileID: 4702667416383564111, guid: df80f88c337ffb444ad4490bf263d646, type: 3}
   maxHealth: 10
   health: 0
