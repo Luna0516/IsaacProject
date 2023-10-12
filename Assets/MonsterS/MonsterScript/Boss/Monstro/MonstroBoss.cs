@@ -13,6 +13,9 @@ public class MonstroBoss : EnemyBase
     bool attackgo = false;
     public int jumpcount = 0;
     Vector3 turret = Vector3.zero;
+
+    float MaxHPcal;
+
     protected Monstate Statecom
     {
         get
@@ -150,7 +153,7 @@ public class MonstroBoss : EnemyBase
         base.Awake();
         //애니메이터 불러오기
         animator = transform.GetComponentInChildren<Animator>();
-
+        MaxHPcal = 1.0f / MaxHP;
         //스프라이트 렌더러 불러오기
         spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
         sppeed = speed;
@@ -160,6 +163,7 @@ public class MonstroBoss : EnemyBase
     protected override void OnEnable()
     {
         base.OnEnable();
+        GameManager.Inst.BossHPSlider?.Invoke(1);
         state = Monstate.Idel;
     }
     protected override void Update()
@@ -290,6 +294,11 @@ public class MonstroBoss : EnemyBase
     public override void Hitten()
     {
         base.Hitten();
+        GameManager.Inst.BossHPSlider?.Invoke(HPCalculater());
         damaged(spriteRenderer);
+    }
+    float HPCalculater()
+    {
+        return hp * MaxHPcal;
     }
 }

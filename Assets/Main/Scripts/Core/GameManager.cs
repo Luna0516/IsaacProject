@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public float bossHelth;
+    public Action<float> BossHPSlider;
+
     /// <summary>
     /// 플레이어
     /// </summary>
@@ -28,6 +32,8 @@ public class GameManager : Singleton<GameManager>
     /// 비동기 명령 처리용
     /// </summary>
     AsyncOperation async;
+
+
 
     protected override void OnInitialize()
     {

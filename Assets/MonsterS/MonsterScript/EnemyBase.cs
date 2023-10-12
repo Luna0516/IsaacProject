@@ -89,7 +89,6 @@ public class EnemyBase : PooledObject
     /// 리지디 바디
     /// </summary>
     protected Rigidbody2D rig;
-
     /// <summary>
     /// 체력값을 정의하는 프로퍼티
     /// </summary>
@@ -102,7 +101,6 @@ public class EnemyBase : PooledObject
             if (hp != value)
             {
                 hp = value;
-
                 if (hp <= 0)
                 {
                     hp = 0;
