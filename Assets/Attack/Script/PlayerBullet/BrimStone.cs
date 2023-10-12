@@ -76,7 +76,6 @@ public class BrimStone : PooledObject
     private void OnEnable()
     {
         spriteRenderer.size = spritesize;
-        room = RoomManager.Inst.CurrentRoom;
     }
 
     private void Start()
@@ -87,14 +86,6 @@ public class BrimStone : PooledObject
         {
             Init();
         }
-        //위
-        roomDistance[0] = room.MyPos.y * 10 - (10 * 0.5f - 1);
-        //아래
-        roomDistance[1] = room.MyPos.y * 10 + (10 * 0.5f - 1);
-        //왼
-        roomDistance[2] = room.MyPos.x * 17.9f - (17.9f * 0.5f - 1);
-        //오
-        roomDistance[3] = room.MyPos.x * 17.9f + (17.9f * 0.5f - 1);
     }
 
     private void FixedUpdate()
@@ -184,6 +175,15 @@ public class BrimStone : PooledObject
     }
     void wallCal()
     {
+        room = RoomManager.Inst.CurrentRoom;
+        //위
+        roomDistance[0] = room.MyPos.y * 10 - (10 * 0.5f - 1);
+        //아래
+        roomDistance[1] = room.MyPos.y * 10 + (10 * 0.5f - 1);
+        //왼
+        roomDistance[2] = room.MyPos.x * 17.9f - (17.9f * 0.5f - 1);
+        //오
+        roomDistance[3] = room.MyPos.x * 17.9f + (17.9f * 0.5f - 1);
         float legth;
         switch (dir)
         {
@@ -193,7 +193,7 @@ public class BrimStone : PooledObject
                 break;
             case 1:
                 legth = player.transform.position.y - roomDistance[0];
-                spritesize.y = legth+0.5f;
+                spritesize.y = legth + 0.5f;
                 break;
             case 2:
                 legth = player.transform.position.x - roomDistance[2];
@@ -207,30 +207,4 @@ public class BrimStone : PooledObject
                 break;
         }
     }
-
-    /*  void BrimstoneOn()
-      {
-          if(!isFiring)
-          {
-              signal += BrimstoneOff;
-              signal -= BrimstoneOn;
-          }
-
-      }
-
-      void BrimstoneOff()
-      {
-          signal -= BrimstoneOn;
-      }*/
 }
-
-/*
- * 슈도코드 => 글로 다 적어서 구현하게끔 작성?
- * 
- * 내 위치를 총알 발사 위치로 이동한다. => Factory 로 하면 자동으로 위치 설정될거에요 => 플레이어에서 Factory로 만들면서 자기 눈물 위치에 붙이거든요
- * 플레이어의 총알 발사 방향을 받아와서 저장한다. => 상 하 좌 우
- * 이 방향에 맞게 벽의 x값이나 y값을 받아와서 거리를 계산한다 => 업데이트나 픽스드 업데이트에서 해야한다. => 계속 계산해야 해서
- * 거리값에 맞게 스케일 조절을 해야하기 때문에 0.25를 곱해준다(4로 나눈다)
- * 플레이어가 발사 방향에 손을 떼면 발사되고 일정 시간 지난뒤에 비활성화 되어야 한다.
- * 이 오브젝트랑 닿는 Enemy는 데미지를 입어야 한다
-*/
