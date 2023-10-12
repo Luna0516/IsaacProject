@@ -157,8 +157,9 @@ public class BrimStone : PooledObject
     }
    public void Press()
     {
-        if(!isPressed && ChargeGage < maxGage)
+        if(!isPressed)
         {
+            Debug.Log("눌렀다.");
             gameObject.SetActive(false);
             isPressed = true;
             signal += Charging;
@@ -167,8 +168,9 @@ public class BrimStone : PooledObject
 
     public void Release()
     {
-        if (isPressed && ChargeGage >= maxGage)
+        if (isPressed)
         {
+            Debug.Log("놓았다.");
             gameObject.SetActive(true);
             ChargeGage = 0;
             signal -= Charging;

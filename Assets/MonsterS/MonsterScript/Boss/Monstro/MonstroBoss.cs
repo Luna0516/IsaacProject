@@ -166,7 +166,7 @@ public class MonstroBoss : EnemyBase
     protected override void OnEnable()
     {
         base.OnEnable();
-        GameManager.Inst.BossHPSlider?.Invoke(1);
+        GameManager.Inst.onBossHealthChange?.Invoke(1);
         state = Monstate.Idel;
     }
     protected override void Update()
@@ -297,7 +297,7 @@ public class MonstroBoss : EnemyBase
     public override void Hitten()
     {
         base.Hitten();
-        GameManager.Inst.BossHPSlider?.Invoke(HPCalculater());
+        GameManager.Inst.onBossHealthChange?.Invoke(HPCalculater());
         damaged(spriteRenderer);
     }
     float HPCalculater()

@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public float bossHelth;
-    public Action<float> BossHPSlider;
-
     /// <summary>
     /// 플레이어
     /// </summary>
@@ -17,10 +14,26 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// 플레이어 프로퍼티
     /// </summary>
-    public Player Player => player;
+    public Player Player
+    {
+        get
+        {
+            if(player == null)
+            {
+                player = FindObjectOfType<Player>();
+            }
+            return player;
+        }
+    }
 
+    /// <summary>
+    /// 최종 킬수
+    /// </summary>
     public int totalKill = 0;
 
+    /// <summary>
+    /// 엔딩씬으로 갈때 클리어 여부(true면 성공, false면 실패)
+    /// </summary>
     public bool clear = false;
 
     /// <summary>
@@ -33,13 +46,10 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     AsyncOperation async;
 
-
-
-    protected override void OnInitialize()
-    {
-        base.OnInitialize();
-        player = FindObjectOfType<Player>();
-    }
+    /// <summary>
+    /// 보스 체력이 변경 될 때마다 보내는 델리게이트(파라메터 : 보스의 남은 체력 비율)
+    /// </summary>
+    public Action<float> onBossHealthChange;
 
     /// <summary>
     /// 일시정지

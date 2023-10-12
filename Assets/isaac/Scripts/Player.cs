@@ -365,7 +365,9 @@ public class Player : MonoBehaviour
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
                     bodyAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(bodyResourceName);
-                    this.gameObject.GetComponent<BrimStone>();
+                    Transform childbrims = transform.GetChild(4);
+                    Transform brimstones = childbrims.GetChild(3);
+                    this.brimstone = brimstones.GetComponent<BrimStone>();
                     
                     isGetBrimstone = true;
                     break;
