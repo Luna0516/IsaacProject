@@ -109,7 +109,7 @@ public class AttackBase : PooledObject
     /// 총알 세부정보 초기화
     /// </summary>
     protected virtual void Init()
-    {
+    {     
         scale = Vector3.one; //P.s눈물 폭발 오브젝트의 sclae값을 1,1,1로 초기화를 해줍니다.
         speed = player.TearSpeed;
         this.Damage = player.Damage;

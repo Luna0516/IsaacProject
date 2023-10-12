@@ -213,6 +213,7 @@ MonoBehaviour:
   baseRoomPrefab: {fileID: 428845128574999711, guid: 9c08fee65d90a214cbb40a1c195b18e5, type: 3}
   shopRoomPrefab: {fileID: 0}
   bossRoomPrefab: {fileID: 428845128574999711, guid: ea56086a20943084eb42c6e033694d23, type: 3}
+  bossBarObject: {fileID: 0}
 --- !u!4 &117671091
 Transform:
   m_ObjectHideFlags: 0
@@ -2252,21 +2253,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brimstone
       objectReference: {fileID: 0}
-    - target: {fileID: 2246662737284875060, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 15.45
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0545
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2535,6 +2532,7 @@ MonoBehaviour:
   maxHealth: 10
   health: 0
   damage: 1
+  obj: {fileID: 0}
 --- !u!1 &1742968307568160219
 GameObject:
   m_ObjectHideFlags: 0
