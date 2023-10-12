@@ -85,6 +85,11 @@ public class RoomManager : Singleton<RoomManager>
     public GameObject bossRoomPrefab;
 
     /// <summary>
+    /// 보스 체력 바 오브젝트
+    /// </summary>
+    public GameObject bossBarObject;
+
+    /// <summary>
     /// 현재 방(생성 중, 플레이중)
     /// </summary>
     Room currentRoom = null;
@@ -101,6 +106,10 @@ public class RoomManager : Singleton<RoomManager>
                 currentRoom = value;
                 if (!isLoading)
                 {
+                    if (!currentRoom.IsVisit && currentRoom.roomtype == RoomType.Boss)
+                    {
+                        bossBarObject.SetActive(true);
+                    }
                     currentRoom.IsVisit = true;
                     onChangeRoom?.Invoke(currentRoom);
                 }
@@ -125,6 +134,12 @@ public class RoomManager : Singleton<RoomManager>
 
     protected override void OnInitialize()
     {
+        BossHealth bossHealth = FindObjectOfType<BossHealth>();
+        if (bossHealth != null)
+        {
+            bossBarObject = bossHealth.gameObject;
+        }
+
         isLoading = true;
 
         ListRoomsInit();

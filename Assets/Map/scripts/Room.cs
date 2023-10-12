@@ -176,22 +176,18 @@ public class Room : MonoBehaviour
         {
             case DoorType.Up:
                 player.transform.position += Vector3.up * playerMoveDistance;
-                upRoom.IsVisit = true;
                 RoomManager.Inst.CurrentRoom = upRoom;
                 break;
             case DoorType.Down:
                 player.transform.position += Vector3.down * playerMoveDistance;
-                downRoom.IsVisit = true;
                 RoomManager.Inst.CurrentRoom = downRoom;
                 break;
             case DoorType.Left:
                 player.transform.position += Vector3.left * playerMoveDistance;
-                leftRoom.IsVisit = true;
                 RoomManager.Inst.CurrentRoom = leftRoom;
                 break;
             case DoorType.Right:
                 player.transform.position += Vector3.right * playerMoveDistance;
-                rightRoom.IsVisit = true;
                 RoomManager.Inst.CurrentRoom = rightRoom;
                 break;
             default:
