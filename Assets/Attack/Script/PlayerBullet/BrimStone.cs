@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 public class BrimStone : PooledObject
 {
@@ -71,7 +70,7 @@ public class BrimStone : PooledObject
     float actionTimer;
 
     /// <summary>
-    /// 게이지 충전 관련 확인용 델리게이트
+    /// 반복 작업 함수 신호용 델리게이트
     /// </summary>
     Action signal;
     
