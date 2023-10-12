@@ -1293,13 +1293,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 867207731}
     m_Modifications:
+    - target: {fileID: 667188420, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2246662737284875060, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2246662737284875060, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_Name
       value: Brimstone
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875060, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_RootOrder
@@ -1307,11 +1315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.74
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7565
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 2246662737284875062, guid: daa88ab879cc3b3429c52b6368661128, type: 3}
       propertyPath: m_LocalPosition.z
