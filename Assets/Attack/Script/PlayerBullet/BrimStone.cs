@@ -9,6 +9,10 @@ using UnityEngine;
 public class BrimStone : PooledObject
 {
 
+    SpriteRenderer sprite;
+    BoxCollider2D boxCollider;
+    Vector3 currentScale;
+
     Action signal;
 
     /// <summary>
@@ -159,7 +163,6 @@ public class BrimStone : PooledObject
     {
         if(!isPressed)
         {
-            Debug.Log("눌렀다.");
             gameObject.SetActive(false);
             isPressed = true;
             signal += Charging;
@@ -170,8 +173,8 @@ public class BrimStone : PooledObject
     {
         if (isPressed)
         {
-            Debug.Log("놓았다.");
             gameObject.SetActive(true);
+            BrimLength();
             ChargeGage = 0;
             signal -= Charging;
             isPressed = false;
@@ -192,20 +195,17 @@ public class BrimStone : PooledObject
         }
     }
 
-    /*  void BrimstoneOn()
-      {
-          if(!isFiring)
-          {
-              signal += BrimstoneOff;
-              signal -= BrimstoneOn;
-          }
+    void BrimLength()
+    {
+        for(int i = 0; i > roomDistance[i]; i++) 
+        {
+            float maxLength = roomDistance[i];
+            currentScale.y = Mathf.Clamp(currentScale.y + Time.deltaTime * speed, 0f, maxLength * 0.25f);
+            transform.localScale = currentScale;
+        }  
+    }
 
-      }
 
-      void BrimstoneOff()
-      {
-          signal -= BrimstoneOn;
-      }*/
 }
 
 /*
@@ -218,3 +218,5 @@ public class BrimStone : PooledObject
  * 플레이어가 발사 방향에 손을 떼면 발사되고 일정 시간 지난뒤에 비활성화 되어야 한다.
  * 이 오브젝트랑 닿는 Enemy는 데미지를 입어야 한다
 */
+
+// 모았다가 일정시간이 지나면 발사
