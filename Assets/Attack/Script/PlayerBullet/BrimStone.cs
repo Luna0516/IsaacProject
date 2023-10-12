@@ -14,6 +14,7 @@ public class BrimStone : PooledObject
 
     Vector2 spritesize;
     Vector2 defaltsize;
+    Vector2 Hold;
     /// <summary>
     /// 플레이어 (아이작)
     /// </summary>
@@ -70,6 +71,7 @@ public class BrimStone : PooledObject
     {
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         defaltsize = new Vector2(2.95f, 0);
+        Hold = new Vector2(0, 0.31f);
         spritesize = defaltsize;
         signal = () => { };
     }
@@ -91,6 +93,7 @@ public class BrimStone : PooledObject
     private void FixedUpdate()
     {
         signal();
+        this.transform.localPosition = Hold;
     }
     public void Press()
     {
@@ -100,7 +103,21 @@ public class BrimStone : PooledObject
             signal += Charging;
         }
     }
-
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && isFireing)
+        {
+            EnemyBase enemy = collision.transform.GetComponentInChildren<EnemyBase>();
+            if (enemy == null)
+            {
+                enemy = collision.GetComponentInParent<EnemyBase>();
+            }
+            enemy.damage = damage;
+            enemy.Hitten();
+            Vector2 nuckBackDir = player.AttackDir;
+            enemy.NuckBack(nuckBackDir.normalized);
+        }
+    }
     public void Release()
     {
         if (isPressed)
@@ -129,7 +146,7 @@ public class BrimStone : PooledObject
         if (player != null)
         {
             speed = player.TearSpeed;
-            damage = player.Damage;
+            damage = player.Damage*0.25f;
         }
     }
 
