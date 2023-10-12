@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class PenetrationTear : AttackBase
 {
-    //is trigger 눈물 
-    // 전체 관통 (적만) 
-    // 트리거 
-
-    public bool isPenetrate = true;
+    /// <summary>
+    /// 관통이 가능한 상태인지 확인
+    /// </summary>
+    protected bool isPenetrate = true;
 
     protected override void Awake()
     {
         base.Awake();
-        //circleCollider = GetComponent<CircleCollider2D>();
     }
 
-    public int penetration = 3;
+    /// <summary>
+    /// 관통 가능한 적 개수
+    /// </summary>
+    protected int penetration = 3;
     public int Penetration
     {
         get => penetration;
@@ -25,12 +26,12 @@ public class PenetrationTear : AttackBase
         {
             penetration = value;
 
-            if (isPenetrate)
+            if (isPenetrate)            // 관통 가능한 상태라면
             {
-                if (penetration <= 0)
+                if (penetration <= 0)   // 더이상 관통할 수 없을 때
                 {
-                    isPenetrate = false;
-                    TearDie();
+                    isPenetrate = false;    // 관통 불가라 알림
+                    TearDie();              // 눈물 사라짐
                 }
             }
            
@@ -39,28 +40,16 @@ public class PenetrationTear : AttackBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))   // 대상이 적 태그가 되어있다면
         {
             
-            penetration--;
-            //damage = collision.gameObject.GetComponent<AttackBase>().Damage;
-            
-            if (!isPenetrate)
+            penetration--;  // 관통 가능 개수 감소
+
+            if (!isPenetrate)   // 관통 불가 상태라면
             {
-                TearExplosion();               
+                TearExplosion();    // 눈물 터짐               
             }
         }
     }
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
 
 }
-
-// OnCollision override? Trigger로 설정되어있어서 어차피 작동 안됨.
-
-// 수정할 것 
-// Trigger로만 만든다
-// Trigger 스크립트 재거
-// 원본 트리거 설정
