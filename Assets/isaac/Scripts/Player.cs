@@ -368,6 +368,7 @@ public class Player : MonoBehaviour
                     Transform childbrims = transform.GetChild(4);
                     Transform brimstones = childbrims.GetChild(3);
                     this.brimstone = brimstones.GetComponent<BrimStone>();
+                    brimstone.gameObject.SetActive(true);
                     
                     isGetBrimstone = true;
                     break;
