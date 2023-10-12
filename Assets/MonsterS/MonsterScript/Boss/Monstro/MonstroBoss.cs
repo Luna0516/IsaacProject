@@ -14,6 +14,9 @@ public class MonstroBoss : EnemyBase
     public int jumpcount = 0;
     Vector3 turret = Vector3.zero;
 
+    /// <summary>
+    /// 보스 역수계산용 변수
+    /// </summary>
     float MaxHPcal;
 
     protected Monstate Statecom
