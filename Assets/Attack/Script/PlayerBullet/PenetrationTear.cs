@@ -38,7 +38,32 @@ public class PenetrationTear : AttackBase
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))      // 대상이 태그가 적이면
+        {
+            
+            EnemyBase enemy = collision.transform.GetComponentInChildren<EnemyBase>();  // 적의 위치를 찾고
+            if (enemy == null)  // 적이 없다면
+            {
+                enemy = collision.GetComponentInParent<EnemyBase>();    // 적을 찾음
+            }
+            enemy.damage = damage;                  // 적은 데미지만큼 피해를 입음
+            enemy.Hitten();                         // 피격 판정
+            Vector2 nuckBackDir = player.AttackDir;
+            enemy.NuckBack(nuckBackDir.normalized); // 플레이어 공격 방향으로 적이 밀림
+            
+            penetration--;      // 관통 가능 수 빼기
+            if (!isPenetrate)   // 관통 불가 상태라면
+            {
+                TearExplosion();    // 눈물 터짐               
+            }
+        }
+    }
+
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))   // 대상이 적 태그가 되어있다면
         {
@@ -50,6 +75,6 @@ public class PenetrationTear : AttackBase
                 TearExplosion();    // 눈물 터짐               
             }
         }
-    }
+    }*/
 
 }
