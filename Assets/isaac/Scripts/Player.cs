@@ -363,7 +363,12 @@ public class Player : MonoBehaviour
                     isGetMutant = true;
                     break;
                 case PassiveSpriteState.Brimstone:
-                    isEmpty = false;
+                    isEmpty = false; 
+                    if (isGetKnife)
+                    {
+                        isGetKnife = false;
+                        this.knife.gameObject.SetActive(false);
+                    }
                     headResourceName = "HeadAC/Head_Brimstone_AC";
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
@@ -371,6 +376,7 @@ public class Player : MonoBehaviour
                     Transform childbrims = transform.GetChild(4);
                     Transform brimstones = childbrims.GetChild(3);
                     this.brimstone = brimstones.GetComponent<BrimStone>();
+                    
                     brimstone.gameObject.SetActive(true);
                     
                     isGetBrimstone = true;
@@ -383,6 +389,11 @@ public class Player : MonoBehaviour
                     {
                         headResourceName = "HeadAC/Head_Knife_AC";
                         headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
+                    }
+                    else
+                    {
+                        isGetBrimstone = false;
+                        brimstone.gameObject.SetActive(false);
                     }
                     Transform child = transform.GetChild(4);
                     Transform knife = child.GetChild(2);

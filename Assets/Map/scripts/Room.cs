@@ -277,9 +277,12 @@ public class Room : MonoBehaviour
 
             if (roomtype == RoomType.Start)
             {
-                /*GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));*/
-                GameObject itemObj = ItemFactory.Inst.CreatePassiveItem(PassiveItem.CupidsArrow);
+                //GameObject itemObj = ItemFactory.Inst.CreatePassiveItem((PassiveItem)(Random.Range(0, System.Enum.GetValues(typeof(PassiveItem)).Length)));
+                //GameObject itemObj = ItemFactory.Inst.CreatePassiveItem(PassiveItem.CupidsArrow);
+                GameObject itemObj = ItemFactory.Inst.CreatePassiveItem(PassiveItem.MomsKnife);
                 itemObj.transform.position = itemSpawnPos;
+                itemObj = ItemFactory.Inst.CreatePassiveItem(PassiveItem.Brimstone);
+                itemObj.transform.position = itemSpawnPos + Vector2.up;
                 return;
             }
             else if (roomtype == RoomType.Base)
