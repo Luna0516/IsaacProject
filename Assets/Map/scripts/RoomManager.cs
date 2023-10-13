@@ -117,6 +117,9 @@ public class RoomManager : Singleton<RoomManager>
         }
     }
 
+    Room bossRoom;
+    public Room BossRoom => bossRoom;
+
     /// <summary>
     /// 생성된 방들의 리스트
     /// </summary>
@@ -308,6 +311,8 @@ public class RoomManager : Singleton<RoomManager>
         listRooms.Add(room);
 
         SettingNeighborRoom(room);
+
+        bossRoom = room;
     }
 
     /// <summary>
