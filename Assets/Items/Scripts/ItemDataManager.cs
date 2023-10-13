@@ -28,6 +28,7 @@ public enum PassiveItem
     TheSadOnion,        // 1
     CricketsHead,       // 4
     BloodOfTheMartyr,   // 7
+    CupidsArrow,        // 48
     Steven,             // 50
     TheHalo,            // 101
     MomsKnife,          // 114
