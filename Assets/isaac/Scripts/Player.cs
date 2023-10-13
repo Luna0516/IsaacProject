@@ -364,7 +364,7 @@ public class Player : MonoBehaviour
                     break;
                 case PassiveSpriteState.Brimstone:
                     isEmpty = false; 
-                    if (isGetKnife)
+                    if (isGetKnife) // 칼을 먹고 브림스톤을 먹었을 경우
                     {
                         isGetKnife = false;
                         this.knife.gameObject.SetActive(false);
@@ -390,7 +390,7 @@ public class Player : MonoBehaviour
                         headResourceName = "HeadAC/Head_Knife_AC";
                         headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     }
-                    else
+                    else // 브림스톤을 먹고 칼을 먹었을 경우
                     {
                         isGetBrimstone = false;
                         brimstone.gameObject.SetActive(false);
