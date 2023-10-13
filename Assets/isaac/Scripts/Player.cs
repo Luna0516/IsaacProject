@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         Base = 0,
         Big,
         Guided,
+        Cupid,
         Knife,
         Brimsotne,
         Mutant
@@ -172,6 +173,7 @@ public class Player : MonoBehaviour
     bool isGetBrimstone = false;
     bool isGetKnife = false;
     bool isGetMutant = false;
+    bool isGetCupid = false;
     #endregion
     #region 무적
     /// <summary>
@@ -308,7 +310,8 @@ public class Player : MonoBehaviour
         MutantSpider,
         Brimstone,
         BloodOfMartyr,
-        Knife
+        Knife,
+        Cupid
     }
     PassiveSpriteState state = PassiveSpriteState.None;
     public PassiveSpriteState State
@@ -360,7 +363,12 @@ public class Player : MonoBehaviour
                     isGetMutant = true;
                     break;
                 case PassiveSpriteState.Brimstone:
-                    isEmpty = false;
+                    isEmpty = false; 
+                    if (isGetKnife) // 칼을 먹고 브림스톤을 먹었을 경우
+                    {
+                        isGetKnife = false;
+                        this.knife.gameObject.SetActive(false);
+                    }
                     headResourceName = "HeadAC/Head_Brimstone_AC";
                     headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     var bodyResourceName = "BodyAC/Body_Brimstone_AC";
@@ -368,6 +376,7 @@ public class Player : MonoBehaviour
                     Transform childbrims = transform.GetChild(4);
                     Transform brimstones = childbrims.GetChild(3);
                     this.brimstone = brimstones.GetComponent<BrimStone>();
+                    
                     brimstone.gameObject.SetActive(true);
                     
                     isGetBrimstone = true;
@@ -381,11 +390,20 @@ public class Player : MonoBehaviour
                         headResourceName = "HeadAC/Head_Knife_AC";
                         headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     }
+                    else // 브림스톤을 먹고 칼을 먹었을 경우
+                    {
+                        isGetBrimstone = false;
+                        brimstone.gameObject.SetActive(false);
+                    }
                     Transform child = transform.GetChild(4);
                     Transform knife = child.GetChild(2);
                     this.knife = knife.gameObject.GetComponent<KnifeAttacking>();
                     knife.gameObject.SetActive(true);
                     isGetKnife = true;
+                    break;
+                case PassiveSpriteState.Cupid:
+                    isEmpty = false;
+                    isGetCupid = true;
                     break;
                 default:
                     break;
@@ -592,21 +610,29 @@ public class Player : MonoBehaviour
                             case 7:
                                 State = PassiveSpriteState.BloodOfMartyr;
                                 break;
+                            // 관통 눈물
+                            case 48:
+                                tearState = TearState.Cupid;
+                                break;
                             // 혈사포
                             case 118:
                                 State = PassiveSpriteState.Brimstone;
+                                tearState = TearState.Brimsotne;
                                 break;
                             // 왕눈이눈물
                             case 169:
                                 State = PassiveSpriteState.Polyphemus;
+                                tearState = TearState.Big;
                                 break;
                             // 유도눈물
                             case 182:
                                 State = PassiveSpriteState.SacredHeart;
+                                tearState = TearState.Guided;
                                 break;
                             // 칼
                             case 114:
                                 State = PassiveSpriteState.Knife;
+                                tearState = TearState.Knife;
                                 break;
                             // 거미눈물 4발
                             case 153:
@@ -621,33 +647,40 @@ public class Player : MonoBehaviour
                                 tearState = TearState.Mutant;
                                 break;
                         }
-                        if (isEmpty)
-                        {
-                            tearState = TearState.Base;
-                        }
-                        else if (!isEmpty && !isGetBrimstone && !isGetKnife)
-                        {
-                            if (isGetPolyphemus)
-                            {
-                                tearState = TearState.Big;
-                            }
-                            if (isGetSacredHeart)
-                            {
-                                tearState = TearState.Guided;
-                            }
-                        }
-                        else if (isGetKnife && !isGetBrimstone)
-                        {
-                            tearState = TearState.Knife;
-                        }
-                        else if (isGetBrimstone)
-                        {
-                            if (isGetKnife)
-                            {
-                                knife.gameObject.SetActive(false);
-                            }
-                            tearState = TearState.Brimsotne;
-                        }
+
+                        //if (isEmpty)
+                        //{
+                        //    tearState = TearState.Base;
+                        //}
+                        //else if (isGetPolyphemus)
+                        //{
+                        //    tearState = TearState.Big;
+                            
+                        //}
+                        //else if (isGetSacredHeart)
+                        //{
+                        //    tearState = TearState.Guided;
+                        //}
+                        //else if(isGetKnife)
+                        //{
+                        //    if (isGetBrimstone)
+                        //    {
+                        //        brimstone.gameObject.SetActive(false);
+                        //    }
+                        //    tearState = TearState.Knife;
+                        //}
+                        //else if (isGetBrimstone)
+                        //{
+                        //    if (isGetKnife)
+                        //    {
+                        //        knife.gameObject.SetActive(false);
+                        //    }
+                        //    tearState = TearState.Brimsotne;
+                        //}
+                        //else if (isGetCupid)
+                        //{
+                        //    tearState = TearState.Cupid;
+                        //}
 
                         if (passive.itemNum == 169 || passive.itemNum == 182)
                             currentDmg -= passive.damage;
@@ -850,7 +883,9 @@ public class Player : MonoBehaviour
                     tearSpawns[i] = tearSpawn.transform.GetChild(i);
                     tear = Factory.Inst.GetObject(PoolObjectType.Tear, tearSpawns[i].position);
                 }
-                
+                break;
+            case TearState.Cupid:
+                tear = Factory.Inst.GetObject(PoolObjectType.PenetrationTear, tearSpawn.position);
                 break;
         }
         currentTearDelay = tearFire; // 딜레이 시간 초기화
