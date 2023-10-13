@@ -5,12 +5,24 @@ using UnityEngine;
 
 public class KnifeAttacking : AttackBase
 {
-
+    /// <summary>
+    /// 자식 컴포넌트
+    /// </summary>
     GameObject child;
 
+    /// <summary>
+    /// 반복 함수 호출용 델리게이트
+    /// </summary>
     Action updater;
 
-    public bool isfireing = false;
+    /// <summary>
+    /// 발사 상태 확인
+    /// </summary>
+    public bool isFiring = false;
+
+    /// <summary>
+    /// 아이작이 칼을 가지고 있는지 확인 (발사 안함)
+    /// </summary>
     public bool inMyHand = true;
 
     Player playerTest;
@@ -137,9 +149,9 @@ public class KnifeAttacking : AttackBase
     }
     public void pressButton()
     {
-        if (!isfireing && inMyHand)
+        if (!isFiring && inMyHand)
         {
-            isfireing = true;
+            isFiring = true;
             Debug.Log("샷");
             updater += chargeing;
         }
@@ -175,7 +187,7 @@ public class KnifeAttacking : AttackBase
         if (child.transform.localPosition.y < 0.5f)
         {
             updater -= ReturningKnife;
-            isfireing = false;
+            isFiring = false;
             inMyHand = true;
         }
     }
