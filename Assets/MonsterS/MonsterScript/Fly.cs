@@ -40,6 +40,7 @@ public class Fly : EnemyBase
         cooltimeStart(1, invincivalTime);
         Invic += invancivalcheck;
         Rnad = Vector2.zero;
+        coll.isTrigger = false;
     }
     protected override void OnDisable()
     {

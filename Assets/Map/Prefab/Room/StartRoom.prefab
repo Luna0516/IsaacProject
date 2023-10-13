@@ -2084,6 +2084,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  stair: {fileID: 0}
 --- !u!1 &3155166314371110911
 GameObject:
   m_ObjectHideFlags: 0
