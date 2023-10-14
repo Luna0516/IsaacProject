@@ -40,7 +40,6 @@ public class Fly : EnemyBase
         cooltimeStart(1, invincivalTime);
         Invic += invancivalcheck;
         Rnad = Vector2.zero;
-        coll.isTrigger = false;
     }
     protected override void OnDisable()
     {
@@ -92,6 +91,7 @@ public class Fly : EnemyBase
         cooltimeStart(2, 0.917f);
         transform.tag = untager;
         Invic += Dieying;
+        coll.isTrigger = true;
     }
     public override void Hitten()
     {
