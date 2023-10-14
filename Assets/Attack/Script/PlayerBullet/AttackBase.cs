@@ -73,7 +73,15 @@ public class AttackBase : PooledObject
     /// </summary>
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
+            enemy.damage = Damage;
+            enemy.Hitten();
+            StopAllCoroutines();
+            TearDie();
+        }
+        if(collision.gameObject.CompareTag("Wall"))
         {
             StopAllCoroutines();
             TearDie();

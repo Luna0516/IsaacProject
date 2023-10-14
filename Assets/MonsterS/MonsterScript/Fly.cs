@@ -79,11 +79,11 @@ public class Fly : EnemyBase
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerBullet"))
+/*        if (collision.gameObject.CompareTag("PlayerBullet"))
         {
             damage = collision.gameObject.GetComponent<AttackBase>().Damage;
             Hitten();
-        }
+        }*/
     }
     protected override void Die()
     {
