@@ -100,6 +100,9 @@ public class Player : MonoBehaviour
     Animator sadOnionAni;
     SpriteRenderer sadOnionSR;
     Transform martyrSprite;
+    Transform halo;
+    Transform steven;
+    Animator stevenAni;
     Transform allGetItem;
     Animator brimstoneAni;
     KnifeAttacking knife;
@@ -174,6 +177,7 @@ public class Player : MonoBehaviour
     bool isGetKnife = false;
     bool isGetMutant = false;
     bool isGetCupid = false;
+    bool isGetSteven = false;
     #endregion
     #region 무적
     /// <summary>
@@ -311,7 +315,8 @@ public class Player : MonoBehaviour
         Brimstone,
         BloodOfMartyr,
         Knife,
-        Cupid
+        Cupid,
+        Steven
     }
     PassiveSpriteState state = PassiveSpriteState.None;
     public PassiveSpriteState State
@@ -332,13 +337,10 @@ public class Player : MonoBehaviour
                         headResourceName = "HeadAC/Head_Cricket_AC";
                         headAni.runtimeAnimatorController = (RuntimeAnimatorController)Resources.Load(headResourceName);
                     }
-                    isEmpty = false;
                     break;
                 case PassiveSpriteState.Halo:
-                    isEmpty = false;
                     break;
                 case PassiveSpriteState.SadOnion:
-                    isEmpty = false;
                     break;
                 case PassiveSpriteState.SacredHeart:
                     isEmpty = false;
@@ -405,6 +407,9 @@ public class Player : MonoBehaviour
                     isEmpty = false;
                     isGetCupid = true;
                     break;
+                case PassiveSpriteState.Steven:
+                    isGetSteven = true;
+                    break;
                 default:
                     break;
             }
@@ -448,6 +453,9 @@ public class Player : MonoBehaviour
         sadOnionAni = sadOnionSprite.GetComponent<Animator>();
         sadOnionSR = sadOnionSprite.GetComponent<SpriteRenderer>();
         martyrSprite = allGetItem.transform.GetChild(1);
+        halo = allGetItem.transform.GetChild(3);
+        steven = allGetItem.transform.GetChild(4);
+        stevenAni = steven.GetComponent<Animator>();
         brimstoneAni = FindObjectOfType<Animator>();
         tearSpawn = transform.GetChild(0);
 
@@ -646,6 +654,13 @@ public class Player : MonoBehaviour
                                 }
                                 tearState = TearState.Mutant;
                                 break;
+                            // 천사관
+                            case 101:
+                                State = PassiveSpriteState.Halo;
+                                break;
+                            case 50:
+                                State = PassiveSpriteState.Steven;
+                                break;
                         }
 
                         //if (isEmpty)
@@ -729,6 +744,14 @@ public class Player : MonoBehaviour
         {
             martyrSprite.gameObject.SetActive(true);
         }
+        if (State == PassiveSpriteState.Halo)
+        {
+            halo.gameObject.SetActive(true);
+        }
+        if(State == PassiveSpriteState.Steven)
+        {
+            steven.gameObject.SetActive(true);
+        }
     }
     private void OnMove(InputAction.CallbackContext context)
     {
@@ -740,6 +763,25 @@ public class Player : MonoBehaviour
         bodyAni.SetFloat("MoveDir_Y", bodyDir.y);
         headAni.SetFloat("MoveDir_X", bodyDir.x);
         headAni.SetFloat("MoveDir_Y", bodyDir.y);
+
+        if (isGetSteven)
+        {
+            if (isGetKnife)
+            {
+                stevenAni.SetFloat("MoveDir_X", bodyDir.x);
+                stevenAni.SetFloat("MoveDir_Y", bodyDir.y);
+                if (headDir.x != 0 || headDir.y != 0)
+                {
+                    stevenAni.SetFloat("MoveDir_X", headDir.x);
+                    stevenAni.SetFloat("MoveDir_Y", headDir.y);
+                }
+            }
+            else
+            {
+                stevenAni.SetFloat("MoveDir_X", bodyDir.x);
+                stevenAni.SetFloat("MoveDir_Y", bodyDir.y);
+            }
+        }
         if (isGetSadOnion)
         {
             sadOnionAni.SetFloat("MoveDir_X", bodyDir.x);
@@ -773,6 +815,23 @@ public class Player : MonoBehaviour
                 sadOnionSR.sortingOrder = 2;
             }
         }
+        if (isGetSteven)
+        {
+            if (isGetBrimstone)
+            {
+                steven.gameObject.SetActive(false);
+            }
+            if(isGetKnife)
+            {
+                stevenAni.SetFloat("MoveDir_X", headDir.x);
+                stevenAni.SetFloat("MoveDir_Y", headDir.y);
+            }
+            else
+            {
+                stevenAni.SetFloat("ShootDir_X", headDir.x);
+                stevenAni.SetFloat("ShootDir_Y", headDir.y);
+            }
+        }
         if (isGetMutant)
         {
             if (headDir.x > 0.8f || headDir.x < -0.8f)
@@ -786,9 +845,10 @@ public class Player : MonoBehaviour
         }
         if (context.performed)
         {
-            if (isEmpty || !isGetBrimstone)
+            if (isEmpty || !isGetBrimstone || !isGetKnife)
             {
                 headAni.SetBool("isNormalShoot", true);
+                stevenAni.SetBool("isNormalShoot", true);
             }
             if (isGetBrimstone)
             {
@@ -803,19 +863,22 @@ public class Player : MonoBehaviour
             }
             if (isGetKnife)
             {
+                stevenAni.SetBool("isNormalShoot", false);
                 knife.pressButton();
             }
             if (isGetBrimstone)
             {
+                stevenAni.SetBool("isNormalShoot", false);
                 brimstone.Press();
             }
             isShoot = true;
         }
         else if (context.canceled)
         {
-            if (isEmpty || !isGetBrimstone)
+            if (isEmpty || !isGetBrimstone || !isGetKnife)
             {
                 headAni.SetBool("isNormalShoot", false);
+                stevenAni.SetBool("isNormalShoot", false);
             }
             if (isGetBrimstone)
             {
@@ -831,10 +894,12 @@ public class Player : MonoBehaviour
             }
             if (isGetKnife)
             {
+                stevenAni.SetBool("isNormalShoot", false);
                 knife.cancleButton();
             }
             if(isGetBrimstone)
             {
+                stevenAni.SetBool("isNormalShoot", false);
                 brimstone.Release();
             }
             isShoot = false;
@@ -958,6 +1023,7 @@ public class Player : MonoBehaviour
             {
                 new WaitForSeconds(0.258f);
                 headAni.speed = Mathf.Lerp(minHeadAni, maxHeadAni, itemSpeed);
+                stevenAni.speed = headAni.speed;
                 StartCoroutine(TearDelay());
             }
         }

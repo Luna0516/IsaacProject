@@ -1,0 +1,344 @@
+fileFormatVersion: 2
+guid: d140f1cff57c4cf4cac3f7bf2ae0ca68
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Steven_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 478
+        width: 33
+        height: 26
+      alignment: 9
+      pivot: {x: 0.64, y: 0.17}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1f6eaa0be5f69744a6b55bbb88088bd
+      internalID: -62836853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 478
+        width: 33.25
+        height: 26
+      alignment: 9
+      pivot: {x: 0.62, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0675a458c343de438284a3100ab2331
+      internalID: -676932714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 478
+        width: 33
+        height: 26
+      alignment: 9
+      pivot: {x: 0.66, y: 0.21}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1821aa1901767645a722e3d38a0164f
+      internalID: -465060984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_4
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 478
+        width: 33.25
+        height: 26
+      alignment: 9
+      pivot: {x: 0.51, y: 0.19}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02909b38aaaaae54eaa5b65004286a91
+      internalID: 788923260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_5
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 478
+        width: 33.25
+        height: 26
+      alignment: 9
+      pivot: {x: 0.47, y: 0.22}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a54dc1c821e9b604f9b273c8f5db0a8c
+      internalID: 1206904140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_6
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 478
+        width: 33.25
+        height: 26
+      alignment: 9
+      pivot: {x: 0.43, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d5e3f9547be06f42a5046b859ca0514
+      internalID: -2040457486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_7
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 478
+        width: 33
+        height: 26
+      alignment: 9
+      pivot: {x: 0.43, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e811d795df9222a4eb79119cb064d71b
+      internalID: -248222154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_8
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 478
+        width: 33.25
+        height: 26
+      alignment: 9
+      pivot: {x: 0.43, y: 0.16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bafa83a042002144bed1e79cf7c00ca
+      internalID: -1178871672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Steven_0: -1985240826
+      Steven_1: -62836853
+      Steven_10: -1593871436
+      Steven_11: -706710337
+      Steven_12: -442330418
+      Steven_13: 1308645697
+      Steven_14: -1528330309
+      Steven_15: -1397371672
+      Steven_16: 904136638
+      Steven_17: 554463447
+      Steven_18: -585234274
+      Steven_19: -253964093
+      Steven_2: -676932714
+      Steven_20: 735735759
+      Steven_21: -670881463
+      Steven_22: 1115068418
+      Steven_23: 1201789574
+      Steven_24: 1369636859
+      Steven_25: 1536818268
+      Steven_26: 1919339438
+      Steven_27: 1901413293
+      Steven_28: 1229780718
+      Steven_29: -1040733730
+      Steven_3: -465060984
+      Steven_30: 1788501462
+      Steven_31: 210441918
+      Steven_32: -1182172335
+      Steven_33: 1737459833
+      Steven_34: -2043108117
+      Steven_35: 824001625
+      Steven_36: -625407246
+      Steven_37: -1939453722
+      Steven_38: 1788262954
+      Steven_39: 301762537
+      Steven_4: 788923260
+      Steven_40: 1447701764
+      Steven_5: 1206904140
+      Steven_6: -2040457486
+      Steven_7: -248222154
+      Steven_8: -1178871672
+      Steven_9: 1954499344
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
