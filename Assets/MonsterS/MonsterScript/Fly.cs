@@ -44,6 +44,7 @@ public class Fly : EnemyBase
     }
     protected override void OnDisable()
     {
+        coll.isTrigger = false;
         base.OnDisable();
         Invic -= invancivalcheck;
         Invic -= Dieying;
@@ -51,7 +52,7 @@ public class Fly : EnemyBase
     }
     void noisyMove()
     {
-        if (coll.isTrigger == false)
+        if (!coll.isTrigger)
         {
             X = UnityEngine.Random.Range(-noise, noise + 0.1f);
             Y = UnityEngine.Random.Range(-noise, noise + 0.1f);
@@ -87,7 +88,6 @@ public class Fly : EnemyBase
     }
     protected override void Die()
     {
-        coll.isTrigger = true;
         animator.SetInteger("Dead", 1);
         cooltimeStart(2, 0.917f);
         transform.tag = untager;
