@@ -848,7 +848,8 @@ public class Player : MonoBehaviour
             if (isEmpty || !isGetBrimstone || !isGetKnife)
             {
                 headAni.SetBool("isNormalShoot", true);
-                stevenAni.SetBool("isNormalShoot", true);
+                if(isGetSteven)
+                    stevenAni.SetBool("isNormalShoot", true);
             }
             if (isGetBrimstone)
             {
@@ -878,7 +879,8 @@ public class Player : MonoBehaviour
             if (isEmpty || !isGetBrimstone || !isGetKnife)
             {
                 headAni.SetBool("isNormalShoot", false);
-                stevenAni.SetBool("isNormalShoot", false);
+                if(isGetSteven)
+                    stevenAni.SetBool("isNormalShoot", false);
             }
             if (isGetBrimstone)
             {
