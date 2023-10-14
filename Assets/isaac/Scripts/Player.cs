@@ -176,8 +176,8 @@ public class Player : MonoBehaviour
     bool isGetBrimstone = false;
     bool isGetKnife = false;
     bool isGetMutant = false;
-    bool isGetCupid = false;
     bool isGetSteven = false;
+    bool isGetCupid = false;
     #endregion
     #region 무적
     /// <summary>
@@ -315,8 +315,8 @@ public class Player : MonoBehaviour
         Brimstone,
         BloodOfMartyr,
         Knife,
-        Cupid,
         Steven
+        Cupid
     }
     PassiveSpriteState state = PassiveSpriteState.None;
     public PassiveSpriteState State
@@ -403,12 +403,12 @@ public class Player : MonoBehaviour
                     knife.gameObject.SetActive(true);
                     isGetKnife = true;
                     break;
+                case PassiveSpriteState.Steven:
+                    isGetSteven = true;
+                    break;
                 case PassiveSpriteState.Cupid:
                     isEmpty = false;
                     isGetCupid = true;
-                    break;
-                case PassiveSpriteState.Steven:
-                    isGetSteven = true;
                     break;
                 default:
                     break;
@@ -848,8 +848,7 @@ public class Player : MonoBehaviour
             if (isEmpty || !isGetBrimstone || !isGetKnife)
             {
                 headAni.SetBool("isNormalShoot", true);
-                if(isGetSteven)
-                    stevenAni.SetBool("isNormalShoot", true);
+                stevenAni.SetBool("isNormalShoot", true);
             }
             if (isGetBrimstone)
             {
@@ -879,8 +878,7 @@ public class Player : MonoBehaviour
             if (isEmpty || !isGetBrimstone || !isGetKnife)
             {
                 headAni.SetBool("isNormalShoot", false);
-                if(isGetSteven)
-                    stevenAni.SetBool("isNormalShoot", false);
+                stevenAni.SetBool("isNormalShoot", false);
             }
             if (isGetBrimstone)
             {
