@@ -315,7 +315,7 @@ public class Player : MonoBehaviour
         Brimstone,
         BloodOfMartyr,
         Knife,
-        Steven
+        Steven,
         Cupid
     }
     PassiveSpriteState state = PassiveSpriteState.None;
