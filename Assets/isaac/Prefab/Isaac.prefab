@@ -691,10 +691,10 @@ MonoBehaviour:
   tearSpeed: 0
   tearFire: 0
   range: 6.5
-  speed: 10
+  speed: 5
   bombObj: {fileID: 4702667416383564111, guid: df80f88c337ffb444ad4490bf263d646, type: 3}
-  maxHealth: 30
-  health: 0
+  maxHealth: 6
+  health: 6
   damage: 1
   obj: {fileID: 0}
 --- !u!50 &1672132898

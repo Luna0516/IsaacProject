@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
     void MoveCamera(Room room)
     {
         StopAllCoroutines();
-
         StartCoroutine(CameraMove(room));
     }
 
@@ -44,10 +43,7 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, movePos, Time.deltaTime * moveSpeed);
             yield return null;
 
-            if(transform.position == movePos)
-            {
-                break;
-            }
+            if(transform.position == movePos) { break; }
         }
     }
 }
